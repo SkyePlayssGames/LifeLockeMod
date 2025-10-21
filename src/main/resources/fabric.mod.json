@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "lifelocke",
+	"version": "${version}",
+	"name": "LifeLocke",
+	"description": "Mod that implements the LifeLocke stuffz!",
+	"authors": [
+		"AutisticPlush"
+	],
+	"contact": {
+		"discord": "@autisticplush"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/lifelocke/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.galaxyy.lifelocke.LifeLocke"
+		],
+		"fabric-datagen": [
+			"com.galaxyy.lifelocke.LifeLockeDataGenerator"
+		],
+		"client": [
+			"com.galaxyy.lifelocke.LifeLockeClient"
+		]
+	},
+	"mixins": [
+		"lifelocke.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.17.3",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
