@@ -11,6 +11,10 @@ import net.minecraft.util.Identifier;
 public class ModEffects {
     public static final RegistryEntry<StatusEffect> ELECTRIC = registerStatusEffect("electric",
             new ElectricEffect(StatusEffectCategory.BENEFICIAL, 0xfae43c));
+    public static final RegistryEntry<StatusEffect> FIGHTING = registerStatusEffect("fighting",
+            new FightingEffect(StatusEffectCategory.BENEFICIAL, 0xd44e2c));
+    public static final RegistryEntry<StatusEffect> WATER = registerStatusEffect("water",
+            new WaterEffect(StatusEffectCategory.BENEFICIAL, 0x70d2ff));
 
 
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {

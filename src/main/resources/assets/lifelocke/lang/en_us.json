@@ -5,5 +5,7 @@
 
   "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
 
-  "effect.lifelocke.electric": "Electric"
+  "effect.lifelocke.electric": "Electric",
+  "effect.lifelocke.fighting": "Fighting",
+  "effect.lifelocke.water": "Water"
 }
