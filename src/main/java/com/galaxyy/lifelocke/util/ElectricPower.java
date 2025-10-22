@@ -16,8 +16,9 @@ import org.jetbrains.annotations.Nullable;
 public class ElectricPower implements AttackEntityCallback {
     @Override
     public ActionResult interact(PlayerEntity playerEntity, World world, Hand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
-        if (playerEntity.hasStatusEffect(StatusEffects.STRENGTH) && !world.isClient()) {
+        if (playerEntity.hasStatusEffect(StatusEffects.STRENGTH) && !world.isClient() && HungerCost.check_hunger(playerEntity, 6)) {
             EntityType.LIGHTNING_BOLT.spawn((ServerWorld) world, entity.getBlockPos(), SpawnReason.TRIGGERED);
+            HungerCost.take_hunger(playerEntity, 2);
         }
 
         return ActionResult.PASS;
