@@ -17,7 +17,7 @@ public class ElectricPower implements AttackEntityCallback {
     @Override
     public ActionResult interact(PlayerEntity playerEntity, World world, Hand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
         if (playerEntity.hasStatusEffect(ModEffects.ELECTRIC) && !world.isClient() &&
-                (HungerCost.checkHunger(playerEntity, 6) || playerEntity.isCreative()) &&
+                (HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative()) &&
                 ((iEntityDataSaver) playerEntity).getPersistentData().getBoolean("electric_power")) {
 
             EntityType.LIGHTNING_BOLT.spawn((ServerWorld) world, entity.getBlockPos(), SpawnReason.TRIGGERED);

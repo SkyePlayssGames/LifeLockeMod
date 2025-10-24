@@ -1,5 +1,8 @@
-package com.galaxyy.lifelocke.util;
+package com.galaxyy.lifelocke.triggers;
 
+import com.galaxyy.lifelocke.util.BlockUseConsumer;
+import com.galaxyy.lifelocke.util.UpdateData;
+import com.galaxyy.lifelocke.util.iEntityDataSaver;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;

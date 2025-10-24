@@ -17,6 +17,8 @@ public class ModEffects {
             new WaterEffect(StatusEffectCategory.BENEFICIAL, 0x70d2ff));
     public static final RegistryEntry<StatusEffect> NORMAL = registerStatusEffect("normal",
             new NormalEffect(StatusEffectCategory.BENEFICIAL, 0xe1e8eb));
+    public static final RegistryEntry<StatusEffect> FIRE = registerStatusEffect("fire",
+            new FireEffect(StatusEffectCategory.BENEFICIAL, 0xeb761c));
 
 
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {

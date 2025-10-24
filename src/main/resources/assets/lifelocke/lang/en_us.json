@@ -8,6 +8,8 @@
   "effect.lifelocke.electric": "Electric",
   "effect.lifelocke.fighting": "Fighting",
   "effect.lifelocke.water": "Water",
+  "effect.lifelocke.normal": "Normal",
+  "effect.lifelocke.fire": "Fire",
 
   "key.lifelocke.category": "LifeLocke",
   "key.lifelocke.ability": "Ability",

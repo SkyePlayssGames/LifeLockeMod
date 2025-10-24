@@ -1,11 +1,12 @@
 package com.galaxyy.lifelocke.util;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.triggers.ElectricTrigger;
+import com.galaxyy.lifelocke.triggers.FireTrigger;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -15,7 +16,8 @@ import java.util.Map;
 
 public class TriggerEvent implements UseBlockCallback {
     private static final Map<RegistryEntry<StatusEffect>, BlockUseConsumer> EFFECT_FUNCTION_MAP = Map.of(
-            ModEffects.ELECTRIC, new ElectricTrigger()
+            ModEffects.ELECTRIC, new ElectricTrigger(),
+            ModEffects.FIRE, new FireTrigger()
     );
 
     @Override

@@ -10,7 +10,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModItems {
-    public static Item DUMMY_ITEM = registerItem("dummy_item", new Item(new Item.Settings()));
+    public static Item DUMMY_ITEM = registerItem("dummy_item", new DummyItem(new Item.Settings()));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(LifeLocke.MOD_ID, name), item);
