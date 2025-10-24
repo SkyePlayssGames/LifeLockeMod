@@ -7,5 +7,12 @@
 
   "effect.lifelocke.electric": "Electric",
   "effect.lifelocke.fighting": "Fighting",
-  "effect.lifelocke.water": "Water"
+  "effect.lifelocke.water": "Water",
+
+  "key.lifelocke.category": "LifeLocke",
+  "key.lifelocke.ability": "Ability",
+
+  "text.lifelocke.key_pressed": "You pressed your ability key!",
+  "text.lifelocke.electric_turned_on": "Your electric power has been turned on!",
+  "text.lifelocke.electric_turned_off": "Your electric power has been turned off!"
 }

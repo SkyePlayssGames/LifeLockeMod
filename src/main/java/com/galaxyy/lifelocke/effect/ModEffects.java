@@ -15,6 +15,8 @@ public class ModEffects {
             new FightingEffect(StatusEffectCategory.BENEFICIAL, 0xd44e2c));
     public static final RegistryEntry<StatusEffect> WATER = registerStatusEffect("water",
             new WaterEffect(StatusEffectCategory.BENEFICIAL, 0x70d2ff));
+    public static final RegistryEntry<StatusEffect> NORMAL = registerStatusEffect("normal",
+            new NormalEffect(StatusEffectCategory.BENEFICIAL, 0xe1e8eb));
 
 
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {
