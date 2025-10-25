@@ -7,7 +7,7 @@ public class HungerCost {
         return (playerEntity.getHungerManager().getFoodLevel() >= minimum);
     }
 
-    public static void takeHunger(PlayerEntity playerEntity, int cost) {
+    public static void takeHunger(PlayerEntity playerEntity, float cost) {
         playerEntity.getHungerManager().addExhaustion(4f * cost);
     }
 }

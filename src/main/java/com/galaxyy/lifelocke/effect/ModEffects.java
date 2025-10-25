@@ -29,6 +29,10 @@ public class ModEffects {
             new IceEffect(StatusEffectCategory.BENEFICIAL, 0x4dfff0));
     public static final RegistryEntry<StatusEffect> POISON = registerStatusEffect("poison",
             new PoisonEffect(StatusEffectCategory.BENEFICIAL, 0x3517a3));
+    public static final RegistryEntry<StatusEffect> GROUND = registerStatusEffect("ground",
+            new GroundEffect(StatusEffectCategory.BENEFICIAL, 0xa37017));
+    public static final RegistryEntry<StatusEffect> FLYING = registerStatusEffect("flying",
+            new FlyingEffect(StatusEffectCategory.BENEFICIAL, 0xa7e8df));
 
 
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {
