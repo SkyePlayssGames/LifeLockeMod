@@ -4,6 +4,7 @@ import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.triggers.ElectricTrigger;
 import com.galaxyy.lifelocke.triggers.FireTrigger;
 import com.galaxyy.lifelocke.triggers.GrassTrigger;
+import com.galaxyy.lifelocke.triggers.IceTrigger;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,7 +20,8 @@ public class TriggerEvent implements UseBlockCallback {
     private static final Map<RegistryEntry<StatusEffect>, BlockUseConsumer> EFFECT_FUNCTION_MAP = Map.of(
             ModEffects.ELECTRIC, new ElectricTrigger(),
             ModEffects.FIRE, new FireTrigger(),
-            ModEffects.GRASS, new GrassTrigger()
+            ModEffects.GRASS, new GrassTrigger(),
+            ModEffects.ICE, new IceTrigger()
     );
 
     @Override

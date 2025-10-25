@@ -13,6 +13,16 @@ public class UpdateData {
         return electricPower;
     }
 
+    public static boolean toggleIcePower(iEntityDataSaver player) {
+        NbtCompound nbt = player.getPersistentData();
+        boolean icePower = nbt.getBoolean("ice_power");
+
+        icePower = !icePower;
+
+        nbt.putBoolean("ice_power", icePower);
+        return icePower;
+    }
+
     public static boolean tryAndStoreCooldown(iEntityDataSaver player, long time) {
         NbtCompound nbt = player.getPersistentData();
         long ticks = nbt.getLong("time");

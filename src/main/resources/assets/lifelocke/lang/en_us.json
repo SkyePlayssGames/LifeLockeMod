@@ -29,5 +29,7 @@
 
   "text.lifelocke.key_pressed": "You pressed your ability key!",
   "text.lifelocke.electric_turned_on": "Your electric power has been turned on!",
-  "text.lifelocke.electric_turned_off": "Your electric power has been turned off!"
+  "text.lifelocke.electric_turned_off": "Your electric power has been turned off!",
+  "text.lifelocke.ice_turned_on": "Your ice power has been turned on!",
+  "text.lifelocke.ice_turned_off": "Your ice power has been turned off!"
 }
