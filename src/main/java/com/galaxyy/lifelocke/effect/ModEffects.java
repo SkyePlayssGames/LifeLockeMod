@@ -27,6 +27,8 @@ public class ModEffects {
             new GrassEffect(StatusEffectCategory.BENEFICIAL, 0x1ceb34));
     public static final RegistryEntry<StatusEffect> ICE = registerStatusEffect("ice",
             new IceEffect(StatusEffectCategory.BENEFICIAL, 0x4dfff0));
+    public static final RegistryEntry<StatusEffect> POISON = registerStatusEffect("poison",
+            new PoisonEffect(StatusEffectCategory.BENEFICIAL, 0x3517a3));
 
 
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {

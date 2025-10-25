@@ -23,6 +23,16 @@ public class UpdateData {
         return icePower;
     }
 
+    public static boolean togglePoisonPower(iEntityDataSaver player) {
+        NbtCompound nbt = player.getPersistentData();
+        boolean poisonPower = nbt.getBoolean("poison_power");
+
+        poisonPower = !poisonPower;
+
+        nbt.putBoolean("poison_power", poisonPower);
+        return poisonPower;
+    }
+
     public static boolean tryAndStoreCooldown(iEntityDataSaver player, long time) {
         NbtCompound nbt = player.getPersistentData();
         long ticks = nbt.getLong("time");

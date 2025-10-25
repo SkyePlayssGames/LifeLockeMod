@@ -1,10 +1,7 @@
 package com.galaxyy.lifelocke.util;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
-import com.galaxyy.lifelocke.triggers.ElectricTrigger;
-import com.galaxyy.lifelocke.triggers.FireTrigger;
-import com.galaxyy.lifelocke.triggers.GrassTrigger;
-import com.galaxyy.lifelocke.triggers.IceTrigger;
+import com.galaxyy.lifelocke.triggers.*;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,7 +18,8 @@ public class TriggerEvent implements UseBlockCallback {
             ModEffects.ELECTRIC, new ElectricTrigger(),
             ModEffects.FIRE, new FireTrigger(),
             ModEffects.GRASS, new GrassTrigger(),
-            ModEffects.ICE, new IceTrigger()
+            ModEffects.ICE, new IceTrigger(),
+            ModEffects.POISON, new PoisonTrigger()
     );
 
     @Override
