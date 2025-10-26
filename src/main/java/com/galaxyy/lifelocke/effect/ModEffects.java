@@ -53,6 +53,8 @@ public class ModEffects {
                     EntityAttributes.GENERIC_SCALE, Identifier.of(LifeLocke.MOD_ID, "dragon"),
                     0.5, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
             ));
+    public static final RegistryEntry<StatusEffect> STEEL = registerStatusEffect("steel",
+            new SteelEffect(StatusEffectCategory.BENEFICIAL, 0x9fb3b2));
 
 
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {
