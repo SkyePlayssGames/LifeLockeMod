@@ -21,7 +21,8 @@ public class TriggerEvent implements UseBlockCallback {
             ModEffects.ICE, new IceTrigger(),
             ModEffects.POISON, new PoisonTrigger(),
             ModEffects.FLYING, new FlyingTrigger(),
-            ModEffects.GROUND, new GroundTrigger()
+            ModEffects.GROUND, new GroundTrigger()  // ,
+    //        ModEffects.ROCK, new RockTrigger()
     );
 
     @Override

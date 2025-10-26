@@ -33,6 +33,16 @@ public class UpdateData {
         return poisonPower;
     }
 
+    public static boolean toggleRockPower(iEntityDataSaver player) {
+        NbtCompound nbt = player.getPersistentData();
+        boolean rockPower = nbt.getBoolean("rock_power");
+
+        rockPower = !rockPower;
+
+        nbt.putBoolean("rock_power", rockPower);
+        return rockPower;
+    }
+
     public static boolean tryAndStoreCooldown(iEntityDataSaver player, long time) {
         NbtCompound nbt = player.getPersistentData();
         long ticks = nbt.getLong("time");

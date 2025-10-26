@@ -8,7 +8,10 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.stat.Stat;
 import net.minecraft.util.Identifier;
+
+import java.util.Locale;
 
 public class ModEffects {
     public static final RegistryEntry<StatusEffect> ELECTRIC = registerStatusEffect("electric",
@@ -33,6 +36,16 @@ public class ModEffects {
             new GroundEffect(StatusEffectCategory.BENEFICIAL, 0xa37017));
     public static final RegistryEntry<StatusEffect> FLYING = registerStatusEffect("flying",
             new FlyingEffect(StatusEffectCategory.BENEFICIAL, 0xa7e8df));
+    public static final RegistryEntry<StatusEffect> BUG = registerStatusEffect("bug",
+            new BugEffect(StatusEffectCategory.BENEFICIAL, 0xbcf542).addAttributeModifier(
+                    EntityAttributes.GENERIC_SCALE, Identifier.of(LifeLocke.MOD_ID, "bug"),
+                    -0.5, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+            ).addAttributeModifier(
+                    EntityAttributes.GENERIC_FALL_DAMAGE_MULTIPLIER, Identifier.of(LifeLocke.MOD_ID, "bug"),
+                    -1, EntityAttributeModifier.Operation.ADD_VALUE
+            ));
+    public static final RegistryEntry<StatusEffect> ROCK = registerStatusEffect("rock",
+            new RockEffect(StatusEffectCategory.BENEFICIAL, 0xab7333));
 
 
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {
