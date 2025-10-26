@@ -46,6 +46,13 @@ public class ModEffects {
             ));
     public static final RegistryEntry<StatusEffect> ROCK = registerStatusEffect("rock",
             new RockEffect(StatusEffectCategory.BENEFICIAL, 0xab7333));
+    public static final RegistryEntry<StatusEffect> GHOST = registerStatusEffect("ghost",
+            new GhostEffect(StatusEffectCategory.BENEFICIAL, 0x791a9c));
+    public static final RegistryEntry<StatusEffect> DRAGON = registerStatusEffect("dragon",
+            new DragonEffect(StatusEffectCategory.BENEFICIAL, 0x312696).addAttributeModifier(
+                    EntityAttributes.GENERIC_SCALE, Identifier.of(LifeLocke.MOD_ID, "dragon"),
+                    0.5, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+            ));
 
 
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {
