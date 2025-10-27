@@ -55,6 +55,8 @@ public class ModEffects {
             ));
     public static final RegistryEntry<StatusEffect> STEEL = registerStatusEffect("steel",
             new SteelEffect(StatusEffectCategory.BENEFICIAL, 0x9fb3b2));
+    public static final RegistryEntry<StatusEffect> FAIRY = registerStatusEffect("fairy",
+            new FairyEffect(StatusEffectCategory.BENEFICIAL, 0xdf76e3));
 
 
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {
