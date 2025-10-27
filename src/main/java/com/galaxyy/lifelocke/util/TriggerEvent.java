@@ -22,7 +22,8 @@ public class TriggerEvent implements UseBlockCallback {
             ModEffects.POISON, new PoisonTrigger(),
             ModEffects.FLYING, new FlyingTrigger(),
             ModEffects.GROUND, new GroundTrigger(),
-            ModEffects.FAIRY, new FairyTrigger()
+            ModEffects.FAIRY, new FairyTrigger(),
+            ModEffects.DARK, new DarkTrigger()
     //      ModEffects.ROCK, new RockTrigger()
     );
 

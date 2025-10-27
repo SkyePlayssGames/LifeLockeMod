@@ -43,6 +43,16 @@ public class UpdateData {
         return rockPower;
     }
 
+    public static boolean toggleDarkPower(iEntityDataSaver player) {
+        NbtCompound nbt = player.getPersistentData();
+        boolean darkPower = nbt.getBoolean("dark_power");
+
+        darkPower = !darkPower;
+
+        nbt.putBoolean("dark_power", darkPower);
+        return darkPower;
+    }
+
     public static boolean tryAndStoreCooldown(iEntityDataSaver player, long time) {
         NbtCompound nbt = player.getPersistentData();
         long ticks = nbt.getLong("time");

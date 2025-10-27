@@ -1,6 +1,7 @@
 package com.galaxyy.lifelocke.effect;
 
 import com.galaxyy.lifelocke.LifeLocke;
+import jdk.jshell.Snippet;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
@@ -57,6 +58,8 @@ public class ModEffects {
             new SteelEffect(StatusEffectCategory.BENEFICIAL, 0x9fb3b2));
     public static final RegistryEntry<StatusEffect> FAIRY = registerStatusEffect("fairy",
             new FairyEffect(StatusEffectCategory.BENEFICIAL, 0xdf76e3));
+    public static final RegistryEntry<StatusEffect> DARK = registerStatusEffect("dark",
+            new DarkEffect(StatusEffectCategory.BENEFICIAL, 0x000000));
 
 
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {
