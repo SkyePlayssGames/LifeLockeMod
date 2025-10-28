@@ -5,6 +5,7 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 
 public class DarkEffect extends StatusEffect {
@@ -13,7 +14,7 @@ public class DarkEffect extends StatusEffect {
     }
 
     @Override
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
         long time = entity.getWorld().getTimeOfDay();
         if (time > 13000 && time < 23000) {
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 5, 0, false, false));

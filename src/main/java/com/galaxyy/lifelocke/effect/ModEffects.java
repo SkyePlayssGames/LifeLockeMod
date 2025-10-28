@@ -19,7 +19,7 @@ public class ModEffects {
             new ElectricEffect(StatusEffectCategory.BENEFICIAL, 0xfae43c));
     public static final RegistryEntry<StatusEffect> FIGHTING = registerStatusEffect("fighting",
             new FightingEffect(StatusEffectCategory.BENEFICIAL, 0xd44e2c).addAttributeModifier(
-                    EntityAttributes.GENERIC_ATTACK_SPEED, Identifier.of(LifeLocke.MOD_ID, "fighting"),
+                    EntityAttributes.ATTACK_SPEED, Identifier.of(LifeLocke.MOD_ID, "fighting"),
                     100, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE));
     public static final RegistryEntry<StatusEffect> WATER = registerStatusEffect("water",
             new WaterEffect(StatusEffectCategory.BENEFICIAL, 0x70d2ff));
@@ -39,10 +39,10 @@ public class ModEffects {
             new FlyingEffect(StatusEffectCategory.BENEFICIAL, 0xa7e8df));
     public static final RegistryEntry<StatusEffect> BUG = registerStatusEffect("bug",
             new BugEffect(StatusEffectCategory.BENEFICIAL, 0xbcf542).addAttributeModifier(
-                    EntityAttributes.GENERIC_SCALE, Identifier.of(LifeLocke.MOD_ID, "bug"),
+                    EntityAttributes.SCALE, Identifier.of(LifeLocke.MOD_ID, "bug"),
                     -0.5, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
             ).addAttributeModifier(
-                    EntityAttributes.GENERIC_FALL_DAMAGE_MULTIPLIER, Identifier.of(LifeLocke.MOD_ID, "bug"),
+                    EntityAttributes.FALL_DAMAGE_MULTIPLIER, Identifier.of(LifeLocke.MOD_ID, "bug"),
                     -1, EntityAttributeModifier.Operation.ADD_VALUE
             ));
     public static final RegistryEntry<StatusEffect> ROCK = registerStatusEffect("rock",
@@ -51,7 +51,7 @@ public class ModEffects {
             new GhostEffect(StatusEffectCategory.BENEFICIAL, 0x791a9c));
     public static final RegistryEntry<StatusEffect> DRAGON = registerStatusEffect("dragon",
             new DragonEffect(StatusEffectCategory.BENEFICIAL, 0x312696).addAttributeModifier(
-                    EntityAttributes.GENERIC_SCALE, Identifier.of(LifeLocke.MOD_ID, "dragon"),
+                    EntityAttributes.SCALE, Identifier.of(LifeLocke.MOD_ID, "dragon"),
                     0.5, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
             ));
     public static final RegistryEntry<StatusEffect> STEEL = registerStatusEffect("steel",
@@ -60,6 +60,9 @@ public class ModEffects {
             new FairyEffect(StatusEffectCategory.BENEFICIAL, 0xdf76e3));
     public static final RegistryEntry<StatusEffect> DARK = registerStatusEffect("dark",
             new DarkEffect(StatusEffectCategory.BENEFICIAL, 0x000000));
+
+    public static final RegistryEntry[] EFFECTS = {NORMAL, ELECTRIC, FIGHTING, WATER, FIRE, GRASS, ICE, POISON, GROUND, FLYING, BUG,
+                                ROCK, GHOST, DRAGON, STEEL, FAIRY, DARK};
 
 
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {

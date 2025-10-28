@@ -5,6 +5,7 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.Vec3i;
 
@@ -15,6 +16,7 @@ public class DummyItem extends Item {
 
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
-        return ActionResult.PASS;
+        context.getPlayer().setCustomName(Text.literal("Hello Kitty!"));
+        return ActionResult.SUCCESS;
     }
 }

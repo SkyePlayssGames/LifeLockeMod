@@ -5,7 +5,8 @@
 	"name": "LifeLocke",
 	"description": "Mod that implements the LifeLocke stuffz!",
 	"authors": [
-		"AutisticPlush"
+		"AutisticPlush",
+		"StarSword"
 	],
 	"contact": {
 		"discord": "@autisticplush"
@@ -29,7 +30,7 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.17.3",
-		"minecraft": "~1.21.1",
+		"minecraft": "~1.21.3",
 		"java": ">=21",
 		"fabric-api": "*"
 	},

@@ -4,6 +4,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.server.world.ServerWorld;
 
 import java.util.Iterator;
 
@@ -13,7 +14,7 @@ public class PoisonEffect extends StatusEffect {
     }
 
     @Override
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
         for (StatusEffectInstance effectInstance : entity.getStatusEffects()) {
             if (effectInstance.getEffectType().value().getCategory() == StatusEffectCategory.HARMFUL) {
                 entity.removeStatusEffect(effectInstance.getEffectType());

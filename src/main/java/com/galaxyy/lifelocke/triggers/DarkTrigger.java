@@ -15,9 +15,9 @@ public class DarkTrigger implements BlockUseConsumer {
             return;
         }
         if (UpdateData.toggleDarkPower(((iEntityDataSaver) playerEntity))) {
-            playerEntity.sendMessage(Text.translatable("text.lifelocke.dark_turned_on"));
+            playerEntity.sendMessage(Text.translatable("text.lifelocke.dark_turned_on"), false);
         } else {
-            playerEntity.sendMessage(Text.translatable("text.lifelocke.dark_turned_off"));
+            playerEntity.sendMessage(Text.translatable("text.lifelocke.dark_turned_off"), false);
         }
     }
 }

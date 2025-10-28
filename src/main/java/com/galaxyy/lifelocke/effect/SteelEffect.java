@@ -23,16 +23,17 @@ public class SteelEffect extends StatusEffect {
     public void onApplied(LivingEntity entity, int amplifier) {
         World world = entity.getWorld();
         if (entity instanceof PlayerEntity) {
-            Registry<Enchantment> enchantments = world.getRegistryManager().get(RegistryKeys.ENCHANTMENT);
+            Registry<Enchantment> enchantments = world.getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
+
 
             ItemStack boots = new ItemStack(Items.IRON_BOOTS);
             ItemStack leggings = new ItemStack(Items.IRON_LEGGINGS);
             ItemStack chestplate = new ItemStack(Items.IRON_CHESTPLATE);
 
-            RegistryEntry<Enchantment> protection = enchantments.getEntry(Enchantments.PROTECTION).get();
-            RegistryEntry<Enchantment> unbreaking = enchantments.getEntry(Enchantments.UNBREAKING).get();
-            RegistryEntry<Enchantment> binding = enchantments.getEntry(Enchantments.BINDING_CURSE).get();
-            RegistryEntry<Enchantment> vanishing = enchantments.getEntry(Enchantments.VANISHING_CURSE).get();
+            RegistryEntry<Enchantment> protection = RegistryEntry.of(enchantments.get(Enchantments.PROTECTION));
+            RegistryEntry<Enchantment> unbreaking = RegistryEntry.of(enchantments.get(Enchantments.UNBREAKING));
+            RegistryEntry<Enchantment> binding = RegistryEntry.of(enchantments.get(Enchantments.BINDING_CURSE));
+            RegistryEntry<Enchantment> vanishing = RegistryEntry.of(enchantments.get(Enchantments.VANISHING_CURSE));
 
             boots.addEnchantment(protection, 3);
             leggings.addEnchantment(protection, 3);

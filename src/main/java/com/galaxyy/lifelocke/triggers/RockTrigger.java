@@ -15,9 +15,9 @@ public class RockTrigger implements BlockUseConsumer {
             return;
         }
         if (UpdateData.toggleRockPower(((iEntityDataSaver) playerEntity))) {
-            playerEntity.sendMessage(Text.translatable("text.lifelocke.rock_turned_on"));
+            playerEntity.sendMessage(Text.translatable("text.lifelocke.rock_turned_on"), false);
         } else {
-            playerEntity.sendMessage(Text.translatable("text.lifelocke.rock_turned_off"));
+            playerEntity.sendMessage(Text.translatable("text.lifelocke.rock_turned_off"), false);
         }
     }
 }

@@ -6,6 +6,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -15,7 +16,7 @@ public class IceEffect extends StatusEffect {
     }
 
     @Override
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
         if (!(entity instanceof PlayerEntity)) {
             return true;
         }
@@ -49,7 +50,6 @@ public class IceEffect extends StatusEffect {
             i++;
         }
 
-        World world = player.getWorld();
         for (BlockPos blockPos : toReplace) {
             if (world.getBlockState(blockPos).isOf(Blocks.WATER)) {
                 world.setBlockState(blockPos, Blocks.FROSTED_ICE.getDefaultState());

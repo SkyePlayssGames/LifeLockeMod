@@ -28,9 +28,9 @@ public class FlyingEffect extends StatusEffect {
         if (entity instanceof PlayerEntity) {
             ItemStack elytra = new ItemStack(Items.ELYTRA);
             // ((PlayerEntity) entity).sendMessage(Text.literal("" + world.getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.BINDING_CURSE).isPresent()));
-            elytra.addEnchantment(world.getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.BINDING_CURSE).get(), 1);
-            elytra.addEnchantment(world.getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.VANISHING_CURSE).get(), 1);
-            elytra.addEnchantment(world.getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.UNBREAKING).get(), 65536);
+            elytra.addEnchantment(RegistryEntry.of(world.getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT).get(Enchantments.BINDING_CURSE)), 1);
+            elytra.addEnchantment(RegistryEntry.of(world.getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT).get(Enchantments.VANISHING_CURSE)), 1);
+            elytra.addEnchantment(RegistryEntry.of(world.getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT).get(Enchantments.UNBREAKING)), 65536);
             entity.equipStack(EquipmentSlot.CHEST, elytra);
         }
     }

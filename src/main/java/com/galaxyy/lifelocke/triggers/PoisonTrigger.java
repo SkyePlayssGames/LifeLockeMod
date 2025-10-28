@@ -15,9 +15,9 @@ public class PoisonTrigger implements BlockUseConsumer {
             return;
         }
         if (UpdateData.togglePoisonPower(((iEntityDataSaver) playerEntity))) {
-            playerEntity.sendMessage(Text.translatable("text.lifelocke.poison_turned_on"));
+            playerEntity.sendMessage(Text.translatable("text.lifelocke.poison_turned_on"), false);
         } else {
-            playerEntity.sendMessage(Text.translatable("text.lifelocke.poison_turned_off"));
+            playerEntity.sendMessage(Text.translatable("text.lifelocke.poison_turned_off"), false);
         }
     }
 }

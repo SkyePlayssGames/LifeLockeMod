@@ -15,9 +15,9 @@ public class ElectricTrigger implements BlockUseConsumer {
             return;
         }
         if (UpdateData.toggleElectricPower(((iEntityDataSaver) playerEntity))) {
-            playerEntity.sendMessage(Text.translatable("text.lifelocke.electric_turned_on"));
+            playerEntity.sendMessage(Text.translatable("text.lifelocke.electric_turned_on"), false);
         } else {
-            playerEntity.sendMessage(Text.translatable("text.lifelocke.electric_turned_off"));
+            playerEntity.sendMessage(Text.translatable("text.lifelocke.electric_turned_off"), false);
         }
     }
 }

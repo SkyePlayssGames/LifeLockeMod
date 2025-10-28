@@ -15,9 +15,9 @@ public class IceTrigger implements BlockUseConsumer {
             return;
         }
         if (UpdateData.toggleIcePower(((iEntityDataSaver) playerEntity))) {
-            playerEntity.sendMessage(Text.translatable("text.lifelocke.ice_turned_on"));
+            playerEntity.sendMessage(Text.translatable("text.lifelocke.ice_turned_on"), false);
         } else {
-            playerEntity.sendMessage(Text.translatable("text.lifelocke.ice_turned_off"));
+            playerEntity.sendMessage(Text.translatable("text.lifelocke.ice_turned_off"), false);
         }
     }
 }
