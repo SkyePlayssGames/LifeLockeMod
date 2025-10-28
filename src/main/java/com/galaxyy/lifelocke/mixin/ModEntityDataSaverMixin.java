@@ -4,6 +4,8 @@ import com.galaxyy.lifelocke.util.iEntityDataSaver;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -26,17 +28,17 @@ public abstract class ModEntityDataSaverMixin implements iEntityDataSaver {
         return persistentData;
     }
 
-    @Inject(method = "writeNbt", at = @At("HEAD"))
-    protected void injectWriteMethod(NbtCompound nbt, CallbackInfoReturnable info) {
+    @Inject(method = "writeData", at = @At("HEAD"))
+    protected void injectWriteMethod(WriteView view, CallbackInfo ci) {
         if (persistentData != null) {
-            nbt.put("lifelocke.data", persistentData);
+            view.put("lifelocke.data", NbtCompound.CODEC, persistentData);
         }
     }
 
-    @Inject(method = "readNbt", at = @At("HEAD"))
-    protected void injectReadMethod(NbtCompound nbt, CallbackInfo info) {
-        if (nbt.contains("lifelocke.data")) {
-            persistentData = nbt.getCompound("lifelocke.data").orElseThrow();
+    @Inject(method = "readData", at = @At("HEAD"))
+    protected void injectReadMethod(ReadView view, CallbackInfo ci) {
+        if (view.contains("lifelocke.data")) {
+            persistentData = view.read("lifelocke.data", NbtCompound.CODEC).orElseThrow();
         }
     }
 }
