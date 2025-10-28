@@ -35,8 +35,8 @@ public abstract class ModEntityDataSaverMixin implements iEntityDataSaver {
 
     @Inject(method = "readNbt", at = @At("HEAD"))
     protected void injectReadMethod(NbtCompound nbt, CallbackInfo info) {
-        if (nbt.contains("lifelocke.data", 10)) {
-            persistentData = nbt.getCompound("lifelocke.data");
+        if (nbt.contains("lifelocke.data")) {
+            persistentData = nbt.getCompound("lifelocke.data").orElseThrow();
         }
     }
 }

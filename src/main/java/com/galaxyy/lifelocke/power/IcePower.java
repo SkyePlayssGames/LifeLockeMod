@@ -20,7 +20,7 @@ public class IcePower implements AttackEntityCallback {
     public ActionResult interact(PlayerEntity playerEntity, World world, Hand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
         if (playerEntity.hasStatusEffect(ModEffects.ICE) && !world.isClient() &&
                 (HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative()) &&
-                ((iEntityDataSaver) playerEntity).getPersistentData().getBoolean("ice_power") &&
+                ((iEntityDataSaver) playerEntity).getPersistentData().getBoolean("ice_power").orElseThrow() &&
                 entity.isAlive()) {
             ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100), playerEntity);
             HungerCost.takeHunger(playerEntity, 1);
