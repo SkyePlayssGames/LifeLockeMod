@@ -12,32 +12,33 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 
-public class TypeCommand implements net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback {
+public class PsychicCommand implements net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback {
     private int command(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-        PlayerEntity player = EntityArgumentType.getPlayer(context, "person");
-        System.out.println("Got player " + player);
-        boolean i = true;
-        for (RegistryEntry<StatusEffect> effect : ModEffects.EFFECTS) {
-            if (player.hasStatusEffect(effect)) {
-                i = false;
-                context.getSource().sendFeedback(() -> player.getName().copy()
-                                .append(" has the ")
-                                .append(effect.value().getName())
-                                .append(" type!"),
-                                false);
-            }
+        if (!context.getSource().getPlayer().hasStatusEffect(ModEffects.PSYCHIC)) {
+            context.getSource().sendFeedback(() -> Text.literal("You need to be psychic type to use this!"), false);
+            return 0;
         }
 
-        if (i) { context.getSource().sendFeedback(() -> Text.literal("They have no type!"), false); }
+        PlayerEntity player = EntityArgumentType.getPlayer(context, "person");
+        context.getSource().sendFeedback(() ->
+                player.getName().copy()
+                        .append(" is at x: ")
+                        .append(String.valueOf(player.getBlockX()))
+                        .append(", y: ")
+                        .append(String.valueOf(player.getBlockY()))
+                        .append(", z: ")
+                        .append(String.valueOf(player.getBlockZ()))
+                        .append("!"),
+                false
+        );
 
         return 1;
     }
 
     @Override
     public void register(CommandDispatcher<ServerCommandSource> commandDispatcher, CommandRegistryAccess commandRegistryAccess, CommandManager.RegistrationEnvironment registrationEnvironment) {
-        commandDispatcher.register(CommandManager.literal("type")
+        commandDispatcher.register(CommandManager.literal("psychic")
                         .then(CommandManager.argument("person", EntityArgumentType.player())
                         .executes(this::command)));
     }

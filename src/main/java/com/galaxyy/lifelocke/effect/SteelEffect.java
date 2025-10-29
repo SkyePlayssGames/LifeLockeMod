@@ -21,7 +21,7 @@ public class SteelEffect extends StatusEffect {
 
     @Override
     public void onApplied(LivingEntity entity, int amplifier) {
-        World world = entity.getWorld();
+        World world = entity.getEntityWorld();
         if (entity instanceof PlayerEntity) {
             Registry<Enchantment> enchantments = world.getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT);
 

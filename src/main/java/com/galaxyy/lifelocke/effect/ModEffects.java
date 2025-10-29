@@ -60,9 +60,11 @@ public class ModEffects {
             new FairyEffect(StatusEffectCategory.BENEFICIAL, 0xdf76e3));
     public static final RegistryEntry<StatusEffect> DARK = registerStatusEffect("dark",
             new DarkEffect(StatusEffectCategory.BENEFICIAL, 0x000000));
+    public static final RegistryEntry<StatusEffect> PSYCHIC = registerStatusEffect("psychic",
+            new PsychicEffect(StatusEffectCategory.BENEFICIAL, 0xca67e0));
 
     public static final RegistryEntry[] EFFECTS = {NORMAL, ELECTRIC, FIGHTING, WATER, FIRE, GRASS, ICE, POISON, GROUND, FLYING, BUG,
-                                ROCK, GHOST, DRAGON, STEEL, FAIRY, DARK};
+                                ROCK, GHOST, DRAGON, STEEL, FAIRY, DARK, PSYCHIC};
 
 
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {

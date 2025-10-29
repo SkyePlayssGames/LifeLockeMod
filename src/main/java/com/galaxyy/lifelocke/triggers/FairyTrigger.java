@@ -33,12 +33,15 @@ public class FairyTrigger implements BlockUseConsumer {
     @Override
     public void accept(PlayerEntity playerEntity, World world, Hand hand, BlockHitResult blockHitResult) {
         if (world.isClient() || !UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())
-            || !(HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative())) {
+            || !(HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative())
+            || playerEntity.hasStatusEffect(StatusEffects.GLOWING)) {
             return;
         }
-        for (PlayerEntity player : world.getPlayers()) {
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 0));
-        }
+
+        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 400, 0, false, false));
+        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 400, 0, false, false));
+        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 400, 0, false, false));
+        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 1200, 0, false, false));
 
         HungerCost.takeHunger(playerEntity, 1);
     }

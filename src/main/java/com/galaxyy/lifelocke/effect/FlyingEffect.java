@@ -24,7 +24,7 @@ public class FlyingEffect extends StatusEffect {
 
     @Override
     public void onApplied(LivingEntity entity, int amplifier) {
-        World world = entity.getWorld();
+        World world = entity.getEntityWorld();
         if (entity instanceof PlayerEntity) {
             ItemStack elytra = new ItemStack(Items.ELYTRA);
             // ((PlayerEntity) entity).sendMessage(Text.literal("" + world.getRegistryManager().get(RegistryKeys.ENCHANTMENT).getEntry(Enchantments.BINDING_CURSE).isPresent()));

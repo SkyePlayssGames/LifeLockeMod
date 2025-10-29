@@ -15,7 +15,7 @@ public class DarkEffect extends StatusEffect {
 
     @Override
     public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
-        long time = entity.getWorld().getTimeOfDay();
+        long time = world.getTimeOfDay();
         if (time > 13000 && time < 23000) {
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 5, 0, false, false));
             entity.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 5, 0, false, false));
