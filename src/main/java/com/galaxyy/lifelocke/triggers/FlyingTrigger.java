@@ -7,12 +7,9 @@ import com.galaxyy.lifelocke.util.iEntityDataSaver;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.WindChargeEntity;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
 public class FlyingTrigger implements BlockUseConsumer {

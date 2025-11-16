@@ -5,7 +5,7 @@ import net.minecraft.nbt.NbtCompound;
 public class UpdateData {
     public static boolean toggleElectricPower(iEntityDataSaver player) {
         NbtCompound nbt = player.getPersistentData();
-        boolean electricPower = nbt.getBoolean("electric_power").orElseThrow();
+        boolean electricPower = nbt.getBoolean("electric_power").orElse(false);
 
         electricPower = !electricPower;
 
@@ -15,7 +15,7 @@ public class UpdateData {
 
     public static boolean toggleIcePower(iEntityDataSaver player) {
         NbtCompound nbt = player.getPersistentData();
-        boolean icePower = nbt.getBoolean("ice_power").orElseThrow();
+        boolean icePower = nbt.getBoolean("ice_power").orElse(false);
 
         icePower = !icePower;
 
@@ -25,7 +25,7 @@ public class UpdateData {
 
     public static boolean togglePoisonPower(iEntityDataSaver player) {
         NbtCompound nbt = player.getPersistentData();
-        boolean poisonPower = nbt.getBoolean("poison_power").orElseThrow();
+        boolean poisonPower = nbt.getBoolean("poison_power").orElse(false);
 
         poisonPower = !poisonPower;
 
@@ -35,7 +35,7 @@ public class UpdateData {
 
     public static boolean toggleRockPower(iEntityDataSaver player) {
         NbtCompound nbt = player.getPersistentData();
-        boolean rockPower = nbt.getBoolean("rock_power").orElseThrow();
+        boolean rockPower = nbt.getBoolean("rock_power").orElse(false);
 
         rockPower = !rockPower;
 
@@ -45,7 +45,7 @@ public class UpdateData {
 
     public static boolean toggleDarkPower(iEntityDataSaver player) {
         NbtCompound nbt = player.getPersistentData();
-        boolean darkPower = nbt.getBoolean("dark_power").orElseThrow();
+        boolean darkPower = nbt.getBoolean("dark_power").orElse(false);
 
         darkPower = !darkPower;
 
@@ -55,7 +55,7 @@ public class UpdateData {
 
     public static boolean tryAndStoreCooldown(iEntityDataSaver player, long time) {
         NbtCompound nbt = player.getPersistentData();
-        long ticks = nbt.getLong("time").orElseThrow();
+        long ticks = nbt.getLong("time").orElse(0L);
         if (time == ticks) { return false; }
 
         nbt.putLong("time", time);

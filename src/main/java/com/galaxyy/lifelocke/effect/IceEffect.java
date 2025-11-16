@@ -21,7 +21,7 @@ public class IceEffect extends StatusEffect {
             return true;
         }
         iEntityDataSaver playerData = (iEntityDataSaver) entity;
-        if (!(playerData.getPersistentData().getBoolean("ice_power")).orElseThrow()) {
+        if (!(playerData.getPersistentData().getBoolean("ice_power")).orElse(false)) {
             return true;
         }
         PlayerEntity player = ((PlayerEntity) playerData);
