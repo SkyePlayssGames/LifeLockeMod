@@ -17,20 +17,15 @@ import net.minecraft.util.Formatting;
 public class TypeCommand implements net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback {
     private int command(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         PlayerEntity player = EntityArgumentType.getPlayer(context, "person");
-        System.out.println("Got player " + player);
         boolean i = true;
         for (RegistryEntry<StatusEffect> effect : ModEffects.EFFECTS) {
             if (player.hasStatusEffect(effect)) {
                 i = false;
-                context.getSource().sendFeedback(() -> player.getName().copy()
-                                .append(" has the ")
-                                .append(effect.value().getName())
-                                .append(" type!"),
-                                false);
+                context.getSource().sendFeedback(() -> Text.translatable("text.lifelocke.command.type.has_type", player.getName(), effect.value().getName()), false);
             }
         }
 
-        if (i) { context.getSource().sendFeedback(() -> Text.literal("They have no type!"), false); }
+        if (i) { context.getSource().sendFeedback(() -> Text.translatable("text.lifelocke.command.type.has_no_type", player.getName()), false); }
 
         return 1;
     }

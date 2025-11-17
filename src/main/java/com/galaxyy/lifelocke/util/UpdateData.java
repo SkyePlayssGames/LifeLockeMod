@@ -61,4 +61,14 @@ public class UpdateData {
         nbt.putLong("time", time);
         return true;
     }
+
+    public static int[] getTypeList(iEntityDataSaver player) {
+        NbtCompound nbt = player.getPersistentData();
+        return nbt.getIntArray("types").orElse(new int[] {});
+    }
+
+    public static void setTypeList(iEntityDataSaver player, int[] list) {
+        NbtCompound nbt = player.getPersistentData();
+        nbt.putIntArray("types", list);
+    }
 }

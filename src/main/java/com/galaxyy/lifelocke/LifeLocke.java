@@ -1,7 +1,9 @@
 package com.galaxyy.lifelocke;
 
 import com.galaxyy.lifelocke.block.ModBlocks;
+import com.galaxyy.lifelocke.command.DebugCommand;
 import com.galaxyy.lifelocke.command.PsychicCommand;
+import com.galaxyy.lifelocke.command.RollTypeCommand;
 import com.galaxyy.lifelocke.command.TypeCommand;
 import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.item.ModItems;
@@ -32,5 +34,7 @@ public class LifeLocke implements ModInitializer {
 
 		CommandRegistrationCallback.EVENT.register(new TypeCommand());
 		CommandRegistrationCallback.EVENT.register(new PsychicCommand());
+		CommandRegistrationCallback.EVENT.register(new RollTypeCommand());
+		CommandRegistrationCallback.EVENT.register(new DebugCommand());
 	}
 }
