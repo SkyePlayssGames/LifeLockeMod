@@ -1,0 +1,51 @@
+{
+  "item.lifelocke.dummy_item": "Obec piZymi",
+
+  "block.lifelocke.dummy_block": "Koloc piZymi",
+
+  "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
+
+  "effect.lifelocke.electric": "PajajJci piZocy",
+  "effect.lifelocke.fighting": "Kylac",
+  "effect.lifelocke.water": "Voda",
+  "effect.lifelocke.normal": "noMaca",
+  "effect.lifelocke.fire": "Pali",
+  "effect.lifelocke.grass": "Lumpu",
+  "effect.lifelocke.psychic": "Maca",
+  "effect.lifelocke.dark": "Jxe",
+  "effect.lifelocke.ghost": "Zyc piMikilc",
+  "effect.lifelocke.steel": "KiKami",
+  "effect.lifelocke.dragon": "GexePaja",
+  "effect.lifelocke.fairy": "PipiNime",
+  "effect.lifelocke.bug": "Pipi",
+  "effect.lifelocke.flying": "Lec",
+  "effect.lifelocke.ground": "Al",
+  "effect.lifelocke.ice": "VodaSicu",
+  "effect.lifelocke.poison": "VodaMikilc",
+  "effect.lifelocke.rock": "Ki",
+
+  "key.lifelocke.category": "LifeLocke",
+  "key.lifelocke.ability": "PajaKan",
+
+  "text.lifelocke.key_pressed": "Jn xovojEs PajaKan ojJn!",
+  "text.lifelocke.electric_turned_on": "Jn xovojEs PajaKan piPajajJci piZocy ojJn!",
+  "text.lifelocke.electric_turned_off": "Jn xovonojEs PajaKan piPajajJci piZocy ojJn!",
+  "text.lifelocke.poison_turned_on": "Jn xovojEs PajaKan piVodaMikilc ojJn!",
+  "text.lifelocke.poison_turned_off": "Jn xovonojEs PajaKan piVodaMikilc ojJn!",
+  "text.lifelocke.rock_turned_on": "Jn xovojEs PajaKan piKi ojJn!",
+  "text.lifelocke.rock_turned_off": "Jn xovonojEs PajaKan piKi ojJn!",
+  "text.lifelocke.dark_turned_on": "Jn xovojEs PajaKan pijJxe ojJn!",
+  "text.lifelocke.dark_turned_off": "Jn xovonojEs PajaKan pijJxe ojJn!",
+  "text.lifelocke.ice_turned_on": "Jn xovojEs PajaKan piVodaSicu ojJn!",
+  "text.lifelocke.ice_turned_off": "Jn xovonojEs PajaKan piVodaSicu ojJn!",
+
+
+  "text.lifelocke.command.type.has_type": "%s Kal Kulup pi%s!",
+  "text.lifelocke.command.type.has_no_type": "%s noKal Kulup!",
+  "text.lifelocke.command.psychic.psychic": "%s Es nijx: %s, nijy: %s, nijz: %s!",
+  "text.lifelocke.command.rolltype.rolled_type": "%s xovoKal Kulup pi%s!",
+
+  "text.lifelocke.command_error.psychic.not_psychic": "Jn ilkokanEs Kulup piMaca Pol uziGoLipuKysim piCaca!",
+  "text.lifelocke.command_error.rolltype.not_player_sent": "ilkoMek uzikanGoLipuKysim piCaca!",
+  "text.lifelocke.command_error.rolltype.has_had_all_types": "GoMek besKal savKulup!"
+}
