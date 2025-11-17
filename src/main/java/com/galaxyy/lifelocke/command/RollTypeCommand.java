@@ -3,10 +3,8 @@ package com.galaxyy.lifelocke.command;
 import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.util.UpdateData;
 import com.galaxyy.lifelocke.util.iEntityDataSaver;
-import com.google.common.base.Predicates;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
-import com.mojang.brigadier.exceptions.CommandExceptionType;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -19,23 +17,8 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 
 import java.util.Arrays;
-import java.util.function.IntPredicate;
 
 public class RollTypeCommand implements CommandRegistrationCallback {
-    IntPredicate equalsPredicate = new IntPredicate() {
-        public IntPredicate setOther(int other) {
-            this.other = other;
-            return this;
-        }
-
-        private int other;
-
-        @Override
-        public boolean test(int value) {
-            return value == other;
-        }
-    };
-
     private int command(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         PlayerEntity player = context.getSource().getPlayer();
         if (player == null) {
