@@ -1,0 +1,51 @@
+{
+  "item.lifelocke.dummy_item": "Test Object",
+
+  "block.lifelocke.dummy_block": "Test Blok",
+
+  "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
+
+  "effect.lifelocke.electric": "Elektrisch",
+  "effect.lifelocke.fighting": "Vecht",
+  "effect.lifelocke.water": "Water",
+  "effect.lifelocke.normal": "Normaal",
+  "effect.lifelocke.fire": "Vuur",
+  "effect.lifelocke.grass": "Gras",
+  "effect.lifelocke.psychic": "Psychisch",
+  "effect.lifelocke.dark": "Duister",
+  "effect.lifelocke.ghost": "Geest",
+  "effect.lifelocke.steel": "Staal",
+  "effect.lifelocke.dragon": "Draak",
+  "effect.lifelocke.fairy": "Fee",
+  "effect.lifelocke.bug": "Insect",
+  "effect.lifelocke.flying": "Vliegend",
+  "effect.lifelocke.ground": "Grond",
+  "effect.lifelocke.ice": "IJs",
+  "effect.lifelocke.poison": "Gif",
+  "effect.lifelocke.rock": "Steen",
+
+  "key.lifelocke.category": "LifeLocke",
+  "key.lifelocke.ability": "Kracht",
+
+  "text.lifelocke.key_pressed": "Je hebt jouw krachttoets ingedrukt!",
+  "text.lifelocke.electric_turned_on": "Jouw Elektrische kracht is aangezet!",
+  "text.lifelocke.electric_turned_off": "Jouw Elektrische kracht is uitgezet!",
+  "text.lifelocke.poison_turned_on": "Jouw Gif kracht is aangezet!",
+  "text.lifelocke.poison_turned_off": "Jouw Gif kracht is uitgezet!",
+  "text.lifelocke.rock_turned_on": "Jouw Steen kracht is aangezet!",
+  "text.lifelocke.rock_turned_off": "Jouw Steen kracht is uitgezet!",
+  "text.lifelocke.dark_turned_on": "Jouw Duister kracht is aangezet!",
+  "text.lifelocke.dark_turned_off": "Jouw Duister kracht is uitgezet!",
+  "text.lifelocke.ice_turned_on": "Jouw IJs kracht is aangezet!",
+  "text.lifelocke.ice_turned_off": "Jouw IJs kracht is uitgezet!",
+
+
+  "text.lifelocke.command.type.has_type": "%s heeft het %s type!",
+  "text.lifelocke.command.type.has_no_type": "%s heeft geen type!",
+  "text.lifelocke.command.psychic.psychic": "%s is op x: %s, y: %s, z: %s!",
+  "text.lifelocke.command.rolltype.rolled_type": "%s rolde het %s type!",
+
+  "text.lifelocke.command_error.psychic.not_psychic": "Je moet het Psychische type hebben om dit te kunnen gebruiken!",
+  "text.lifelocke.command_error.rolltype.not_player_sent": "Dit commando moet gestuurd worden door een speler!",
+  "text.lifelocke.command_error.rolltype.has_had_all_types": "Deze speler heeft alle types all gehad!"
+}

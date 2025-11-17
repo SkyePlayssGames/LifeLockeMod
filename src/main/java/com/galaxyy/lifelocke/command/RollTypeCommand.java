@@ -26,12 +26,12 @@ public class RollTypeCommand implements CommandRegistrationCallback {
         }
 
         int[] types_had = UpdateData.getTypeList((iEntityDataSaver) player);
-        if (types_had.length == ModEffects.EFFECTS.length) {
+        if (types_had.length >= ModEffects.EFFECTS.length) {
             throw new SimpleCommandExceptionType(Text.translatable("text.lifelocke.command_error.rolltype.has_had_all_types")).create();
         }
 
         while (true) {
-            int type_rolled = player.getRandom().nextBetween(0, 17);
+            int type_rolled = player.getRandom().nextBetween(0, ModEffects.EFFECTS.length-1);
             if (Arrays.stream(types_had).anyMatch(value -> value == type_rolled)) {
                 continue;
             }
