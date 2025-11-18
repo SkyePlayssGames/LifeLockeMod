@@ -11,11 +11,9 @@ import net.minecraft.item.*;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
-
-import java.util.Arrays;
 
 public class GrassTrigger implements BlockUseConsumer {
     private final EntityType[] ANIMALS = {
@@ -23,7 +21,7 @@ public class GrassTrigger implements BlockUseConsumer {
     };
 
     @Override
-    public void accept(PlayerEntity playerEntity, World world, Hand hand, BlockPos blockPos) {
+    public void accept(PlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
         if (world.isClient() || !UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())
                 || !(HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative())) {
             return;

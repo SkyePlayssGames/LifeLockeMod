@@ -23,6 +23,7 @@
   "effect.lifelocke.ice": "VodaSicu",
   "effect.lifelocke.poison": "VodaMikilc",
   "effect.lifelocke.rock": "Ki",
+  "effect.lifelocke.curse_type": "???",
 
   "key.category.lifelocke.category": "LifeLocke",
   "key.lifelocke.ability": "PajaKan",

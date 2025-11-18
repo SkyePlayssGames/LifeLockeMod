@@ -8,13 +8,13 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
 public class FairyTrigger implements BlockUseConsumer {
 
     @Override
-    public void accept(PlayerEntity playerEntity, World world, Hand hand, BlockPos blockPos) {
+    public void accept(PlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
         if (world.isClient() || !UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())
             || !(HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative())
             || playerEntity.hasStatusEffect(StatusEffects.GLOWING)) {

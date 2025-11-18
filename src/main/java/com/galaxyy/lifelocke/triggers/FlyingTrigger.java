@@ -9,13 +9,13 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
 public class FlyingTrigger implements BlockUseConsumer {
 
     @Override
-    public void accept(PlayerEntity playerEntity, World world, Hand hand, BlockPos blockPos) {
+    public void accept(PlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
         if (world.isClient() || !UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())
             || !(HungerCost.checkHunger(playerEntity, 6) || playerEntity.isCreative())) {
             return;

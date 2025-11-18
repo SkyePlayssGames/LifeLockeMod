@@ -62,9 +62,11 @@ public class ModEffects {
             new DarkEffect(StatusEffectCategory.BENEFICIAL, 0x000000));
     public static final RegistryEntry<StatusEffect> PSYCHIC = registerStatusEffect("psychic",
             new PsychicEffect(StatusEffectCategory.BENEFICIAL, 0xca67e0));
+    public static final RegistryEntry<StatusEffect> CURSE_TYPE = registerStatusEffect("curse_type",
+            new CurseTypeEffect(StatusEffectCategory.BENEFICIAL, 0x4a40e3));
 
     public static final RegistryEntry[] EFFECTS = {NORMAL, ELECTRIC, FIGHTING, WATER, FIRE, GRASS, ICE, POISON, GROUND, FLYING, BUG,
-                                ROCK, GHOST, DRAGON, STEEL, FAIRY, DARK, PSYCHIC};
+                                ROCK, GHOST, DRAGON, STEEL, FAIRY, DARK, PSYCHIC, CURSE_TYPE};
 
 
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {

@@ -22,8 +22,8 @@ public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPay
             ModEffects.FLYING, new FlyingTrigger(),
             ModEffects.GROUND, new GroundTrigger(),
             ModEffects.FAIRY, new FairyTrigger(),
-            ModEffects.DARK, new DarkTrigger()
-            //      ModEffects.ROCK, new RockTrigger()
+            ModEffects.DARK, new DarkTrigger(),
+            ModEffects.CURSE_TYPE, new CurseTypeTrigger()
     );
 
     @Override
@@ -34,7 +34,7 @@ public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPay
 
         for (RegistryEntry<StatusEffect> effect: EFFECT_FUNCTION_MAP.keySet()) {
             if (playerEntity.hasStatusEffect(effect)) {
-                EFFECT_FUNCTION_MAP.get(effect).accept(playerEntity, world, hand, payload.blockPos());
+                EFFECT_FUNCTION_MAP.get(effect).accept(playerEntity, world, hand, payload.hitPos());
             }
         }
     }

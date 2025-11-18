@@ -12,15 +12,12 @@ import com.galaxyy.lifelocke.networking.PressedAbilityKeyC2SPayload;
 import com.galaxyy.lifelocke.networking.PressedAbilityKeyC2SHandler;
 import com.galaxyy.lifelocke.power.*;
 import com.galaxyy.lifelocke.util.PlayerCopyHandler;
-import com.galaxyy.lifelocke.util.TriggerEvent;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
-import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.server.network.ServerPlayerEntity;
 
 public class LifeLocke implements ModInitializer {
 	public static final String MOD_ID = "lifelocke";
@@ -38,8 +35,6 @@ public class LifeLocke implements ModInitializer {
 		AttackEntityCallback.EVENT.register(new IcePower());
 		AttackEntityCallback.EVENT.register(new PoisonPower());
 		AttackEntityCallback.EVENT.register(new DarkPower());
-	//	PlayerBlockBreakEvents.AFTER.register(new RockPower());
-	//	UseBlockCallback.EVENT.register(new TriggerEvent());
 
 		CommandRegistrationCallback.EVENT.register(new TypeCommand());
 		CommandRegistrationCallback.EVENT.register(new PsychicCommand());
