@@ -21,8 +21,8 @@ public class DebugCommand implements CommandRegistrationCallback {
     @Override
     public void register(CommandDispatcher<ServerCommandSource> commandDispatcher, CommandRegistryAccess commandRegistryAccess, CommandManager.RegistrationEnvironment registrationEnvironment) {
         commandDispatcher.register(CommandManager.literal("lifelocke_debug")
+                .requires(source -> source.hasPermissionLevel(1))
                 .then(CommandManager.literal("reset_types")
-                        .requires(source -> source.hasPermissionLevel(1))
                         .executes(this::resetTypes)));
     }
 }
