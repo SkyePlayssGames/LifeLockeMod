@@ -45,6 +45,7 @@
   "text.lifelocke.command.type.has_no_type": "%s has no type!",
   "text.lifelocke.command.psychic.psychic": "%s is at x: %s, y: %s, z: %s!",
   "text.lifelocke.command.rolltype.rolled_type": "%s rolled the %s type!",
+  "text.lifelocke.command.debug.reset_types": "You have reset your types!",
 
   "text.lifelocke.command_error.psychic.not_psychic": "You need to be psychic type to use this command!",
   "text.lifelocke.command_error.rolltype.not_player_sent": "This command must be sent by a player!",

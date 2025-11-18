@@ -9,10 +9,12 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.text.Text;
 
 public class DebugCommand implements CommandRegistrationCallback {
     private int resetTypes(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         UpdateData.setTypeList(((iEntityDataSaver) context.getSource().getPlayerOrThrow()), new int[] {});
+        context.getSource().sendFeedback(() -> Text.translatable("text.lifelocke.command.debug.reset_types"), false);
         return 1;
     }
 
