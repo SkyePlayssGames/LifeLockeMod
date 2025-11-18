@@ -24,7 +24,7 @@
   "effect.lifelocke.poison": "VodaMikilc",
   "effect.lifelocke.rock": "Ki",
 
-  "key.lifelocke.category": "LifeLocke",
+  "key.category.lifelocke.category": "LifeLocke",
   "key.lifelocke.ability": "PajaKan",
 
   "text.lifelocke.key_pressed": "Jn xovojEs PajaKan ojJn!",

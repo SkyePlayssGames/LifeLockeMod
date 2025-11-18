@@ -24,7 +24,7 @@
   "effect.lifelocke.poison": "Poison",
   "effect.lifelocke.rock": "Rock",
 
-  "key.lifelocke.category": "LifeLocke",
+  "key.category.lifelocke.category": "LifeLocke",
   "key.lifelocke.ability": "Ability",
 
   "text.lifelocke.key_pressed": "You pressed your ability key!",

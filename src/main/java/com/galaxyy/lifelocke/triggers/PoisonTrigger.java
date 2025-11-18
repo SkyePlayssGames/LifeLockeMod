@@ -6,11 +6,11 @@ import com.galaxyy.lifelocke.util.iEntityDataSaver;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class PoisonTrigger implements BlockUseConsumer {
-    public void accept(PlayerEntity playerEntity, World world, Hand hand, BlockHitResult blockHitResult) {
+    public void accept(PlayerEntity playerEntity, World world, Hand hand, BlockPos blockPos) {
         if (!UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())) {
             return;
         }
