@@ -1,0 +1,51 @@
+{
+  "item.lifelocke.dummy_item": "Objet de Test",
+
+  "block.lifelocke.dummy_block": "Bloc de Test",
+
+  "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
+
+  "effect.lifelocke.electric": "Électrik",
+  "effect.lifelocke.fighting": "Combat",
+  "effect.lifelocke.water": "Eau",
+  "effect.lifelocke.normal": "Normal",
+  "effect.lifelocke.fire": "Feu",
+  "effect.lifelocke.grass": "Plante",
+  "effect.lifelocke.psychic": "Psy",
+  "effect.lifelocke.dark": "Ténèbres",
+  "effect.lifelocke.ghost": "Spectre",
+  "effect.lifelocke.steel": "Acier",
+  "effect.lifelocke.dragon": "Dragon",
+  "effect.lifelocke.fairy": "Fée",
+  "effect.lifelocke.bug": "Insecte",
+  "effect.lifelocke.flying": "Vol",
+  "effect.lifelocke.ground": "Sol",
+  "effect.lifelocke.ice": "Glace",
+  "effect.lifelocke.poison": "Poison",
+  "effect.lifelocke.rock": "Roche",
+
+  "key.category.lifelocke.category": "LifeLocke",
+  "key.lifelocke.ability": "Capacité",
+
+  "text.lifelocke.key_pressed": "Vous avez pressé votre key capacité!",
+  "text.lifelocke.electric_turned_on": "Votre capacité électrik marche!",
+  "text.lifelocke.electric_turned_off": "Votre capacité électrik ne marche plus!",
+  "text.lifelocke.poison_turned_on": "Votre capacité poison marche!",
+  "text.lifelocke.poison_turned_off": "Votre capacité poison ne marche plus!",
+  "text.lifelocke.rock_turned_on": "Votre capacité roche marche!",
+  "text.lifelocke.rock_turned_off": "Votre capacité roche ne marche plus!",
+  "text.lifelocke.dark_turned_on": "Votre capacité ténèbres marche!",
+  "text.lifelocke.dark_turned_off": "Votre capacité ténèbres ne marche plus!",
+  "text.lifelocke.ice_turned_on": "Votre capacité glace marche!",
+  "text.lifelocke.ice_turned_off": "Votre capacité glace ne marche plus!",
+
+
+  "text.lifelocke.command.type.has_type": "%s a le type %s!",
+  "text.lifelocke.command.type.has_no_type": "%s n'a pas de type!",
+  "text.lifelocke.command.psychic.psychic": "%s est sur x: %s, y: %s, z: %s!",
+  "text.lifelocke.command.rolltype.rolled_type": "%s a roulé le type %s!",
+
+  "text.lifelocke.command_error.psychic.not_psychic": "Vous devez être le type psy pour utiliser cette commande!",
+  "text.lifelocke.command_error.rolltype.not_player_sent": "Vous devez être une personne pour utiliser cette commande!",
+  "text.lifelocke.command_error.rolltype.has_had_all_types": "Cette personne a eu tous des types!"
+}
