@@ -49,5 +49,7 @@
 
   "text.lifelocke.command_error.psychic.not_psychic": "Vous devez être le type psy pour utiliser cette commande!",
   "text.lifelocke.command_error.rolltype.not_player_sent": "Vous devez être une personne pour utiliser cette commande!",
-  "text.lifelocke.command_error.rolltype.has_had_all_types": "Cette personne a eu tous des types!"
+  "text.lifelocke.command_error.rolltype.has_had_all_types": "Cette personne a eu tous des types!",
+
+  "text.lifelocke.credits": "Cette translation a été créé par: AutisticPlush!"
 }
