@@ -1,0 +1,55 @@
+{
+  "item.lifelocke.dummy_item": "Ítem de prueba",
+
+  "block.lifelocke.dummy_block": "Bloque de prueba",
+
+  "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
+
+  "effect.lifelocke.electric": "Eléctrico",
+  "effect.lifelocke.fighting": "Lucha",
+  "effect.lifelocke.water": "Agua",
+  "effect.lifelocke.normal": "Normal",
+  "effect.lifelocke.fire": "Fuego",
+  "effect.lifelocke.grass": "Planta",
+  "effect.lifelocke.psychic": "Psíquico",
+  "effect.lifelocke.dark": "Siniestro",
+  "effect.lifelocke.ghost": "Fantasma",
+  "effect.lifelocke.steel": "Acero",
+  "effect.lifelocke.dragon": "Dragón",
+  "effect.lifelocke.fairy": "Hada",
+  "effect.lifelocke.bug": "Insecto",
+  "effect.lifelocke.flying": "Volador",
+  "effect.lifelocke.ground": "Tierra",
+  "effect.lifelocke.ice": "Hielo",
+  "effect.lifelocke.poison": "Veneno",
+  "effect.lifelocke.rock": "Roca",
+  "effect.lifelocke.curse_type": "(?)",
+
+  "key.category.lifelocke.category": "LifeLocke",
+  "key.lifelocke.ability": "Habilidad",
+
+  "text.lifelocke.key_pressed": "Haz presionado tu tecla de habilidad!",
+  "text.lifelocke.electric_turned_on": "¡Tú poder Eléctrico ha sido encendido!",
+  "text.lifelocke.electric_turned_off": "¡Tú poder Eléctrico ha sido apagado!",
+  "text.lifelocke.poison_turned_on": "¡Tú poder Veneno ha sido encendido!",
+  "text.lifelocke.poison_turned_off": "¡Tú poder Veneno ha sido apagado!",
+  "text.lifelocke.rock_turned_on": "¡Tú poder Roca ha sido encendido!",
+  "text.lifelocke.rock_turned_off": "¡Tú poder Roca ha sido apagado!",
+  "text.lifelocke.dark_turned_on": "¡Tú poder Siniestro ha sido encendido!",
+  "text.lifelocke.dark_turned_off": "¡Tú poder Siniestro ha sido apagado!",
+  "text.lifelocke.ice_turned_on": "¡Tú poder Hielo ha sido encendido!",
+  "text.lifelocke.ice_turned_off": "¡Tú poder Hielo ha sido apagado!",
+
+
+  "text.lifelocke.command.type.has_type": "¡%s tiene el %s tipo!",
+  "text.lifelocke.command.type.has_no_type": "¡%s no tiene tipo!",
+  "text.lifelocke.command.psychic.psychic": "¡%s esta en x: %s, y: %s, z: %s!",
+  "text.lifelocke.command.rolltype.rolled_type": "¡%s le tocó el tipo %s!",
+  "text.lifelocke.command.debug.reset_types": "¡Haz reiniciado tus tipos!",
+
+  "text.lifelocke.command_error.psychic.not_psychic": "¡Necesitas ser tipo Psíquico para utilizar este comando!",
+  "text.lifelocke.command_error.rolltype.not_player_sent": "¡Este comando debe ser usado por un jugador!",
+  "text.lifelocke.command_error.rolltype.has_had_all_types": "¡Este jugador ha tenido todo los tipos!",
+
+  "text.lifelocke.credits": "¡Esta traducción fué hecha por Inxux!"
+}
