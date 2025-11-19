@@ -29,16 +29,16 @@
   "key.lifelocke.ability": "Ability",
 
   "text.lifelocke.key_pressed": "You pressed your ability key!",
-  "text.lifelocke.electric_turned_on": "Your electric power has been turned on!",
-  "text.lifelocke.electric_turned_off": "Your electric power has been turned off!",
-  "text.lifelocke.poison_turned_on": "Your poison power has been turned on!",
-  "text.lifelocke.poison_turned_off": "Your poison power has been turned off!",
-  "text.lifelocke.rock_turned_on": "Your rock power has been turned on!",
-  "text.lifelocke.rock_turned_off": "Your rock power has been turned off!",
-  "text.lifelocke.dark_turned_on": "Your dark power has been turned on!",
-  "text.lifelocke.dark_turned_off": "Your dark power has been turned off!",
-  "text.lifelocke.ice_turned_on": "Your ice power has been turned on!",
-  "text.lifelocke.ice_turned_off": "Your ice power has been turned off!",
+  "text.lifelocke.electric_turned_on": "Your Electric power has been turned on!",
+  "text.lifelocke.electric_turned_off": "Your Electric power has been turned off!",
+  "text.lifelocke.poison_turned_on": "Your Poison power has been turned on!",
+  "text.lifelocke.poison_turned_off": "Your Poison power has been turned off!",
+  "text.lifelocke.rock_turned_on": "Your Rock power has been turned on!",
+  "text.lifelocke.rock_turned_off": "Your Rock power has been turned off!",
+  "text.lifelocke.dark_turned_on": "Your Dark power has been turned on!",
+  "text.lifelocke.dark_turned_off": "Your Dark power has been turned off!",
+  "text.lifelocke.ice_turned_on": "Your Ice power has been turned on!",
+  "text.lifelocke.ice_turned_off": "Your Ice power has been turned off!",
 
 
   "text.lifelocke.command.type.has_type": "%s has the %s type!",
@@ -47,7 +47,7 @@
   "text.lifelocke.command.rolltype.rolled_type": "%s rolled the %s type!",
   "text.lifelocke.command.debug.reset_types": "You have reset your types!",
 
-  "text.lifelocke.command_error.psychic.not_psychic": "You need to be psychic type to use this command!",
+  "text.lifelocke.command_error.psychic.not_psychic": "You need to be Psychic type to use this command!",
   "text.lifelocke.command_error.rolltype.not_player_sent": "This command must be sent by a player!",
   "text.lifelocke.command_error.rolltype.has_had_all_types": "This player has had all types!",
 
