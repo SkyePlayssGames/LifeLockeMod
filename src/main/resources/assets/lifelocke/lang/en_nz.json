@@ -44,7 +44,7 @@
 
   "text.lifelocke.command.type.has_type": "%s Kal Kulup pi%s!",
   "text.lifelocke.command.type.has_no_type": "%s noKal Kulup!",
-  "text.lifelocke.command.psychic.psychic": "%s Es nijx: %s, nijy: %s, nijz: %s!",
+  "text.lifelocke.command.psychic.psychic": "%s Es nij(x): %s, nij(y): %s, nij(z): %s!",
   "text.lifelocke.command.rolltype.rolled_type": "%s xovoKal Kulup pi%s!",
   "text.lifelocke.command.debug.reset_types": "Jn besxovojEsAfin Kulup ojJn!",
 
