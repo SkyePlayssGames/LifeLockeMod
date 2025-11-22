@@ -8,10 +8,14 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.minecraft.block.Blocks;
 import net.minecraft.command.CommandRegistryAccess;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
@@ -29,6 +33,11 @@ public class RollTypeCommand implements CommandRegistrationCallback {
         if (types_had.length >= ModEffects.EFFECTS.length) {
             throw new SimpleCommandExceptionType(Text.translatable("text.lifelocke.command_error.rolltype.has_had_all_types")).create();
         }
+
+        player.equipStack(EquipmentSlot.HEAD, new ItemStack(Blocks.AIR));
+        player.equipStack(EquipmentSlot.CHEST, new ItemStack(Blocks.AIR));
+        player.equipStack(EquipmentSlot.LEGS, new ItemStack(Blocks.AIR));
+        player.equipStack(EquipmentSlot.FEET, new ItemStack(Blocks.AIR));
 
         while (true) {
             int type_rolled = player.getRandom().nextBetween(0, ModEffects.EFFECTS.length-1);
