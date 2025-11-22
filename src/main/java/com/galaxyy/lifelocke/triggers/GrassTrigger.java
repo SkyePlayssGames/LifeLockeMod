@@ -35,6 +35,11 @@ public class GrassTrigger implements BlockUseConsumer {
         stack.useOnBlock(new ItemUsageContext(world, playerEntity, hand, stack, blockHitResult));
         blockHitResult = new BlockHitResult(
                 playerEntity.getEntityPos().add(0, 0, 0), Direction.UP,
+                playerEntity.getBlockPos().up(), false
+        );
+        stack.useOnBlock(new ItemUsageContext(world, playerEntity, hand, stack, blockHitResult));
+        blockHitResult = new BlockHitResult(
+                playerEntity.getEntityPos().add(0, 0, 0), Direction.UP,
                 playerEntity.getBlockPos().down(), false
         );
         stack.useOnBlock(new ItemUsageContext(world, playerEntity, hand, stack, blockHitResult));

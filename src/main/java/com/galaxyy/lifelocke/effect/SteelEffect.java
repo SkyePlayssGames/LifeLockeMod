@@ -1,5 +1,6 @@
 package com.galaxyy.lifelocke.effect;
 
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
@@ -12,6 +13,7 @@ import net.minecraft.item.Items;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.util.Unit;
 import net.minecraft.world.World;
 
 public class SteelEffect extends StatusEffect {
@@ -31,7 +33,6 @@ public class SteelEffect extends StatusEffect {
             ItemStack chestplate = new ItemStack(Items.IRON_CHESTPLATE);
 
             RegistryEntry<Enchantment> protection = RegistryEntry.of(enchantments.get(Enchantments.PROTECTION));
-            RegistryEntry<Enchantment> unbreaking = RegistryEntry.of(enchantments.get(Enchantments.UNBREAKING));
             RegistryEntry<Enchantment> binding = RegistryEntry.of(enchantments.get(Enchantments.BINDING_CURSE));
             RegistryEntry<Enchantment> vanishing = RegistryEntry.of(enchantments.get(Enchantments.VANISHING_CURSE));
 
@@ -39,9 +40,9 @@ public class SteelEffect extends StatusEffect {
             leggings.addEnchantment(protection, 3);
             chestplate.addEnchantment(protection, 3);
 
-            boots.addEnchantment(unbreaking, 65536);
-            leggings.addEnchantment(unbreaking, 65536);
-            chestplate.addEnchantment(unbreaking, 65536);
+            boots.set(DataComponentTypes.UNBREAKABLE, Unit.INSTANCE);
+            leggings.set(DataComponentTypes.UNBREAKABLE, Unit.INSTANCE);
+            chestplate.set(DataComponentTypes.UNBREAKABLE, Unit.INSTANCE);
 
             boots.addEnchantment(binding, 1);
             leggings.addEnchantment(binding, 1);

@@ -16,7 +16,7 @@ import java.util.Locale;
 
 public class ModEffects {
     public static final RegistryEntry<StatusEffect> ELECTRIC = registerStatusEffect("electric",
-            new ElectricEffect(StatusEffectCategory.BENEFICIAL, 0xfae43c));
+            new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0xfae43c));
     public static final RegistryEntry<StatusEffect> FIGHTING = registerStatusEffect("fighting",
             new FightingEffect(StatusEffectCategory.BENEFICIAL, 0xd44e2c).addAttributeModifier(
                     EntityAttributes.ATTACK_SPEED, Identifier.of(LifeLocke.MOD_ID, "fighting"),
@@ -24,17 +24,17 @@ public class ModEffects {
     public static final RegistryEntry<StatusEffect> WATER = registerStatusEffect("water",
             new WaterEffect(StatusEffectCategory.BENEFICIAL, 0x70d2ff));
     public static final RegistryEntry<StatusEffect> NORMAL = registerStatusEffect("normal",
-            new NormalEffect(StatusEffectCategory.BENEFICIAL, 0xe1e8eb));
+            new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0xe1e8eb));
     public static final RegistryEntry<StatusEffect> FIRE = registerStatusEffect("fire",
-            new FireEffect(StatusEffectCategory.BENEFICIAL, 0xeb761c));
+            new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0xeb761c));
     public static final RegistryEntry<StatusEffect> GRASS = registerStatusEffect("grass",
-            new GrassEffect(StatusEffectCategory.BENEFICIAL, 0x1ceb34));
+            new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0x1ceb34));
     public static final RegistryEntry<StatusEffect> ICE = registerStatusEffect("ice",
             new IceEffect(StatusEffectCategory.BENEFICIAL, 0x4dfff0));
     public static final RegistryEntry<StatusEffect> POISON = registerStatusEffect("poison",
             new PoisonEffect(StatusEffectCategory.BENEFICIAL, 0x3517a3));
     public static final RegistryEntry<StatusEffect> GROUND = registerStatusEffect("ground",
-            new GroundEffect(StatusEffectCategory.BENEFICIAL, 0xa37017));
+            new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0xa37017));
     public static final RegistryEntry<StatusEffect> FLYING = registerStatusEffect("flying",
             new FlyingEffect(StatusEffectCategory.BENEFICIAL, 0xa7e8df));
     public static final RegistryEntry<StatusEffect> BUG = registerStatusEffect("bug",
@@ -57,13 +57,13 @@ public class ModEffects {
     public static final RegistryEntry<StatusEffect> STEEL = registerStatusEffect("steel",
             new SteelEffect(StatusEffectCategory.BENEFICIAL, 0x9fb3b2));
     public static final RegistryEntry<StatusEffect> FAIRY = registerStatusEffect("fairy",
-            new FairyEffect(StatusEffectCategory.BENEFICIAL, 0xdf76e3));
+            new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0xdf76e3));
     public static final RegistryEntry<StatusEffect> DARK = registerStatusEffect("dark",
             new DarkEffect(StatusEffectCategory.BENEFICIAL, 0x000000));
     public static final RegistryEntry<StatusEffect> PSYCHIC = registerStatusEffect("psychic",
-            new PsychicEffect(StatusEffectCategory.BENEFICIAL, 0xca67e0));
+            new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0xca67e0));
     public static final RegistryEntry<StatusEffect> CURSE_TYPE = registerStatusEffect("curse_type",
-            new CurseTypeEffect(StatusEffectCategory.BENEFICIAL, 0x4a40e3));
+            new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0x4a40e3));
 
     public static final RegistryEntry[] EFFECTS = {NORMAL, ELECTRIC, FIGHTING, WATER, FIRE, GRASS, ICE, POISON, GROUND, FLYING, BUG,
                                 ROCK, GHOST, DRAGON, STEEL, FAIRY, DARK, PSYCHIC, CURSE_TYPE};
