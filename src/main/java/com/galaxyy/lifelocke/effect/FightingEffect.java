@@ -13,12 +13,6 @@ public class FightingEffect extends StatusEffect {
     }
 
     @Override
-    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
-        entity.addStatusEffect(new StatusEffectInstance(StatusEffects.UNLUCK, 5, 0, false, false));
-        return true;
-    }
-
-    @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
         return true;
     }
