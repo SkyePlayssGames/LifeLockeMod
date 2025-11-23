@@ -26,7 +26,7 @@ public class ModEffects {
     public static final RegistryEntry<StatusEffect> NORMAL = registerStatusEffect("normal",
             new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0xe1e8eb));
     public static final RegistryEntry<StatusEffect> FIRE = registerStatusEffect("fire",
-            new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0xeb761c));
+            new FireEffect(StatusEffectCategory.BENEFICIAL, 0xeb761c));
     public static final RegistryEntry<StatusEffect> GRASS = registerStatusEffect("grass",
             new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0x1ceb34));
     public static final RegistryEntry<StatusEffect> ICE = registerStatusEffect("ice",
