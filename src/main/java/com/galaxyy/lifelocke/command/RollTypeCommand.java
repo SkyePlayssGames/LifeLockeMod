@@ -16,6 +16,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
@@ -27,6 +28,11 @@ public class RollTypeCommand implements CommandRegistrationCallback {
         PlayerEntity player = context.getSource().getPlayer();
         if (player == null) {
             throw new SimpleCommandExceptionType(Text.translatable("text.lifelocke.command_error.rolltype.not_player_sent")).create();
+        }
+        for (RegistryEntry<StatusEffect> effect : ModEffects.EFFECTS) {
+            if (player.hasStatusEffect(effect)) {
+                throw new SimpleCommandExceptionType(Text.translatable("text.lifelocke.command_error.rolltype.already_has_type")).create();
+            }
         }
 
         int[] types_had = UpdateData.getTypeList((iEntityDataSaver) player);
