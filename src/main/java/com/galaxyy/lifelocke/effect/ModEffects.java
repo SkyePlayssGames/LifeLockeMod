@@ -66,7 +66,10 @@ public class ModEffects {
             new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0x4a40e3));
 
     public static final RegistryEntry[] EFFECTS = {NORMAL, ELECTRIC, FIGHTING, WATER, FIRE, GRASS, ICE, POISON, GROUND, FLYING, BUG,
-                                ROCK, GHOST, DRAGON, STEEL, FAIRY, DARK, PSYCHIC, CURSE_TYPE};
+            ROCK, GHOST, DRAGON, STEEL, FAIRY, DARK, PSYCHIC, CURSE_TYPE};
+
+    public static final RegistryEntry[] ROLLABLE_EFFECTS = {NORMAL, ELECTRIC, FIGHTING, WATER, FIRE, GRASS, ICE, POISON, GROUND, FLYING, BUG,
+            ROCK, GHOST, DRAGON, STEEL, FAIRY, DARK, PSYCHIC};
 
 
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {

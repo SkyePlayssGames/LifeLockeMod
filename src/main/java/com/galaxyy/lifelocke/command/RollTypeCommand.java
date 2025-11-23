@@ -36,7 +36,7 @@ public class RollTypeCommand implements CommandRegistrationCallback {
         }
 
         int[] types_had = UpdateData.getTypeList((iEntityDataSaver) player);
-        if (types_had.length >= ModEffects.EFFECTS.length) {
+        if (types_had.length >= ModEffects.ROLLABLE_EFFECTS.length) {
             throw new SimpleCommandExceptionType(Text.translatable("text.lifelocke.command_error.rolltype.has_had_all_types")).create();
         }
 
@@ -46,7 +46,7 @@ public class RollTypeCommand implements CommandRegistrationCallback {
         player.equipStack(EquipmentSlot.FEET, new ItemStack(Blocks.AIR));
 
         while (true) {
-            int type_rolled = player.getRandom().nextBetween(0, ModEffects.EFFECTS.length-1);
+            int type_rolled = player.getRandom().nextBetween(0, ModEffects.ROLLABLE_EFFECTS.length-1);
             if (Arrays.stream(types_had).anyMatch(value -> value == type_rolled)) {
                 continue;
             }
@@ -60,10 +60,10 @@ public class RollTypeCommand implements CommandRegistrationCallback {
             types_have[types_had.length] = type_rolled;
 
             UpdateData.setTypeList(((iEntityDataSaver) player), types_have);
-            player.addStatusEffect(new StatusEffectInstance(ModEffects.EFFECTS[type_rolled], -1));
+            player.addStatusEffect(new StatusEffectInstance(ModEffects.ROLLABLE_EFFECTS[type_rolled], -1));
 
             context.getSource().sendFeedback(() -> Text.translatable("text.lifelocke.command.rolltype.rolled_type",
-                    player.getName(), ((StatusEffect) ModEffects.EFFECTS[type_rolled].value()).getName()), true);
+                    player.getName(), ((StatusEffect) ModEffects.ROLLABLE_EFFECTS[type_rolled].value()).getName()), true);
             break;
         }
 
