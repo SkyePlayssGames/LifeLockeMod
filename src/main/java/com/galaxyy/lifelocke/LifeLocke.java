@@ -38,6 +38,7 @@ public class LifeLocke implements ModInitializer {
 		AttackEntityCallback.EVENT.register(new PoisonPower());
 		AttackEntityCallback.EVENT.register(new DarkPower());
 		AttackEntityCallback.EVENT.register(new PsychicPower());
+		AttackEntityCallback.EVENT.register(new GrassPower());
 
 		CommandRegistrationCallback.EVENT.register(new TypeCommand());
 		CommandRegistrationCallback.EVENT.register(new PsychicCommand());
