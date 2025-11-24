@@ -42,6 +42,7 @@
 
   "text.lifelocke.command_error.psychic.not_psychic": "¡Necesitas ser tipo Psíquico para utilizar este comando!",
   "text.lifelocke.command_error.rolltype.not_player_sent": "¡Este comando debe ser usado por un jugador!",
+  "text.lifelocke.command_error.rolltype.already_has_type": "¡Ya tienes un tipo!",
   "text.lifelocke.command_error.rolltype.has_had_all_types": "¡Este jugador ha tenido todo los tipos!",
 
   "text.lifelocke.credits": "¡Esta traducción fué hecha por Inxux!"
