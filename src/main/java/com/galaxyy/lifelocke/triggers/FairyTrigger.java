@@ -7,6 +7,7 @@ import com.galaxyy.lifelocke.util.iEntityDataSaver;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
@@ -25,6 +26,8 @@ public class FairyTrigger implements BlockUseConsumer {
         playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 400, 0, false, false));
         playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 400, 0, false, false));
         playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 1200, 0, false, false));
+
+        playerEntity.sendMessage(Text.translatable("text.lifelocke.fairy_activated"), false);
 
         HungerCost.takeHunger(playerEntity, 1);
     }
