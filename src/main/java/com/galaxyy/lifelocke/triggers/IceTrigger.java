@@ -1,5 +1,6 @@
 package com.galaxyy.lifelocke.triggers;
 
+import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.util.BlockUseConsumer;
 import com.galaxyy.lifelocke.util.UpdateData;
 import com.galaxyy.lifelocke.util.iEntityDataSaver;
@@ -15,9 +16,11 @@ public class IceTrigger implements BlockUseConsumer {
             return;
         }
         if (UpdateData.toggleIcePower(((iEntityDataSaver) playerEntity))) {
-            playerEntity.sendMessage(Text.translatable("text.lifelocke.ice_turned_on"), false);
+            playerEntity.sendMessage(Text.translatable("text.lifelocke.power_turned_on",
+                    ModEffects.ICE.value().getName()), false);
         } else {
-            playerEntity.sendMessage(Text.translatable("text.lifelocke.ice_turned_off"), false);
+            playerEntity.sendMessage(Text.translatable("text.lifelocke.power_turned_off",
+                    ModEffects.ICE.value().getName()), false);
         }
     }
 }

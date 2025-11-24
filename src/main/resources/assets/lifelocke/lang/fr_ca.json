@@ -30,16 +30,8 @@
   "key.lifelocke.ability": "Capacité",
 
   "text.lifelocke.key_pressed": "Vous avez pressé votre key capacité!",
-  "text.lifelocke.electric_turned_on": "Votre capacité Électrik marche!",
-  "text.lifelocke.electric_turned_off": "Votre capacité Électrik ne marche plus!",
-  "text.lifelocke.poison_turned_on": "Votre capacité Poison marche!",
-  "text.lifelocke.poison_turned_off": "Votre capacité Poison ne marche plus!",
-  "text.lifelocke.rock_turned_on": "Votre capacité Roche marche!",
-  "text.lifelocke.rock_turned_off": "Votre capacité Roche ne marche plus!",
-  "text.lifelocke.dark_turned_on": "Votre capacité Ténèbres marche!",
-  "text.lifelocke.dark_turned_off": "Votre capacité Ténèbres ne marche plus!",
-  "text.lifelocke.ice_turned_on": "Votre capacité Glace marche!",
-  "text.lifelocke.ice_turned_off": "Votre capacité Glace ne marche plus!",
+  "text.lifelocke.power_turned_on": "Votre capacité %s marche!",
+  "text.lifelocke.power_turned_off": "Votre capacité %s ne marche plus!",
 
 
   "text.lifelocke.command.type.has_type": "%s a le type %s!",

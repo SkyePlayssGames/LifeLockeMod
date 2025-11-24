@@ -30,16 +30,8 @@
   "key.lifelocke.ability": "Ability",
 
   "text.lifelocke.key_pressed": "You pressed your ability key!",
-  "text.lifelocke.electric_turned_on": "Your Electric power has been turned on!",
-  "text.lifelocke.electric_turned_off": "Your Electric power has been turned off!",
-  "text.lifelocke.poison_turned_on": "Your Poison power has been turned on!",
-  "text.lifelocke.poison_turned_off": "Your Poison power has been turned off!",
-  "text.lifelocke.rock_turned_on": "Your Rock power has been turned on!",
-  "text.lifelocke.rock_turned_off": "Your Rock power has been turned off!",
-  "text.lifelocke.dark_turned_on": "Your Dark power has been turned on!",
-  "text.lifelocke.dark_turned_off": "Your Dark power has been turned off!",
-  "text.lifelocke.ice_turned_on": "Your Ice power has been turned on!",
-  "text.lifelocke.ice_turned_off": "Your Ice power has been turned off!",
+  "text.lifelocke.power_turned_on": "Your %s power has been turned on!",
+  "text.lifelocke.power_turned_off": "Your %s power has been turned off!",
 
 
   "text.lifelocke.command.type.has_type": "%s has the %s type!",

@@ -30,16 +30,8 @@
   "key.lifelocke.ability": "Habilidad",
 
   "text.lifelocke.key_pressed": "Haz presionado tu tecla de habilidad!",
-  "text.lifelocke.electric_turned_on": "¡Tú poder Eléctrico ha sido encendido!",
-  "text.lifelocke.electric_turned_off": "¡Tú poder Eléctrico ha sido apagado!",
-  "text.lifelocke.poison_turned_on": "¡Tú poder Veneno ha sido encendido!",
-  "text.lifelocke.poison_turned_off": "¡Tú poder Veneno ha sido apagado!",
-  "text.lifelocke.rock_turned_on": "¡Tú poder Roca ha sido encendido!",
-  "text.lifelocke.rock_turned_off": "¡Tú poder Roca ha sido apagado!",
-  "text.lifelocke.dark_turned_on": "¡Tú poder Siniestro ha sido encendido!",
-  "text.lifelocke.dark_turned_off": "¡Tú poder Siniestro ha sido apagado!",
-  "text.lifelocke.ice_turned_on": "¡Tú poder Hielo ha sido encendido!",
-  "text.lifelocke.ice_turned_off": "¡Tú poder Hielo ha sido apagado!",
+  "text.lifelocke.power_turned_on": "¡Tú poder %s ha sido encendido!",
+  "text.lifelocke.power_turned_off": "¡Tú poder %s ha sido apagado!",
 
 
   "text.lifelocke.command.type.has_type": "¡%s tiene el %s tipo!",

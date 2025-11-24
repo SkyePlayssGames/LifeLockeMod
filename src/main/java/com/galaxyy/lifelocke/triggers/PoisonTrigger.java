@@ -1,5 +1,6 @@
 package com.galaxyy.lifelocke.triggers;
 
+import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.util.BlockUseConsumer;
 import com.galaxyy.lifelocke.util.UpdateData;
 import com.galaxyy.lifelocke.util.iEntityDataSaver;
@@ -15,9 +16,11 @@ public class PoisonTrigger implements BlockUseConsumer {
             return;
         }
         if (UpdateData.togglePoisonPower(((iEntityDataSaver) playerEntity))) {
-            playerEntity.sendMessage(Text.translatable("text.lifelocke.poison_turned_on"), false);
+            playerEntity.sendMessage(Text.translatable("text.lifelocke.power_turned_on",
+                    ModEffects.POISON.value().getName()), false);
         } else {
-            playerEntity.sendMessage(Text.translatable("text.lifelocke.poison_turned_off"), false);
+            playerEntity.sendMessage(Text.translatable("text.lifelocke.power_turned_off",
+                    ModEffects.POISON.value().getName()), false);
         }
     }
 }
