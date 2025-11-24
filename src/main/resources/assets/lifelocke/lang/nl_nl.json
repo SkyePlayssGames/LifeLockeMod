@@ -39,11 +39,13 @@
   "text.lifelocke.command.psychic.psychic": "%s is op x: %s, y: %s, z: %s!",
   "text.lifelocke.command.rolltype.rolled_type": "%s rolde het %s type!",
   "text.lifelocke.command.debug.reset_types": "Je hebt jouw types gereset!",
+  "text.lifelocke.command.debug.added_type": "Je kan niet meer het %s type rollen!",
 
   "text.lifelocke.command_error.psychic.not_psychic": "Je moet het Psychische type hebben om dit te kunnen gebruiken!",
   "text.lifelocke.command_error.rolltype.not_player_sent": "Dit commando moet gestuurd worden door een speler!",
   "text.lifelocke.command_error.rolltype.already_has_type": "Je hebt al een type!",
   "text.lifelocke.command_error.rolltype.has_had_all_types": "Deze speler heeft alle types all gehad!",
+  "text.lifelocke.command_error.debug.not_a_type": "Dat is geen types ID!",
 
   "text.lifelocke.credits": "Deze vertaling was gemaakt door: AutisticPlush!"
 }

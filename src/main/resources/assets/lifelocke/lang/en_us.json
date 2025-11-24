@@ -39,11 +39,13 @@
   "text.lifelocke.command.psychic.psychic": "%s is at x: %s, y: %s, z: %s!",
   "text.lifelocke.command.rolltype.rolled_type": "%s rolled the %s type!",
   "text.lifelocke.command.debug.reset_types": "You have reset your types!",
+  "text.lifelocke.command.debug.added_type": "You can no longer roll the %s type!",
 
   "text.lifelocke.command_error.psychic.not_psychic": "You need to be Psychic type to use this command!",
   "text.lifelocke.command_error.rolltype.not_player_sent": "This command must be sent by a player!",
   "text.lifelocke.command_error.rolltype.already_has_type": "You already have a type!",
   "text.lifelocke.command_error.rolltype.has_had_all_types": "This player has had all types!",
+  "text.lifelocke.command_error.debug.not_a_type": "That isn't any type's identifier!",
 
   "text.lifelocke.credits": "This translation was made by: AutisticPlush!"
 }

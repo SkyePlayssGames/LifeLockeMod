@@ -22,7 +22,7 @@ public class FireTrigger implements BlockUseConsumer {
             || !(HungerCost.checkHunger(playerEntity, 6) || playerEntity.isCreative())) {
             return;
         }
-        EntityType.FIREBALL.spawn((ServerWorld) world, BlockPos.ofFloored(pos.getX(), pos.getY(), pos.getZ()).up(), SpawnReason.TRIGGERED);
-        HungerCost.takeHunger(playerEntity, 1);
+        EntityType.FIREBALL.spawn((ServerWorld) world, BlockPos.ofFloored(pos.getX(), pos.getY(), pos.getZ()).up(), SpawnReason.TRIGGERED).setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0, 3, 0);
+        HungerCost.takeHunger(playerEntity, 2);
     }
 }

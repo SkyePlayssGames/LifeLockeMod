@@ -1,20 +1,72 @@
 package com.galaxyy.lifelocke.command;
 
+import com.galaxyy.lifelocke.LifeLocke;
+import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.util.PlayerCopyHandler;
 import com.galaxyy.lifelocke.util.UpdateData;
 import com.galaxyy.lifelocke.util.iEntityDataSaver;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
+import jdk.jshell.Snippet;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.CommandRegistryAccess;
+import net.minecraft.command.argument.ArgumentTypes;
+import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
+
+import java.util.Collection;
 
 public class DebugCommand implements CommandRegistrationCallback {
     private int resetTypes(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-        UpdateData.setTypeList(((iEntityDataSaver) context.getSource().getPlayerOrThrow()), new int[] {});
-        context.getSource().sendFeedback(() -> Text.translatable("text.lifelocke.command.debug.reset_types"), false);
+        Collection<ServerPlayerEntity> players = EntityArgumentType.getPlayers(context, "player");
+        for (ServerPlayerEntity player : players) {
+            UpdateData.setTypeList(((iEntityDataSaver) player), new int[]{});
+            context.getSource().sendFeedback(() -> Text.translatable("text.lifelocke.command.debug.reset_types"), false);
+        }
+        return 1;
+    }
+
+    private int addType(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+        Collection<ServerPlayerEntity> players = EntityArgumentType.getPlayers(context, "player");
+        String effect = StringArgumentType.getString(context, "effect");
+        int i = 0;
+        while (i < ModEffects.EFFECTS.length) {
+            RegistryEntry<StatusEffect> statusEffect = ModEffects.EFFECTS[i];
+            if (statusEffect.matchesId(Identifier.of(effect))) {
+                break;
+            }
+            i++;
+        }
+
+        if (i == ModEffects.EFFECTS.length) {
+            throw new SimpleCommandExceptionType(Text.translatable("text.lifelocke.command_error.debug.not_a_type")).create();
+        }
+
+        for (ServerPlayerEntity player : players) {
+            int[] types_had = UpdateData.getTypeList(((iEntityDataSaver) player));
+
+            int[] types_have = new int[types_had.length+1];
+            int j = 0;
+            while (j < types_had.length) {
+                types_have[j] = types_had[j];
+                j++;
+            }
+            types_have[types_had.length] = i;
+
+            UpdateData.setTypeList(((iEntityDataSaver) player), types_have);
+            int finalI = i;
+            context.getSource().sendFeedback(() -> Text.translatable("text.lifelocke.command.debug.added_type", ((StatusEffect) ModEffects.EFFECTS[finalI].value()).getName()), false);
+        }
         return 1;
     }
 
@@ -23,6 +75,13 @@ public class DebugCommand implements CommandRegistrationCallback {
         commandDispatcher.register(CommandManager.literal("lifelocke_debug")
                 .requires(source -> source.hasPermissionLevel(1))
                 .then(CommandManager.literal("reset_types")
-                        .executes(this::resetTypes)));
+                        .then(CommandManager.argument("player", EntityArgumentType.players())
+                                .executes(this::resetTypes)))
+                .then(CommandManager.literal("add_type")
+                        .then(CommandManager.argument("player", EntityArgumentType.players())
+                                .then(CommandManager.argument("effect", StringArgumentType.string())
+                                        .executes(this::addType))))
+
+        );
     }
 }

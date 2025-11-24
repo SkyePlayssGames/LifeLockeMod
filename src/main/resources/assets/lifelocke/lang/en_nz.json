@@ -39,11 +39,13 @@
   "text.lifelocke.command.psychic.psychic": "%s Es nij(x): %s, nij(y): %s, nij(z): %s!",
   "text.lifelocke.command.rolltype.rolled_type": "%s xovoKal Kulup pi%s!",
   "text.lifelocke.command.debug.reset_types": "Jn besxovojEsAfin Kulup ojJn!",
+  "text.lifelocke.command.debug.added_type": "Jn nokanxovoKal Kulup pi%s!",
 
   "text.lifelocke.command_error.psychic.not_psychic": "Jn ilkokanEs Kulup piMaca Pol uziGoLipuKysim piCaca!",
   "text.lifelocke.command_error.rolltype.not_player_sent": "ilkoMek uzikanGoLipuKysim piCaca!",
   "text.lifelocke.command_error.rolltype.already_has_type": "Jn Kal yCasAfin Kulup!",
   "text.lifelocke.command_error.rolltype.has_had_all_types": "GoMek besKal savKulup!",
+  "text.lifelocke.command_error.debug.not_a_type": "Go nojEs (ID) oKulup",
 
   "text.lifelocke.credits": "This translation was made by: AutisticPlush!"
 }
