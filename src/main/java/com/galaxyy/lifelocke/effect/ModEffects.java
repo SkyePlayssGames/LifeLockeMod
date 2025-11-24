@@ -20,7 +20,7 @@ public class ModEffects {
     public static final RegistryEntry<StatusEffect> FIGHTING = registerStatusEffect("fighting",
             new FightingEffect(StatusEffectCategory.BENEFICIAL, 0xd44e2c).addAttributeModifier(
                     EntityAttributes.ATTACK_SPEED, Identifier.of(LifeLocke.MOD_ID, "fighting"),
-                    100, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+                    2, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE));
     public static final RegistryEntry<StatusEffect> WATER = registerStatusEffect("water",
             new WaterEffect(StatusEffectCategory.BENEFICIAL, 0x70d2ff));
     public static final RegistryEntry<StatusEffect> NORMAL = registerStatusEffect("normal",
