@@ -44,6 +44,9 @@ public class ModEffects {
             ).addAttributeModifier(
                     EntityAttributes.FALL_DAMAGE_MULTIPLIER, Identifier.of(LifeLocke.MOD_ID, "bug"),
                     -1, EntityAttributeModifier.Operation.ADD_VALUE
+            ).addAttributeModifier(
+                    EntityAttributes.MAX_HEALTH, Identifier.of(LifeLocke.MOD_ID, "bug"),
+                    -4, EntityAttributeModifier.Operation.ADD_VALUE
             ));
     public static final RegistryEntry<StatusEffect> ROCK = registerStatusEffect("rock",
             new RockEffect(StatusEffectCategory.BENEFICIAL, 0xab7333));
@@ -53,6 +56,9 @@ public class ModEffects {
             new DragonEffect(StatusEffectCategory.BENEFICIAL, 0x312696).addAttributeModifier(
                     EntityAttributes.SCALE, Identifier.of(LifeLocke.MOD_ID, "dragon"),
                     0.5, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+            ).addAttributeModifier(
+                    EntityAttributes.MAX_HEALTH, Identifier.of(LifeLocke.MOD_ID, "dragon"),
+                    4, EntityAttributeModifier.Operation.ADD_VALUE
             ));
     public static final RegistryEntry<StatusEffect> STEEL = registerStatusEffect("steel",
             new SteelEffect(StatusEffectCategory.BENEFICIAL, 0x9fb3b2));
