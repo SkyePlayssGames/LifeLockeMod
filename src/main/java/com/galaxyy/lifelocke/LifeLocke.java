@@ -29,12 +29,15 @@ public class LifeLocke implements ModInitializer {
 		ModBlocks.registerModBlocks();
 		ModEffects.registerEffects();
 
+		PressedAbilityKeyC2SHandler.registerEffectMap();
+
 		ServerPlayerEvents.COPY_FROM.register(new PlayerCopyHandler());
 
 		AttackEntityCallback.EVENT.register(new ElectricPower());
 		AttackEntityCallback.EVENT.register(new IcePower());
 		AttackEntityCallback.EVENT.register(new PoisonPower());
 		AttackEntityCallback.EVENT.register(new DarkPower());
+		AttackEntityCallback.EVENT.register(new PsychicPower());
 
 		CommandRegistrationCallback.EVENT.register(new TypeCommand());
 		CommandRegistrationCallback.EVENT.register(new PsychicCommand());

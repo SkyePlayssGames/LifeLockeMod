@@ -53,6 +53,16 @@ public class UpdateData {
         return darkPower;
     }
 
+    public static boolean togglePsychicPower(iEntityDataSaver player) {
+        NbtCompound nbt = player.getPersistentData();
+        boolean psychicPower = nbt.getBoolean("psychic_power").orElse(false);
+
+        psychicPower = !psychicPower;
+
+        nbt.putBoolean("psychic_power", psychicPower);
+        return psychicPower;
+    }
+
     public static boolean tryAndStoreCooldown(iEntityDataSaver player, long time) {
         NbtCompound nbt = player.getPersistentData();
         long ticks = nbt.getLong("time").orElse(0L);

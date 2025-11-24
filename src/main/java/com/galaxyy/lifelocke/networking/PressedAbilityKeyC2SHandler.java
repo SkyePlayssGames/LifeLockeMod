@@ -9,22 +9,13 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+import org.apache.logging.log4j.core.jackson.MapEntry;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPayloadHandler<PressedAbilityKeyC2SPayload> {
-    private static final Map<RegistryEntry<StatusEffect>, BlockUseConsumer> EFFECT_FUNCTION_MAP = Map.of(
-            ModEffects.ELECTRIC, new ElectricTrigger(),
-            ModEffects.FIRE, new FireTrigger(),
-            ModEffects.GRASS, new GrassTrigger(),
-            ModEffects.ICE, new IceTrigger(),
-            ModEffects.POISON, new PoisonTrigger(),
-            ModEffects.FLYING, new FlyingTrigger(),
-            ModEffects.GROUND, new GroundTrigger(),
-            ModEffects.FAIRY, new FairyTrigger(),
-            ModEffects.DARK, new DarkTrigger(),
-            ModEffects.CURSE_TYPE, new CurseTypeTrigger()
-    );
+    private static final HashMap<RegistryEntry<StatusEffect>, BlockUseConsumer> EFFECT_FUNCTION_MAP = new HashMap<>();
 
     @Override
     public void receive(PressedAbilityKeyC2SPayload payload, ServerPlayNetworking.Context context) {
@@ -37,5 +28,19 @@ public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPay
                 EFFECT_FUNCTION_MAP.get(effect).accept(playerEntity, world, hand, payload.hitPos());
             }
         }
+    }
+
+    public static void registerEffectMap() {
+        EFFECT_FUNCTION_MAP.put(ModEffects.ELECTRIC, new ElectricTrigger());
+        EFFECT_FUNCTION_MAP.put(ModEffects.FIRE, new FireTrigger());
+        EFFECT_FUNCTION_MAP.put(ModEffects.GRASS, new GrassTrigger());
+        EFFECT_FUNCTION_MAP.put(ModEffects.ICE, new IceTrigger());
+        EFFECT_FUNCTION_MAP.put(ModEffects.POISON, new PoisonTrigger());
+        EFFECT_FUNCTION_MAP.put(ModEffects.FLYING, new FlyingTrigger());
+        EFFECT_FUNCTION_MAP.put(ModEffects.GROUND, new GroundTrigger());
+        EFFECT_FUNCTION_MAP.put(ModEffects.FAIRY, new FairyTrigger());
+        EFFECT_FUNCTION_MAP.put(ModEffects.DARK, new DarkTrigger());
+        EFFECT_FUNCTION_MAP.put(ModEffects.PSYCHIC, new PsychicTrigger());
+        EFFECT_FUNCTION_MAP.put(ModEffects.CURSE_TYPE, new CurseTypeTrigger());
     }
 }
