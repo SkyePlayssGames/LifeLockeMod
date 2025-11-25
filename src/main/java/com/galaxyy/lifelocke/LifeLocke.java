@@ -11,6 +11,7 @@ import com.galaxyy.lifelocke.itemgroup.ModItemGroups;
 import com.galaxyy.lifelocke.networking.PressedAbilityKeyC2SPayload;
 import com.galaxyy.lifelocke.networking.PressedAbilityKeyC2SHandler;
 import com.galaxyy.lifelocke.power.*;
+import com.galaxyy.lifelocke.triggers.GroundTrigger;
 import com.galaxyy.lifelocke.util.PlayerCopyHandler;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -30,6 +31,7 @@ public class LifeLocke implements ModInitializer {
 		ModEffects.registerEffects();
 
 		PressedAbilityKeyC2SHandler.registerEffectMap();
+		GroundTrigger.registerOreMap();
 
 		ServerPlayerEvents.COPY_FROM.register(new PlayerCopyHandler());
 
