@@ -7,6 +7,7 @@ import com.galaxyy.lifelocke.util.iEntityDataSaver;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3i;
@@ -17,7 +18,8 @@ public class FlyingTrigger implements BlockUseConsumer {
     @Override
     public void accept(PlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
         if (world.isClient() || !UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())
-            || !(HungerCost.checkHunger(playerEntity, 6) || playerEntity.isCreative())) {
+            || !(HungerCost.checkHunger(playerEntity, 6) || playerEntity.isCreative())
+            || (playerEntity.isHolding(Items.SHIELD) && playerEntity.isUsingItem())) {
             return;
         }
 
