@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 public class CurseTypeTrigger implements BlockUseConsumer {
     public void accept(PlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
-        if (HungerCost.checkHunger(playerEntity, 4)) {
+        if (HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative()) {
             playerEntity.teleport(pos.getX(), pos.getY(), pos.getZ(), true);
             HungerCost.takeHunger(playerEntity, 1);
         }
