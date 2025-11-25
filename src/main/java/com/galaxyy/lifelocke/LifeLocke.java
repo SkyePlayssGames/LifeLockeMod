@@ -31,7 +31,7 @@ public class LifeLocke implements ModInitializer {
 		ModEffects.registerEffects();
 
 		PressedAbilityKeyC2SHandler.registerEffectMap();
-		GroundTrigger.registerOreMap();
+		GroundTrigger.registerGroundMaps();
 
 		ServerPlayerEvents.COPY_FROM.register(new PlayerCopyHandler());
 
