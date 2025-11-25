@@ -53,6 +53,8 @@ public class IceEffect extends StatusEffect {
         for (BlockPos blockPos : toReplace) {
             if (world.getBlockState(blockPos).isOf(Blocks.WATER)) {
                 world.setBlockState(blockPos, Blocks.FROSTED_ICE.getDefaultState());
+            } else if (world.getBlockState(blockPos).isOf(Blocks.LAVA)) {
+                world.setBlockState(blockPos, Blocks.FROSTED_ICE.getDefaultState());
             }
         }
 

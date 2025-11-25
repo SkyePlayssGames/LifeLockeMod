@@ -65,6 +65,7 @@ public class GroundTrigger implements BlockUseConsumer {
             return Blocks.STONE;
         }
         int random = playerEntity.getRandom().nextBetweenExclusive(0, AMOUNT_OF_ORES);
+        HungerCost.takeHunger(playerEntity, 1);
         return ORE_MAP.get(Arrays.stream(SUMMONABLE_ORES.values()).toArray()[random]);
     }
 
