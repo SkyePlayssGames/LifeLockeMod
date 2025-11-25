@@ -62,8 +62,11 @@ public class RollTypeCommand implements CommandRegistrationCallback {
             UpdateData.setTypeList(((iEntityDataSaver) player), types_have);
             player.addStatusEffect(new StatusEffectInstance(ModEffects.ROLLABLE_EFFECTS[type_rolled], -1));
 
-            context.getSource().sendFeedback(() -> Text.translatable("text.lifelocke.command.rolltype.rolled_type",
-                    player.getName(), ((StatusEffect) ModEffects.ROLLABLE_EFFECTS[type_rolled].value()).getName()), true);
+            for (PlayerEntity playerEntity : context.getSource().getWorld().getPlayers()) {
+                playerEntity.sendMessage(Text.translatable("text.lifelocke.command.rolltype.rolled_type",
+                        player.getName(), ((StatusEffect) ModEffects.ROLLABLE_EFFECTS[type_rolled].value()).getName()), false);
+            }
+
             break;
         }
 
