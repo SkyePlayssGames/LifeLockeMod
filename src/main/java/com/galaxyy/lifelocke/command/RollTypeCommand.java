@@ -40,6 +40,11 @@ public class RollTypeCommand implements CommandRegistrationCallback {
             throw new SimpleCommandExceptionType(Text.translatable("text.lifelocke.command_error.rolltype.has_had_all_types")).create();
         }
 
+        if (!UpdateData.getAndSetRolltypeConfirmation(((iEntityDataSaver) player))) {
+            context.getSource().sendFeedback(() -> Text.translatable("text.lifelocke.command.rolltype.confirm"), false);
+            return 0;
+        }
+
         player.equipStack(EquipmentSlot.HEAD, new ItemStack(Blocks.AIR));
         player.equipStack(EquipmentSlot.CHEST, new ItemStack(Blocks.AIR));
         player.equipStack(EquipmentSlot.LEGS, new ItemStack(Blocks.AIR));

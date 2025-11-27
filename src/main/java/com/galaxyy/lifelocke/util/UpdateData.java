@@ -3,6 +3,14 @@ package com.galaxyy.lifelocke.util;
 import net.minecraft.nbt.NbtCompound;
 
 public class UpdateData {
+    public static boolean getAndSetRolltypeConfirmation(iEntityDataSaver player) {
+        NbtCompound nbt = player.getPersistentData();
+        boolean confirmation = nbt.getBoolean("rolltype_confirmation").orElse(false);
+        nbt.putBoolean("rolltype_confirmation", true);
+
+        return confirmation;
+    }
+
     public static boolean toggleElectricPower(iEntityDataSaver player) {
         NbtCompound nbt = player.getPersistentData();
         boolean electricPower = nbt.getBoolean("electric_power").orElse(false);

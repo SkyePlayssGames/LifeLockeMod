@@ -38,6 +38,7 @@
   "text.lifelocke.command.type.has_no_type": "%s heeft geen type!",
   "text.lifelocke.command.psychic.psychic": "%s is op x: %s, y: %s, z: %s!",
   "text.lifelocke.command.rolltype.rolled_type": "%s rolde het %s type!",
+  "text.lifelocke.command.rolltype.confirm": "Dit commando verwijderd je harnas!\nGebruik dit commando opnieuw nadat je je harnas hebt verwijdert om zowaar je type te rollen!",
   "text.lifelocke.command.debug.reset_types": "Je hebt jouw types gereset!",
   "text.lifelocke.command.debug.added_type": "Je kan niet meer het %s type rollen!",
 

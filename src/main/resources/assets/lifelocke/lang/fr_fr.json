@@ -38,6 +38,7 @@
   "text.lifelocke.command.type.has_no_type": "%s n'a pas de type!",
   "text.lifelocke.command.psychic.psychic": "%s est sur x: %s, y: %s, z: %s!",
   "text.lifelocke.command.rolltype.rolled_type": "%s a roulé le type %s!",
+  "text.lifelocke.command.rolltype.confirm": "Cette commande enlève votre armure!\nUtilise-la en nouveau pour rouler votre type après ènlever votre armure!",
   "text.lifelocke.command.debug.reset_types": "Vous avez resetté votre types!",
   "text.lifelocke.command.debug.added_type": "Vous ne pouvez plus roulé le type %s!",
 
