@@ -23,6 +23,7 @@ public class IcePower implements AttackEntityCallback {
                 ((iEntityDataSaver) playerEntity).getPersistentData().getBoolean("ice_power").orElse(false) &&
                 entity.isAlive()) {
             ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100), playerEntity);
+            ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 100), playerEntity);
             HungerCost.takeHunger(playerEntity, 1);
         }
 
