@@ -36,9 +36,9 @@ public class SteelEffect extends StatusEffect {
             RegistryEntry<Enchantment> binding = RegistryEntry.of(enchantments.get(Enchantments.BINDING_CURSE));
             RegistryEntry<Enchantment> vanishing = RegistryEntry.of(enchantments.get(Enchantments.VANISHING_CURSE));
 
-            boots.addEnchantment(protection, 3);
-            leggings.addEnchantment(protection, 3);
-            chestplate.addEnchantment(protection, 3);
+            boots.addEnchantment(protection, 5);
+            leggings.addEnchantment(protection, 5);
+            chestplate.addEnchantment(protection, 5);
 
             boots.set(DataComponentTypes.UNBREAKABLE, Unit.INSTANCE);
             leggings.set(DataComponentTypes.UNBREAKABLE, Unit.INSTANCE);
