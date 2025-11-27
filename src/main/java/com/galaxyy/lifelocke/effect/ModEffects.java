@@ -40,7 +40,7 @@ public class ModEffects {
     public static final RegistryEntry<StatusEffect> BUG = registerStatusEffect("bug",
             new BugEffect(StatusEffectCategory.BENEFICIAL, 0xbcf542).addAttributeModifier(
                     EntityAttributes.SCALE, Identifier.of(LifeLocke.MOD_ID, "bug"),
-                    -0.5, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                    -0.4, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
             ).addAttributeModifier(
                     EntityAttributes.FALL_DAMAGE_MULTIPLIER, Identifier.of(LifeLocke.MOD_ID, "bug"),
                     -1, EntityAttributeModifier.Operation.ADD_VALUE
@@ -55,7 +55,7 @@ public class ModEffects {
     public static final RegistryEntry<StatusEffect> DRAGON = registerStatusEffect("dragon",
             new DragonEffect(StatusEffectCategory.BENEFICIAL, 0x312696).addAttributeModifier(
                     EntityAttributes.SCALE, Identifier.of(LifeLocke.MOD_ID, "dragon"),
-                    0.5, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                    0.3, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
             ).addAttributeModifier(
                     EntityAttributes.MAX_HEALTH, Identifier.of(LifeLocke.MOD_ID, "dragon"),
                     4, EntityAttributeModifier.Operation.ADD_VALUE
