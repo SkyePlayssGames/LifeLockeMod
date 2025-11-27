@@ -6,6 +6,7 @@ import com.galaxyy.lifelocke.command.PsychicCommand;
 import com.galaxyy.lifelocke.command.RollTypeCommand;
 import com.galaxyy.lifelocke.command.TypeCommand;
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.gamerule.ModGameRules;
 import com.galaxyy.lifelocke.item.ModItems;
 import com.galaxyy.lifelocke.itemgroup.ModItemGroups;
 import com.galaxyy.lifelocke.networking.PressedAbilityKeyC2SPayload;
@@ -29,6 +30,7 @@ public class LifeLocke implements ModInitializer {
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 		ModEffects.registerEffects();
+		ModGameRules.registerGameRules();
 
 		PressedAbilityKeyC2SHandler.registerEffectMap();
 		GroundTrigger.registerGroundMaps();

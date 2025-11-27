@@ -1,10 +1,12 @@
 package com.galaxyy.lifelocke.mixin;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.gamerule.ModGameRules;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CraftingTableBlock;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -22,7 +24,8 @@ public abstract class CraftingTableMixin extends Block {
 
     @Inject(at = @At("HEAD"), method = "onUse", cancellable = true)
     protected void onOnUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
-        if (player.hasStatusEffect(ModEffects.FIGHTING)) {
+        if (player.hasStatusEffect(ModEffects.FIGHTING) && !world.isClient() &&
+        ((ServerWorld) world).getGameRules().getBoolean(ModGameRules.FIGHTING_CRAFTING_NERF)) {
             cir.setReturnValue(ActionResult.FAIL);
         }
     }

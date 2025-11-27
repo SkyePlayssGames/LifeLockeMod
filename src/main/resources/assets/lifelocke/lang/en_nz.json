@@ -6,6 +6,8 @@
 
   "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
 
+  "gamerule.fightingCraftingNerf": "Kylac Crafting Nerf",
+
   "effect.lifelocke.electric": "PajajJci piZocy",
   "effect.lifelocke.fighting": "Kylac",
   "effect.lifelocke.water": "Voda",
@@ -38,6 +40,7 @@
   "text.lifelocke.command.type.has_no_type": "%s noKal Kulup!",
   "text.lifelocke.command.psychic.psychic": "%s Es nij(x): %s, nij(y): %s, nij(z): %s!",
   "text.lifelocke.command.rolltype.rolled_type": "%s xovoKal Kulup pi%s!",
+  "text.lifelocke.command.rolltype.confirm": "GoLipuKysim piCaca Kilc MekPivili piKiKami ojJn!\nxovoKal Kulup uzi/rolltype ysopaKilc piMekPivili piKiKami.",
   "text.lifelocke.command.debug.reset_types": "Jn besxovojEsAfin Kulup ojJn!",
   "text.lifelocke.command.debug.added_type": "Jn nokanxovoKal Kulup pi%s!",
 
