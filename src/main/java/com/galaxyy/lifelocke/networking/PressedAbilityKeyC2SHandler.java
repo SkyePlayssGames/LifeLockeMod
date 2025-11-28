@@ -7,6 +7,8 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.core.jackson.MapEntry;
@@ -26,6 +28,7 @@ public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPay
         for (RegistryEntry<StatusEffect> effect: EFFECT_FUNCTION_MAP.keySet()) {
             if (playerEntity.hasStatusEffect(effect)) {
                 EFFECT_FUNCTION_MAP.get(effect).accept(playerEntity, world, hand, payload.hitPos());
+                playerEntity.playSoundToPlayer(SoundEvents.BLOCK_CONDUIT_DEACTIVATE, SoundCategory.PLAYERS, 1, 1);
             }
         }
     }

@@ -23,6 +23,7 @@ public class DragonTrigger implements BlockUseConsumer {
 
         playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 1200, 1, false, false));
         playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 1200, 0, false, false));
+        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 0, false, false));
         playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 1200, 1, false, false));
         playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 1200, 0, false, false));
 
