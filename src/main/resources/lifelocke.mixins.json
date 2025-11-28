@@ -1,16 +1,17 @@
 {
-	"required": true,
-	"package": "com.galaxyy.lifelocke.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"ExampleMixin",
-		"ModEntityDataSaverMixin",
-		"CraftingTableMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
+  "required": true,
+  "package": "com.galaxyy.lifelocke.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "CrafterMixin",
+    "CraftingTableMixin",
+    "ExampleMixin",
+    "ModEntityDataSaverMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
 	}
 }
