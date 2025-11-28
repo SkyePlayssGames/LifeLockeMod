@@ -49,5 +49,7 @@
   "text.lifelocke.credits": "¡Esta traducción fué hecha por Inxux!",
   "text.lifelocke.fairy_activated": "You activated your Fairy boosts!",
   "text.lifelocke.command.debug.added_type": "You can no longer roll the %s type!",
-  "text.lifelocke.command_error.debug.not_a_type": "That isn't any type's identifier!"
+  "text.lifelocke.command_error.debug.not_a_type": "That isn't any type's identifier!",
+  "gamerule.fightingCraftingNerf": "Fighting Crafting Nerf",
+  "text.lifelocke.dragon_activated": "You activated your Dragon boosts!"
 }
