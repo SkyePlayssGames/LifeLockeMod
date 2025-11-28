@@ -8,6 +8,8 @@
 
   "gamerule.fightingCraftingNerf": "Fighting Crafting Nerf",
 
+  "death.attack.fairy_heal": "%s was too kind",
+
   "effect.lifelocke.electric": "Electric",
   "effect.lifelocke.fighting": "Fighting",
   "effect.lifelocke.water": "Water",
@@ -47,6 +49,7 @@
   "text.lifelocke.command.debug.added_type": "You can no longer roll the %s type!",
 
   "text.lifelocke.command_error.psychic.not_psychic": "You need to be Psychic type to use this command!",
+  "text.lifelocke.command_error.heal.not_fairy": "You need to be Fairy type to use this command!",
   "text.lifelocke.command_error.rolltype.not_player_sent": "This command must be sent by a player!",
   "text.lifelocke.command_error.rolltype.already_has_type": "You already have a type!",
   "text.lifelocke.command_error.rolltype.has_had_all_types": "This player has had all types!",

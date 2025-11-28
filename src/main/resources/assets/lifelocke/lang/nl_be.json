@@ -8,6 +8,8 @@
 
   "gamerule.fightingCraftingNerf": "Vecht Vervaardigingsverzwakking",
 
+  "death.attack.fairy_heal": "%s was te aardig",
+
   "effect.lifelocke.electric": "Elektrisch",
   "effect.lifelocke.fighting": "Vecht",
   "effect.lifelocke.water": "Water",
@@ -47,6 +49,7 @@
   "text.lifelocke.command.debug.added_type": "Je kan niet meer het %s type rollen!",
 
   "text.lifelocke.command_error.psychic.not_psychic": "Je moet het Psychische type hebben om dit te kunnen gebruiken!",
+  "text.lifelocke.command_error.heal.not_fairy": "Je moet het Fee type hebben om dit te kunnen gebruiken!",
   "text.lifelocke.command_error.rolltype.not_player_sent": "Dit commando moet gestuurd worden door een speler!",
   "text.lifelocke.command_error.rolltype.already_has_type": "Je hebt al een type!",
   "text.lifelocke.command_error.rolltype.has_had_all_types": "Deze speler heeft alle types all gehad!",

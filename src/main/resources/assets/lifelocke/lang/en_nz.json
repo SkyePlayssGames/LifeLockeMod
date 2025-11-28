@@ -8,6 +8,8 @@
 
   "gamerule.fightingCraftingNerf": "Kylac Crafting Nerf",
 
+  "death.attack.fairy_heal": "%s finEs kaPona",
+
   "effect.lifelocke.electric": "PajajJci piZocy",
   "effect.lifelocke.fighting": "Kylac",
   "effect.lifelocke.water": "Voda",
@@ -47,6 +49,7 @@
   "text.lifelocke.command.debug.added_type": "Jn nokanxovoKal Kulup pi%s!",
 
   "text.lifelocke.command_error.psychic.not_psychic": "Jn ilkokanEs Kulup piMaca Pol uziGoLipuKysim piCaca!",
+  "text.lifelocke.command_error.heal.not_fairy": "Jn ilkokanEs Kulup piPipiNime Pol uziGoLipuKysim piCaca!",
   "text.lifelocke.command_error.rolltype.not_player_sent": "ilkoMek uzikanGoLipuKysim piCaca!",
   "text.lifelocke.command_error.rolltype.already_has_type": "Jn Kal yCasAfin Kulup!",
   "text.lifelocke.command_error.rolltype.has_had_all_types": "GoMek besKal savKulup!",

@@ -1,10 +1,7 @@
 package com.galaxyy.lifelocke;
 
 import com.galaxyy.lifelocke.block.ModBlocks;
-import com.galaxyy.lifelocke.command.DebugCommand;
-import com.galaxyy.lifelocke.command.PsychicCommand;
-import com.galaxyy.lifelocke.command.RollTypeCommand;
-import com.galaxyy.lifelocke.command.TypeCommand;
+import com.galaxyy.lifelocke.command.*;
 import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.gamerule.ModGameRules;
 import com.galaxyy.lifelocke.item.ModItems;
@@ -48,6 +45,7 @@ public class LifeLocke implements ModInitializer {
 		CommandRegistrationCallback.EVENT.register(new PsychicCommand());
 		CommandRegistrationCallback.EVENT.register(new RollTypeCommand());
 		CommandRegistrationCallback.EVENT.register(new DebugCommand());
+		CommandRegistrationCallback.EVENT.register(new HealCommand());
 
 		PayloadTypeRegistry.playC2S().register(PressedAbilityKeyC2SPayload.ID, PressedAbilityKeyC2SPayload.CODEC);
 		ServerPlayNetworking.registerGlobalReceiver(PressedAbilityKeyC2SPayload.ID, new PressedAbilityKeyC2SHandler());

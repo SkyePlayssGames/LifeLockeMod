@@ -47,9 +47,12 @@
   "text.lifelocke.command_error.rolltype.has_had_all_types": "¡Este jugador ha tenido todo los tipos!",
 
   "text.lifelocke.credits": "¡Esta traducción fué hecha por Inxux!",
+
   "text.lifelocke.fairy_activated": "You activated your Fairy boosts!",
   "text.lifelocke.command.debug.added_type": "You can no longer roll the %s type!",
   "text.lifelocke.command_error.debug.not_a_type": "That isn't any type's identifier!",
   "gamerule.fightingCraftingNerf": "Fighting Crafting Nerf",
-  "text.lifelocke.dragon_activated": "You activated your Dragon boosts!"
+  "text.lifelocke.dragon_activated": "You activated your Dragon boosts!",
+  "death.attack.fairy_heal": "%s was too kind",
+  "text.lifelocke.command_error.heal.not_fairy": "You need to be Fairy type to use this command!"
 }
