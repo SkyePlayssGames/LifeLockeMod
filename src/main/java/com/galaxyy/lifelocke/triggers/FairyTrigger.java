@@ -13,6 +13,8 @@ import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
 public class FairyTrigger implements BlockUseConsumer {
+    public static final int FAIRY_BOOST_TIME = 400;
+    public static final int FAIRY_COOLDOWN = 1200;
 
     @Override
     public void accept(PlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
@@ -22,10 +24,10 @@ public class FairyTrigger implements BlockUseConsumer {
             return;
         }
 
-        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 400, 0, false, false));
-        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 400, 0, false, false));
-        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 400, 0, false, false));
-        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 1200, 0, false, false));
+        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, FAIRY_BOOST_TIME, 0, false, false));
+        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, FAIRY_BOOST_TIME, 0, false, false));
+        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, FAIRY_BOOST_TIME, 0, false, false));
+        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, FAIRY_COOLDOWN, 0, false, false));
 
         playerEntity.sendMessage(Text.translatable("text.lifelocke.fairy_activated"), false);
 

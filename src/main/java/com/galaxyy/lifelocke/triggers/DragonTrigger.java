@@ -13,6 +13,7 @@ import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
 public class DragonTrigger implements BlockUseConsumer {
+    public static final int DRAGON_BOOST_TIME = 400;
 
     @Override
     public void accept(PlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
@@ -21,11 +22,11 @@ public class DragonTrigger implements BlockUseConsumer {
             return;
         }
 
-        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 1200, 1, false, false));
-        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 1200, 0, false, false));
+        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, DRAGON_BOOST_TIME, 1, false, false));
+        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, DRAGON_BOOST_TIME, 0, false, false));
         playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 0, false, false));
-        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 1200, 1, false, false));
-        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 1200, 0, false, false));
+        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, DRAGON_BOOST_TIME, 1, false, false));
+        playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, DRAGON_BOOST_TIME, 0, false, false));
 
         playerEntity.sendMessage(Text.translatable("text.lifelocke.dragon_activated"), false);
 
