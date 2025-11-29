@@ -7,14 +7,14 @@ import net.minecraft.server.network.ServerPlayerEntity;
 
 public class UpdateData {
     public static void setShownTypeIcon(ServerPlayerEntity playerEntity, RenderTypeIconS2CPayload.ICONS icon) {
-        ((iEntityDataSaver) playerEntity).getPersistentData().putInt("type_icon", icon.ordinal());
+        ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().putInt("type_icon", icon.ordinal());
         ServerPlayNetworking.send(playerEntity,
                 new RenderTypeIconS2CPayload(icon.ordinal())
         );
     }
 
     public static boolean getAndSetRolltypeConfirmation(iEntityDataSaver player) {
-        NbtCompound nbt = player.getPersistentData();
+        NbtCompound nbt = player.lifelocke$getPersistentData();
         boolean confirmation = nbt.getBoolean("rolltype_confirmation").orElse(false);
         nbt.putBoolean("rolltype_confirmation", true);
 
@@ -23,7 +23,7 @@ public class UpdateData {
 
     public static boolean toggleElectricPower(ServerPlayerEntity playerEntity) {
         iEntityDataSaver player = ((iEntityDataSaver) playerEntity);
-        NbtCompound nbt = player.getPersistentData();
+        NbtCompound nbt = player.lifelocke$getPersistentData();
         boolean electricPower = nbt.getBoolean("electric_power").orElse(false);
 
         electricPower = !electricPower;
@@ -41,7 +41,7 @@ public class UpdateData {
 
     public static boolean toggleIcePower(ServerPlayerEntity playerEntity) {
         iEntityDataSaver player = ((iEntityDataSaver) playerEntity);
-        NbtCompound nbt = player.getPersistentData();
+        NbtCompound nbt = player.lifelocke$getPersistentData();
         boolean icePower = nbt.getBoolean("ice_power").orElse(false);
 
         icePower = !icePower;
@@ -58,7 +58,7 @@ public class UpdateData {
 
     public static boolean togglePoisonPower(ServerPlayerEntity playerEntity) {
         iEntityDataSaver player = ((iEntityDataSaver) playerEntity);
-        NbtCompound nbt = player.getPersistentData();
+        NbtCompound nbt = player.lifelocke$getPersistentData();
         boolean poisonPower = nbt.getBoolean("poison_power").orElse(false);
 
         poisonPower = !poisonPower;
@@ -75,7 +75,7 @@ public class UpdateData {
 
     public static boolean toggleDarkPower(ServerPlayerEntity playerEntity) {
         iEntityDataSaver player = ((iEntityDataSaver) playerEntity);
-        NbtCompound nbt = player.getPersistentData();
+        NbtCompound nbt = player.lifelocke$getPersistentData();
         boolean darkPower = nbt.getBoolean("dark_power").orElse(false);
 
         darkPower = !darkPower;
@@ -92,7 +92,7 @@ public class UpdateData {
 
     public static boolean togglePsychicPower(ServerPlayerEntity playerEntity) {
         iEntityDataSaver player = ((iEntityDataSaver) playerEntity);
-        NbtCompound nbt = player.getPersistentData();
+        NbtCompound nbt = player.lifelocke$getPersistentData();
         boolean psychicPower = nbt.getBoolean("psychic_power").orElse(false);
 
         psychicPower = !psychicPower;
@@ -108,7 +108,7 @@ public class UpdateData {
     }
 
     public static boolean tryAndStoreCooldown(iEntityDataSaver player, long time) {
-        NbtCompound nbt = player.getPersistentData();
+        NbtCompound nbt = player.lifelocke$getPersistentData();
         long ticks = nbt.getLong("time").orElse(0L);
         if (time == ticks) { return false; }
 
@@ -117,12 +117,12 @@ public class UpdateData {
     }
 
     public static int[] getTypeList(iEntityDataSaver player) {
-        NbtCompound nbt = player.getPersistentData();
+        NbtCompound nbt = player.lifelocke$getPersistentData();
         return nbt.getIntArray("types").orElse(new int[] {});
     }
 
     public static void setTypeList(iEntityDataSaver player, int[] list) {
-        NbtCompound nbt = player.getPersistentData();
+        NbtCompound nbt = player.lifelocke$getPersistentData();
         nbt.putIntArray("types", list);
     }
 }

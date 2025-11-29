@@ -9,6 +9,7 @@ import net.minecraft.storage.WriteView;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -17,10 +18,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Entity.class)
 public abstract class ModEntityDataSaverMixin implements iEntityDataSaver {
     @Shadow @Final private EntityType<?> type;
+    @Unique
     private NbtCompound persistentData;
 
     @Override
-    public NbtCompound getPersistentData() {
+    public NbtCompound lifelocke$getPersistentData() {
         if (this.persistentData == null) {
             this.persistentData = new NbtCompound();
         }

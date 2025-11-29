@@ -6,7 +6,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderTickCounter;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 
 public class TypeIconRenderer {
@@ -17,7 +16,7 @@ public class TypeIconRenderer {
     private static final Identifier PSYCHIC_ID = Identifier.of(LifeLocke.MOD_ID, "textures/mob_effect/psychic.png");
 
     public static void render(DrawContext context, RenderTickCounter tickCounter) {
-        int icon = ((iEntityDataSaver) MinecraftClient.getInstance().player).getPersistentData().getInt("type_icon", 0);
+        int icon = ((iEntityDataSaver) MinecraftClient.getInstance().player).lifelocke$getPersistentData().getInt("type_icon", 0);
         switch (icon) {
             case 1:
                 context.drawTexture(RenderPipelines.GUI_TEXTURED, ELECTRIC_ID, 128, 227, 0, 0, 18, 18, 18, 18);
