@@ -8,7 +8,6 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 public class IceEffect extends StatusEffect {
     protected IceEffect(StatusEffectCategory category, int color) {
@@ -21,7 +20,7 @@ public class IceEffect extends StatusEffect {
             return true;
         }
         iEntityDataSaver playerData = (iEntityDataSaver) entity;
-        if (!(playerData.getPersistentData().getBoolean("ice_power")).orElse(false)) {
+        if (!(playerData.lifelocke$getPersistentData().getBoolean("ice_power")).orElse(false)) {
             return true;
         }
         PlayerEntity player = ((PlayerEntity) playerData);

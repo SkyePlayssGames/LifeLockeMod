@@ -20,7 +20,7 @@ public class PoisonPower implements AttackEntityCallback {
     public ActionResult interact(PlayerEntity playerEntity, World world, Hand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
         if (playerEntity.hasStatusEffect(ModEffects.POISON) && !world.isClient() &&
                 (HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative()) &&
-                ((iEntityDataSaver) playerEntity).getPersistentData().getBoolean("poison_power").orElse(false) &&
+                ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getBoolean("poison_power").orElse(false) &&
                 entity.isAlive()) {
             ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 100), playerEntity);
             HungerCost.takeHunger(playerEntity, 1);

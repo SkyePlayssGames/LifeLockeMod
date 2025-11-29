@@ -1,5 +1,6 @@
 package com.galaxyy.lifelocke.effect;
 
+import com.galaxyy.lifelocke.item.data_component.ModDataComponents;
 import net.minecraft.component.Component;
 import net.minecraft.component.ComponentType;
 import net.minecraft.component.DataComponentTypes;
@@ -42,7 +43,8 @@ public class FlyingEffect extends StatusEffect {
         if (entity instanceof PlayerEntity) {
             ItemStack elytra = new ItemStack(Items.ELYTRA);
             elytra.addEnchantment(RegistryEntry.of(world.getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT).get(Enchantments.BINDING_CURSE)), 1);
-            elytra.addEnchantment(RegistryEntry.of(world.getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT).get(Enchantments.VANISHING_CURSE)), 1);
+            // elytra.addEnchantment(RegistryEntry.of(world.getRegistryManager().getOrThrow(RegistryKeys.ENCHANTMENT).get(Enchantments.VANISHING_CURSE)), 1);
+            elytra.set(ModDataComponents.FLYING, Unit.INSTANCE);
             elytra.set(DataComponentTypes.UNBREAKABLE, Unit.INSTANCE);
             entity.equipStack(EquipmentSlot.CHEST, elytra);
         }
