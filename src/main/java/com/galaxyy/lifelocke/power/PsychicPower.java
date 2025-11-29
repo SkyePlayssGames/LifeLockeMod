@@ -22,7 +22,7 @@ public class PsychicPower implements AttackEntityCallback {
                 (HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative()) &&
                 ((iEntityDataSaver) playerEntity).getPersistentData().getBoolean("psychic_power").orElse(false) &&
                 entity.isAlive()) {
-            ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 100), playerEntity);
+            ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 40), playerEntity);
             HungerCost.takeHunger(playerEntity, 1);
         }
 
