@@ -1,5 +1,6 @@
 package com.galaxyy.lifelocke.effect;
 
+import com.galaxyy.lifelocke.item.data_component.ModDataComponents;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -34,7 +35,6 @@ public class SteelEffect extends StatusEffect {
 
             RegistryEntry<Enchantment> protection = RegistryEntry.of(enchantments.get(Enchantments.PROTECTION));
             RegistryEntry<Enchantment> binding = RegistryEntry.of(enchantments.get(Enchantments.BINDING_CURSE));
-            RegistryEntry<Enchantment> vanishing = RegistryEntry.of(enchantments.get(Enchantments.VANISHING_CURSE));
 
             boots.addEnchantment(protection, 5);
             leggings.addEnchantment(protection, 5);
@@ -48,9 +48,9 @@ public class SteelEffect extends StatusEffect {
             leggings.addEnchantment(binding, 1);
             chestplate.addEnchantment(binding, 1);
 
-            boots.addEnchantment(vanishing, 1);
-            leggings.addEnchantment(vanishing, 1);
-            chestplate.addEnchantment(vanishing, 1);
+            boots.set(ModDataComponents.STEEL, Unit.INSTANCE);
+            leggings.set(ModDataComponents.STEEL, Unit.INSTANCE);
+            chestplate.set(ModDataComponents.STEEL, Unit.INSTANCE);
 
             entity.equipStack(EquipmentSlot.FEET, boots);
             entity.equipStack(EquipmentSlot.LEGS, leggings);
