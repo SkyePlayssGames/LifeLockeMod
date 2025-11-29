@@ -5,8 +5,8 @@ import com.galaxyy.lifelocke.triggers.*;
 import com.galaxyy.lifelocke.util.BlockUseConsumer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
@@ -21,7 +21,7 @@ public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPay
 
     @Override
     public void receive(PressedAbilityKeyC2SPayload payload, ServerPlayNetworking.Context context) {
-        PlayerEntity playerEntity = context.player();
+        ServerPlayerEntity playerEntity = context.player();
         World world = context.player().getEntityWorld();
         Hand hand = context.player().preferredHand;
 

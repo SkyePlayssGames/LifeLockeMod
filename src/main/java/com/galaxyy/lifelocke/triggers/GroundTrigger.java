@@ -7,6 +7,7 @@ import com.galaxyy.lifelocke.util.iEntityDataSaver;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
@@ -43,7 +44,7 @@ public class GroundTrigger implements BlockUseConsumer {
     private static final int AMOUNT_OF_STONES = SUMMONABLE_STONE_VARIANTS.values().length;
 
     @Override
-    public void accept(PlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
+    public void accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
         if (world.isClient() || !UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())
                 || !(HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative())) {
             return;

@@ -6,8 +6,8 @@ import com.galaxyy.lifelocke.util.UpdateData;
 import com.galaxyy.lifelocke.util.iEntityDataSaver;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -21,7 +21,7 @@ public class GrassTrigger implements BlockUseConsumer {
     };
 
     @Override
-    public void accept(PlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
+    public void accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
         if (world.isClient() || !UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())
                 || !(HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative())) {
             return;

@@ -8,6 +8,7 @@ import com.galaxyy.lifelocke.item.ModItems;
 import com.galaxyy.lifelocke.itemgroup.ModItemGroups;
 import com.galaxyy.lifelocke.networking.PressedAbilityKeyC2SPayload;
 import com.galaxyy.lifelocke.networking.PressedAbilityKeyC2SHandler;
+import com.galaxyy.lifelocke.networking.RenderTypeIconS2CPayload;
 import com.galaxyy.lifelocke.power.*;
 import com.galaxyy.lifelocke.triggers.GroundTrigger;
 import com.galaxyy.lifelocke.util.PlayerCopyHandler;
@@ -48,6 +49,7 @@ public class LifeLocke implements ModInitializer {
 		CommandRegistrationCallback.EVENT.register(new HealCommand());
 
 		PayloadTypeRegistry.playC2S().register(PressedAbilityKeyC2SPayload.ID, PressedAbilityKeyC2SPayload.CODEC);
+		PayloadTypeRegistry.playS2C().register(RenderTypeIconS2CPayload.ID, RenderTypeIconS2CPayload.CODEC);
 		ServerPlayNetworking.registerGlobalReceiver(PressedAbilityKeyC2SPayload.ID, new PressedAbilityKeyC2SHandler());
 	}
 }

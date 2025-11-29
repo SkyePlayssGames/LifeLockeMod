@@ -6,7 +6,7 @@ import com.galaxyy.lifelocke.util.UpdateData;
 import com.galaxyy.lifelocke.util.iEntityDataSaver;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3i;
@@ -17,7 +17,7 @@ public class FairyTrigger implements BlockUseConsumer {
     public static final int FAIRY_COOLDOWN = 1200;
 
     @Override
-    public void accept(PlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
+    public void accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
         if (world.isClient() || !UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())
             || !(HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative())
             || playerEntity.hasStatusEffect(StatusEffects.GLOWING)) {
