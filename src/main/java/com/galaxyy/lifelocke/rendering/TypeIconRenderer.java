@@ -6,6 +6,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderTickCounter;
+import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 
 public class TypeIconRenderer {
@@ -15,24 +16,45 @@ public class TypeIconRenderer {
     private static final Identifier DARK_ID = Identifier.of(LifeLocke.MOD_ID, "textures/mob_effect/dark.png");
     private static final Identifier PSYCHIC_ID = Identifier.of(LifeLocke.MOD_ID, "textures/mob_effect/psychic.png");
 
+    private static final int X_COORDINATE_RIGHT = 333;
+    private static final int X_COORDINATE_LEFT = 128;
+    private static final int Y_COORDINATE = 227;
+
     public static void render(DrawContext context, RenderTickCounter tickCounter) {
+        int mainHand = MinecraftClient.getInstance().options.getMainArm().getValue().getId();
         int icon = ((iEntityDataSaver) MinecraftClient.getInstance().player).lifelocke$getPersistentData().getInt("type_icon", 0);
-        switch (icon) {
+        if (mainHand == 1) { switch (icon) {
             case 1:
-                context.drawTexture(RenderPipelines.GUI_TEXTURED, ELECTRIC_ID, 128, 227, 0, 0, 18, 18, 18, 18);
+                context.drawTexture(RenderPipelines.GUI_TEXTURED, ELECTRIC_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
                 break;
             case 2:
-                context.drawTexture(RenderPipelines.GUI_TEXTURED, ICE_ID, 128, 227, 0, 0, 18, 18, 18, 18);
+                context.drawTexture(RenderPipelines.GUI_TEXTURED, ICE_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
                 break;
             case 3:
-                context.drawTexture(RenderPipelines.GUI_TEXTURED, POISON_ID, 128, 227, 0, 0, 18, 18, 18, 18);
+                context.drawTexture(RenderPipelines.GUI_TEXTURED, POISON_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
                 break;
             case 4:
-                context.drawTexture(RenderPipelines.GUI_TEXTURED, DARK_ID, 128, 227, 0, 0, 18, 18, 18, 18);
+                context.drawTexture(RenderPipelines.GUI_TEXTURED, DARK_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
                 break;
             case 5:
-                context.drawTexture(RenderPipelines.GUI_TEXTURED, PSYCHIC_ID, 128, 227, 0, 0, 18, 18, 18, 18);
+                context.drawTexture(RenderPipelines.GUI_TEXTURED, PSYCHIC_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
                 break;
-        }
+        }} else { switch (icon) {
+            case 1:
+                context.drawTexture(RenderPipelines.GUI_TEXTURED, ELECTRIC_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                break;
+            case 2:
+                context.drawTexture(RenderPipelines.GUI_TEXTURED, ICE_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                break;
+            case 3:
+                context.drawTexture(RenderPipelines.GUI_TEXTURED, POISON_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                break;
+            case 4:
+                context.drawTexture(RenderPipelines.GUI_TEXTURED, DARK_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                break;
+            case 5:
+                context.drawTexture(RenderPipelines.GUI_TEXTURED, PSYCHIC_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                break;
+        }}
     }
 }
