@@ -1,6 +1,7 @@
 package com.galaxyy.lifelocke.command;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.gamerule.ModGameRules;
 import com.galaxyy.lifelocke.util.UpdateData;
 import com.galaxyy.lifelocke.util.iEntityDataSaver;
 import com.mojang.brigadier.CommandDispatcher;
@@ -19,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 
 import java.util.Arrays;
@@ -26,6 +28,7 @@ import java.util.Arrays;
 public class RollTypeCommand implements CommandRegistrationCallback {
     private int command(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         PlayerEntity player = context.getSource().getPlayer();
+        boolean type_duplication = context.getSource().getWorld().getGameRules().getBoolean(ModGameRules.TYPE_DUPLICATION);
         if (player == null) {
             throw new SimpleCommandExceptionType(Text.translatable("text.lifelocke.command_error.rolltype.not_player_sent")).create();
         }
@@ -36,7 +39,7 @@ public class RollTypeCommand implements CommandRegistrationCallback {
         }
 
         int[] types_had = UpdateData.getTypeList((iEntityDataSaver) player);
-        if (types_had.length >= ModEffects.ROLLABLE_EFFECTS.length) {
+        if (types_had.length >= ModEffects.ROLLABLE_EFFECTS.length && !type_duplication) {
             throw new SimpleCommandExceptionType(Text.translatable("text.lifelocke.command_error.rolltype.has_had_all_types")).create();
         }
 
@@ -52,19 +55,22 @@ public class RollTypeCommand implements CommandRegistrationCallback {
 
         while (true) {
             int type_rolled = player.getRandom().nextBetween(0, ModEffects.ROLLABLE_EFFECTS.length-1);
-            if (Arrays.stream(types_had).anyMatch(value -> value == type_rolled)) {
+            if (Arrays.stream(types_had).anyMatch(value -> value == type_rolled) && !type_duplication) {
                 continue;
             }
 
-            int[] types_have = new int[types_had.length+1];
-            int i = 0;
-            while (i < types_had.length) {
-                types_have[i] = types_had[i];
-                i++;
-            }
-            types_have[types_had.length] = type_rolled;
+            if (!type_duplication) {
+                int[] types_have = new int[types_had.length + 1];
+                int i = 0;
+                while (i < types_had.length) {
+                    types_have[i] = types_had[i];
+                    i++;
+                }
+                types_have[types_had.length] = type_rolled;
 
-            UpdateData.setTypeList(((iEntityDataSaver) player), types_have);
+                UpdateData.setTypeList(((iEntityDataSaver) player), types_have);
+            }
+            
             player.addStatusEffect(new StatusEffectInstance(ModEffects.ROLLABLE_EFFECTS[type_rolled], -1));
 
             for (PlayerEntity playerEntity : context.getSource().getWorld().getPlayers()) {

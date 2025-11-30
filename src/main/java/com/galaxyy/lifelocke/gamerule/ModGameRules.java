@@ -11,6 +11,11 @@ public class ModGameRules {
                     GameRuleFactory.createBooleanRule(true)
             );
 
+    public static final GameRules.Key<GameRules.BooleanRule> TYPE_DUPLICATION =
+            GameRuleRegistry.register("typeDuplication", GameRules.Category.PLAYER,
+                    GameRuleFactory.createBooleanRule(false)
+            );
+
     public static void registerGameRules() {
         System.out.println("Registering Game Rules for " + LifeLocke.MOD_ID);
     }
