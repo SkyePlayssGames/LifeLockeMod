@@ -56,5 +56,14 @@
   "text.lifelocke.command_error.rolltype.has_had_all_types": "Cette personne a eu tous des types!",
   "text.lifelocke.command_error.debug.not_a_type": "Ce n'est pas un ID de type!",
 
-  "text.lifelocke.credits": "Cette translation a été créé par: AutisticPlush!"
+  "text.lifelocke.credits": "Cette translation a été créé par: AutisticPlush!",
+
+  "text.lifelocke.true": "Vrai",
+  "text.lifelocke.false": "Faux",
+
+  "text.lifelocke.modmenu.set_setting.null_icon.title": "Settings updaté!",
+  "text.lifelocke.modmenu.set_setting.null_icon.description": "Icon Nulle Montré est: %s",
+
+  "modmenu.nameTranslation.lifelocke": "LifeLocke",
+  "modmenu.descriptionTranslation.lifelocke": "A Pokémon-themed mod that adds Types and their abilities via Status Effects!"
 }

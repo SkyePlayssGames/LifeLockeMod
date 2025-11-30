@@ -9,7 +9,8 @@
 		"StarSword"
 	],
 	"contact": {
-		"discord": "@autisticplush"
+		"discord": "@autisticplush",
+		"sources": "https://github.com/SkyePlayssGames/LifeLockeMod"
 	},
 	"license": "ARR - All Rights Reserved",
 	"icon": "assets/lifelocke/icon.png",
@@ -23,6 +24,9 @@
 		],
 		"client": [
 			"com.galaxyy.lifelocke.LifeLockeClient"
+		],
+		"modmenu": [
+			"com.galaxyy.lifelocke.LifeLockeModMenu"
 		]
 	},
 	"mixins": [

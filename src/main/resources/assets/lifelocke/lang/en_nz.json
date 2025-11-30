@@ -56,5 +56,14 @@
   "text.lifelocke.command_error.rolltype.has_had_all_types": "GoMek besKal savKulup!",
   "text.lifelocke.command_error.debug.not_a_type": "Go nojEs (ID) oKulup",
 
-  "text.lifelocke.credits": "This translation was made by: AutisticPlush!"
+  "text.lifelocke.credits": "This translation was made by: AutisticPlush!",
+
+  "text.lifelocke.true": "Si",
+  "text.lifelocke.false": "No",
+
+  "text.lifelocke.modmenu.set_setting.null_icon.title": "Jn Caca Caca ojJn!",
+  "text.lifelocke.modmenu.set_setting.null_icon.description": "NazajEs piSynukZeno Es: %s",
+
+  "modmenu.nameTranslation.lifelocke": "LifeLocke",
+  "modmenu.descriptionTranslation.lifelocke": "A Pokémon-themed mod that adds Types and their abilities via Status Effects!"
 }
