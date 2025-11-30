@@ -54,5 +54,6 @@
   "gamerule.fightingCraftingNerf": "Fighting Crafting Nerf",
   "text.lifelocke.dragon_activated": "You activated your Dragon boosts!",
   "death.attack.fairy_heal": "%s was too kind",
-  "text.lifelocke.command_error.heal.not_fairy": "You need to be Fairy type to use this command!"
+  "text.lifelocke.command_error.heal.not_fairy": "You need to be Fairy type to use this command!",
+  "gamerule.typeDuplication": "Type Duplication"
 }
