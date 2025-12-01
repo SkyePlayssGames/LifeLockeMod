@@ -61,7 +61,7 @@
   "text.lifelocke.true": "Vrai",
   "text.lifelocke.false": "Faux",
 
-  "text.lifelocke.modmenu.set_setting.null_icon.title": "Settings updaté!",
+  "text.lifelocke.modmenu.updated_settings": "Options updaté!",
   "text.lifelocke.modmenu.set_setting.null_icon.description": "Icon Nulle Montré est: %s",
 
   "modmenu.nameTranslation.lifelocke": "LifeLocke",

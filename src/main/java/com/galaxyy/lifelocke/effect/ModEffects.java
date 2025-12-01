@@ -16,7 +16,7 @@ import java.util.Locale;
 
 public class ModEffects {
     public static final RegistryEntry<StatusEffect> ELECTRIC = registerStatusEffect("electric",
-            new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0xfae43c));
+            new ElectricEffect(StatusEffectCategory.BENEFICIAL, 0xfae43c));
     public static final RegistryEntry<StatusEffect> FIGHTING = registerStatusEffect("fighting",
             new FightingEffect(StatusEffectCategory.BENEFICIAL, 0xd44e2c).addAttributeModifier(
                     EntityAttributes.ATTACK_SPEED, Identifier.of(LifeLocke.MOD_ID, "fighting"),
@@ -67,7 +67,7 @@ public class ModEffects {
     public static final RegistryEntry<StatusEffect> DARK = registerStatusEffect("dark",
             new DarkEffect(StatusEffectCategory.BENEFICIAL, 0x000000));
     public static final RegistryEntry<StatusEffect> PSYCHIC = registerStatusEffect("psychic",
-            new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0xca67e0));
+            new PsychicEffect(StatusEffectCategory.BENEFICIAL, 0xca67e0));
     public static final RegistryEntry<StatusEffect> CURSE_TYPE = registerStatusEffect("curse_type",
             new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0x4a40e3));
 

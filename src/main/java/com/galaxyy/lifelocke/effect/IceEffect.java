@@ -1,17 +1,29 @@
 package com.galaxyy.lifelocke.effect;
 
+import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
+import com.galaxyy.lifelocke.util.UpdateData;
 import com.galaxyy.lifelocke.util.iEntityDataSaver;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 
 public class IceEffect extends StatusEffect {
     protected IceEffect(StatusEffectCategory category, int color) {
         super(category, color);
+    }
+
+    @Override
+    public void onApplied(LivingEntity entity, int amplifier) {
+        SettingsFileHandler.create();
+        Boolean setting = SettingsFileHandler.read()[SettingsFileHandler.SETTINGS.POWER_DEFAULT.ordinal()].get_boolean();
+        if (setting) {
+            UpdateData.toggleIcePower((ServerPlayerEntity) entity);
+        }
     }
 
     @Override
