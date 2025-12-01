@@ -33,6 +33,7 @@
   "text.lifelocke.power_turned_on": "¡Tú poder %s ha sido encendido!",
   "text.lifelocke.power_turned_off": "¡Tú poder %s ha sido apagado!",
 
+  "text.lifelocke.fairy_activated": "Has activado tus poderes Hada!",
 
   "text.lifelocke.command.type.has_type": "¡%s tiene el %s tipo!",
   "text.lifelocke.command.type.has_no_type": "¡%s no tiene tipo!",
@@ -40,20 +41,25 @@
   "text.lifelocke.command.rolltype.rolled_type": "¡%s le tocó el tipo %s!",
   "text.lifelocke.command.rolltype.confirm": "Este comando te quita la armadura!\nUsa /rolltype de nuevo para ser asignado tu tipo después de desequipar tu armadura.",
   "text.lifelocke.command.debug.reset_types": "¡Haz reiniciado tus tipos!",
+  "text.lifelocke.command.debug.added_type": "Ya no te puede tocar el tipo %s!",
 
   "text.lifelocke.command_error.psychic.not_psychic": "¡Necesitas ser tipo Psíquico para utilizar este comando!",
   "text.lifelocke.command_error.rolltype.not_player_sent": "¡Este comando debe ser usado por un jugador!",
   "text.lifelocke.command_error.rolltype.already_has_type": "¡Ya tienes un tipo!",
   "text.lifelocke.command_error.rolltype.has_had_all_types": "¡Este jugador ha tenido todo los tipos!",
+  "text.lifelocke.command_error.debug.not_a_type": "Ningún tipo cuenta con ese nombre!!",
 
   "text.lifelocke.credits": "¡Esta traducción fué hecha por Inxux!",
 
-  "text.lifelocke.fairy_activated": "You activated your Fairy boosts!",
-  "text.lifelocke.command.debug.added_type": "You can no longer roll the %s type!",
-  "text.lifelocke.command_error.debug.not_a_type": "That isn't any type's identifier!",
   "gamerule.fightingCraftingNerf": "Fighting Crafting Nerf",
   "text.lifelocke.dragon_activated": "You activated your Dragon boosts!",
   "death.attack.fairy_heal": "%s was too kind",
   "text.lifelocke.command_error.heal.not_fairy": "You need to be Fairy type to use this command!",
-  "gamerule.typeDuplication": "Type Duplication"
+  "gamerule.typeDuplication": "Type Duplication",
+  "text.lifelocke.true": "True",
+  "text.lifelocke.false": "False",
+  "text.lifelocke.modmenu.set_setting.null_icon.title": "Updated Settings!",
+  "text.lifelocke.modmenu.set_setting.null_icon.description": "Null Icon Shown is now: %s",
+  "modmenu.nameTranslation.lifelocke": "LifeLocke",
+  "modmenu.descriptionTranslation.lifelocke": "A Pokémon-themed mod that adds Types and their abilities via Status Effects!"
 }
