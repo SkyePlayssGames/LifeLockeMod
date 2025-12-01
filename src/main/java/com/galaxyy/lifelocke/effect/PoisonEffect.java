@@ -20,8 +20,8 @@ public class PoisonEffect extends StatusEffect {
     public void onApplied(LivingEntity entity, int amplifier) {
         SettingsFileHandler.create();
         Boolean setting = SettingsFileHandler.read()[SettingsFileHandler.SETTINGS.POWER_DEFAULT.ordinal()].get_boolean();
-        if (setting) {
-            UpdateData.togglePoisonPower((ServerPlayerEntity) entity);
+        if (UpdateData.togglePoisonPower((ServerPlayerEntity) entity) != setting) {
+            UpdateData.togglePoisonPower(((ServerPlayerEntity) entity));
         }
     }
 

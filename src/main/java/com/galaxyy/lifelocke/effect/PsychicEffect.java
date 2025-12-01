@@ -16,8 +16,8 @@ public class PsychicEffect extends StatusEffect {
     public void onApplied(LivingEntity entity, int amplifier) {
         SettingsFileHandler.create();
         Boolean setting = SettingsFileHandler.read()[SettingsFileHandler.SETTINGS.POWER_DEFAULT.ordinal()].get_boolean();
-        if (setting) {
-            UpdateData.togglePsychicPower((ServerPlayerEntity) entity);
+        if (UpdateData.togglePsychicPower((ServerPlayerEntity) entity) != setting) {
+            UpdateData.togglePsychicPower(((ServerPlayerEntity) entity));
         }
     }
 

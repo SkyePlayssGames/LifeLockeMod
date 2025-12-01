@@ -33,68 +33,85 @@ public class TypeIconRenderer {
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
         int icon = ((iEntityDataSaver) player).lifelocke$getPersistentData().getInt("type_icon", 0);
 
+        Boolean showed_icon = false;
+
         if (mainHand == 1) { switch (icon) {
             case 1:
                 if (player.hasStatusEffect(ModEffects.ELECTRIC)) {
                     context.drawTexture(RenderPipelines.GUI_TEXTURED, ELECTRIC_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    showed_icon = true;
                 }
                 break;
             case 2:
                 if (player.hasStatusEffect(ModEffects.ICE)) {
                     context.drawTexture(RenderPipelines.GUI_TEXTURED, ICE_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    showed_icon = true;
                 }
                 break;
             case 3:
                 if (player.hasStatusEffect(ModEffects.POISON)) {
                     context.drawTexture(RenderPipelines.GUI_TEXTURED, POISON_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    showed_icon = true;
                 }
                 break;
             case 4:
                 if (player.hasStatusEffect(ModEffects.DARK)) {
                     context.drawTexture(RenderPipelines.GUI_TEXTURED, DARK_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    showed_icon = true;
                 }
                 break;
             case 5:
                 if (player.hasStatusEffect(ModEffects.PSYCHIC)) {
                     context.drawTexture(RenderPipelines.GUI_TEXTURED, PSYCHIC_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    showed_icon = true;
                 }
                 break;
             default:
                 if (SettingsFileHandler.read()[SettingsFileHandler.SETTINGS.NULL_ICON.ordinal()].get_boolean()) {
                     context.drawTexture(RenderPipelines.GUI_TEXTURED, NONE_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    showed_icon = true;
                 }
                 break;
         }} else { switch (icon) {
             case 1:
                 if (player.hasStatusEffect(ModEffects.ELECTRIC)) {
                     context.drawTexture(RenderPipelines.GUI_TEXTURED, ELECTRIC_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    showed_icon = true;
                 }
                 break;
             case 2:
                 if (player.hasStatusEffect(ModEffects.ICE)) {
                     context.drawTexture(RenderPipelines.GUI_TEXTURED, ICE_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    showed_icon = true;
                 }
                 break;
             case 3:
                 if (player.hasStatusEffect(ModEffects.POISON)) {
                     context.drawTexture(RenderPipelines.GUI_TEXTURED, POISON_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    showed_icon = true;
                 }
                 break;
             case 4:
                 if (player.hasStatusEffect(ModEffects.DARK)) {
                     context.drawTexture(RenderPipelines.GUI_TEXTURED, DARK_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    showed_icon = true;
                 }
                 break;
             case 5:
                 if (player.hasStatusEffect(ModEffects.PSYCHIC)) {
                     context.drawTexture(RenderPipelines.GUI_TEXTURED, PSYCHIC_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    showed_icon = true;
                 }
                 break;
             default:
                 if (SettingsFileHandler.read()[SettingsFileHandler.SETTINGS.NULL_ICON.ordinal()].get_boolean()) {
                     context.drawTexture(RenderPipelines.GUI_TEXTURED, NONE_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    showed_icon = true;
                 }
                 break;
         }}
+        if (!showed_icon) {
+            ((iEntityDataSaver) player).lifelocke$getPersistentData().putInt("type_icon", 0);
+        }
     }
 }

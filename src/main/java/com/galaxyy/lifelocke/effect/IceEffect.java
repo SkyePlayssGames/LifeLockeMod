@@ -21,8 +21,8 @@ public class IceEffect extends StatusEffect {
     public void onApplied(LivingEntity entity, int amplifier) {
         SettingsFileHandler.create();
         Boolean setting = SettingsFileHandler.read()[SettingsFileHandler.SETTINGS.POWER_DEFAULT.ordinal()].get_boolean();
-        if (setting) {
-            UpdateData.toggleIcePower((ServerPlayerEntity) entity);
+        if (UpdateData.toggleIcePower((ServerPlayerEntity) entity) != setting) {
+            UpdateData.toggleIcePower(((ServerPlayerEntity) entity));
         }
     }
 

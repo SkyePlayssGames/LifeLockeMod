@@ -16,8 +16,8 @@ public class ElectricEffect extends StatusEffect {
     public void onApplied(LivingEntity entity, int amplifier) {
         SettingsFileHandler.create();
         Boolean setting = SettingsFileHandler.read()[SettingsFileHandler.SETTINGS.POWER_DEFAULT.ordinal()].get_boolean();
-        if (setting) {
-            UpdateData.toggleElectricPower((ServerPlayerEntity) entity);
+        if (UpdateData.toggleElectricPower((ServerPlayerEntity) entity) != setting) {
+            UpdateData.toggleElectricPower(((ServerPlayerEntity) entity));
         }
     }
 
