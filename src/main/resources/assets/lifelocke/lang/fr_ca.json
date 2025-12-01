@@ -6,7 +6,7 @@
 
   "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
 
-  "gamerule.fightingCraftingNerf": "Combat Crafting Nerf",
+  "gamerule.fightingCraftingNerf": "Nerf de Crafting de Combat",
   "gamerule.typeDuplication": "Type Duplication",
 
   "death.attack.fairy_heal": "%s était trop gentil",
@@ -61,9 +61,14 @@
   "text.lifelocke.true": "Vrai",
   "text.lifelocke.false": "Faux",
 
+  "text.lifelocke.modmenu.null_icon.button": "Basculez Icon Nulle",
+  "text.lifelocke.modmenu.power_default.button": "Basculez Capacité Défaut Marcher",
+  "text.lifelocke.modmenu.close.button": "Fermez Mod Menu",
+
   "text.lifelocke.modmenu.updated_settings": "Options updaté!",
   "text.lifelocke.modmenu.set_setting.null_icon.description": "Icon Nulle Montré est: %s",
+  "text.lifelocke.modmenu.set_setting.power_default.description": "Capacité Défaut Marcher est: %s",
 
   "modmenu.nameTranslation.lifelocke": "LifeLocke",
-  "modmenu.descriptionTranslation.lifelocke": "A Pokémon-themed mod that adds Types and their abilities via Status Effects!"
+  "modmenu.descriptionTranslation.lifelocke": "Un modification avec un théma Pokémon qui ajout des Types et ses abilités!"
 }

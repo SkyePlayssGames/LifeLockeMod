@@ -31,7 +31,7 @@ public class DebugCommand implements CommandRegistrationCallback {
         Collection<ServerPlayerEntity> players = EntityArgumentType.getPlayers(context, "player");
         for (ServerPlayerEntity player : players) {
             UpdateData.setTypeList(((iEntityDataSaver) player), new int[]{});
-            context.getSource().sendFeedback(() -> Text.translatable("text.lifelocke.command.debug.reset_types"), false);
+            player.sendMessage(Text.translatable("text.lifelocke.command.debug.reset_types"), false);
         }
         return 1;
     }
@@ -65,7 +65,7 @@ public class DebugCommand implements CommandRegistrationCallback {
 
             UpdateData.setTypeList(((iEntityDataSaver) player), types_have);
             int finalI = i;
-            context.getSource().sendFeedback(() -> Text.translatable("text.lifelocke.command.debug.added_type", ((StatusEffect) ModEffects.EFFECTS[finalI].value()).getName()), false);
+            player.sendMessage(Text.translatable("text.lifelocke.command.debug.added_type", ((StatusEffect) ModEffects.EFFECTS[finalI].value()).getName()), false);
         }
         return 1;
     }
