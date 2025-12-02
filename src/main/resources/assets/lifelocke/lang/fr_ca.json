@@ -30,6 +30,7 @@
   "effect.lifelocke.poison": "Poison",
   "effect.lifelocke.rock": "Roche",
   "effect.lifelocke.curse_type": "???",
+  "effect.lifelocke.stuck": "Bloqué(e)",
 
   "key.category.lifelocke.category": "LifeLocke",
   "key.lifelocke.ability": "Capacité",
