@@ -47,5 +47,6 @@ public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPay
         EFFECT_FUNCTION_MAP.put(ModEffects.PSYCHIC, new PsychicTrigger());
         EFFECT_FUNCTION_MAP.put(ModEffects.CURSE_TYPE, new CurseTypeTrigger());
         EFFECT_FUNCTION_MAP.put(ModEffects.WATER, new WaterTrigger());
+        EFFECT_FUNCTION_MAP.put(ModEffects.ROCK, new RockTrigger());
     }
 }

@@ -68,8 +68,6 @@ public class SettingsFileHandler {
     }
 
     private static ModMenuSetting getModMenuSetting(String input) {
-        System.out.println(input);
-        System.out.println(input.matches("/\\d+/"));
         if (Objects.equals(input, "T") || Objects.equals(input, "F")) {
             return new BooleanSetting(input);
         }

@@ -71,6 +71,12 @@ public class ModEffects {
     public static final RegistryEntry<StatusEffect> CURSE_TYPE = registerStatusEffect("curse_type",
             new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0x4a40e3));
 
+    public static final RegistryEntry<StatusEffect> STUCK = registerStatusEffect("stuck",
+            new StuckEffect(StatusEffectCategory.HARMFUL, 0xab7333)
+                    .addAttributeModifier(EntityAttributes.GRAVITY, Identifier.of(LifeLocke.MOD_ID, "stuck"), -0.08, EntityAttributeModifier.Operation.ADD_VALUE)
+                    .addAttributeModifier(EntityAttributes.JUMP_STRENGTH, Identifier.of(LifeLocke.MOD_ID, "stuck"), -0.42, EntityAttributeModifier.Operation.ADD_VALUE)
+    );
+
     public static final RegistryEntry[] EFFECTS = {NORMAL, ELECTRIC, FIGHTING, WATER, FIRE, GRASS, ICE, POISON, GROUND, FLYING, BUG,
             ROCK, GHOST, DRAGON, STEEL, FAIRY, DARK, PSYCHIC, CURSE_TYPE};
 
