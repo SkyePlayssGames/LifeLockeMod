@@ -16,10 +16,10 @@ public class DragonTrigger implements BlockUseConsumer {
     public static final int DRAGON_BOOST_TIME = 400;
 
     @Override
-    public void accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
+    public boolean accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
         if (world.isClient() || !UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())
             || !(HungerCost.checkHunger(playerEntity, 14) || playerEntity.isCreative())) {
-            return;
+            return false;
         }
 
         playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, DRAGON_BOOST_TIME, 1, false, false));
@@ -31,5 +31,6 @@ public class DragonTrigger implements BlockUseConsumer {
         playerEntity.sendMessage(Text.translatable("text.lifelocke.dragon_activated"), false);
 
         HungerCost.takeHunger(playerEntity, 10);
+        return true;
     }
 }

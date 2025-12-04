@@ -44,10 +44,10 @@ public class GroundTrigger implements BlockUseConsumer {
     private static final int AMOUNT_OF_STONES = SUMMONABLE_STONE_VARIANTS.values().length;
 
     @Override
-    public void accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
+    public boolean accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
         if (world.isClient() || !UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())
                 || !(HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative())) {
-            return;
+            return false;
         }
 
         if (!playerEntity.isSneaking()) {
@@ -67,6 +67,7 @@ public class GroundTrigger implements BlockUseConsumer {
 
             HungerCost.takeHunger(playerEntity, 1);
         }
+        return true;
     }
 
     private Block getRandomOreBlock(PlayerEntity playerEntity) {

@@ -67,7 +67,7 @@ public class TypeIconRenderer {
                 }
                 break;
             default:
-                if (SettingsFileHandler.read()[SettingsFileHandler.SETTINGS.NULL_ICON.ordinal()].get_boolean()) {
+                if (SettingsFileHandler.try_read(null)[SettingsFileHandler.SETTINGS.NULL_ICON.ordinal()].get_boolean()) {
                     context.drawTexture(RenderPipelines.GUI_TEXTURED, NONE_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
                     showed_icon = true;
                 }
@@ -104,7 +104,7 @@ public class TypeIconRenderer {
                 }
                 break;
             default:
-                if (SettingsFileHandler.read()[SettingsFileHandler.SETTINGS.NULL_ICON.ordinal()].get_boolean()) {
+                if (SettingsFileHandler.try_read(null)[SettingsFileHandler.SETTINGS.NULL_ICON.ordinal()].get_boolean()) {
                     context.drawTexture(RenderPipelines.GUI_TEXTURED, NONE_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
                     showed_icon = true;
                 }

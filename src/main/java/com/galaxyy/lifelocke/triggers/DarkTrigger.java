@@ -11,9 +11,9 @@ import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
 public class DarkTrigger implements BlockUseConsumer {
-    public void accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
+    public boolean accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
         if (!UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())) {
-            return;
+            return false;
         }
         if (UpdateData.toggleDarkPower(playerEntity)) {
             playerEntity.sendMessage(Text.translatable("text.lifelocke.power_turned_on",
@@ -22,5 +22,6 @@ public class DarkTrigger implements BlockUseConsumer {
             playerEntity.sendMessage(Text.translatable("text.lifelocke.power_turned_off",
                     ModEffects.DARK.value().getName()), false);
         }
+        return true;
     }
 }

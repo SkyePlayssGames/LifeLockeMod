@@ -17,11 +17,11 @@ public class FairyTrigger implements BlockUseConsumer {
     public static final int FAIRY_COOLDOWN = 1200;
 
     @Override
-    public void accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
+    public boolean accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
         if (world.isClient() || !UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())
             || !(HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative())
             || playerEntity.hasStatusEffect(StatusEffects.GLOWING)) {
-            return;
+            return false;
         }
 
         playerEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, FAIRY_BOOST_TIME, 0, false, false));
@@ -32,5 +32,6 @@ public class FairyTrigger implements BlockUseConsumer {
         playerEntity.sendMessage(Text.translatable("text.lifelocke.fairy_activated"), false);
 
         HungerCost.takeHunger(playerEntity, 1);
+        return true;
     }
 }

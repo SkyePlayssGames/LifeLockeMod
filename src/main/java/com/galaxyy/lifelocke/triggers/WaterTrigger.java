@@ -10,11 +10,12 @@ import net.minecraft.world.World;
 
 public class WaterTrigger implements BlockUseConsumer {
     @Override
-    public void accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
+    public boolean accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
         if (world.isClient() || !(HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative())) {
-            return;
+            return false;
         }
         world.setBlockState(playerEntity.getBlockPos(), Blocks.WATER.getDefaultState());
         HungerCost.takeHunger(playerEntity, 1);
+        return true;
     }
 }

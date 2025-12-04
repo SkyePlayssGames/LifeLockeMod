@@ -8,6 +8,8 @@ import com.galaxyy.lifelocke.gamerule.ModGameRules;
 import com.galaxyy.lifelocke.item.ModItems;
 import com.galaxyy.lifelocke.item.data_component.ModDataComponents;
 import com.galaxyy.lifelocke.itemgroup.ModItemGroups;
+import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
+import com.galaxyy.lifelocke.modmenu.settings.PowerSoundSetting;
 import com.galaxyy.lifelocke.networking.PressedAbilityKeyC2SPayload;
 import com.galaxyy.lifelocke.networking.PressedAbilityKeyC2SHandler;
 import com.galaxyy.lifelocke.networking.RenderTypeIconS2CPayload;
@@ -36,6 +38,8 @@ public class LifeLocke implements ModInitializer {
 
 		PressedAbilityKeyC2SHandler.registerEffectMap();
 		GroundTrigger.registerGroundMaps();
+		PowerSoundSetting.registerSoundEventMaps();
+		SettingsFileHandler.registerSettingsFile();
 
 		ServerPlayerEvents.COPY_FROM.register(new PlayerCopyHandler());
 

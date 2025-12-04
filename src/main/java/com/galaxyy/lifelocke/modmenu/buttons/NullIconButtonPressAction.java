@@ -21,7 +21,7 @@ public class NullIconButtonPressAction implements ButtonWidget.PressAction {
     @Override
     public void onPress(ButtonWidget button) {
         SettingsFileHandler.create();
-        ModMenuSetting[] settings = SettingsFileHandler.read();
+        ModMenuSetting[] settings = SettingsFileHandler.try_read(null);
         Boolean null_icon = settings[SETTINGS_LINE].get_boolean();
         if (null_icon) {
             settings[SETTINGS_LINE] = new BooleanSetting("F");
@@ -29,7 +29,7 @@ public class NullIconButtonPressAction implements ButtonWidget.PressAction {
             settings[SETTINGS_LINE] = new BooleanSetting("T");
         }
         null_icon = !null_icon;
-        SettingsFileHandler.write(settings);
+        SettingsFileHandler.try_write(settings);
         if (null_icon) {
             this.client.getToastManager().add(
                     SystemToast.create(this.client, SystemToast.Type.NARRATOR_TOGGLE,

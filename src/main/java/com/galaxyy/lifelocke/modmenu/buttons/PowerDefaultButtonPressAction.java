@@ -21,7 +21,7 @@ public class PowerDefaultButtonPressAction implements ButtonWidget.PressAction {
     @Override
     public void onPress(ButtonWidget button) {
         SettingsFileHandler.create();
-        ModMenuSetting[] settings = SettingsFileHandler.read();
+        ModMenuSetting[] settings = SettingsFileHandler.try_read(null);
         Boolean powerDefault = settings[SETTINGS_LINE].get_boolean();
         if (powerDefault) {
             settings[SETTINGS_LINE] = new BooleanSetting("F");
@@ -29,7 +29,7 @@ public class PowerDefaultButtonPressAction implements ButtonWidget.PressAction {
             settings[SETTINGS_LINE] = new BooleanSetting("T");
         }
         powerDefault = !powerDefault;
-        SettingsFileHandler.write(settings);
+        SettingsFileHandler.try_write(settings);
         if (powerDefault) {
             this.client.getToastManager().add(
                     SystemToast.create(this.client, SystemToast.Type.NARRATOR_TOGGLE,

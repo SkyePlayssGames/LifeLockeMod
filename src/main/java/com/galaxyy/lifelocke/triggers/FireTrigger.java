@@ -17,13 +17,14 @@ import net.minecraft.world.World;
 public class FireTrigger implements BlockUseConsumer {
 
     @Override
-    public void accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
+    public boolean accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
         if (world.isClient() || !UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())
             || !(HungerCost.checkHunger(playerEntity, 6) || playerEntity.isCreative())
             || (playerEntity.isHolding(Items.SHIELD) && playerEntity.isUsingItem())) {
-            return;
+            return false;
         }
         EntityType.FIREBALL.spawn((ServerWorld) world, BlockPos.ofFloored(pos.getX(), pos.getY(), pos.getZ()).up(), SpawnReason.TRIGGERED).setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0, 3, 0);
         HungerCost.takeHunger(playerEntity, 2);
+        return true;
     }
 }

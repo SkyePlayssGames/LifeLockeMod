@@ -1,6 +1,7 @@
 package com.galaxyy.lifelocke.networking;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
 import com.galaxyy.lifelocke.triggers.*;
 import com.galaxyy.lifelocke.util.BlockUseConsumer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -8,16 +9,19 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.core.jackson.MapEntry;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPayloadHandler<PressedAbilityKeyC2SPayload> {
     private static final HashMap<RegistryEntry<StatusEffect>, BlockUseConsumer> EFFECT_FUNCTION_MAP = new HashMap<>();
+    private static ArrayList<RegistryEntry<StatusEffect>> TOGGLED_ABILITIES = new ArrayList<>();
 
     @Override
     public void receive(PressedAbilityKeyC2SPayload payload, ServerPlayNetworking.Context context) {
@@ -27,8 +31,15 @@ public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPay
 
         for (RegistryEntry<StatusEffect> effect: EFFECT_FUNCTION_MAP.keySet()) {
             if (playerEntity.hasStatusEffect(effect)) {
-                EFFECT_FUNCTION_MAP.get(effect).accept(playerEntity, world, hand, payload.hitPos());
-                playerEntity.playSoundToPlayer(SoundEvents.BLOCK_CONDUIT_DEACTIVATE, SoundCategory.PLAYERS, 1, 1);
+                boolean success = EFFECT_FUNCTION_MAP.get(effect).accept(playerEntity, world, hand, payload.hitPos());
+                SettingsFileHandler.create();
+                SoundEvent sound;
+                if (TOGGLED_ABILITIES.contains(effect)) {
+                    sound = SettingsFileHandler.try_read(null)[SettingsFileHandler.SETTINGS.POWER_SOUND_TOGGLE.ordinal()].get_powerSound();
+                } else {
+                    sound = SettingsFileHandler.try_read(null)[SettingsFileHandler.SETTINGS.POWER_SOUND_ACTIVE.ordinal()].get_powerSound();
+                }
+                if (sound != null && success) { playerEntity.playSoundToPlayer(sound, SoundCategory.PLAYERS, 1, 1); }
             }
         }
     }
@@ -48,5 +59,11 @@ public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPay
         EFFECT_FUNCTION_MAP.put(ModEffects.CURSE_TYPE, new CurseTypeTrigger());
         EFFECT_FUNCTION_MAP.put(ModEffects.WATER, new WaterTrigger());
         EFFECT_FUNCTION_MAP.put(ModEffects.ROCK, new RockTrigger());
+
+        TOGGLED_ABILITIES.add(ModEffects.ICE);
+        TOGGLED_ABILITIES.add(ModEffects.ELECTRIC);
+        TOGGLED_ABILITIES.add(ModEffects.DARK);
+        TOGGLED_ABILITIES.add(ModEffects.PSYCHIC);
+        TOGGLED_ABILITIES.add(ModEffects.POISON);
     }
 }

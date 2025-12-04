@@ -21,10 +21,10 @@ public class GrassTrigger implements BlockUseConsumer {
     };
 
     @Override
-    public void accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
+    public boolean accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
         if (world.isClient() || !UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())
                 || !(HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative())) {
-            return;
+            return false;
         }
 
         ItemStack stack = new ItemStack(Items.BONE_MEAL);
@@ -49,5 +49,6 @@ public class GrassTrigger implements BlockUseConsumer {
             ANIMALS[playerEntity.getRandom().nextBetweenExclusive(0, ANIMALS.length)].spawn(((ServerWorld) world), playerEntity.getBlockPos(), SpawnReason.TRIGGERED);
             HungerCost.takeHunger(playerEntity, 2);
         }
+        return true;
     }
 }

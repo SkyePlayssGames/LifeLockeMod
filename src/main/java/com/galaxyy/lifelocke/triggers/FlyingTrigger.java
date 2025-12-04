@@ -16,14 +16,15 @@ import net.minecraft.world.World;
 public class FlyingTrigger implements BlockUseConsumer {
 
     @Override
-    public void accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
+    public boolean accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
         if (world.isClient() || !UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())
             || !(HungerCost.checkHunger(playerEntity, 6) || playerEntity.isCreative())
             || (playerEntity.isHolding(Items.SHIELD) && playerEntity.isUsingItem())) {
-            return;
+            return false;
         }
 
         EntityType.WIND_CHARGE.spawn((ServerWorld) world, playerEntity.getBlockPos().up(2), SpawnReason.TRIGGERED).setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0, 10, 0);
         HungerCost.takeHunger(playerEntity, 3);
+        return true;
     }
 }
