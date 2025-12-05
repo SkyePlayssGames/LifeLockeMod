@@ -19,11 +19,13 @@ public class SoundSwitchButtonPressAction implements ButtonWidget.PressAction {
     private final MinecraftClient client;
     private final int SETTINGS_LINE;
     private final int SETTINGS_ORDER;
+    private final String description_key;
 
-    public SoundSwitchButtonPressAction(MinecraftClient client, int setting, int setting_order) {
+    public SoundSwitchButtonPressAction(MinecraftClient client, int setting, int setting_order, String description_key) {
         this.client = client;
         this.SETTINGS_LINE = setting;
         this.SETTINGS_ORDER = setting_order;
+        this.description_key = description_key;
     }
 
     @Override
@@ -42,9 +44,7 @@ public class SoundSwitchButtonPressAction implements ButtonWidget.PressAction {
         this.client.getToastManager().add(
                 SystemToast.create(this.client, SystemToast.Type.NARRATOR_TOGGLE,
                         Text.translatable("text.lifelocke.modmenu.updated_settings"),
-                        Text.translatable("text.lifelocke.modmenu.set_setting.set_sound.description",
-                                sound.to_string()
-                        )
+                        Text.translatable(description_key, sound.to_string().substring(3))
                 )
         );
     }
