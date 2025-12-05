@@ -65,11 +65,18 @@
   "text.lifelocke.modmenu.set_setting.null_icon.description": "Icono Nulo Mostrado ahora es: %s",
 
   "modmenu.nameTranslation.lifelocke": "LifeLocke",
-  "modmenu.descriptionTranslation.lifelocke": "A Pokémon-themed mod that adds Types and their abilities via Status Effects!",
+  "modmenu.descriptionTranslation.lifelocke": "Un mod basado en Pokémon que añade Tipos y sus habilidades!",
 
 
   "text.lifelocke.modmenu.null_icon.button": "Toggle Null Icon",
   "text.lifelocke.modmenu.power_default.button": "Toggle Power Default On",
   "text.lifelocke.modmenu.close.button": "Close Mod Menu",
-  "text.lifelocke.modmenu.set_setting.power_default.description": "Power Default On is now: %s"
+  "text.lifelocke.modmenu.set_setting.power_default.description": "Power Default On is now: %s",
+  "effect.lifelocke.stuck": "Stuck",
+  "text.lifelocke.modmenu.sound.button": "Open Sound Menu",
+  "text.lifelocke.modmenu.toggle_switch.button": "Change Toggle Sound Effect",
+  "text.lifelocke.modmenu.active_switch.button": "Change Activate Sound Effect",
+  "text.lifelocke.modmenu.set_setting.set_sound.description": "Power Default On is now: %s",
+  "text.lifelocke.modmenu.set_setting.toggle_switch.description": "Your Toggle Sound is now: %s",
+  "text.lifelocke.modmenu.set_setting.active_switch.description": "Your Active Sound is now: %s"
 }
