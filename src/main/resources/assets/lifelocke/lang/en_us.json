@@ -72,7 +72,6 @@
   "text.lifelocke.modmenu.updated_settings": "Updated Settings!",
   "text.lifelocke.modmenu.set_setting.null_icon.description": "Null Icon Shown is now: %s",
   "text.lifelocke.modmenu.set_setting.power_default.description": "Power Default On is now: %s",
-  "text.lifelocke.modmenu.set_setting.set_sound.description": "Power Default On is now: %s",
   "text.lifelocke.modmenu.set_setting.toggle_switch.description": "Your Toggle Sound is now: %s",
   "text.lifelocke.modmenu.set_setting.active_switch.description": "Your Active Sound is now: %s",
 

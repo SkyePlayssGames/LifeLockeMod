@@ -76,7 +76,6 @@
   "text.lifelocke.modmenu.sound.button": "Open Sound Menu",
   "text.lifelocke.modmenu.toggle_switch.button": "Change Toggle Sound Effect",
   "text.lifelocke.modmenu.active_switch.button": "Change Activate Sound Effect",
-  "text.lifelocke.modmenu.set_setting.set_sound.description": "Power Default On is now: %s",
   "text.lifelocke.modmenu.set_setting.toggle_switch.description": "Your Toggle Sound is now: %s",
   "text.lifelocke.modmenu.set_setting.active_switch.description": "Your Active Sound is now: %s"
 }

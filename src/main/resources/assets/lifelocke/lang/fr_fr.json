@@ -64,12 +64,19 @@
 
   "text.lifelocke.modmenu.null_icon.button": "Basculez Icon Nulle",
   "text.lifelocke.modmenu.power_default.button": "Basculez Capacité Défaut Marcher",
+  "text.lifelocke.modmenu.sound.button": "Ouvriez Menu de Son",
   "text.lifelocke.modmenu.close.button": "Fermez Mod Menu",
+  "text.lifelocke.modmenu.toggle_switch.button": "Changez Effet Sonore de Basculer Votre Abilité",
+  "text.lifelocke.modmenu.active_switch.button": "Changez Effet Sonore de Activer Votre Abilité",
 
   "text.lifelocke.modmenu.updated_settings": "Options updaté!",
   "text.lifelocke.modmenu.set_setting.null_icon.description": "Icon Nulle Montré est: %s",
   "text.lifelocke.modmenu.set_setting.power_default.description": "Capacité Défaut Marcher est: %s",
+  "text.lifelocke.modmenu.set_setting.toggle_switch.description": "Votre Effet Sonore de Basculer est: %s",
+  "text.lifelocke.modmenu.set_setting.active_switch.description": "Votre Effet Sonore de Activer est: %s",
 
   "modmenu.nameTranslation.lifelocke": "LifeLocke",
-  "modmenu.descriptionTranslation.lifelocke": "Un modification avec un théma Pokémon qui ajout des Types et ses abilités!"
+  "modmenu.descriptionTranslation.lifelocke": "Un modification avec un théma Pokémon qui ajout des Types et ses abilités!",
+
+
 }

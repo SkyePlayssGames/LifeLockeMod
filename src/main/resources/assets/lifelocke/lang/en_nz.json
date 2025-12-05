@@ -64,11 +64,16 @@
 
   "text.lifelocke.modmenu.null_icon.button": "Caca SynukZeno",
   "text.lifelocke.modmenu.power_default.button": "Caca NormalPaja piSi",
+  "text.lifelocke.modmenu.sound.button": "Open FegLipu piFon",
   "text.lifelocke.modmenu.close.button": "Kilc Mod Menu",
+  "text.lifelocke.modmenu.toggle_switch.button": "Caca FonLili piCacaPajaKan",
+  "text.lifelocke.modmenu.active_switch.button": "Caca FonLili pixovojEsPajaKan",
 
   "text.lifelocke.modmenu.updated_settings": "Jn Caca Caca ojJn!",
   "text.lifelocke.modmenu.set_setting.null_icon.description": "NazajEs piSynukZeno Es: %s",
   "text.lifelocke.modmenu.set_setting.power_default.description": "NormalPaja piSi Es: %s",
+  "text.lifelocke.modmenu.set_setting.toggle_switch.description": "FonLili piCacaPajaKan Es: %s",
+  "text.lifelocke.modmenu.set_setting.active_switch.description": "FonLili pixovojEsPajaKan Es: %s",
 
   "modmenu.nameTranslation.lifelocke": "LifeLocke",
   "modmenu.descriptionTranslation.lifelocke": "MaziCaca pijEkesPokémon pijOpenKulup pijEnejOpenPaja!"

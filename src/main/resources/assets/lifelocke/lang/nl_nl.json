@@ -64,12 +64,19 @@
 
   "text.lifelocke.modmenu.null_icon.button": "Wissel Null Icoon",
   "text.lifelocke.modmenu.power_default.button": "Wissel Kracht Standaard Aan",
+  "text.lifelocke.modmenu.sound.button": "Open Geluidenmenu",
   "text.lifelocke.modmenu.close.button": "Sluit Mod Menu",
+  "text.lifelocke.modmenu.toggle_switch.button": "Verander Wisselingsgeluidseffect",
+  "text.lifelocke.modmenu.active_switch.button": "Verander Activatiegeluidseffect",
 
   "text.lifelocke.modmenu.updated_settings": "Instellingen geüpdatet!",
   "text.lifelocke.modmenu.set_setting.null_icon.description": "Null Icoon Zichtbaar is nu: %s",
   "text.lifelocke.modmenu.set_setting.power_default.description": "Kracht Standaard Aan is nu: %s",
+  "text.lifelocke.modmenu.set_setting.toggle_switch.description": "Wisselingsgeluidseffect is nu: %s",
+  "text.lifelocke.modmenu.set_setting.active_switch.description": "Activatiegeluidseffect is nu: %s",
 
   "modmenu.nameTranslation.lifelocke": "LifeLocke",
-  "modmenu.descriptionTranslation.lifelocke": "Een mod met een Pokémonthema die Types en hun krachten toevoegd!"
+  "modmenu.descriptionTranslation.lifelocke": "Een mod met een Pokémonthema die Types en hun krachten toevoegd!",
+
+
 }
