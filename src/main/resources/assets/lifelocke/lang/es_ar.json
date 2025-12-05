@@ -30,6 +30,7 @@
   "effect.lifelocke.poison": "Veneno",
   "effect.lifelocke.rock": "Roca",
   "effect.lifelocke.curse_type": "(?)",
+  "effect.lifelocke.stuck": "Atascado",
 
   "key.category.lifelocke.category": "LifeLocke",
   "key.lifelocke.ability": "Habilidad",
@@ -61,21 +62,20 @@
   "text.lifelocke.true": "Verdadero",
   "text.lifelocke.false": "Falso",
 
+  "text.lifelocke.modmenu.null_icon.button": "Encender/Apagar Icono Nulo",
+  "text.lifelocke.modmenu.power_default.button": "Encender/Apagar Poder Predeterminadamente Encendido",
+  "text.lifelocke.modmenu.sound.button": "Abrir el Menu de Sonido",
+  "text.lifelocke.modmenu.close.button": "Cerrar el Menu del Mod",
+  "text.lifelocke.modmenu.toggle_switch.button": "Cambiar Efecto de Sonido de Encender/Apagar",
+  "text.lifelocke.modmenu.active_switch.button": "Cambiar Efecto de Sonido de Activar",
+
   "text.lifelocke.modmenu.updated_settings": "Tus Configuraciones han sido Actualizadas!",
   "text.lifelocke.modmenu.set_setting.null_icon.description": "Icono Nulo Mostrado ahora es: %s",
+  "text.lifelocke.modmenu.set_setting.power_default.description": "Poder Predeterminadamente Encendido ahora es: %s",
+  "text.lifelocke.modmenu.set_setting.toggle_switch.description": "Tu Efecto de Sonido de Encendido/Apagado ahora es: %s",
+  "text.lifelocke.modmenu.set_setting.active_switch.description": "Tu Efecto de Sonido de Activar ahora es: %s",
 
   "modmenu.nameTranslation.lifelocke": "LifeLocke",
-  "modmenu.descriptionTranslation.lifelocke": "Un mod basado en Pokémon que añade Tipos y sus habilidades!",
+  "modmenu.descriptionTranslation.lifelocke": "Un mod basado en Pokémon que añade Tipos y sus habilidades!"
 
-
-  "text.lifelocke.modmenu.null_icon.button": "Toggle Null Icon",
-  "text.lifelocke.modmenu.power_default.button": "Toggle Power Default On",
-  "text.lifelocke.modmenu.close.button": "Close Mod Menu",
-  "text.lifelocke.modmenu.set_setting.power_default.description": "Power Default On is now: %s",
-  "effect.lifelocke.stuck": "Stuck",
-  "text.lifelocke.modmenu.sound.button": "Open Sound Menu",
-  "text.lifelocke.modmenu.toggle_switch.button": "Change Toggle Sound Effect",
-  "text.lifelocke.modmenu.active_switch.button": "Change Activate Sound Effect",
-  "text.lifelocke.modmenu.set_setting.toggle_switch.description": "Your Toggle Sound is now: %s",
-  "text.lifelocke.modmenu.set_setting.active_switch.description": "Your Active Sound is now: %s"
 }
