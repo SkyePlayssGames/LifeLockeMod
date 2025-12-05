@@ -29,6 +29,9 @@ public class RollTypeCommand implements CommandRegistrationCallback {
     private int command(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         PlayerEntity player = context.getSource().getPlayer();
         boolean type_duplication = context.getSource().getWorld().getGameRules().getBoolean(ModGameRules.TYPE_DUPLICATION);
+        boolean special_types = context.getSource().getWorld().getGameRules().getBoolean(ModGameRules.SPECIAL_TYPE_ROLL);
+        RegistryEntry<StatusEffect>[] effectsList = special_types ? ModEffects.EFFECTS : ModEffects.ROLLABLE_EFFECTS;
+
         if (player == null) {
             throw new SimpleCommandExceptionType(Text.translatable("text.lifelocke.command_error.rolltype.not_player_sent")).create();
         }
@@ -39,7 +42,7 @@ public class RollTypeCommand implements CommandRegistrationCallback {
         }
 
         int[] types_had = UpdateData.getTypeList((iEntityDataSaver) player);
-        if (types_had.length >= ModEffects.ROLLABLE_EFFECTS.length && !type_duplication) {
+        if (types_had.length >= effectsList.length && !type_duplication) {
             throw new SimpleCommandExceptionType(Text.translatable("text.lifelocke.command_error.rolltype.has_had_all_types")).create();
         }
 
@@ -54,7 +57,7 @@ public class RollTypeCommand implements CommandRegistrationCallback {
         player.equipStack(EquipmentSlot.FEET, new ItemStack(Blocks.AIR));
 
         while (true) {
-            int type_rolled = player.getRandom().nextBetween(0, ModEffects.ROLLABLE_EFFECTS.length-1);
+            int type_rolled = player.getRandom().nextBetween(0, effectsList.length-1);
             if (Arrays.stream(types_had).anyMatch(value -> value == type_rolled) && !type_duplication) {
                 continue;
             }
@@ -71,11 +74,11 @@ public class RollTypeCommand implements CommandRegistrationCallback {
                 UpdateData.setTypeList(((iEntityDataSaver) player), types_have);
             }
             
-            player.addStatusEffect(new StatusEffectInstance(ModEffects.ROLLABLE_EFFECTS[type_rolled], -1));
+            player.addStatusEffect(new StatusEffectInstance(effectsList[type_rolled], -1));
 
             for (PlayerEntity playerEntity : context.getSource().getWorld().getPlayers()) {
                 playerEntity.sendMessage(Text.translatable("text.lifelocke.command.rolltype.rolled_type",
-                        player.getName(), ((StatusEffect) ModEffects.ROLLABLE_EFFECTS[type_rolled].value()).getName()), false);
+                        player.getName(), effectsList[type_rolled].value().getName()), false);
             }
 
             break;

@@ -16,6 +16,11 @@ public class ModGameRules {
                     GameRuleFactory.createBooleanRule(false)
             );
 
+    public static final GameRules.Key<GameRules.BooleanRule> SPECIAL_TYPE_ROLL =
+            GameRuleRegistry.register("specialTypeRoll", GameRules.Category.PLAYER,
+                    GameRuleFactory.createBooleanRule(false)
+            );
+
     public static void registerGameRules() {
         System.out.println("Registering Game Rules for " + LifeLocke.MOD_ID);
     }
