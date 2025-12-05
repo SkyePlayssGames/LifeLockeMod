@@ -3,6 +3,7 @@ package com.galaxyy.lifelocke;
 import com.galaxyy.lifelocke.block.ModBlocks;
 import com.galaxyy.lifelocke.command.*;
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.event.JoinIconFixEvent;
 import com.galaxyy.lifelocke.event.RemoveIllegalItemsEvent;
 import com.galaxyy.lifelocke.gamerule.ModGameRules;
 import com.galaxyy.lifelocke.item.ModItems;
@@ -40,8 +41,10 @@ public class LifeLocke implements ModInitializer {
 		GroundTrigger.registerGroundMaps();
 		PowerSoundSetting.registerSoundEventMaps();
 		SettingsFileHandler.registerSettingsFile();
+		JoinIconFixEvent.registerJoinFixEventTypes();
 
 		ServerPlayerEvents.COPY_FROM.register(new PlayerCopyHandler());
+		ServerPlayerEvents.JOIN.register(new JoinIconFixEvent());
 
 		AttackEntityCallback.EVENT.register(new ElectricPower());
 		AttackEntityCallback.EVENT.register(new IcePower());
