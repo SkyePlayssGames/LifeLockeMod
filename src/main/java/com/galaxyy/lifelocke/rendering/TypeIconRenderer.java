@@ -9,6 +9,7 @@ import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.RenderTickCounter;
+import net.minecraft.client.util.Window;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 
@@ -25,7 +26,7 @@ public class TypeIconRenderer {
 
     private static final int X_COORDINATE_RIGHT = 333;
     private static final int X_COORDINATE_LEFT = 128;
-    private static final int Y_COORDINATE = 227;
+    // private static final int Y_COORDINATE = 227;
 
     public static void render(DrawContext context, RenderTickCounter tickCounter) {
         SettingsFileHandler.create();
@@ -33,6 +34,11 @@ public class TypeIconRenderer {
         int mainHand = MinecraftClient.getInstance().options.getMainArm().getValue().getId();
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
         int icon = ((iEntityDataSaver) player).lifelocke$getPersistentData().getInt("type_icon", 0);
+
+        final Window window = MinecraftClient.getInstance().getWindow();
+        final int Y_COORDINATE  = (int) (((double) window.getScaledHeight()) / 20.0 * 18.35);
+        final int X_COORDINATE_RIGHT = (int) (((double) window.getScaledWidth()) / 20.0 * 14.3);
+        final int X_COORDINATE_LEFT = (int) (((double) window.getScaledWidth()) / 20.0 * 4.8);
 
         boolean showed_icon = false;
 
