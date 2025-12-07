@@ -16,7 +16,8 @@ public record RenderTypeIconS2CPayload(int icon) implements CustomPayload {
         ICE,
         POISON,
         DARK,
-        PSYCHIC
+        PSYCHIC,
+        GHOST
     }
 
 

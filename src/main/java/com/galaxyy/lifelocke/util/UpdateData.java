@@ -39,6 +39,24 @@ public class UpdateData {
         return electricPower;
     }
 
+    public static boolean toggleGhostPower(ServerPlayerEntity playerEntity) {
+        iEntityDataSaver player = ((iEntityDataSaver) playerEntity);
+        NbtCompound nbt = player.lifelocke$getPersistentData();
+        boolean ghostPower = nbt.getBoolean("ghost_power").orElse(false);
+
+        ghostPower = !ghostPower;
+
+        nbt.putBoolean("ghost_power", ghostPower);
+
+        if (ghostPower) {
+            setShownTypeIcon(playerEntity, RenderTypeIconS2CPayload.ICONS.GHOST);
+        } else {
+            setShownTypeIcon(playerEntity, RenderTypeIconS2CPayload.ICONS.NONE);
+        }
+
+        return ghostPower;
+    }
+
     public static boolean toggleIcePower(ServerPlayerEntity playerEntity) {
         iEntityDataSaver player = ((iEntityDataSaver) playerEntity);
         NbtCompound nbt = player.lifelocke$getPersistentData();

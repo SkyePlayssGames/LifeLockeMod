@@ -20,6 +20,7 @@ public class TypeIconRenderer {
     private static final Identifier POISON_ID = Identifier.of(LifeLocke.MOD_ID, "textures/mob_effect/poison.png");
     private static final Identifier DARK_ID = Identifier.of(LifeLocke.MOD_ID, "textures/mob_effect/dark.png");
     private static final Identifier PSYCHIC_ID = Identifier.of(LifeLocke.MOD_ID, "textures/mob_effect/psychic.png");
+    private static final Identifier GHOST_ID = Identifier.of(LifeLocke.MOD_ID, "textures/mob_effect/ghost.png");
     private static final Identifier NONE_ID = Identifier.of(LifeLocke.MOD_ID, "textures/no_effect.png");
 
     private static final int X_COORDINATE_RIGHT = 333;
@@ -33,7 +34,11 @@ public class TypeIconRenderer {
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
         int icon = ((iEntityDataSaver) player).lifelocke$getPersistentData().getInt("type_icon", 0);
 
-        Boolean showed_icon = false;
+        boolean showed_icon = false;
+
+        if (!((iEntityDataSaver) player).lifelocke$getPersistentData().getBoolean("server_has_mod", false)) {
+            return;
+        }
 
         if (mainHand == 1) { switch (icon) {
             case 1:
@@ -63,6 +68,12 @@ public class TypeIconRenderer {
             case 5:
                 if (player.hasStatusEffect(ModEffects.PSYCHIC)) {
                     context.drawTexture(RenderPipelines.GUI_TEXTURED, PSYCHIC_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    showed_icon = true;
+                }
+                break;
+            case 6:
+                if (player.hasStatusEffect(ModEffects.GHOST)) {
+                    context.drawTexture(RenderPipelines.GUI_TEXTURED, GHOST_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
                     showed_icon = true;
                 }
                 break;
@@ -100,6 +111,12 @@ public class TypeIconRenderer {
             case 5:
                 if (player.hasStatusEffect(ModEffects.PSYCHIC)) {
                     context.drawTexture(RenderPipelines.GUI_TEXTURED, PSYCHIC_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    showed_icon = true;
+                }
+                break;
+            case 6:
+                if (player.hasStatusEffect(ModEffects.GHOST)) {
+                    context.drawTexture(RenderPipelines.GUI_TEXTURED, GHOST_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
                     showed_icon = true;
                 }
                 break;

@@ -11,9 +11,7 @@ import com.galaxyy.lifelocke.item.data_component.ModDataComponents;
 import com.galaxyy.lifelocke.itemgroup.ModItemGroups;
 import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
 import com.galaxyy.lifelocke.modmenu.settings.PowerSoundSetting;
-import com.galaxyy.lifelocke.networking.PressedAbilityKeyC2SPayload;
-import com.galaxyy.lifelocke.networking.PressedAbilityKeyC2SHandler;
-import com.galaxyy.lifelocke.networking.RenderTypeIconS2CPayload;
+import com.galaxyy.lifelocke.networking.*;
 import com.galaxyy.lifelocke.power.*;
 import com.galaxyy.lifelocke.triggers.GroundTrigger;
 import com.galaxyy.lifelocke.util.PlayerCopyHandler;
@@ -62,7 +60,11 @@ public class LifeLocke implements ModInitializer {
 		ServerTickEvents.END_WORLD_TICK.register(new RemoveIllegalItemsEvent());
 
 		PayloadTypeRegistry.playC2S().register(PressedAbilityKeyC2SPayload.ID, PressedAbilityKeyC2SPayload.CODEC);
+		PayloadTypeRegistry.playC2S().register(ServerModCheckC2SPayload.ID, ServerModCheckC2SPayload.CODEC);
 		PayloadTypeRegistry.playS2C().register(RenderTypeIconS2CPayload.ID, RenderTypeIconS2CPayload.CODEC);
+		PayloadTypeRegistry.playS2C().register(ServerModCheckS2CPayload.ID, ServerModCheckS2CPayload.CODEC);
+
 		ServerPlayNetworking.registerGlobalReceiver(PressedAbilityKeyC2SPayload.ID, new PressedAbilityKeyC2SHandler());
+		ServerPlayNetworking.registerGlobalReceiver(ServerModCheckC2SPayload.ID, new ServerModCheckC2SHandler());
 	}
 }

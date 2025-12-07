@@ -1,5 +1,6 @@
 package com.galaxyy.lifelocke.effect;
 
+import com.galaxyy.lifelocke.util.iEntityDataSaver;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -15,7 +16,9 @@ public class GhostEffect extends StatusEffect {
     @Override
     public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
         entity.addStatusEffect(new StatusEffectInstance(StatusEffects.INVISIBILITY, 5, 0, false, false));
-        entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 5, 0, false, false));
+        if (((iEntityDataSaver) entity).lifelocke$getPersistentData().getBoolean("ghost_power").orElse(false)) {
+            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 5, 0, false, false));
+        }
         return true;
     }
 
