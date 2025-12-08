@@ -4,21 +4,18 @@ import com.galaxyy.lifelocke.modmenu.settings.BooleanSetting;
 import com.galaxyy.lifelocke.modmenu.settings.IntSetting;
 import com.galaxyy.lifelocke.modmenu.settings.ModMenuSetting;
 import com.galaxyy.lifelocke.modmenu.settings.PowerSoundSetting;
-import com.terraformersmc.modmenu.util.mod.Mod;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class SettingsFileHandler {
     public enum SETTINGS {
         VERSION,
-        NULL_ICON,
+        SHOW_TYPE_ICON,
         POWER_DEFAULT,
         POWER_SOUND_TOGGLE,
         POWER_SOUND_TOGGLE_ORDER,
@@ -30,7 +27,7 @@ public class SettingsFileHandler {
 
     private static final ModMenuSetting[] DEFAULT = {
             new IntSetting("2"),
-            new BooleanSetting("F"),
+            new BooleanSetting("T"),
             new BooleanSetting("F"),
             new PowerSoundSetting("ps#conduit"),
             new IntSetting("1"),

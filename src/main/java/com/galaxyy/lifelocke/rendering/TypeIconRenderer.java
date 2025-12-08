@@ -10,10 +10,7 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.client.util.Window;
-import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
-
-import java.util.Objects;
 
 public class TypeIconRenderer {
     private static final Identifier ELECTRIC_ID = Identifier.of(LifeLocke.MOD_ID, "textures/mob_effect/electric.png");
@@ -23,10 +20,6 @@ public class TypeIconRenderer {
     private static final Identifier PSYCHIC_ID = Identifier.of(LifeLocke.MOD_ID, "textures/mob_effect/psychic.png");
     private static final Identifier GHOST_ID = Identifier.of(LifeLocke.MOD_ID, "textures/mob_effect/ghost.png");
     private static final Identifier NONE_ID = Identifier.of(LifeLocke.MOD_ID, "textures/no_effect.png");
-
-    private static final int X_COORDINATE_RIGHT = 333;
-    private static final int X_COORDINATE_LEFT = 128;
-    // private static final int Y_COORDINATE = 227;
 
     public static void render(DrawContext context, RenderTickCounter tickCounter) {
         SettingsFileHandler.create();
@@ -42,7 +35,8 @@ public class TypeIconRenderer {
 
         boolean showed_icon = false;
 
-        if (!((iEntityDataSaver) player).lifelocke$getPersistentData().getBoolean("server_has_mod", false)) {
+        if (!((iEntityDataSaver) player).lifelocke$getPersistentData().getBoolean("server_has_mod", false)
+        || !SettingsFileHandler.try_read(null)[SettingsFileHandler.SETTINGS.SHOW_TYPE_ICON.ordinal()].get_boolean()) {
             return;
         }
 
@@ -84,10 +78,8 @@ public class TypeIconRenderer {
                 }
                 break;
             default:
-                if (SettingsFileHandler.try_read(null)[SettingsFileHandler.SETTINGS.NULL_ICON.ordinal()].get_boolean()) {
-                    context.drawTexture(RenderPipelines.GUI_TEXTURED, NONE_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
-                    showed_icon = true;
-                }
+                context.drawTexture(RenderPipelines.GUI_TEXTURED, NONE_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                showed_icon = true;
                 break;
         }} else { switch (icon) {
             case 1:
@@ -127,10 +119,8 @@ public class TypeIconRenderer {
                 }
                 break;
             default:
-                if (SettingsFileHandler.try_read(null)[SettingsFileHandler.SETTINGS.NULL_ICON.ordinal()].get_boolean()) {
-                    context.drawTexture(RenderPipelines.GUI_TEXTURED, NONE_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
-                    showed_icon = true;
-                }
+                context.drawTexture(RenderPipelines.GUI_TEXTURED, NONE_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                showed_icon = true;
                 break;
         }}
         if (!showed_icon) {

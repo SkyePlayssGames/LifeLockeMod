@@ -8,11 +8,9 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.toast.SystemToast;
 import net.minecraft.text.Text;
 
-import java.util.Objects;
-
 public class NullIconButtonPressAction implements ButtonWidget.PressAction {
     private final MinecraftClient client;
-    private static final int SETTINGS_LINE = SettingsFileHandler.SETTINGS.NULL_ICON.ordinal();
+    private static final int SETTINGS_LINE = SettingsFileHandler.SETTINGS.SHOW_TYPE_ICON.ordinal();
 
     public NullIconButtonPressAction(MinecraftClient client) {
         this.client = client;
