@@ -10,6 +10,7 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.client.util.Window;
+import net.minecraft.util.Arm;
 import net.minecraft.util.Identifier;
 
 public class TypeIconRenderer {
@@ -24,7 +25,7 @@ public class TypeIconRenderer {
     public static void render(DrawContext context, RenderTickCounter tickCounter) {
         SettingsFileHandler.create();
 
-        int mainHand = MinecraftClient.getInstance().options.getMainArm().getValue().getId();
+        Arm mainHand = MinecraftClient.getInstance().options.getMainArm().getValue();
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
         int icon = ((iEntityDataSaver) player).lifelocke$getPersistentData().getInt("type_icon", 0);
 
@@ -40,7 +41,7 @@ public class TypeIconRenderer {
             return;
         }
 
-        if (mainHand == 1) { switch (icon) {
+        if (mainHand == Arm.RIGHT) { switch (icon) {
             case 1:
                 if (player.hasStatusEffect(ModEffects.ELECTRIC)) {
                     context.drawTexture(RenderPipelines.GUI_TEXTURED, ELECTRIC_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);

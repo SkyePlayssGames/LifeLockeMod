@@ -6,9 +6,9 @@
 
   "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
 
-  "gamerule.fightingCraftingNerf": "Nerf de Crafting de Combat",
-  "gamerule.typeDuplication": "Type Duplication",
-  "gamerule.specialTypeRoll": "Type Spécial Roulable",
+  "gamerule.lifelocke.fighting_crafting_nerf": "Nerf de Crafting de Combat",
+  "gamerule.lifelocke.type_duplication": "Type Duplication",
+  "gamerule.lifelocke.special_type_roll": "Type Spécial Roulable",
 
   "death.attack.fairy_heal": "%s était trop gentil",
 

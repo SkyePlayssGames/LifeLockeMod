@@ -25,7 +25,7 @@ public abstract class CraftingTableMixin extends Block {
     @Inject(at = @At("HEAD"), method = "onUse", cancellable = true)
     protected void onOnUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir) {
         if (player.hasStatusEffect(ModEffects.FIGHTING) && !world.isClient() &&
-        ((ServerWorld) world).getGameRules().getBoolean(ModGameRules.FIGHTING_CRAFTING_NERF)) {
+        ((ServerWorld) world).getGameRules().getValue(ModGameRules.FIGHTING_CRAFTING_NERF)) {
             cir.setReturnValue(ActionResult.FAIL);
         }
     }

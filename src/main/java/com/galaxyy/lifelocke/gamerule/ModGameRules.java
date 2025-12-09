@@ -1,24 +1,25 @@
 package com.galaxyy.lifelocke.gamerule;
 
 import com.galaxyy.lifelocke.LifeLocke;
-import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
-import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
-import net.minecraft.world.GameRules;
+import net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder;
+import net.minecraft.util.Identifier;
+import net.minecraft.world.rule.GameRule;
 
 public class ModGameRules {
-    public static final GameRules.Key<GameRules.BooleanRule> FIGHTING_CRAFTING_NERF =
-            GameRuleRegistry.register("fightingCraftingNerf", GameRules.Category.PLAYER,
-                    GameRuleFactory.createBooleanRule(true)
+
+    public static final GameRule<Boolean> FIGHTING_CRAFTING_NERF =
+            GameRuleBuilder.forBoolean(true).buildAndRegister(
+                    Identifier.of(LifeLocke.MOD_ID, "fighting_crafting_nerf")
             );
 
-    public static final GameRules.Key<GameRules.BooleanRule> TYPE_DUPLICATION =
-            GameRuleRegistry.register("typeDuplication", GameRules.Category.PLAYER,
-                    GameRuleFactory.createBooleanRule(false)
+    public static final GameRule<Boolean> TYPE_DUPLICATION =
+            GameRuleBuilder.forBoolean(false).buildAndRegister(
+                    Identifier.of(LifeLocke.MOD_ID, "type_duplication")
             );
 
-    public static final GameRules.Key<GameRules.BooleanRule> SPECIAL_TYPE_ROLL =
-            GameRuleRegistry.register("specialTypeRoll", GameRules.Category.PLAYER,
-                    GameRuleFactory.createBooleanRule(false)
+    public static final GameRule<Boolean> SPECIAL_TYPE_ROLL =
+            GameRuleBuilder.forBoolean(false).buildAndRegister(
+                    Identifier.of(LifeLocke.MOD_ID, "special_type_roll")
             );
 
     public static void registerGameRules() {

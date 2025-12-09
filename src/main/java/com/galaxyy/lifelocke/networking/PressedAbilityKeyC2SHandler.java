@@ -19,9 +19,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPayloadHandler<PressedAbilityKeyC2SPayload> {
+public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPayloadHandler<@org.jetbrains.annotations.NotNull PressedAbilityKeyC2SPayload> {
     private static final HashMap<RegistryEntry<StatusEffect>, BlockUseConsumer> EFFECT_FUNCTION_MAP = new HashMap<>();
-    private static ArrayList<RegistryEntry<StatusEffect>> TOGGLED_ABILITIES = new ArrayList<>();
+    private static final ArrayList<RegistryEntry<StatusEffect>> TOGGLED_ABILITIES = new ArrayList<>();
 
     @Override
     public void receive(PressedAbilityKeyC2SPayload payload, ServerPlayNetworking.Context context) {
@@ -39,7 +39,9 @@ public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPay
                 } else {
                     sound = SettingsFileHandler.try_read(null)[SettingsFileHandler.SETTINGS.POWER_SOUND_ACTIVE.ordinal()].get_powerSound();
                 }
-                if (sound != null && success) { playerEntity.playSoundToPlayer(sound, SoundCategory.PLAYERS, 1, 1); }
+                if (sound != null && success) {
+                    world.playSound(null, playerEntity.getBlockPos(), sound, SoundCategory.PLAYERS);
+                }
             }
         }
     }

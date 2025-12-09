@@ -15,6 +15,8 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.ArgumentTypes;
 import net.minecraft.command.argument.EntityArgumentType;
+import net.minecraft.command.permission.Permission;
+import net.minecraft.command.permission.PermissionLevel;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -73,7 +75,7 @@ public class DebugCommand implements CommandRegistrationCallback {
     @Override
     public void register(CommandDispatcher<ServerCommandSource> commandDispatcher, CommandRegistryAccess commandRegistryAccess, CommandManager.RegistrationEnvironment registrationEnvironment) {
         commandDispatcher.register(CommandManager.literal("lifelocke_debug")
-                .requires(source -> source.hasPermissionLevel(1))
+                .requires(source -> source.getPermissions().hasPermission(new Permission.Level(PermissionLevel.MODERATORS)))
                 .then(CommandManager.literal("reset_types")
                         .then(CommandManager.argument("player", EntityArgumentType.players())
                                 .executes(this::resetTypes)))

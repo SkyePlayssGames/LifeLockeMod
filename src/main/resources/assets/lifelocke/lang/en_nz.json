@@ -6,9 +6,9 @@
 
   "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
 
-  "gamerule.fightingCraftingNerf": "Kylac Crafting Nerf",
-  "gamerule.typeDuplication": "Kulup AbajujEsAfin",
-  "gamerule.specialTypeRoll": "KulupMaca pikanxovoKal",
+  "gamerule.lifelocke.fighting_crafting_nerf": "Kylac Crafting Nerf",
+  "gamerule.lifelocke.type_duplication": "Kulup AbajujEsAfin",
+  "gamerule.lifelocke.special_type_roll": "KulupMaca pikanxovoKal",
 
   "death.attack.fairy_heal": "%s finEs kaPona",
 

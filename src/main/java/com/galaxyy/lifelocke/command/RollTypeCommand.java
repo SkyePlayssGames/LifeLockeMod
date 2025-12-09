@@ -28,8 +28,8 @@ import java.util.Arrays;
 public class RollTypeCommand implements CommandRegistrationCallback {
     private int command(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         PlayerEntity player = context.getSource().getPlayer();
-        boolean type_duplication = context.getSource().getWorld().getGameRules().getBoolean(ModGameRules.TYPE_DUPLICATION);
-        boolean special_types = context.getSource().getWorld().getGameRules().getBoolean(ModGameRules.SPECIAL_TYPE_ROLL);
+        boolean type_duplication = context.getSource().getWorld().getGameRules().getValue(ModGameRules.TYPE_DUPLICATION);
+        boolean special_types = context.getSource().getWorld().getGameRules().getValue(ModGameRules.SPECIAL_TYPE_ROLL);
         RegistryEntry<StatusEffect>[] effectsList = special_types ? ModEffects.EFFECTS : ModEffects.ROLLABLE_EFFECTS;
 
         if (player == null) {

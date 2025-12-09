@@ -16,7 +16,7 @@ public class StuckEffect extends StatusEffect {
     @Override
     public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
         entity.setVelocity(Vec3d.ZERO);
-        entity.velocityModified = true;
+        entity.velocityDirty = true;
         entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 5, 255, false, false));
         return true;
     }

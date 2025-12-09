@@ -6,9 +6,9 @@
 
   "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
 
-  "gamerule.fightingCraftingNerf": "Vecht Vervaardigingsverzwakking",
-  "gamerule.typeDuplication": "Type Herhaling",
-  "gamerule.specialTypeRoll": "Rolbare Speciale Types",
+  "gamerule.lifelocke.fighting_crafting_nerf": "Vecht Vervaardigingsverzwakking",
+  "gamerule.lifelocke.type_duplication": "Type Herhaling",
+  "gamerule.lifelocke.special_type_roll": "Rolbare Speciale Types",
 
   "death.attack.fairy_heal": "%s was te aardig",
 
