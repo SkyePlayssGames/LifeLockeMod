@@ -11,10 +11,10 @@ base {
 }
 
 repositories {
-	// maven {
-	// 	name = "Terraformers"
-	// 	url = "https://maven.terraformersmc.com/"
-	// }
+	 maven {
+	 	name = "Terraformers"
+	 	url = "https://maven.terraformersmc.com/"
+	 }
 }
 
 fabricApi {
@@ -33,7 +33,7 @@ dependencies {
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	// Mod Menu
-	// modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}")
+	modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}")
 }
 
 processResources {
