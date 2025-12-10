@@ -1,12 +1,15 @@
 package com.galaxyy.lifelocke.keybind;
 
 import com.galaxyy.lifelocke.LifeLocke;
+import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
+import com.galaxyy.lifelocke.modmenu.settings.ModMenuSetting;
 import com.galaxyy.lifelocke.networking.PressedAbilityKeyC2SPayload;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -25,7 +28,13 @@ public class KeyInputHandler {
             if (abilityKey.wasPressed()) {
                 Vec3d pos = client.crosshairTarget.getPos();
                 BlockPos blockPos = BlockPos.ofFloored(pos.x, pos.y, pos.z);
-                PressedAbilityKeyC2SPayload payload = new PressedAbilityKeyC2SPayload(blockPos);
+
+                SettingsFileHandler.create();
+                ModMenuSetting[] settings = SettingsFileHandler.try_read(null);
+                SoundEvent toggledSoundEvent = settings[SettingsFileHandler.SETTINGS.POWER_SOUND_TOGGLE.ordinal()].get_powerSound();
+                SoundEvent activatedSoundEvent = settings[SettingsFileHandler.SETTINGS.POWER_SOUND_ACTIVE.ordinal()].get_powerSound();
+
+                PressedAbilityKeyC2SPayload payload = new PressedAbilityKeyC2SPayload(blockPos, toggledSoundEvent, activatedSoundEvent);
                 ClientPlayNetworking.send(payload);
             }
         });

@@ -52,7 +52,7 @@ public class PowerSoundSetting extends ModMenuSetting {
     }
 
     public static void registerSoundEventMaps() {
-        registerMapEntry("none", null);
+        registerMapEntry("none", SoundEvents.BLOCK_CANDLE_FALL);
         registerMapEntry("conduit", SoundEvents.BLOCK_CONDUIT_DEACTIVATE);
         registerMapEntry("place", SoundEvents.BLOCK_GRASS_PLACE);
         registerMapEntry("eye", SoundEvents.BLOCK_END_PORTAL_FRAME_FILL);

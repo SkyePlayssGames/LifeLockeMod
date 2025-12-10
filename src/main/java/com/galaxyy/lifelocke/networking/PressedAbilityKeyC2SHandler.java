@@ -35,11 +35,11 @@ public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPay
                 SettingsFileHandler.create();
                 SoundEvent sound;
                 if (TOGGLED_ABILITIES.contains(effect)) {
-                    sound = SettingsFileHandler.try_read(null)[SettingsFileHandler.SETTINGS.POWER_SOUND_TOGGLE.ordinal()].get_powerSound();
+                    sound = payload.toggledSoundEvent();
                 } else {
-                    sound = SettingsFileHandler.try_read(null)[SettingsFileHandler.SETTINGS.POWER_SOUND_ACTIVE.ordinal()].get_powerSound();
+                    sound = payload.activatedSoundEvent();
                 }
-                if (sound != null && success) {
+                if (sound != SoundEvents.BLOCK_CANDLE_FALL && success) {
                     world.playSound(null, playerEntity.getBlockPos(), sound, SoundCategory.PLAYERS);
                 }
             }
