@@ -36,6 +36,9 @@
   "key.category.lifelocke.category": "LifeLocke",
   "key.lifelocke.ability": "Capacité",
 
+  "subtitle.lifelocke.toggle": "Capacité Basculé",
+  "subtitle.lifelocke.activate": "Capacité Activé",
+
   "text.lifelocke.key_pressed": "Vous avez pressé votre key capacité!",
   "text.lifelocke.power_turned_on": "Votre capacité %s marche!",
   "text.lifelocke.power_turned_off": "Votre capacité %s ne marche plus!",
@@ -60,7 +63,7 @@
 
   "text.lifelocke.credits": "Cette translation a été créé par: AutisticPlush!",
 
-  "text.lifelocke.true": "Vrai",
+  "text.lifelocke.true": "Vrai(e)",
   "text.lifelocke.false": "Faux",
 
   "text.lifelocke.modmenu.null_icon.button": "Basculez Icon de Type",
