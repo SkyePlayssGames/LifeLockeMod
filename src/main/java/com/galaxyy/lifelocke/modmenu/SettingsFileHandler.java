@@ -26,7 +26,7 @@ public class SettingsFileHandler {
     private static final HashMap<Integer, Integer> LINES_PER_VERSION = new HashMap<>();
 
     private static final ModMenuSetting[] DEFAULT = {
-            new IntSetting("2"),
+            new IntSetting("3"),
             new BooleanSetting("T"),
             new BooleanSetting("F"),
             new PowerSoundSetting("ps#conduit"),
@@ -59,6 +59,13 @@ public class SettingsFileHandler {
         ModMenuSetting[] settings_preupdate = try_read(LINES_PER_VERSION.get(version));
         ModMenuSetting[] settings_postupdate = DEFAULT.clone();
         System.arraycopy(settings_preupdate, 0, settings_postupdate, 0, settings_preupdate.length);
+
+        if (version < 3) {
+            System.out.println(((PowerSoundSetting) settings_postupdate[SETTINGS.POWER_SOUND_TOGGLE.ordinal()]).legacy_string());
+            settings_postupdate[SETTINGS.POWER_SOUND_TOGGLE.ordinal()] = new PowerSoundSetting("ps#t" + ((PowerSoundSetting) settings_postupdate[SETTINGS.POWER_SOUND_TOGGLE.ordinal()]).legacy_string().substring(3));
+            settings_postupdate[SETTINGS.POWER_SOUND_ACTIVE.ordinal()] = new PowerSoundSetting("ps#a" + ((PowerSoundSetting) settings_postupdate[SETTINGS.POWER_SOUND_ACTIVE.ordinal()]).legacy_string().substring(3));
+        }
+
         settings_postupdate[SETTINGS.VERSION.ordinal()] = DEFAULT[SETTINGS.VERSION.ordinal()];
         try_write(settings_postupdate);
     }
@@ -131,5 +138,6 @@ public class SettingsFileHandler {
     public static void registerSettingsFile() {
         LINES_PER_VERSION.put(1, 3);
         LINES_PER_VERSION.put(2, 7);
+        LINES_PER_VERSION.put(3, 7);
     }
 }

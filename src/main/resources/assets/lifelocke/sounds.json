@@ -1,0 +1,71 @@
+{
+  "empty": {
+    "sounds": []
+  },
+  "toggle.conduit": {
+    "subtitle": "subtitle.lifelocke.toggle",
+    "sounds": [
+      "block/conduit/deactivate"
+    ]
+  },
+  "activate.conduit": {
+    "subtitle": "subtitle.lifelocke.activate",
+    "sounds": [
+      "block/conduit/deactivate"
+    ]
+  },
+  "toggle.place": {
+    "subtitle": "subtitle.lifelocke.toggle",
+    "sounds": [
+      "dig/grass1",
+      "dig/grass2",
+      "dig/grass3",
+      "dig/grass4"
+    ]
+  },
+  "activate.place": {
+    "subtitle": "subtitle.lifelocke.activate",
+    "sounds": [
+      "dig/grass1",
+      "dig/grass2",
+      "dig/grass3",
+      "dig/grass4"
+    ]
+  },
+  "toggle.eye": {
+    "subtitle": "subtitle.lifelocke.toggle",
+    "sounds": [
+      "block/end_portal/eyeplace1",
+      "block/end_portal/eyeplace2",
+      "block/end_portal/eyeplace3"
+    ]
+  },
+  "activate.eye": {
+    "subtitle": "subtitle.lifelocke.activate",
+    "sounds": [
+      "block/end_portal/eyeplace1",
+      "block/end_portal/eyeplace2",
+      "block/end_portal/eyeplace3"
+    ]
+  },
+  "toggle.horse": {
+    "subtitle": "subtitle.lifelocke.toggle",
+    "sounds": [
+      "mob/horse/eat1",
+      "mob/horse/eat2",
+      "mob/horse/eat3",
+      "mob/horse/eat4",
+      "mob/horse/eat5"
+    ]
+  },
+  "activate.horse": {
+    "subtitle": "subtitle.lifelocke.activate",
+    "sounds": [
+      "mob/horse/eat1",
+      "mob/horse/eat2",
+      "mob/horse/eat3",
+      "mob/horse/eat4",
+      "mob/horse/eat5"
+    ]
+  }
+}

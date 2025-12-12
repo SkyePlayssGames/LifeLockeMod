@@ -13,6 +13,7 @@ import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
 import com.galaxyy.lifelocke.modmenu.settings.PowerSoundSetting;
 import com.galaxyy.lifelocke.networking.*;
 import com.galaxyy.lifelocke.power.*;
+import com.galaxyy.lifelocke.sound.ModSounds;
 import com.galaxyy.lifelocke.triggers.GroundTrigger;
 import com.galaxyy.lifelocke.util.PlayerCopyHandler;
 import net.fabricmc.api.ModInitializer;
@@ -34,6 +35,7 @@ public class LifeLocke implements ModInitializer {
 		ModEffects.registerEffects();
 		ModGameRules.registerGameRules();
 		ModDataComponents.registerModDataComponents();
+		ModSounds.registerSounds();
 
 		PressedAbilityKeyC2SHandler.registerEffectMap();
 		GroundTrigger.registerGroundMaps();
