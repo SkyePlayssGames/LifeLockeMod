@@ -1,5 +1,6 @@
 package com.galaxyy.lifelocke.networking;
 
+import com.galaxyy.lifelocke.LifeLocke;
 import com.galaxyy.lifelocke.events.ModdedPlayerJoinClientCallback;
 import com.galaxyy.lifelocke.util.iEntityDataSaver;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -26,5 +27,6 @@ public class ServerModCheckS2CHandler implements ClientPlayNetworking.PlayPayloa
         NbtCompound nbt = ((iEntityDataSaver) context.player()).lifelocke$getPersistentData();
         nbt.putBoolean("server_has_mod", true);
         nbt.putInt("server_version", payload.serverVersion());
+        nbt.putInt("client_version", LifeLocke.CLIENT_VERSION);
     }
 }
