@@ -6,6 +6,22 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 public class UpdateData {
+    public static int getTimeSneaked(ServerPlayerEntity playerEntity) {
+        return ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getInt("time_sneaked", 0);
+    }
+
+    public static int incrementTimeSneaked(ServerPlayerEntity playerEntity) {
+        NbtCompound nbt = ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData();
+        int time = getTimeSneaked(playerEntity);
+        nbt.putInt("time_sneaked", time+1);
+
+        return time + 1;
+    }
+
+    public static void resetTimeSneaked(ServerPlayerEntity playerEntity) {
+        ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().putInt("time_sneaked", 0);
+    }
+
     public static void setShownTypeIcon(ServerPlayerEntity playerEntity, RenderTypeIconS2CPayload.ICONS icon) {
         ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().putInt("type_icon", icon.ordinal());
         ServerPlayNetworking.send(playerEntity,
