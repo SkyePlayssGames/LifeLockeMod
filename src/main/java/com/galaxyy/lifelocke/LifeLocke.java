@@ -3,8 +3,13 @@ package com.galaxyy.lifelocke;
 import com.galaxyy.lifelocke.block.ModBlocks;
 import com.galaxyy.lifelocke.command.*;
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.event.CheckClientVersionEvent;
+import com.galaxyy.lifelocke.event.CheckServerVersionEvent;
 import com.galaxyy.lifelocke.event.JoinIconFixEvent;
 import com.galaxyy.lifelocke.event.RemoveIllegalItemsEvent;
+import com.galaxyy.lifelocke.events.ModdedPlayerJoinCallback;
+import com.galaxyy.lifelocke.events.ModdedPlayerJoinClientCallback;
+import com.galaxyy.lifelocke.events.ModdedPlayerJoinServerCallback;
 import com.galaxyy.lifelocke.gamerule.ModGameRules;
 import com.galaxyy.lifelocke.item.ModItems;
 import com.galaxyy.lifelocke.item.data_component.ModDataComponents;
@@ -23,9 +28,12 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.util.ActionResult;
 
 public class LifeLocke implements ModInitializer {
 	public static final String MOD_ID = "lifelocke";
+	public static final int CLIENT_VERSION = 1;
+	public static final int SERVER_VERSION = 1;
 
 	@Override
 	public void onInitialize() {
@@ -68,5 +76,8 @@ public class LifeLocke implements ModInitializer {
 
 		ServerPlayNetworking.registerGlobalReceiver(PressedAbilityKeyC2SPayload.ID, new PressedAbilityKeyC2SHandler());
 		ServerPlayNetworking.registerGlobalReceiver(ServerModCheckC2SPayload.ID, new ServerModCheckC2SHandler());
+
+		ModdedPlayerJoinServerCallback.EVENT.register(new CheckServerVersionEvent());
+		ModdedPlayerJoinClientCallback.EVENT.register(new CheckClientVersionEvent());
 	}
 }
