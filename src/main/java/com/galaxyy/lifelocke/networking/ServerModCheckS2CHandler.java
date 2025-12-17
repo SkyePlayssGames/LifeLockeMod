@@ -20,6 +20,7 @@ public class ServerModCheckS2CHandler implements ClientPlayNetworking.PlayPayloa
 
         ActionResult result = ModdedPlayerJoinClientCallback.EVENT.invoker().check(context.player(), payload.serverVersion());
         if (result == ActionResult.FAIL) {
+            context.responseSender().sendPacket(new ClientDisconnectC2SPacket());
             context.client().disconnect(Text.literal("You can't connect to this server!"));
             return;
         }

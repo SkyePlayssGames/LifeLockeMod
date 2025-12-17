@@ -31,8 +31,8 @@ import net.minecraft.util.ActionResult;
 
 public class LifeLocke implements ModInitializer {
 	public static final String MOD_ID = "lifelocke";
-	public static final int CLIENT_VERSION = 1;
-	public static final int SERVER_VERSION = 1;
+	public static final int CLIENT_VERSION = 2;
+	public static final int SERVER_VERSION = 2;
 
 	@Override
 	public void onInitialize() {

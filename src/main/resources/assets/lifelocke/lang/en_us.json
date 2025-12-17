@@ -79,6 +79,9 @@
   "text.lifelocke.modmenu.set_setting.toggle_switch.description": "Your Toggle Sound is now: %s",
   "text.lifelocke.modmenu.set_setting.active_switch.description": "Your Active Sound is now: %s",
 
+  "text.lifelocke.compatibility.player_kicked_client": "%s's LifeLocke version was too new!",
+  "text.lifelocke.compatibility.player_kicked_server": "%s's LifeLocke version was too old!",
+
   "modmenu.nameTranslation.lifelocke": "LifeLocke",
   "modmenu.descriptionTranslation.lifelocke": "A Pokémon-themed mod that adds Types and their abilities!"
 }
