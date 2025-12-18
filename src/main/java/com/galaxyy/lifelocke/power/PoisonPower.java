@@ -21,7 +21,7 @@ public class PoisonPower implements AttackEntityCallback {
         if (playerEntity.hasStatusEffect(ModEffects.POISON) && !world.isClient() &&
                 (HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative()) &&
                 ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getBoolean("poison_power").orElse(false) &&
-                entity.isAlive()) {
+                entity instanceof LivingEntity) {
             ((LivingEntity) entity).addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 100), playerEntity);
             HungerCost.takeHunger(playerEntity, 1);
         }

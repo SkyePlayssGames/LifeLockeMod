@@ -6,6 +6,7 @@ import com.galaxyy.lifelocke.util.iEntityDataSaver;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -18,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 public class GrassPower implements AttackEntityCallback {
     @Override
     public ActionResult interact(PlayerEntity playerEntity, World world, Hand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
-        if (playerEntity.hasStatusEffect(ModEffects.GRASS) && !world.isClient() && entity.isAlive()) {
+        if (playerEntity.hasStatusEffect(ModEffects.GRASS) && !world.isClient() && entity instanceof LivingEntity) {
             playerEntity.heal(1);
         }
 

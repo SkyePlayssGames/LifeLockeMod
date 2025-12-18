@@ -6,6 +6,7 @@ import com.galaxyy.lifelocke.util.iEntityDataSaver;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -21,7 +22,7 @@ public class ElectricPower implements AttackEntityCallback {
         if (playerEntity.hasStatusEffect(ModEffects.ELECTRIC) && !world.isClient() &&
                 (HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative()) &&
                 ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getBoolean("electric_power").orElse(false)
-                && entity.isAlive()) {
+                && entity instanceof LivingEntity) {
 
             EntityType.LIGHTNING_BOLT.spawn((ServerWorld) world, entity.getBlockPos(), SpawnReason.TRIGGERED);
             HungerCost.takeHunger(playerEntity, 2);
