@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 public class GrassPower implements AttackEntityCallback {
     @Override
     public ActionResult interact(PlayerEntity playerEntity, World world, Hand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
-        if (playerEntity.hasStatusEffect(ModEffects.GRASS) && !world.isClient()) {
+        if (playerEntity.hasStatusEffect(ModEffects.GRASS) && !world.isClient() && entity.isAlive()) {
             playerEntity.heal(1);
         }
 
