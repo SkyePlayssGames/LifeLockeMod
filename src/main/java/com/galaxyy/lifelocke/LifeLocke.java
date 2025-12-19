@@ -22,6 +22,7 @@ import com.galaxyy.lifelocke.triggers.GroundTrigger;
 import com.galaxyy.lifelocke.util.PlayerCopyHandler;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
@@ -31,8 +32,8 @@ import net.minecraft.util.ActionResult;
 
 public class LifeLocke implements ModInitializer {
 	public static final String MOD_ID = "lifelocke";
-	public static final int CLIENT_VERSION = 2;
-	public static final int SERVER_VERSION = 2;
+	public static final int CLIENT_VERSION = 3;
+	public static final int SERVER_VERSION = 3;
 
 	@Override
 	public void onInitialize() {
@@ -52,6 +53,8 @@ public class LifeLocke implements ModInitializer {
 
 		ServerPlayerEvents.COPY_FROM.register(new PlayerCopyHandler());
 		ServerPlayerEvents.JOIN.register(new JoinIconFixEvent());
+
+		ServerLivingEntityEvents.ALLOW_DAMAGE.register(new ElectricImmunityPower());
 
 		AttackEntityCallback.EVENT.register(new ElectricPower());
 		AttackEntityCallback.EVENT.register(new IcePower());

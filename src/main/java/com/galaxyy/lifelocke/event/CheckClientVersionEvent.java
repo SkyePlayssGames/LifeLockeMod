@@ -10,7 +10,7 @@ import net.minecraft.util.ActionResult;
 import java.util.ArrayList;
 
 public class CheckClientVersionEvent implements ModdedPlayerJoinClientCallback {
-    private static final int MAXIMUM_VERSION = 2;
+    private static final int MAXIMUM_VERSION = 3;
 
     @Override
     public ActionResult check(PlayerEntity player, int version) {
