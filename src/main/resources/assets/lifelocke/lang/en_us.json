@@ -36,8 +36,8 @@
   "key.category.lifelocke.category": "LifeLocke",
   "key.lifelocke.ability": "Ability",
 
-  "subtitle.lifelocke.toggle": "Ability Toggled",
-  "subtitle.lifelocke.activate": "Ability Activated",
+  "subtitle.lifelocke.toggle": "Ability Toggles",
+  "subtitle.lifelocke.activate": "Ability Activates",
 
   "text.lifelocke.key_pressed": "You pressed your ability key!",
   "text.lifelocke.power_turned_on": "Your %s power has been turned on!",
