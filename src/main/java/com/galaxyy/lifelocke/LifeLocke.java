@@ -2,6 +2,7 @@ package com.galaxyy.lifelocke;
 
 import com.galaxyy.lifelocke.block.ModBlocks;
 import com.galaxyy.lifelocke.command.*;
+import com.galaxyy.lifelocke.damage.ChangeDamageEvent;
 import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.event.CheckClientVersionEvent;
 import com.galaxyy.lifelocke.event.CheckServerVersionEvent;
@@ -50,11 +51,13 @@ public class LifeLocke implements ModInitializer {
 		PowerSoundSetting.registerSoundEventMaps();
 		SettingsFileHandler.registerSettingsFile();
 		JoinIconFixEvent.registerJoinFixEventTypes();
+		ChangeDamageEvent.registerDeathMessages();
 
 		ServerPlayerEvents.COPY_FROM.register(new PlayerCopyHandler());
 		ServerPlayerEvents.JOIN.register(new JoinIconFixEvent());
 
 		ServerLivingEntityEvents.ALLOW_DAMAGE.register(new ElectricImmunityPower());
+		ServerLivingEntityEvents.ALLOW_DAMAGE.register(new ChangeDamageEvent());
 
 		AttackEntityCallback.EVENT.register(new ElectricPower());
 		AttackEntityCallback.EVENT.register(new IcePower());
