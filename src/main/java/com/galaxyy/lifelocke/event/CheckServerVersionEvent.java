@@ -5,7 +5,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ActionResult;
 
 public class CheckServerVersionEvent implements ModdedPlayerJoinServerCallback {
-    private static final int MINIMUM_VERSION = 3;
+    private static final int MINIMUM_VERSION = 4;
 
     @Override
     public ActionResult check(ServerPlayerEntity player, int version) {
