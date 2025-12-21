@@ -11,6 +11,25 @@
   "gamerule.lifelocke.special_type_roll": "Type Spécial Roulable",
 
   "death.attack.fairy_heal": "%s était trop gentil",
+  "death.attack.bug": "%s est infesté(e) par la %s parasitaire",
+  "death.attack.fire": "%s est brûlé(e) en cendres par %s",
+  "death.attack.dark": "%s est aveuglé(e) par %s",
+  "death.attack.water": "Le sang de %s a mouillé des mains de %s",
+  "death.attack.ground": "%s est enterré(e) par %s",
+  "death.attack.rock": "%s est lapidé(e) par %s",
+  "death.attack.ice": "%s a été mis sur glace par %s",
+  "death.attack.psychic": "%s est hypnotisé(e) par %s",
+  "death.attack.flying": "%s est bombardé(e) en piqué par %s",
+  "death.attack.poison": "%s a decouvert que %s etais venimeux",
+  "death.attack.grass": "%s est transformé(e) en paillis par %s",
+  "death.attack.electric": "%s est electrocuté(e) par %s",
+  "death.attack.fighting": "%s est battu(e) par %s",
+  "death.attack.ghost": "%s est mort(e) de peur par %s",
+  "death.attack.steel": "%s est ecrasé(e) par %s",
+  "death.attack.curse_type": "l'existence de %s fut annulée par %s",
+  "death.attack.dragon": "%s est frappé(e) par un Chaos Draconique de %s",
+  "death.attack.fairy": "%s est nourri(e) nourriture féerique par %s",
+
 
   "effect.lifelocke.electric": "Électrik",
   "effect.lifelocke.fighting": "Combat",
@@ -39,29 +58,29 @@
   "subtitle.lifelocke.toggle": "Capacité Basculé",
   "subtitle.lifelocke.activate": "Capacité Activé",
 
-  "text.lifelocke.key_pressed": "Vous avez pressé votre key capacité!",
-  "text.lifelocke.power_turned_on": "Votre capacité %s marche!",
-  "text.lifelocke.power_turned_off": "Votre capacité %s ne marche plus!",
+  "text.lifelocke.key_pressed": "Vous avez pressé votre key capacité !",
+  "text.lifelocke.power_turned_on": "Votre capacité %s marche !",
+  "text.lifelocke.power_turned_off": "Votre capacité %s ne marche plus !",
 
-  "text.lifelocke.fairy_activated": "Votre capacité Fée est activé!",
-  "text.lifelocke.dragon_activated": "Votre capacité Dragon est activé!",
+  "text.lifelocke.fairy_activated": "Votre capacité Fée est activé !",
+  "text.lifelocke.dragon_activated": "Votre capacité Dragon est activé !",
 
-  "text.lifelocke.command.type.has_type": "%s a le type %s!",
-  "text.lifelocke.command.type.has_no_type": "%s n'a pas de type!",
-  "text.lifelocke.command.psychic.psychic": "%s est sur x: %s, y: %s, z: %s!",
-  "text.lifelocke.command.rolltype.rolled_type": "%s a roulé le type %s!",
-  "text.lifelocke.command.rolltype.confirm": "Cette commande enlève votre armure!\nUtilise-la en nouveau pour rouler votre type après ènlever votre armure!",
-  "text.lifelocke.command.debug.reset_types": "Vous avez resetté votre types!",
-  "text.lifelocke.command.debug.added_type": "Vous ne pouvez plus roulé le type %s!",
+  "text.lifelocke.command.type.has_type": "%s a le type %s !",
+  "text.lifelocke.command.type.has_no_type": "%s n'a pas de type !",
+  "text.lifelocke.command.psychic.psychic": "%s est sur x: %s, y: %s, z: %s !",
+  "text.lifelocke.command.rolltype.rolled_type": "%s a roulé le type %s !",
+  "text.lifelocke.command.rolltype.confirm": "Cette commande enlève votre armure !\nUtilise-la en nouveau pour rouler votre type après ènlever votre armure !",
+  "text.lifelocke.command.debug.reset_types": "Vous avez resetté votre types !",
+  "text.lifelocke.command.debug.added_type": "Vous ne pouvez plus roulé le type %s !",
 
-  "text.lifelocke.command_error.psychic.not_psychic": "Vous devez être le type Psy pour utiliser cette commande!",
-  "text.lifelocke.command_error.heal.not_fairy": "Vous devez être le type Fée pour utiliser cette commande!",
-  "text.lifelocke.command_error.rolltype.not_player_sent": "Vous devez être une personne pour utiliser cette commande!",
-  "text.lifelocke.command_error.rolltype.already_has_type": "Vous avez déjà un type!",
-  "text.lifelocke.command_error.rolltype.has_had_all_types": "Cette personne a eu tous des types!",
-  "text.lifelocke.command_error.debug.not_a_type": "Ce n'est pas un ID de type!",
+  "text.lifelocke.command_error.psychic.not_psychic": "Vous devez être le type Psy pour utiliser cette commande !",
+  "text.lifelocke.command_error.heal.not_fairy": "Vous devez être le type Fée pour utiliser cette commande !",
+  "text.lifelocke.command_error.rolltype.not_player_sent": "Vous devez être une personne pour utiliser cette commande !",
+  "text.lifelocke.command_error.rolltype.already_has_type": "Vous avez déjà un type !",
+  "text.lifelocke.command_error.rolltype.has_had_all_types": "Cette personne a eu tous des types !",
+  "text.lifelocke.command_error.debug.not_a_type": "Ce n'est pas un ID de type !",
 
-  "text.lifelocke.credits": "Cette translation a été créé par: AutisticPlush!",
+  "text.lifelocke.credits": "Cette translation a été créé par: AutisticPlush !",
 
   "text.lifelocke.true": "Vrai(e)",
   "text.lifelocke.false": "Faux",
@@ -79,8 +98,11 @@
   "text.lifelocke.modmenu.set_setting.toggle_switch.description": "Votre Effet Sonore de Basculer est: %s",
   "text.lifelocke.modmenu.set_setting.active_switch.description": "Votre Effet Sonore de Activer est: %s",
 
+  "text.lifelocke.compatibility.player_kicked_client": "%s's version de LifeLocke etais trop nouvelle !",
+  "text.lifelocke.compatibility.player_kicked_server": "%s's version de LifeLocke etais trop vieille !",
+
   "modmenu.nameTranslation.lifelocke": "LifeLocke",
-  "modmenu.descriptionTranslation.lifelocke": "Un modification avec un théma Pokémon qui ajout des Types et ses abilités!"
+  "modmenu.descriptionTranslation.lifelocke": "Un modification avec un théma Pokémon qui ajout des Types et ses abilités !"
 
 
 }

@@ -27,7 +27,7 @@
   "death.attack.ghost": "%s got spooked to death by %s",
   "death.attack.steel": "%s was crushed by %s",
   "death.attack.curse_type": "%s had their existence nullified by %s",
-  "death.attack.dragon": "%s was hit by a Devastated Drake by %s",
+  "death.attack.dragon": "%s was hit by a Devastating Drake by %s",
   "death.attack.fairy": "%s was fed fey food by %s",
 
   "effect.lifelocke.electric": "Electric",

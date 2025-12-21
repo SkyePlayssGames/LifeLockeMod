@@ -11,6 +11,25 @@
   "gamerule.lifelocke.special_type_roll": "Rolbare Speciale Types",
 
   "death.attack.fairy_heal": "%s was te aardig",
+  "death.attack.bug": "%s werd geïnfesteerd door de parasitische %s",
+  "death.attack.fire": "%s was tot assen verbrand door %s",
+  "death.attack.dark": "%s werd in een blinde hoek geraakt %s",
+  "death.attack.water": "%s(')s bloed zit op %s(')s handen",
+  "death.attack.ground": "%s is door %s begraven",
+  "death.attack.rock": "%s werd door %s gestenigd",
+  "death.attack.ice": "%s(')s lichaam was door %s koudgelegd",
+  "death.attack.psychic": "%s was door %s gehypnotiseerd",
+  "death.attack.flying": "%s werd door %s neergepikt",
+  "death.attack.poison": "%s kwam erachter dat %s giftig was",
+  "death.attack.grass": "%s was tot plantenvoedstoffen gemaakt door %s",
+  "death.attack.electric": "%s was door %s geëlektrocuteerd",
+  "death.attack.fighting": "%s was door %s neergeslagen",
+  "death.attack.ghost": "%s was doodgeschrokken wegens %s",
+  "death.attack.steel": "%s was door %s geplet",
+  "death.attack.curse_type": "%s was uit deze wereld getrapt door %s",
+  "death.attack.dragon": "%s was geraakt door een van %s afkomstige Drastische Drakendreun",
+  "death.attack.fairy": "%s was feëeneten gegeven door %s",
+
 
   "effect.lifelocke.electric": "Elektrisch",
   "effect.lifelocke.fighting": "Vecht",
@@ -78,6 +97,9 @@
   "text.lifelocke.modmenu.set_setting.power_default.description": "Kracht Standaard Aan is nu: %s",
   "text.lifelocke.modmenu.set_setting.toggle_switch.description": "Wisselingsgeluidseffect is nu: %s",
   "text.lifelocke.modmenu.set_setting.active_switch.description": "Activatiegeluidseffect is nu: %s",
+
+  "text.lifelocke.compatibility.player_kicked_client": "%s(')s LifeLockeversie was te nieuw!",
+  "text.lifelocke.compatibility.player_kicked_server": "%s(')s LifeLockeversie was te oud!",
 
   "modmenu.nameTranslation.lifelocke": "LifeLocke",
   "modmenu.descriptionTranslation.lifelocke": "Een mod met een Pokémonthema die Types en hun krachten toevoegd!"
