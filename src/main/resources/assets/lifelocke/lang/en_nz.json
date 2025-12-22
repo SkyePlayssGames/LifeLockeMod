@@ -11,6 +11,24 @@
   "gamerule.lifelocke.special_type_roll": "KulupMaca pikanxovoKal",
 
   "death.attack.fairy_heal": "%s finEs kaPona",
+  "death.attack.bug": "%s was infested by a parasitic %s",
+  "death.attack.fire": "%s was burned to ashes by %s",
+  "death.attack.dark": "%s was blindsided by %s",
+  "death.attack.water": "%s's blood has wet %s's hands",
+  "death.attack.ground": "%s was sent 6 feet under by %s",
+  "death.attack.rock": "%s has had their world rocked by %s",
+  "death.attack.ice": "%s's body was made cold by %s",
+  "death.attack.psychic": "%s was hypnotised by %s",
+  "death.attack.flying": "%s got dive-bombed by %s",
+  "death.attack.poison": "%s found out %s was venomous, instead of poisonous",
+  "death.attack.grass": "%s was made mulch by %s",
+  "death.attack.electric": "%s was electrocuted by %s",
+  "death.attack.fighting": "%s was pummeled to death by %s",
+  "death.attack.ghost": "%s got spooked to death by %s",
+  "death.attack.steel": "%s was crushed by %s",
+  "death.attack.curse_type": "%s had their existence nullified by %s",
+  "death.attack.dragon": "%s was hit by a Devastating Drake by %s",
+  "death.attack.fairy": "%s was fed fey food by %s",
 
   "effect.lifelocke.electric": "PajajJci piZocy",
   "effect.lifelocke.fighting": "Kylac",
@@ -78,6 +96,9 @@
   "text.lifelocke.modmenu.set_setting.power_default.description": "NormalPaja piSi Es: %s",
   "text.lifelocke.modmenu.set_setting.toggle_switch.description": "FonLili piCacaPajaKan Es: %s",
   "text.lifelocke.modmenu.set_setting.active_switch.description": "FonLili pixovojEsPajaKan Es: %s",
+
+  "text.lifelocke.compatibility.player_kicked_client": "Nyma pijEsNyma pi^LifeLocke^ o(j)%s finEs kaFiza!",
+  "text.lifelocke.compatibility.player_kicked_server": "Nyma pijEsNyma pi^LifeLocke^ o(j)%s finEs kanoFiza!",
 
   "modmenu.nameTranslation.lifelocke": "LifeLocke",
   "modmenu.descriptionTranslation.lifelocke": "MaziCaca pijEkesPokémon pijOpenKulup pijEnejOpenPaja!"
