@@ -3,8 +3,11 @@ package com.galaxyy.lifelocke.modmenu;
 import com.galaxyy.lifelocke.modmenu.buttons.NullIconButtonPressAction;
 import com.galaxyy.lifelocke.modmenu.buttons.PowerDefaultButtonPressAction;
 import com.galaxyy.lifelocke.modmenu.buttons.SoundButtonPressAction;
+import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.gui.widget.TextWidget;
 import net.minecraft.client.toast.SystemToast;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
@@ -42,6 +45,8 @@ public class ModConfigScreen extends Screen {
             this.close();
         })).dimensions(this.width/2-120, this.height-50, 240, 20).build();
 
+        TextWidget creditsText = new TextWidget(this.width/2-120, this.height-20, 240, 10, Text.translatable("text.lifelocke.credits"), textRenderer);
+
 
         this.addDrawable(nullIconButton);
         this.addSelectableChild(nullIconButton);
@@ -51,5 +56,12 @@ public class ModConfigScreen extends Screen {
         this.addSelectableChild(soundButton);
         this.addDrawable(closeButton);
         this.addSelectableChild(closeButton);
+        this.addDrawable(creditsText);
+    }
+
+    @Override
+    public void render(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
+        super.render(context, mouseX, mouseY, deltaTicks);
+        context.drawText(client.textRenderer, "Nyaa", this.width/2, this.height/4*3, 0xffffff, true);
     }
 }
