@@ -9,6 +9,7 @@
   "gamerule.lifelocke.fighting_crafting_nerf": "Nerf de Crafting de Combat",
   "gamerule.lifelocke.type_duplication": "Type Duplication",
   "gamerule.lifelocke.special_type_roll": "Type Spécial Roulable",
+  "gamerule.lifelocke.type_death_messages": "Messages de Mort de Type",
 
   "death.attack.fairy_heal": "%s était trop gentil",
   "death.attack.bug": "%s est infesté(e) par la %s parasitaire",

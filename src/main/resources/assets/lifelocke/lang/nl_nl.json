@@ -9,6 +9,7 @@
   "gamerule.lifelocke.fighting_crafting_nerf": "Vecht Vervaardigingsverzwakking",
   "gamerule.lifelocke.type_duplication": "Type Herhaling",
   "gamerule.lifelocke.special_type_roll": "Rolbare Speciale Types",
+  "gamerule.lifelocke.type_death_messages": "Type Doodsberichten",
 
   "death.attack.fairy_heal": "%s was te aardig",
   "death.attack.bug": "%s werd geïnfesteerd door de parasitische %s",

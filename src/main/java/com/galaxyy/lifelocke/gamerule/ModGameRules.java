@@ -22,6 +22,11 @@ public class ModGameRules {
                     Identifier.of(LifeLocke.MOD_ID, "special_type_roll")
             );
 
+    public static final GameRule<Boolean> TYPE_DEATH_MESSAGES =
+            GameRuleBuilder.forBoolean(true).buildAndRegister(
+                    Identifier.of(LifeLocke.MOD_ID, "type_death_messages")
+            );
+
     public static void registerGameRules() {
         System.out.println("Registering Game Rules for " + LifeLocke.MOD_ID);
     }

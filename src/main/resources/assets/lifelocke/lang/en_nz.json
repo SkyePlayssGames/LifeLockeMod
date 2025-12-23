@@ -9,6 +9,7 @@
   "gamerule.lifelocke.fighting_crafting_nerf": "Kylac Crafting Nerf",
   "gamerule.lifelocke.type_duplication": "Kulup AbajujEsAfin",
   "gamerule.lifelocke.special_type_roll": "KulupMaca pikanxovoKal",
+  "gamerule.lifelocke.type_death_messages": "LipuLili piKilc piKulup",
 
   "death.attack.fairy_heal": "%s finEs kaPona",
   "death.attack.bug": "%s was infested by a parasitic %s",

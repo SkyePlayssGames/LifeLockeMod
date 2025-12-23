@@ -1,6 +1,7 @@
 package com.galaxyy.lifelocke.damage;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.gamerule.ModGameRules;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -20,7 +21,9 @@ public class ChangeDamageEvent implements ServerLivingEntityEvents.AllowDamage {
     @Override
     public boolean allowDamage(LivingEntity entity, DamageSource source, float amount) {
         if (!(source.getAttacker() instanceof PlayerEntity) ||
-            deathMessages.containsValue(source.getTypeRegistryEntry().getKey().orElse(null))) {
+            deathMessages.containsValue(source.getTypeRegistryEntry().getKey().orElse(null)) ||
+            !(((ServerWorld) entity.getEntityWorld()).getGameRules().getValue(ModGameRules.TYPE_DEATH_MESSAGES))
+        ) {
             return true;
         }
         PlayerEntity player = (PlayerEntity) source.getAttacker();
