@@ -1,5 +1,9 @@
 package com.galaxyy.lifelocke;
 
+import com.galaxyy.lifelocke.entity.ModEntities;
+import com.galaxyy.lifelocke.entity.client.FireMobModel;
+import com.galaxyy.lifelocke.entity.client.FireMobRenderer;
+import com.galaxyy.lifelocke.entity.custom.FireMobEntity;
 import com.galaxyy.lifelocke.event.ModCheckExistingEvent;
 import com.galaxyy.lifelocke.keybind.KeyInputHandler;
 import com.galaxyy.lifelocke.networking.*;
@@ -10,8 +14,10 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientWorldEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
+import net.fabricmc.fabric.impl.client.rendering.EntityRendererRegistryImpl;
 import net.minecraft.util.Identifier;
 
 public class LifeLockeClient implements ClientModInitializer {
@@ -25,5 +31,8 @@ public class LifeLockeClient implements ClientModInitializer {
 
         HudElementRegistry.attachElementBefore(VanillaHudElements.CHAT,
                 Identifier.of(LifeLocke.MOD_ID, "type_icon"), TypeIconRenderer::render);
+
+        EntityModelLayerRegistry.registerModelLayer(FireMobModel.FIRE_MOB, FireMobModel::getTexturedModelData);
+        EntityRendererRegistryImpl.register(ModEntities.FIRE_MOB, FireMobRenderer::new);
     }
 }

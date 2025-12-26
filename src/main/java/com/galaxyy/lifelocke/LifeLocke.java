@@ -4,6 +4,9 @@ import com.galaxyy.lifelocke.block.ModBlocks;
 import com.galaxyy.lifelocke.command.*;
 import com.galaxyy.lifelocke.damage.ChangeDamageEvent;
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.entity.ModEntities;
+import com.galaxyy.lifelocke.entity.client.FireMobModel;
+import com.galaxyy.lifelocke.entity.custom.FireMobEntity;
 import com.galaxyy.lifelocke.event.CheckClientVersionEvent;
 import com.galaxyy.lifelocke.event.CheckServerVersionEvent;
 import com.galaxyy.lifelocke.event.JoinIconFixEvent;
@@ -12,6 +15,7 @@ import com.galaxyy.lifelocke.events.ModdedPlayerJoinServerCallback;
 import com.galaxyy.lifelocke.events.ModdedPlayerJoinClientCallback;
 import com.galaxyy.lifelocke.gamerule.ModGameRules;
 import com.galaxyy.lifelocke.item.ModItems;
+import com.galaxyy.lifelocke.item.consumable_component.ModConsumableComponents;
 import com.galaxyy.lifelocke.item.data_component.ModDataComponents;
 import com.galaxyy.lifelocke.itemgroup.ModItemGroups;
 import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
@@ -29,12 +33,13 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.util.ActionResult;
 
 public class LifeLocke implements ModInitializer {
 	public static final String MOD_ID = "lifelocke";
-	public static final int CLIENT_VERSION = 7;
-	public static final int SERVER_VERSION = 5;
+	public static final int CLIENT_VERSION = 8;
+	public static final int SERVER_VERSION = 6;
 
 	@Override
 	public void onInitialize() {
@@ -45,6 +50,8 @@ public class LifeLocke implements ModInitializer {
 		ModGameRules.registerGameRules();
 		ModDataComponents.registerModDataComponents();
 		ModSounds.registerSounds();
+		ModConsumableComponents.registerConsumableComponents();
+		ModEntities.registerModEntities();
 
 		PressedAbilityKeyC2SHandler.registerEffectMap();
 		GroundTrigger.registerGroundMaps();
@@ -84,5 +91,7 @@ public class LifeLocke implements ModInitializer {
 
 		ModdedPlayerJoinServerCallback.EVENT.register(new CheckServerVersionEvent());
 		ModdedPlayerJoinClientCallback.EVENT.register(new CheckClientVersionEvent());
+
+		FabricDefaultAttributeRegistry.register(ModEntities.FIRE_MOB, FireMobEntity.createMobAttributes());
 	}
 }

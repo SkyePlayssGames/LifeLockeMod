@@ -19,8 +19,9 @@ public class ModItemGroups {
                     .icon(() -> new ItemStack(Blocks.BARRIER))
                     .displayName(Text.translatable("itemgroup.lifelocke.lifelocke_stuff"))
                     .entries((displayContext, entries) -> {
-                        entries.add(ModItems.DUMMY_ITEM);
-                        entries.add(ModBlocks.DUMMY_BLOCK);
+                        entries.add(ModItems.FIRE_BOTTLE);
+
+                        entries.add(ModItems.FIRE_MOB_SPAWN_EGG);
                     }).build());
 
     public static void registerItemGroups() {

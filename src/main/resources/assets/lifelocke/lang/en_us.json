@@ -1,10 +1,14 @@
 {
   "item.lifelocke.dummy_item": "Dummy Item",
+  "item.lifelocke.fire_bottle": "Bottle of Fire Energy",
+  "item.lifelocke.fire_mob_spawn_egg": "Fire Mob Spawn Egg",
 
   "block.lifelocke.dummy_block": "Dummy Block",
   "item.lifelocke.dummy_block": "Dummy Block",
 
   "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
+
+  "entity.lifelocke.fire_mob": "Fire Mob",
 
   "gamerule.lifelocke.fighting_crafting_nerf": "Fighting Crafting Nerf",
   "gamerule.lifelocke.type_duplication": "Type Duplication",
