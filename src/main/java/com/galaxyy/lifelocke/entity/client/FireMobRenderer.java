@@ -9,7 +9,7 @@ import net.minecraft.util.Identifier;
 public class FireMobRenderer extends MobEntityRenderer<FireMobEntity, FireMobRenderState, FireMobModel> {
 
     public FireMobRenderer(EntityRendererFactory.Context context) {
-        super(context, new FireMobModel(context.getPart(FireMobModel.FIRE_MOB)), 0.75f);
+        super(context, new FireMobModel(context.getPart(FireMobModel.FIRE_MOB)), 0.5f);
 
     }
 

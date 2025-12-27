@@ -18,6 +18,7 @@ public class ModEntities {
             Identifier.of(LifeLocke.MOD_ID, "fire_mob"),
             EntityType.Builder.create(FireMobEntity::new, SpawnGroup.MONSTER)
                     .dimensions(0.8f, 0.6f)
+                    .makeFireImmune()
                     .build(FIRE_MOB_KEY)
     );
 

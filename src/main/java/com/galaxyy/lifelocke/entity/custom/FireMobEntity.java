@@ -5,9 +5,10 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 
 public class FireMobEntity extends HostileEntity {
@@ -26,7 +27,6 @@ public class FireMobEntity extends HostileEntity {
         this.goalSelector.add(3, new LookAroundGoal(this));
 
         this.targetSelector.add(0, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
-        this.targetSelector.add(0, new ActiveTargetGoal<>(this, ZombieEntity.class, true));
     }
 
     public static DefaultAttributeContainer.Builder createMobAttributes() {
@@ -34,7 +34,8 @@ public class FireMobEntity extends HostileEntity {
                 .add(EntityAttributes.MAX_HEALTH, 30)
                 .add(EntityAttributes.MOVEMENT_SPEED, 0.3)
                 .add(EntityAttributes.ATTACK_DAMAGE, 6)
-                .add(EntityAttributes.FOLLOW_RANGE, 32);
+                .add(EntityAttributes.FOLLOW_RANGE, 32)
+                .add(EntityAttributes.BURNING_TIME, 0);
     }
 
     private void setupAnimationStates() {
