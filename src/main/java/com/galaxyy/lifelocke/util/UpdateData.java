@@ -4,8 +4,20 @@ import com.galaxyy.lifelocke.networking.RenderTypeIconS2CPayload;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.math.BlockPos;
 
 public class UpdateData {
+    public static void setStuckBlockPos(ServerPlayerEntity playerEntity, BlockPos pos) {
+        NbtCompound nbt = ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData();
+        nbt.putIntArray("stuck_block_pos", new int[] {pos.getX(), pos.getY(), pos.getZ()});
+    }
+
+    public static BlockPos getStuckBlockPos(ServerPlayerEntity playerEntity) {
+        NbtCompound nbt = ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData();
+        int[] ints = nbt.getIntArray("stuck_block_pos").orElse(new int[] {0,0,0});
+        return new BlockPos(ints[0], ints[1], ints[2]);
+    }
+
     public static int getTimeSneaked(ServerPlayerEntity playerEntity) {
         return ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getInt("time_sneaked", 0);
     }
