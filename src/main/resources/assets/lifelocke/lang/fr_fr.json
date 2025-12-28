@@ -1,10 +1,14 @@
 {
   "item.lifelocke.dummy_item": "Objet de Test",
+  "item.lifelocke.fire_bottle": "Bouteille d'énergie feu",
+  "item.lifelocke.fire_mob_spawn_egg": "Oeuf d'apparition d'animal feu",
 
   "block.lifelocke.dummy_block": "Bloc de Test",
   "item.lifelocke.dummy_block": "Bloc de Test",
 
   "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
+
+  "entity.lifelocke.fire_mob": "Animal de Feu",
 
   "gamerule.lifelocke.fighting_crafting_nerf": "Nerf de Crafting de Combat",
   "gamerule.lifelocke.type_duplication": "Type Duplication",
@@ -58,6 +62,8 @@
 
   "subtitle.lifelocke.toggle": "Capacité Basculé",
   "subtitle.lifelocke.activate": "Capacité Activé",
+
+  "tooltip.lifelocke.energy_bottle": "%s: %s",
 
   "text.lifelocke.key_pressed": "Vous avez pressé votre key capacité !",
   "text.lifelocke.power_turned_on": "Votre capacité %s marche !",

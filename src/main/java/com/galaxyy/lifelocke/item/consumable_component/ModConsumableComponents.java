@@ -8,9 +8,12 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
 
 public class ModConsumableComponents {
+    public static final StatusEffectInstance FIRE_BOTTLE_EFFECT = new StatusEffectInstance(ModEffects.FIRE, 36000);
+
+
     public static final ConsumableComponent FIRE_CONSUMABLE_COMPONENT = ConsumableComponents.drink()
-            .consumeEffect(new ApplyEffectsConsumeEffect(new StatusEffectInstance(ModEffects.FIRE, 36000))
-    ).build();
+            .consumeEffect(new ApplyEffectsConsumeEffect(FIRE_BOTTLE_EFFECT))
+            .build();
 
     public static void registerConsumableComponents() {
         System.out.println("Registering Consumable Components for " + LifeLocke.MOD_ID);

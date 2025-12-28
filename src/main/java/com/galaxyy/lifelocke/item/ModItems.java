@@ -25,7 +25,8 @@ public class ModItems {
     public static final Item DUMMY_ITEM = registerItem("dummy_item", Item::new);
 
     public static final Item FIRE_BOTTLE = registerItem("fire_bottle", settings ->
-            new Item(settings.food(new FoodComponent(0, 0, true), ModConsumableComponents.FIRE_CONSUMABLE_COMPONENT)));
+            new EnergyBottleItem(settings.food(new FoodComponent(0, 0, true), ModConsumableComponents.FIRE_CONSUMABLE_COMPONENT),
+                    ModConsumableComponents.FIRE_BOTTLE_EFFECT, "30:00"));
 
 
     public static final Item FIRE_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.FIRE_MOB);

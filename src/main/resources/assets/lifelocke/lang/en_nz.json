@@ -1,10 +1,14 @@
 {
   "item.lifelocke.dummy_item": "Obec piZymi",
+  "item.lifelocke.fire_bottle": "VodaKal piPajaPali",
+  "item.lifelocke.fire_mob_spawn_egg": "ObecOpenEki pijEkiPali",
 
   "block.lifelocke.dummy_block": "Koloc piZymi",
   "item.lifelocke.dummy_block": "Koloc piZymi",
 
   "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
+
+  "entity.lifelocke.fire_mob": "EkiPali",
 
   "gamerule.lifelocke.fighting_crafting_nerf": "Kylac Crafting Nerf",
   "gamerule.lifelocke.type_duplication": "Kulup AbajujEsAfin",
@@ -57,6 +61,8 @@
 
   "subtitle.lifelocke.toggle": "Paja Caca",
   "subtitle.lifelocke.activate": "Paja xovojEs",
+
+  "tooltip.lifelocke.energy_bottle": "%s: %s",
 
   "text.lifelocke.key_pressed": "Jn xovojEs PajaKan ojJn!",
   "text.lifelocke.power_turned_on": "Jn xovojEs PajaKan pi%s ojJn!",

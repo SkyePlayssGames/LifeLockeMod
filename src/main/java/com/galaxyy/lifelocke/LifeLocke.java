@@ -7,10 +7,7 @@ import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.entity.ModEntities;
 import com.galaxyy.lifelocke.entity.client.FireMobModel;
 import com.galaxyy.lifelocke.entity.custom.FireMobEntity;
-import com.galaxyy.lifelocke.event.CheckClientVersionEvent;
-import com.galaxyy.lifelocke.event.CheckServerVersionEvent;
-import com.galaxyy.lifelocke.event.JoinIconFixEvent;
-import com.galaxyy.lifelocke.event.RemoveIllegalItemsEvent;
+import com.galaxyy.lifelocke.event.*;
 import com.galaxyy.lifelocke.events.ModdedPlayerJoinServerCallback;
 import com.galaxyy.lifelocke.events.ModdedPlayerJoinClientCallback;
 import com.galaxyy.lifelocke.gamerule.ModGameRules;
@@ -26,6 +23,7 @@ import com.galaxyy.lifelocke.sound.ModSounds;
 import com.galaxyy.lifelocke.triggers.GroundTrigger;
 import com.galaxyy.lifelocke.util.PlayerCopyHandler;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
@@ -38,8 +36,8 @@ import net.minecraft.util.ActionResult;
 
 public class LifeLocke implements ModInitializer {
 	public static final String MOD_ID = "lifelocke";
-	public static final int CLIENT_VERSION = 8;
-	public static final int SERVER_VERSION = 6;
+	public static final int CLIENT_VERSION = 10;
+	public static final int SERVER_VERSION = 10;
 
 	@Override
 	public void onInitialize() {
@@ -91,6 +89,8 @@ public class LifeLocke implements ModInitializer {
 
 		ModdedPlayerJoinServerCallback.EVENT.register(new CheckServerVersionEvent());
 		ModdedPlayerJoinClientCallback.EVENT.register(new CheckClientVersionEvent());
+
+		ItemTooltipCallback.EVENT.register(new AddTooltipsEvent());
 
 		FabricDefaultAttributeRegistry.register(ModEntities.FIRE_MOB, FireMobEntity.createMobAttributes());
 	}

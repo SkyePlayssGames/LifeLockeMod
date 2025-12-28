@@ -62,6 +62,8 @@
   "subtitle.lifelocke.toggle": "Ability Toggles",
   "subtitle.lifelocke.activate": "Ability Activates",
 
+  "tooltip.lifelocke.energy_bottle": "%s: %s",
+
   "text.lifelocke.key_pressed": "You pressed your ability key!",
   "text.lifelocke.power_turned_on": "Your %s power has been turned on!",
   "text.lifelocke.power_turned_off": "Your %s power has been turned off!",

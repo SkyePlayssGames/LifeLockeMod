@@ -1,10 +1,15 @@
 {
   "item.lifelocke.dummy_item": "Test Object",
+  "item.lifelocke.fire_bottle": "Vuurenergiefles",
+  "item.lifelocke.fire_mob_spawn_egg": "Vuurbeest Spawnei",
+
 
   "block.lifelocke.dummy_block": "Test Blok",
   "item.lifelocke.dummy_block": "Test Blok",
 
   "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
+
+  "entity.lifelocke.fire_mob": "Vuurbeest",
 
   "gamerule.lifelocke.fighting_crafting_nerf": "Vecht Vervaardigingsverzwakking",
   "gamerule.lifelocke.type_duplication": "Type Herhaling",
@@ -58,6 +63,8 @@
 
   "subtitle.lifelocke.toggle": "Kracht aan-/uitgezet",
   "subtitle.lifelocke.activate": "Kracht geactiveerd",
+
+  "tooltip.lifelocke.energy_bottle": "%s: %s",
 
   "text.lifelocke.key_pressed": "Je hebt jouw krachttoets ingedrukt!",
   "text.lifelocke.power_turned_on": "Jouw %s kracht is aangezet!",
