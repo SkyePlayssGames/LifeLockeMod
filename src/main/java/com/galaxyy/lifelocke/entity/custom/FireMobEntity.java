@@ -15,6 +15,12 @@ public class FireMobEntity extends HostileEntity {
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
+    private static final int MAX_HEALTH = 30;
+    private static final float MOVEMENT_SPEED = 0.3f;
+    private static final int ATTACK_DAMAGE = 4;
+    private static final int FOLLOW_RANGE = 32;
+    private static final int BURNING_TIME = 0;
+
     public FireMobEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -31,11 +37,11 @@ public class FireMobEntity extends HostileEntity {
 
     public static DefaultAttributeContainer.Builder createMobAttributes() {
         return HostileEntity.createMobAttributes()
-                .add(EntityAttributes.MAX_HEALTH, 30)
-                .add(EntityAttributes.MOVEMENT_SPEED, 0.3)
-                .add(EntityAttributes.ATTACK_DAMAGE, 6)
-                .add(EntityAttributes.FOLLOW_RANGE, 32)
-                .add(EntityAttributes.BURNING_TIME, 0);
+                .add(EntityAttributes.MAX_HEALTH, MAX_HEALTH)
+                .add(EntityAttributes.MOVEMENT_SPEED, MOVEMENT_SPEED)
+                .add(EntityAttributes.ATTACK_DAMAGE, ATTACK_DAMAGE)
+                .add(EntityAttributes.FOLLOW_RANGE, FOLLOW_RANGE)
+                .add(EntityAttributes.BURNING_TIME, BURNING_TIME);
     }
 
     private void setupAnimationStates() {
