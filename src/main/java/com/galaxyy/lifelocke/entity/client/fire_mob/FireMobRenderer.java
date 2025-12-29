@@ -1,4 +1,4 @@
-package com.galaxyy.lifelocke.entity.client;
+package com.galaxyy.lifelocke.entity.client.fire_mob;
 
 import com.galaxyy.lifelocke.LifeLocke;
 import com.galaxyy.lifelocke.entity.custom.FireMobEntity;

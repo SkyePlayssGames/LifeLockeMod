@@ -2,6 +2,7 @@ package com.galaxyy.lifelocke.entity;
 
 import com.galaxyy.lifelocke.LifeLocke;
 import com.galaxyy.lifelocke.entity.custom.FireMobEntity;
+import com.galaxyy.lifelocke.entity.custom.GrassMobEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registries;
@@ -13,6 +14,8 @@ import net.minecraft.util.Identifier;
 public class ModEntities {
     public static final RegistryKey<EntityType<?>> FIRE_MOB_KEY = RegistryKey.of(RegistryKeys.ENTITY_TYPE,
             Identifier.of(LifeLocke.MOD_ID, "fire_mob"));
+    public static final RegistryKey<EntityType<?>> GRASS_MOB_KEY = RegistryKey.of(RegistryKeys.ENTITY_TYPE,
+            Identifier.of(LifeLocke.MOD_ID, "grass_mob"));
 
     public static final EntityType<FireMobEntity> FIRE_MOB = Registry.register(Registries.ENTITY_TYPE,
             Identifier.of(LifeLocke.MOD_ID, "fire_mob"),
@@ -20,6 +23,13 @@ public class ModEntities {
                     .dimensions(0.8f, 0.6f)
                     .makeFireImmune()
                     .build(FIRE_MOB_KEY)
+    );
+
+    public static final EntityType<GrassMobEntity> GRASS_MOB = Registry.register(Registries.ENTITY_TYPE,
+            Identifier.of(LifeLocke.MOD_ID, "grass_mob"),
+            EntityType.Builder.create(GrassMobEntity::new, SpawnGroup.MONSTER)
+                    .dimensions(0.85f, 1.3f)
+                    .build(GRASS_MOB_KEY)
     );
 
     public static void registerModEntities() {

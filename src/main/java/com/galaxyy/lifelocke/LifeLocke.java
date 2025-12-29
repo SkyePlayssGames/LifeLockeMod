@@ -5,8 +5,8 @@ import com.galaxyy.lifelocke.command.*;
 import com.galaxyy.lifelocke.damage.ChangeDamageEvent;
 import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.entity.ModEntities;
-import com.galaxyy.lifelocke.entity.client.FireMobModel;
 import com.galaxyy.lifelocke.entity.custom.FireMobEntity;
+import com.galaxyy.lifelocke.entity.custom.GrassMobEntity;
 import com.galaxyy.lifelocke.event.*;
 import com.galaxyy.lifelocke.events.ModdedPlayerJoinServerCallback;
 import com.galaxyy.lifelocke.events.ModdedPlayerJoinClientCallback;
@@ -32,7 +32,6 @@ import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.minecraft.util.ActionResult;
 
 public class LifeLocke implements ModInitializer {
 	public static final String MOD_ID = "lifelocke";
@@ -93,5 +92,6 @@ public class LifeLocke implements ModInitializer {
 		ItemTooltipCallback.EVENT.register(new AddTooltipsEvent());
 
 		FabricDefaultAttributeRegistry.register(ModEntities.FIRE_MOB, FireMobEntity.createMobAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.GRASS_MOB, GrassMobEntity.createMobAttributes());
 	}
 }

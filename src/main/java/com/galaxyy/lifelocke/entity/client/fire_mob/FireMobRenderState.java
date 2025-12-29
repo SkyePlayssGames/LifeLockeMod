@@ -1,4 +1,4 @@
-package com.galaxyy.lifelocke.entity.client;
+package com.galaxyy.lifelocke.entity.client.fire_mob;
 
 import net.minecraft.client.render.entity.state.LivingEntityRenderState;
 import net.minecraft.entity.AnimationState;

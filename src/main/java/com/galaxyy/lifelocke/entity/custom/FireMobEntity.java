@@ -1,21 +1,28 @@
 package com.galaxyy.lifelocke.entity.custom;
 
+import com.galaxyy.lifelocke.entity.ai.HealBlockGoal;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.EnumSet;
 
 public class FireMobEntity extends HostileEntity {
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
+    private int healingCooldownTicks = 0;
 
-    private static final int MAX_HEALTH = 30;
+    private static final int MAX_HEALTH = 20;
     private static final float MOVEMENT_SPEED = 0.3f;
     private static final int ATTACK_DAMAGE = 4;
     private static final int FOLLOW_RANGE = 32;
@@ -28,9 +35,10 @@ public class FireMobEntity extends HostileEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(1, new MeleeAttackGoal(this, 1.5, false));
-        this.goalSelector.add(2, new WanderAroundGoal(this, 1.0));
-        this.goalSelector.add(3, new LookAroundGoal(this));
+        this.goalSelector.add(1, new HealBlockGoal(this, 2, Blocks.FIRE.getStateManager().getStates()));
+        this.goalSelector.add(2, new MeleeAttackGoal(this, 1.5, false));
+        this.goalSelector.add(3, new WanderAroundGoal(this, 1.0));
+        this.goalSelector.add(4, new LookAroundGoal(this));
 
         this.targetSelector.add(0, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
     }
@@ -59,6 +67,23 @@ public class FireMobEntity extends HostileEntity {
 
         if (this.getEntityWorld().isClient()) {
             this.setupAnimationStates();
+        } else {
+            if (Blocks.FIRE.getStateManager().getStates().contains(this.getEntityWorld().getBlockState(this.getBlockPos())) &&
+                this.checkHealingCooldown()) {
+                this.heal(2);
+            }
         }
     }
+
+    private boolean checkHealingCooldown() {
+        if (this.healingCooldownTicks <= 0) {
+            this.healingCooldownTicks = 10;
+            return true;
+        } else {
+            this.healingCooldownTicks--;
+            return false;
+        }
+    }
+
+
 }

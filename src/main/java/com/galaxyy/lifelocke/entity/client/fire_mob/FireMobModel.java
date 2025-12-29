@@ -1,4 +1,4 @@
-package com.galaxyy.lifelocke.entity.client;
+package com.galaxyy.lifelocke.entity.client.fire_mob;
 
 import com.galaxyy.lifelocke.LifeLocke;
 import net.minecraft.client.model.*;
@@ -7,8 +7,6 @@ import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
-
-import java.util.function.Function;
 
 public class FireMobModel extends EntityModel<FireMobRenderState> {
     public static final EntityModelLayer FIRE_MOB = new EntityModelLayer(Identifier.of(LifeLocke.MOD_ID, "fire_mob"), "main");
