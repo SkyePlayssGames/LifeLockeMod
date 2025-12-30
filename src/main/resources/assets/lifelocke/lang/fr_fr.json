@@ -1,7 +1,7 @@
 {
   "item.lifelocke.dummy_item": "Objet de Test",
   "item.lifelocke.fire_bottle": "Bouteille d'énergie feu",
-  "item.lifelocke.fire_mob_spawn_egg": "Oeuf d'apparition d'animal feu",
+  "item.lifelocke.fire_mob_spawn_egg": "Oeuf spawneur d'animal feu",
 
   "block.lifelocke.dummy_block": "Bloc de Test",
   "item.lifelocke.dummy_block": "Bloc de Test",
@@ -9,6 +9,7 @@
   "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
 
   "entity.lifelocke.fire_mob": "Animal de Feu",
+  "entity.lifelocke.grass_mob": "Animal de Plante",
 
   "gamerule.lifelocke.fighting_crafting_nerf": "Nerf de Crafting de Combat",
   "gamerule.lifelocke.type_duplication": "Type Duplication",
@@ -16,6 +17,9 @@
   "gamerule.lifelocke.type_death_messages": "Messages de Mort de Type",
 
   "death.attack.fairy_heal": "%s était trop gentil",
+
+  "death.attack.plant_attack": "%s est frappé(e) par magique des plantes de %s",
+
   "death.attack.bug": "%s est infesté(e) par la %s parasitaire",
   "death.attack.fire": "%s est brûlé(e) en cendres par %s",
   "death.attack.dark": "%s est aveuglé(e) par %s",

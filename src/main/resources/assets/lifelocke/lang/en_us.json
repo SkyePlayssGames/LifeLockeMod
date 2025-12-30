@@ -9,6 +9,7 @@
   "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
 
   "entity.lifelocke.fire_mob": "Fire Mob",
+  "entity.lifelocke.grass_mob": "Grass Mob",
 
   "gamerule.lifelocke.fighting_crafting_nerf": "Fighting Crafting Nerf",
   "gamerule.lifelocke.type_duplication": "Type Duplication",
@@ -16,6 +17,9 @@
   "gamerule.lifelocke.type_death_messages": "Type Death Messages",
 
   "death.attack.fairy_heal": "%s was too kind",
+
+  "death.attack.plant_attack": "%s was hit by plant magic from %s",
+
   "death.attack.bug": "%s was infested by a parasitic %s",
   "death.attack.fire": "%s was burned to ashes by %s",
   "death.attack.dark": "%s was blindsided by %s",

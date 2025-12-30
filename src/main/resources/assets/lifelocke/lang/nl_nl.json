@@ -10,6 +10,7 @@
   "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
 
   "entity.lifelocke.fire_mob": "Vuurbeest",
+  "entity.lifelocke.grass_mob": "Grasbeest",
 
   "gamerule.lifelocke.fighting_crafting_nerf": "Vecht Vervaardigingsverzwakking",
   "gamerule.lifelocke.type_duplication": "Type Herhaling",
@@ -17,6 +18,9 @@
   "gamerule.lifelocke.type_death_messages": "Type Doodsberichten",
 
   "death.attack.fairy_heal": "%s was te aardig",
+
+  "death.attack.plant_attack": "%s was geraakt door plantenmagie van %s",
+
   "death.attack.bug": "%s werd geïnfesteerd door de parasitische %s",
   "death.attack.fire": "%s was tot assen verbrand door %s",
   "death.attack.dark": "%s werd in een blinde hoek geraakt %s",
