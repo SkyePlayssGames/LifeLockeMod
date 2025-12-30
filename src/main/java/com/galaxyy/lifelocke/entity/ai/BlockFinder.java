@@ -95,7 +95,11 @@ public class BlockFinder {
         ArrayList<BlockPos> toCheck = getChecks(mob, distance);
         ArrayList<BlockPos> checked = check(toCheck, blockStates, mob.getEntityWorld());
         HashMap<BlockPos, Float> distances = getDistances(checked, mob.getBlockPos());
-        return getLowestDistance(distances);
+        BlockPos toGo = getLowestDistance(distances);
+
+        if (toGo == null) { return null; }
+
+        return new BlockPos(toGo.getX(), toGo.getY() + 1, toGo.getZ());
     }
 
     public static boolean isTouchingBlock(MobEntity mob, ImmutableList<BlockState> blockStates) {
