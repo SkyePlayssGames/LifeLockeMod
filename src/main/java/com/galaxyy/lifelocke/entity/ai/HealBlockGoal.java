@@ -11,6 +11,8 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
+import static com.galaxyy.lifelocke.entity.ai.BlockFinder.findNearbyBlock;
+
 public class HealBlockGoal extends Goal {
     private final MobEntity mob;
     private final double speed;
@@ -52,64 +54,18 @@ public class HealBlockGoal extends Goal {
         return this.blockStates.contains(this.mob.getEntityWorld().getBlockState(this.mob.getBlockPos()));
     }
 
-    private ArrayList<BlockPos> getChecks() {
-        BlockPos start = this.mob.getBlockPos();
 
-        ArrayList<BlockPos> toCheck = new ArrayList<>();
-        ArrayList<BlockPos> eastWestToDo = new ArrayList<>();
-        ArrayList<BlockPos> upDownToDo = new ArrayList<>();
-        eastWestToDo.add(start);
-
-        for (int i=1; i<=this.distance; i++) {
-            eastWestToDo.add(start.north(i));
-            eastWestToDo.add(start.south(i));
-        }
-
-        for (BlockPos blockPos : eastWestToDo) {
-            for (int i = 1; i <= this.distance; i++) {
-                upDownToDo.add(blockPos.east(i));
-            }
-            for (int i = 1; i <= this.distance; i++) {
-                upDownToDo.add(blockPos.west(i));
-            }
-            upDownToDo.add(blockPos);
-        }
-
-        for (BlockPos blockPos : upDownToDo) {
-            for (int i = 1; i <= this.distance; i++) {
-                toCheck.add(blockPos.up(i));
-            }
-            for (int i = 1; i <= this.distance; i++) {
-                toCheck.add(blockPos.down(i));
-            }
-            toCheck.add(blockPos);
-        }
-
-
-        return toCheck;
-    }
-
-    private BlockPos findNearbyBlock() {
-        World world = this.mob.getEntityWorld();
-        ArrayList<BlockPos> toCheck = getChecks();
-        for (BlockPos blockPos : toCheck) {
-            if (this.blockStates.contains(world.getBlockState(blockPos))) {
-                return blockPos;
-            }
-        }
-        return null;
-    }
 
     @Override
     public boolean canStart() {
         if (this.mob.hasControllingPassenger()) { return false; }
-        return (this.mob.getHealth() < this.mob.getMaxHealth() - this.hpDifference && findNearbyBlock() != null) || (this.mob.getHealth() < this.mob.getMaxHealth() && this.isTouchingBlock());
+        return (this.mob.getHealth() < this.mob.getMaxHealth() - this.hpDifference && findNearbyBlock(this.mob, this.blockStates, this.distance) != null) || (this.mob.getHealth() < this.mob.getMaxHealth() && this.isTouchingBlock());
     }
 
     @Override
     public void start() {
         if (!this.isTouchingBlock()) {
-            BlockPos blockPos = this.findNearbyBlock();
+            BlockPos blockPos = findNearbyBlock(this.mob, this.blockStates, this.distance);
             if (blockPos == null) {
                 return;
             }
