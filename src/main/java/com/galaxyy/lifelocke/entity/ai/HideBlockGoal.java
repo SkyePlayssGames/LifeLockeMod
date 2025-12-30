@@ -1,4 +1,10 @@
 package com.galaxyy.lifelocke.entity.ai;
 
-public class HideBlockGoal {
+import net.minecraft.entity.ai.goal.Goal;
+
+public class HideBlockGoal extends Goal {
+    @Override
+    public boolean canStart() {
+        return false;
+    }
 }

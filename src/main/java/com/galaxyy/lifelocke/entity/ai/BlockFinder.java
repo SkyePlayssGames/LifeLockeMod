@@ -4,9 +4,12 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BlockFinder {
     private static ArrayList<BlockPos> getChecks(MobEntity mob, int distance) {
@@ -46,15 +49,53 @@ public class BlockFinder {
         return toCheck;
     }
 
-    public static BlockPos findNearbyBlock(MobEntity mob, ImmutableList<BlockState> blockStates, int distance) {
-        World world = mob.getEntityWorld();
-        ArrayList<BlockPos> toCheck = getChecks(mob, distance);
+    private static ArrayList<BlockPos> check(ArrayList<BlockPos> toCheck, ImmutableList<BlockState> blockStates, World world) {
+        ArrayList<BlockPos> toReturn = new ArrayList<>();
         for (BlockPos blockPos : toCheck) {
             if (blockStates.contains(world.getBlockState(blockPos))) {
-                return blockPos;
+                toReturn.add(blockPos);
             }
         }
-        return null;
+        return toReturn;
+    }
+
+    private static float abs_sqrt(int a) {
+        return abs_sqrt(((float) a));
+    }
+
+    private static float abs_sqrt(float a) {
+        return MathHelper.sqrt(MathHelper.abs(a));
+    }
+
+    private static HashMap<BlockPos, Float> getDistances(ArrayList<BlockPos> toCalculate, BlockPos origin) {
+        HashMap<BlockPos, Float> distances = new HashMap<>();
+
+        for (BlockPos blockPos : toCalculate) {
+            float xz = MathHelper.square(abs_sqrt(blockPos.getX() - origin.getX()) + abs_sqrt(blockPos.getZ() - origin.getZ()));
+            float xyz = MathHelper.square(abs_sqrt(blockPos.getY() - origin.getY()) + abs_sqrt(xz));
+            distances.put(blockPos, xyz);
+        }
+
+        return distances;
+    }
+
+    public static BlockPos getLowestDistance(HashMap<BlockPos, Float> distances) {
+        BlockPos result = null;
+        float lowest = Float.POSITIVE_INFINITY;
+        for (BlockPos blockPos : distances.keySet()) {
+            if (lowest > distances.get(blockPos)) {
+                result = blockPos;
+                lowest = distances.get(blockPos);
+            }
+        }
+        return result;
+    }
+
+    public static BlockPos findNearbyBlock(MobEntity mob, ImmutableList<BlockState> blockStates, int distance) {
+        ArrayList<BlockPos> toCheck = getChecks(mob, distance);
+        ArrayList<BlockPos> checked = check(toCheck, blockStates, mob.getEntityWorld());
+        HashMap<BlockPos, Float> distances = getDistances(checked, mob.getBlockPos());
+        return getLowestDistance(distances);
     }
 
     public static boolean isTouchingBlock(MobEntity mob, ImmutableList<BlockState> blockStates) {
