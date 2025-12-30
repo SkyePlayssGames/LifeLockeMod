@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 
 import static com.galaxyy.lifelocke.entity.ai.BlockFinder.findNearbyBlock;
+import static com.galaxyy.lifelocke.entity.ai.BlockFinder.isTouchingBlock;
 
 public class HealBlockGoal extends Goal {
     private final MobEntity mob;
@@ -50,21 +51,17 @@ public class HealBlockGoal extends Goal {
         System.out.println(blockStates.toString());
     }
 
-    private boolean isTouchingBlock() {
-        return this.blockStates.contains(this.mob.getEntityWorld().getBlockState(this.mob.getBlockPos()));
-    }
-
 
 
     @Override
     public boolean canStart() {
         if (this.mob.hasControllingPassenger()) { return false; }
-        return (this.mob.getHealth() < this.mob.getMaxHealth() - this.hpDifference && findNearbyBlock(this.mob, this.blockStates, this.distance) != null) || (this.mob.getHealth() < this.mob.getMaxHealth() && this.isTouchingBlock());
+        return (this.mob.getHealth() < this.mob.getMaxHealth() - this.hpDifference && findNearbyBlock(this.mob, this.blockStates, this.distance) != null) || (this.mob.getHealth() < this.mob.getMaxHealth() && isTouchingBlock(this.mob, this.blockStates));
     }
 
     @Override
     public void start() {
-        if (!this.isTouchingBlock()) {
+        if (!isTouchingBlock(this.mob, this.blockStates)) {
             BlockPos blockPos = findNearbyBlock(this.mob, this.blockStates, this.distance);
             if (blockPos == null) {
                 return;

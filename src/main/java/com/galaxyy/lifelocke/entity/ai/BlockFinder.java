@@ -56,4 +56,9 @@ public class BlockFinder {
         }
         return null;
     }
+
+    public static boolean isTouchingBlock(MobEntity mob, ImmutableList<BlockState> blockStates) {
+        World world = mob.getEntityWorld();
+        return blockStates.contains(world.getBlockState(mob.getBlockPos()));
+    }
 }
