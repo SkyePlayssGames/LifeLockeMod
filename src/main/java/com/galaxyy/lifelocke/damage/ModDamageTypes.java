@@ -13,6 +13,9 @@ public class ModDamageTypes {
     public static final RegistryKey<DamageType> FAIRY_HEAL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
             Identifier.of(LifeLocke.MOD_ID, "fairy_heal"));
 
+    public static final RegistryKey<DamageType> PLANT_ATTACK = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
+            Identifier.of(LifeLocke.MOD_ID, "plant_attack"));
+
 
     public static final RegistryKey<DamageType> BUG = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
             Identifier.of(LifeLocke.MOD_ID, "bug"));

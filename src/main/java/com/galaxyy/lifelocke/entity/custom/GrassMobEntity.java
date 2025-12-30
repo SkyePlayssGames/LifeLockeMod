@@ -1,6 +1,7 @@
 package com.galaxyy.lifelocke.entity.custom;
 
 import com.galaxyy.lifelocke.LifeLocke;
+import com.galaxyy.lifelocke.damage.ModDamageTypes;
 import com.galaxyy.lifelocke.entity.ai.BlockFinder;
 import com.galaxyy.lifelocke.entity.ai.HideBlockGoal;
 import com.google.common.collect.ImmutableList;
@@ -11,6 +12,7 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -23,10 +25,14 @@ public class GrassMobEntity extends HostileEntity {
     private static final int FOLLOW_RANGE = 16;
 
     private static final ImmutableList<BlockState> HIDEABLE_BLOCKS = Blocks.SHORT_GRASS.getStateManager().getStates();
+    private static final ImmutableList<BlockState> ATTACKABLE_BLOCKS = Blocks.GRASS_BLOCK.getStateManager().getStates();
     private static final Identifier HIDDEN_ID = Identifier.of(LifeLocke.MOD_ID, "hidden");
+
+    private int grassAttackCooldownTicks;
 
     public GrassMobEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
+        grassAttackCooldownTicks = 0;
     }
 
     @Override
@@ -51,6 +57,10 @@ public class GrassMobEntity extends HostileEntity {
     public void tick() {
         super.tick();
 
+        if (getEntityWorld().isClient()) {
+            return;
+        }
+
         EntityAttributeInstance followAttribute = Objects.requireNonNull(this.getAttributes().getCustomInstance(EntityAttributes.FOLLOW_RANGE));
 
         if (!this.isNavigating() && BlockFinder.isTouchingBlock(this, HIDEABLE_BLOCKS)) {
@@ -59,8 +69,27 @@ public class GrassMobEntity extends HostileEntity {
                         new EntityAttributeModifier(HIDDEN_ID, -11, EntityAttributeModifier.Operation.ADD_VALUE)
                 );
             }
+
+            handleGrassAttack();
+
         } else if (followAttribute.hasModifier(HIDDEN_ID)) {
             followAttribute.removeModifier(HIDDEN_ID);
+        }
+
+    }
+
+    public void handleGrassAttack() {
+        ServerWorld world = (ServerWorld) getEntityWorld();
+        if (grassAttackCooldownTicks <= 0) {
+            for (PlayerEntity player : world.getPlayers()) {
+                if (ATTACKABLE_BLOCKS.contains(world.getBlockState(player.getBlockPos().down())) &&
+                        this.canSee(player)) {
+                    player.damage(world, ModDamageTypes.of(world, ModDamageTypes.PLANT_ATTACK, this), 2);
+                }
+            }
+            grassAttackCooldownTicks = 40;
+        } else {
+            grassAttackCooldownTicks--;
         }
     }
 }
