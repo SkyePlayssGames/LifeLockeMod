@@ -1,16 +1,10 @@
 package com.galaxyy.lifelocke.item;
 
 import com.galaxyy.lifelocke.LifeLocke;
-import com.galaxyy.lifelocke.block.ModBlocks;
+import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.entity.ModEntities;
-import com.galaxyy.lifelocke.item.consumable_component.ModConsumableComponents;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.TypedEntityData;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.registry.Registries;
@@ -25,8 +19,8 @@ public class ModItems {
     public static final Item DUMMY_ITEM = registerItem("dummy_item", Item::new);
 
     public static final Item FIRE_BOTTLE = registerItem("fire_bottle", settings ->
-            new EnergyBottleItem(settings.food(new FoodComponent(0, 0, true), ModConsumableComponents.FIRE_CONSUMABLE_COMPONENT),
-                    ModConsumableComponents.FIRE_BOTTLE_EFFECT, "30:00"));
+            new EnergyBottleItem(settings, ModEffects.FIRE, EnergyBottleItem.EffectTime.HALF_AN_HOUR)
+    );
 
 
     public static final Item FIRE_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.FIRE_MOB);

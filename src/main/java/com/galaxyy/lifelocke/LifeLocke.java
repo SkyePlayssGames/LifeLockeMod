@@ -12,7 +12,6 @@ import com.galaxyy.lifelocke.events.ModdedPlayerJoinServerCallback;
 import com.galaxyy.lifelocke.events.ModdedPlayerJoinClientCallback;
 import com.galaxyy.lifelocke.gamerule.ModGameRules;
 import com.galaxyy.lifelocke.item.ModItems;
-import com.galaxyy.lifelocke.item.consumable_component.ModConsumableComponents;
 import com.galaxyy.lifelocke.item.data_component.ModDataComponents;
 import com.galaxyy.lifelocke.itemgroup.ModItemGroups;
 import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
@@ -47,7 +46,6 @@ public class LifeLocke implements ModInitializer {
 		ModGameRules.registerGameRules();
 		ModDataComponents.registerModDataComponents();
 		ModSounds.registerSounds();
-		ModConsumableComponents.registerConsumableComponents();
 		ModEntities.registerModEntities();
 
 		PressedAbilityKeyC2SHandler.registerEffectMap();

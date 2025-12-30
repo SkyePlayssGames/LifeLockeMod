@@ -22,7 +22,7 @@ public class FireMobEntity extends HostileEntity {
     private int idleAnimationTimeout = 0;
     private int healingCooldownTicks = 0;
 
-    private static final int MAX_HEALTH = 20;
+    private static final int MAX_HEALTH = 15;
     private static final float MOVEMENT_SPEED = 0.3f;
     private static final int ATTACK_DAMAGE = 4;
     private static final int FOLLOW_RANGE = 32;

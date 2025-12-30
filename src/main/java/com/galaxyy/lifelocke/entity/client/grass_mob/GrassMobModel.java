@@ -85,37 +85,37 @@ public class GrassMobModel extends EntityModel<GrassMobRenderState> {
 
         ModelPartData head_petals = head.addChild("head_petals", ModelPartBuilder.create(), ModelTransform.rotation(0.0F, 0.0F, 0.0F));
 
-        ModelPartData top_left_petal = head_petals.addChild("top_left_petal", ModelPartBuilder.create().uv(10, 29).cuboid(-7.0F, -20.0F+Y, -4.0F, 1.0F, 2.0F, 0.0F, new Dilation(0.0F))
-                .uv(38, 24).cuboid(-6.0F, -20.0F+Y, -4.0F, 3.0F, 3.0F, 0.0F, new Dilation(0.0F))
-                .uv(20, 32).cuboid(-6.0F, -21.0F+Y, -4.0F, 2.0F, 1.0F, 0.0F, new Dilation(0.0F)), ModelTransform.rotation(-0.0F, -0.0F, -0.0F));
+        ModelPartData top_left_petal = head_petals.addChild("top_left_petal", ModelPartBuilder.create().uv(10, 29).cuboid(-7.0F, -20.0F+Y, -3.0F, 1.0F, 2.0F, 0.0F, new Dilation(0.0F))
+                .uv(38, 24).cuboid(-6.0F, -20.0F+Y, -3.0F, 3.0F, 3.0F, 0.0F, new Dilation(0.0F))
+                .uv(20, 32).cuboid(-6.0F, -21.0F+Y, -3.0F, 2.0F, 1.0F, 0.0F, new Dilation(0.0F)), ModelTransform.rotation(-0.0F, -0.0F, -0.0F));
 
-        ModelPartData bottom_left_petal = head_petals.addChild("bottom_left_petal", ModelPartBuilder.create().uv(8, 39).cuboid(-2.0F-Y, 0.0F, -1.0F, 1.0F, 2.0F, 0.0F, new Dilation(0.0F))
-                .uv(26, 38).cuboid(-1.0F-Y, 0.0F, -1.0F, 3.0F, 3.0F, 0.0F, new Dilation(0.0F))
-                .uv(0, 39).cuboid(-1.0F-Y, -1.0F, -1.0F, 2.0F, 1.0F, 0.0F, new Dilation(0.0F)), ModelTransform.of(-6.0F, -9.0F, -3.0F, 0.0F, 0.0F, -1.5708F));
+        ModelPartData bottom_left_petal = head_petals.addChild("bottom_left_petal", ModelPartBuilder.create().uv(8, 39).cuboid(-2.0F-Y, 0.0F, -0.0F, 1.0F, 2.0F, 0.0F, new Dilation(0.0F))
+                .uv(26, 38).cuboid(-1.0F-Y, 0.0F, -0.0F, 3.0F, 3.0F, 0.0F, new Dilation(0.0F))
+                .uv(0, 39).cuboid(-1.0F-Y, -1.0F, -0.0F, 2.0F, 1.0F, 0.0F, new Dilation(0.0F)), ModelTransform.of(-6.0F, -9.0F, -3.0F, 0.0F, 0.0F, -1.5708F));
 
-        ModelPartData top_right_petal = head_petals.addChild("top_right_petal", ModelPartBuilder.create().uv(40, 3).cuboid(-2.0F+Y, 0.0F, -1.0F, 1.0F, 2.0F, 0.0F, new Dilation(0.0F))
-                .uv(32, 38).cuboid(-1.0F+Y, 0.0F, -1.0F, 3.0F, 3.0F, 0.0F, new Dilation(0.0F))
-                .uv(4, 39).cuboid(-1.0F+Y, -1.0F, -1.0F, 2.0F, 1.0F, 0.0F, new Dilation(0.0F)), ModelTransform.of(6.0F, -19.0F, -3.0F, 0.0F, 0.0F, 1.5708F));
+        ModelPartData top_right_petal = head_petals.addChild("top_right_petal", ModelPartBuilder.create().uv(40, 3).cuboid(-2.0F+Y, 0.0F, -0.0F, 1.0F, 2.0F, 0.0F, new Dilation(0.0F))
+                .uv(32, 38).cuboid(-1.0F+Y, 0.0F, 0.0F, 3.0F, 3.0F, 0.0F, new Dilation(0.0F))
+                .uv(4, 39).cuboid(-1.0F+Y, -1.0F, 0.0F, 2.0F, 1.0F, 0.0F, new Dilation(0.0F)), ModelTransform.of(6.0F, -19.0F, -3.0F, 0.0F, 0.0F, 1.5708F));
 
-        ModelPartData bottom_right_petal = head_petals.addChild("bottom_right_petal", ModelPartBuilder.create().uv(4, 40).cuboid(-2.0F, 0.0F-Y, -1.0F, 1.0F, 2.0F, 0.0F, new Dilation(0.0F))
-                .uv(38, 38).cuboid(-1.0F, 0.0F-Y, -1.0F, 3.0F, 3.0F, 0.0F, new Dilation(0.0F))
-                .uv(0, 40).cuboid(-1.0F, -1.0F-Y, -1.0F, 2.0F, 1.0F, 0.0F, new Dilation(0.0F)), ModelTransform.of(5.0F, -8.0F, -3.0F, 0.0F, 0.0F, -3.1416F));
+        ModelPartData bottom_right_petal = head_petals.addChild("bottom_right_petal", ModelPartBuilder.create().uv(4, 40).cuboid(-2.0F, 0.0F-Y, 0.0F, 1.0F, 2.0F, 0.0F, new Dilation(0.0F))
+                .uv(38, 38).cuboid(-1.0F, 0.0F-Y, 0.0F, 3.0F, 3.0F, 0.0F, new Dilation(0.0F))
+                .uv(0, 40).cuboid(-1.0F, -1.0F-Y, 0.0F, 2.0F, 1.0F, 0.0F, new Dilation(0.0F)), ModelTransform.of(5.0F, -8.0F, -3.0F, 0.0F, 0.0F, -3.1416F));
 
-        ModelPartData top_petal = head_petals.addChild("top_petal", ModelPartBuilder.create().uv(38, 16).cuboid(-2.0F, -20.0F+Y, -4.0F, 4.0F, 2.0F, 0.0F, new Dilation(0.0F))
-                .uv(38, 11).cuboid(-3.0F, -21.0F+Y, -4.0F, 6.0F, 1.0F, 0.0F, new Dilation(0.0F))
-                .uv(40, 0).cuboid(-1.0F, -22.0F+Y, -4.0F, 2.0F, 1.0F, 0.0F, new Dilation(0.0F)), ModelTransform.rotation(0.0F, 0, 0F));
+        ModelPartData top_petal = head_petals.addChild("top_petal", ModelPartBuilder.create().uv(38, 16).cuboid(-2.0F, -20.0F+Y, -3.0F, 4.0F, 2.0F, 0.0F, new Dilation(0.0F))
+                .uv(38, 11).cuboid(-3.0F, -21.0F+Y, -3.0F, 6.0F, 1.0F, 0.0F, new Dilation(0.0F))
+                .uv(40, 0).cuboid(-1.0F, -22.0F+Y, -3.0F, 2.0F, 1.0F, 0.0F, new Dilation(0.0F)), ModelTransform.rotation(0.0F, 0, 0F));
 
-        ModelPartData right_petal = head_petals.addChild("right_petal", ModelPartBuilder.create().uv(18, 38).cuboid(-2.0F+Y, -2.0F, 0.0F, 4.0F, 2.0F, 0.0F, new Dilation(0.0F))
-                .uv(38, 12).cuboid(-3.0F+Y, -3.0F, 0.0F, 6.0F, 1.0F, 0.0F, new Dilation(0.0F))
-                .uv(40, 1).cuboid(-1.0F+Y, -4.0F, 0.0F, 2.0F, 1.0F, 0.0F, new Dilation(0.0F)), ModelTransform.of(4.0F, -14.0F, -4.0F, 0.0F, 0.0F, 1.5708F));
+        ModelPartData right_petal = head_petals.addChild("right_petal", ModelPartBuilder.create().uv(18, 38).cuboid(-2.0F+Y, -2.0F, 1.0F, 4.0F, 2.0F, 0.0F, new Dilation(0.0F))
+                .uv(38, 12).cuboid(-3.0F+Y, -3.0F, 1.0F, 6.0F, 1.0F, 0.0F, new Dilation(0.0F))
+                .uv(40, 1).cuboid(-1.0F+Y, -4.0F, 1.0F, 2.0F, 1.0F, 0.0F, new Dilation(0.0F)), ModelTransform.of(4.0F, -14.0F, -4.0F, 0.0F, 0.0F, 1.5708F));
 
-        ModelPartData bottom_petal = head_petals.addChild("bottom_petal", ModelPartBuilder.create().uv(38, 22).cuboid(-2.0F, -2.0F-Y, 0.0F, 4.0F, 2.0F, 0.0F, new Dilation(0.0F))
-                .uv(38, 13).cuboid(-3.0F, -3.0F-Y, 0.0F, 6.0F, 1.0F, 0.0F, new Dilation(0.0F))
-                .uv(28, 27).cuboid(-1.0F, -4.0F-Y, 0.0F, 2.0F, 1.0F, 0.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, -10.0F, -4.0F, 0.0F, 0.0F, -3.1416F));
+        ModelPartData bottom_petal = head_petals.addChild("bottom_petal", ModelPartBuilder.create().uv(38, 22).cuboid(-2.0F, -2.0F-Y, 1.0F, 4.0F, 2.0F, 0.0F, new Dilation(0.0F))
+                .uv(38, 13).cuboid(-3.0F, -3.0F-Y, 1.0F, 6.0F, 1.0F, 0.0F, new Dilation(0.0F))
+                .uv(28, 27).cuboid(-1.0F, -4.0F-Y, 1.0F, 2.0F, 1.0F, 0.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, -10.0F, -4.0F, 0.0F, 0.0F, -3.1416F));
 
-        ModelPartData left_petal = head_petals.addChild("left_petal", ModelPartBuilder.create().uv(38, 14).cuboid(-2.0F-Y, -2.0F, 0.0F, 4.0F, 2.0F, 0.0F, new Dilation(0.0F))
-                .uv(34, 32).cuboid(-3.0F-Y, -3.0F, 0.0F, 6.0F, 1.0F, 0.0F, new Dilation(0.0F))
-                .uv(40, 2).cuboid(-1.0F-Y, -4.0F, 0.0F, 2.0F, 1.0F, 0.0F, new Dilation(0.0F)), ModelTransform.of(-4.0F, -14.0F, -4.0F, 0.0F, 0.0F, -1.5708F));
+        ModelPartData left_petal = head_petals.addChild("left_petal", ModelPartBuilder.create().uv(38, 14).cuboid(-2.0F-Y, -2.0F, 1.0F, 4.0F, 2.0F, 0.0F, new Dilation(0.0F))
+                .uv(34, 32).cuboid(-3.0F-Y, -3.0F, 1.0F, 6.0F, 1.0F, 0.0F, new Dilation(0.0F))
+                .uv(40, 2).cuboid(-1.0F-Y, -4.0F, 1.0F, 2.0F, 1.0F, 0.0F, new Dilation(0.0F)), ModelTransform.of(-4.0F, -14.0F, -4.0F, 0.0F, 0.0F, -1.5708F));
         return TexturedModelData.of(modelData, 64, 64);
     }
 
