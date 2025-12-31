@@ -24,6 +24,7 @@ public class LifeLockeClient implements ClientModInitializer {
         KeyInputHandler.registerKeyBindings();
         ClientPlayNetworking.registerGlobalReceiver(RenderTypeIconS2CPayload.ID, new RenderTypeIconS2CHandler());
         ClientPlayNetworking.registerGlobalReceiver(ServerModCheckS2CPayload.ID, new ServerModCheckS2CHandler());
+        ClientPlayNetworking.registerGlobalReceiver(GrassMobAnimationS2CPayload.ID, new GrassMobAnimationS2CHandler());
 
         ClientPlayConnectionEvents.JOIN.register(new ModCheckExistingEvent());
 

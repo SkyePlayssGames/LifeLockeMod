@@ -5,6 +5,7 @@ import com.galaxyy.lifelocke.entity.client.fire_mob.FireMobRenderState;
 import com.galaxyy.lifelocke.entity.custom.GrassMobEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.entity.animation.Animation;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -14,38 +15,18 @@ import net.minecraft.util.math.MathHelper;
 
 public class GrassMobModel extends EntityModel<GrassMobRenderState> {
     public static final EntityModelLayer GRASS_MOB = new EntityModelLayer(Identifier.of(LifeLocke.MOD_ID, "grass_mob"), "main");
-    private final ModelPart grass_mob;
-    private final ModelPart base;
-    private final ModelPart lower_petals;
-    private final ModelPart higher_petals;
-    private final ModelPart stem;
     private final ModelPart head;
-    private final ModelPart head_petals;
-    private final ModelPart top_left_petal;
-    private final ModelPart bottom_left_petal;
-    private final ModelPart top_right_petal;
-    private final ModelPart bottom_right_petal;
-    private final ModelPart top_petal;
-    private final ModelPart right_petal;
-    private final ModelPart bottom_petal;
-    private final ModelPart left_petal;
+
+    private final Animation hidingAnimation;
+    private final Animation unhidingAnimation;
+
     public GrassMobModel(ModelPart root) {
         super(root);
-        this.grass_mob = root.getChild("grass_mob");
-        this.base = this.grass_mob.getChild("base");
-        this.lower_petals = this.base.getChild("lower_petals");
-        this.higher_petals = this.base.getChild("higher_petals");
-        this.stem = this.grass_mob.getChild("stem");
-        this.head = this.grass_mob.getChild("head");
-        this.head_petals = this.head.getChild("head_petals");
-        this.top_left_petal = this.head_petals.getChild("top_left_petal");
-        this.bottom_left_petal = this.head_petals.getChild("bottom_left_petal");
-        this.top_right_petal = this.head_petals.getChild("top_right_petal");
-        this.bottom_right_petal = this.head_petals.getChild("bottom_right_petal");
-        this.top_petal = this.head_petals.getChild("top_petal");
-        this.right_petal = this.head_petals.getChild("right_petal");
-        this.bottom_petal = this.head_petals.getChild("bottom_petal");
-        this.left_petal = this.head_petals.getChild("left_petal");
+        ModelPart grass_mob = root.getChild("grass_mob");
+        this.head = grass_mob.getChild("head");
+
+        this.hidingAnimation = GrassMobAnimations.hide.createAnimation(root);
+        this.unhidingAnimation = GrassMobAnimations.unhide.createAnimation(root);
     }
     public static TexturedModelData getTexturedModelData() {
         final int Y = 24;
@@ -123,6 +104,9 @@ public class GrassMobModel extends EntityModel<GrassMobRenderState> {
     public void setAngles(GrassMobRenderState state) {
         super.setAngles(state);
         this.setHeadAngles(state.relativeHeadYaw, state.pitch);
+
+        this.hidingAnimation.apply(state.hidingAnimationState, state.age);
+        this.unhidingAnimation.apply(state.unhidingAnimationState, state.age);
     }
 
     private void setHeadAngles(float headYaw, float headPitch) {

@@ -80,6 +80,7 @@ public class LifeLocke implements ModInitializer {
 		PayloadTypeRegistry.playC2S().register(ServerModCheckC2SPayload.ID, ServerModCheckC2SPayload.CODEC);
 		PayloadTypeRegistry.playS2C().register(RenderTypeIconS2CPayload.ID, RenderTypeIconS2CPayload.CODEC);
 		PayloadTypeRegistry.playS2C().register(ServerModCheckS2CPayload.ID, ServerModCheckS2CPayload.CODEC);
+		PayloadTypeRegistry.playS2C().register(GrassMobAnimationS2CPayload.ID, GrassMobAnimationS2CPayload.CODEC);
 
 		ServerPlayNetworking.registerGlobalReceiver(PressedAbilityKeyC2SPayload.ID, new PressedAbilityKeyC2SHandler());
 		ServerPlayNetworking.registerGlobalReceiver(ServerModCheckC2SPayload.ID, new ServerModCheckC2SHandler());

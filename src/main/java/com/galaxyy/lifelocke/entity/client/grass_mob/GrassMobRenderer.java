@@ -20,4 +20,12 @@ public class GrassMobRenderer extends MobEntityRenderer<GrassMobEntity, GrassMob
     public GrassMobRenderState createRenderState() {
         return new GrassMobRenderState();
     }
+
+    @Override
+    public void updateRenderState(GrassMobEntity grassMob, GrassMobRenderState grassMobRenderState, float f) {
+        super.updateRenderState(grassMob, grassMobRenderState, f);
+
+        grassMobRenderState.hidingAnimationState = grassMob.hidingAnimationState;
+        grassMobRenderState.unhidingAnimationState = grassMob.unhidingAnimationState;
+    }
 }

@@ -47,8 +47,6 @@ public class HideBlockGoal extends Goal {
                 return;
             }
             this.mob.getNavigation().startMovingTo(blockPos.getX(), blockPos.getY(), blockPos.getZ(), this.speed);
-        } else {
-            this.mob.getNavigation().startMovingTo(this.mob.getX(), this.mob.getY(), this.mob.getZ(), this.speed);
         }
     }
 }
