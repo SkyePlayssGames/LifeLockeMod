@@ -6,4 +6,5 @@ import net.minecraft.entity.AnimationState;
 public class GrassMobRenderState extends LivingEntityRenderState {
     public AnimationState hidingAnimationState;
     public AnimationState unhidingAnimationState;
+    public AnimationState magicAttackAnimationState;
 }

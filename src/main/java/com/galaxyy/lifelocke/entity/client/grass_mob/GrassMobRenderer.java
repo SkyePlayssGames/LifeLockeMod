@@ -27,5 +27,6 @@ public class GrassMobRenderer extends MobEntityRenderer<GrassMobEntity, GrassMob
 
         grassMobRenderState.hidingAnimationState = grassMob.hidingAnimationState;
         grassMobRenderState.unhidingAnimationState = grassMob.unhidingAnimationState;
+        grassMobRenderState.magicAttackAnimationState = grassMob.magicAttackAnimationState;
     }
 }

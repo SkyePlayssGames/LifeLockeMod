@@ -1,15 +1,10 @@
 package com.galaxyy.lifelocke.entity.client.grass_mob;
 
 import com.galaxyy.lifelocke.LifeLocke;
-import com.galaxyy.lifelocke.entity.client.fire_mob.FireMobRenderState;
-import com.galaxyy.lifelocke.entity.custom.GrassMobEntity;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.animation.Animation;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
@@ -19,14 +14,16 @@ public class GrassMobModel extends EntityModel<GrassMobRenderState> {
 
     private final Animation hidingAnimation;
     private final Animation unhidingAnimation;
+    private final Animation magicAttackAnimation;
 
     public GrassMobModel(ModelPart root) {
         super(root);
         ModelPart grass_mob = root.getChild("grass_mob");
         this.head = grass_mob.getChild("head");
 
-        this.hidingAnimation = GrassMobAnimations.hide.createAnimation(root);
-        this.unhidingAnimation = GrassMobAnimations.unhide.createAnimation(root);
+        this.hidingAnimation = GrassMobAnimations.HIDING_ANIM.createAnimation(root);
+        this.unhidingAnimation = GrassMobAnimations.UNHIDING_ANIM.createAnimation(root);
+        this.magicAttackAnimation = GrassMobAnimations.MAGIC_ATTACK_ANIM.createAnimation(root);
     }
     public static TexturedModelData getTexturedModelData() {
         final int Y = 24;
@@ -107,6 +104,7 @@ public class GrassMobModel extends EntityModel<GrassMobRenderState> {
 
         this.hidingAnimation.apply(state.hidingAnimationState, state.age);
         this.unhidingAnimation.apply(state.unhidingAnimationState, state.age);
+        this.magicAttackAnimation.apply(state.magicAttackAnimationState, state.age);
     }
 
     private void setHeadAngles(float headYaw, float headPitch) {

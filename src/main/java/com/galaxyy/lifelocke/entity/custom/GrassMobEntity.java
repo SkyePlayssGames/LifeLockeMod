@@ -20,6 +20,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.GameMode;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.core.jmx.Server;
 import org.jetbrains.annotations.Nullable;
@@ -41,8 +42,10 @@ public class GrassMobEntity extends HostileEntity {
     public boolean playHidingAnimation = false;
     public boolean playUnhidingAnimation = false;
     public boolean playMagicAttackAnimation = false;
+
     public final AnimationState hidingAnimationState = new AnimationState();
     public final AnimationState unhidingAnimationState = new AnimationState();
+    public final AnimationState magicAttackAnimationState = new AnimationState();
 
     public GrassMobEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -81,24 +84,28 @@ public class GrassMobEntity extends HostileEntity {
     private void tick_client() {
 
         if (playHidingAnimation) {
-            unhidingAnimationState.stop();
+            stop_animations();
             hidingAnimationState.start(this.age);
             playHidingAnimation = false;
-
-            for (PlayerEntity player : getEntityWorld().getPlayers()) {
-                player.sendMessage(Text.literal("Started Hiding"), false);
-            }
         }
 
         if (playUnhidingAnimation) {
-            hidingAnimationState.stop();
+            stop_animations();
             unhidingAnimationState.start(this.age);
             playUnhidingAnimation = false;
-
-            for (PlayerEntity player : getEntityWorld().getPlayers()) {
-                player.sendMessage(Text.literal("Started Unhiding"), false);
-            }
         }
+
+        if (playMagicAttackAnimation) {
+            stop_animations();
+            magicAttackAnimationState.start(this.age);
+            playMagicAttackAnimation = false;
+        }
+    }
+
+    private void stop_animations() {
+        hidingAnimationState.stop();
+        unhidingAnimationState.stop();
+        magicAttackAnimationState.stop();
     }
 
     private void tick_server() {
@@ -127,10 +134,13 @@ public class GrassMobEntity extends HostileEntity {
         if (grassAttackCooldownTicks <= 0) {
             boolean hitAnyone = false;
 
-            for (PlayerEntity player : world.getPlayers()) {
+            for (ServerPlayerEntity player : world.getPlayers()) {
                 if (ATTACKABLE_BLOCKS.contains(world.getBlockState(player.getBlockPos().down())) &&
-                        this.canSee(player)) {
+                        this.canSee(player) &&
+                        (player.getGameMode() == GameMode.SURVIVAL || player.getGameMode() == GameMode.ADVENTURE)
+                ) {
                     hitAnyone = true;
+                    sendAnimationPacket(player, GrassMobAnimationS2CPayload.ANIMATION.MAGIC_ATTACK);
                     player.damage(world, ModDamageTypes.of(world, ModDamageTypes.PLANT_ATTACK, this), 2);
                 }
             }
