@@ -14,18 +14,21 @@ import net.minecraft.util.Formatting;
 
 public class EnergyBottleItem extends Item {
     public enum EffectTime {
-        HALF_AN_HOUR
+        HALF_AN_HOUR,
+        HOUR
     }
 
     public static int effectTimeToTicks(EffectTime time) {
         return switch(time) {
             case HALF_AN_HOUR -> 36000;
+            case HOUR -> 72000;
         };
     }
 
     public static Text effectTimeToText(EffectTime time) {
         return switch(time) {
             case HALF_AN_HOUR -> Text.literal("(00:30:00)");
+            case HOUR -> Text.literal("(01:00:00)");
         };
     }
 

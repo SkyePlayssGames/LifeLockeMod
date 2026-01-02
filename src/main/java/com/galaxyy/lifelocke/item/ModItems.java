@@ -23,8 +23,15 @@ public class ModItems {
     public static final Item FIRE_BOTTLE = registerItem("fire_bottle", settings ->
             new EnergyBottleItem(settings, ModEffects.FIRE, EnergyBottleItem.EffectTime.HALF_AN_HOUR)
     );
+    public static final Item LONG_FIRE_BOTTLE = registerItem("long_fire_bottle", settings ->
+            new EnergyBottleItem(settings, ModEffects.FIRE, EnergyBottleItem.EffectTime.HOUR)
+    );
+
     public static final Item GRASS_BOTTLE = registerItem("grass_bottle", settings ->
             new EnergyBottleItem(settings, ModEffects.GRASS, EnergyBottleItem.EffectTime.HALF_AN_HOUR)
+    );
+    public static final Item LONG_GRASS_BOTTLE = registerItem("long_grass_bottle", settings ->
+            new EnergyBottleItem(settings, ModEffects.GRASS, EnergyBottleItem.EffectTime.HOUR)
     );
 
 
