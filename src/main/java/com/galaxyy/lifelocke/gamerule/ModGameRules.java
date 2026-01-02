@@ -27,6 +27,11 @@ public class ModGameRules {
                     Identifier.of(LifeLocke.MOD_ID, "type_death_messages")
             );
 
+    public static final GameRule<Boolean> NORMAL_HAS_ABILITY =
+            GameRuleBuilder.forBoolean(true).buildAndRegister(
+                    Identifier.of(LifeLocke.MOD_ID, "normal_has_ability")
+            );
+
     public static void registerGameRules() {
         System.out.println("Registering Game Rules for " + LifeLocke.MOD_ID);
     }

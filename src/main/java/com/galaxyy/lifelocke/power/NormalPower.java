@@ -14,7 +14,10 @@ public class NormalPower implements ServerLivingEntityEvents.AllowDeath {
             return true;
         }
         ItemStack pocketItem = UpdateData.swapNormalItemStack(player, ItemStack.EMPTY);
-        player.getInventory().offerOrDrop(pocketItem);
+
+        if (!pocketItem.isEmpty()) {
+            player.getInventory().offerOrDrop(pocketItem);
+        }
 
         return true;
     }

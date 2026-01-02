@@ -20,6 +20,7 @@
   "gamerule.lifelocke.type_duplication": "Type Duplication",
   "gamerule.lifelocke.special_type_roll": "Type Spécial Roulable",
   "gamerule.lifelocke.type_death_messages": "Messages de Mort de Type",
+  "gamerule.lifelocke.normal_has_ability": "Type Normal a de capacité",
 
   "death.attack.fairy_heal": "%s était trop gentil",
 

@@ -21,6 +21,7 @@
   "gamerule.lifelocke.type_duplication": "Type Herhaling",
   "gamerule.lifelocke.special_type_roll": "Rolbare Speciale Types",
   "gamerule.lifelocke.type_death_messages": "Type Doodsberichten",
+  "gamerule.lifelocke.normal_has_ability": "Normaaltype Heeft Kracht",
 
   "death.attack.fairy_heal": "%s was te aardig",
   "death.attack.plant_attack": "%s was geraakt door plantenmagie van %s",

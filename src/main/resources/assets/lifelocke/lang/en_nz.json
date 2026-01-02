@@ -20,6 +20,7 @@
   "gamerule.lifelocke.type_duplication": "Kulup AbajujEsAfin",
   "gamerule.lifelocke.special_type_roll": "KulupMaca pikanxovoKal",
   "gamerule.lifelocke.type_death_messages": "LipuLili piKilc piKulup",
+  "gamerule.lifelocke.normal_has_ability": "KulupnoMaca Kal Paja",
 
   "death.attack.fairy_heal": "%s finEs kaPona",
   "death.attack.plant_attack": "%s was hit by plant magic from %s",
