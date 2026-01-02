@@ -36,6 +36,7 @@ public class ModItems {
 
 
     public static final Item FIRE_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.FIRE_MOB);
+    public static final Item GRASS_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.GRASS_MOB);
 
     private static Item registerItem(String name, Function<Item.Settings, Item> function) {
         Identifier id = Identifier.of(LifeLocke.MOD_ID, name);
@@ -53,6 +54,7 @@ public class ModItems {
         System.out.println("Registering Mod Items for " + LifeLocke.MOD_ID);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register((itemgroup) -> {
                 itemgroup.add(FIRE_MOB_SPAWN_EGG);
+                itemgroup.add(GRASS_MOB_SPAWN_EGG);
         });
     }
 }

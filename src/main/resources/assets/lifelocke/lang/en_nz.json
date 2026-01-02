@@ -1,7 +1,12 @@
 {
   "item.lifelocke.dummy_item": "Obec piZymi",
   "item.lifelocke.fire_bottle": "VodaKal piPajaPali",
+  "item.lifelocke.long_fire_bottle": "VodaKal piPajaPali piZuli",
+  "item.lifelocke.grass_bottle": "VodaKal piPajaLumpu",
+  "item.lifelocke.long_grass_bottle": "VodaKal piPajaLumpu piZuli",
+
   "item.lifelocke.fire_mob_spawn_egg": "ObecOpenEki pijEkiPali",
+  "item.lifelocke.grass_mob_spawn_egg": "ObecOpenEki pijEkiLumpu",
 
   "block.lifelocke.dummy_block": "Koloc piZymi",
   "item.lifelocke.dummy_block": "Koloc piZymi",
@@ -9,6 +14,7 @@
   "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
 
   "entity.lifelocke.fire_mob": "EkiPali",
+  "entity.lifelocke.grass_mob": "EkiLumpu",
 
   "gamerule.lifelocke.fighting_crafting_nerf": "Kylac Crafting Nerf",
   "gamerule.lifelocke.type_duplication": "Kulup AbajujEsAfin",
@@ -16,6 +22,8 @@
   "gamerule.lifelocke.type_death_messages": "LipuLili piKilc piKulup",
 
   "death.attack.fairy_heal": "%s finEs kaPona",
+  "death.attack.plant_attack": "%s was hit by plant magic from %s",
+
   "death.attack.bug": "%s was infested by a parasitic %s",
   "death.attack.fire": "%s was burned to ashes by %s",
   "death.attack.dark": "%s was blindsided by %s",
@@ -108,5 +116,5 @@
   "text.lifelocke.compatibility.player_kicked_server": "Nyma pijEsNyma pi^LifeLocke^ o(j)%s finEs kanoFiza!",
 
   "modmenu.nameTranslation.lifelocke": "LifeLocke",
-  "modmenu.descriptionTranslation.lifelocke": "MaziCaca pijEkesPokémon pijOpenKulup pijEnejOpenPaja!"
+  "modmenu.descriptionTranslation.lifelocke": "MaziCaca pijEkesPokémon pijOpenKulup pijEnejOpenPaja!",
 }

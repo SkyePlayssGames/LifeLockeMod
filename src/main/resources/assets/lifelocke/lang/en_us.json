@@ -1,7 +1,12 @@
 {
   "item.lifelocke.dummy_item": "Dummy Item",
   "item.lifelocke.fire_bottle": "Bottle of Fire Energy",
+  "item.lifelocke.long_fire_bottle": "Extended Bottle of Fire Energy",
+  "item.lifelocke.grass_bottle": "Bottle of Grass Energy",
+  "item.lifelocke.long_grass_bottle": "Extended Bottle of Grass Energy",
+
   "item.lifelocke.fire_mob_spawn_egg": "Fire Mob Spawn Egg",
+  "item.lifelocke.grass_mob_spawn_egg": "Grass Mob Spawn Egg",
 
   "block.lifelocke.dummy_block": "Dummy Block",
   "item.lifelocke.dummy_block": "Dummy Block",

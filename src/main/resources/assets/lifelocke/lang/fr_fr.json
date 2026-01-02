@@ -1,7 +1,12 @@
 {
   "item.lifelocke.dummy_item": "Objet de Test",
   "item.lifelocke.fire_bottle": "Bouteille d'énergie feu",
+  "item.lifelocke.long_fire_bottle": "Bouteille d'énergie feu longue",
+  "item.lifelocke.grass_bottle": "Bouteille d'énergie plante",
+  "item.lifelocke.long_grass_bottle": "Bouteille d'énergie plante longue",
+
   "item.lifelocke.fire_mob_spawn_egg": "Oeuf spawneur d'animal feu",
+  "item.lifelocke.grass_mob_spawn_egg": "Oeuf spawneur d'animal plante",
 
   "block.lifelocke.dummy_block": "Bloc de Test",
   "item.lifelocke.dummy_block": "Bloc de Test",

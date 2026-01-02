@@ -1,7 +1,12 @@
 {
   "item.lifelocke.dummy_item": "Test Object",
   "item.lifelocke.fire_bottle": "Vuurenergiefles",
+  "item.lifelocke.long_fire_bottle": "Verlengde Vuurenergiefles",
+  "item.lifelocke.grass_bottle": "Grasenergiefles",
+  "item.lifelocke.long_grass_bottle": "Verlengde Grasenergiefles",
+
   "item.lifelocke.fire_mob_spawn_egg": "Vuurbeest Spawnei",
+  "item.lifelocke.grass_mob_spawn_egg": "Grasbeest Spawnei",
 
 
   "block.lifelocke.dummy_block": "Test Blok",
@@ -18,7 +23,6 @@
   "gamerule.lifelocke.type_death_messages": "Type Doodsberichten",
 
   "death.attack.fairy_heal": "%s was te aardig",
-
   "death.attack.plant_attack": "%s was geraakt door plantenmagie van %s",
 
   "death.attack.bug": "%s werd geïnfesteerd door de parasitische %s",
