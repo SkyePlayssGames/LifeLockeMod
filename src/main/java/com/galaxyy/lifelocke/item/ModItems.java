@@ -3,8 +3,10 @@ package com.galaxyy.lifelocke.item;
 import com.galaxyy.lifelocke.LifeLocke;
 import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.entity.ModEntities;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.registry.Registries;
@@ -20,6 +22,9 @@ public class ModItems {
 
     public static final Item FIRE_BOTTLE = registerItem("fire_bottle", settings ->
             new EnergyBottleItem(settings, ModEffects.FIRE, EnergyBottleItem.EffectTime.HALF_AN_HOUR)
+    );
+    public static final Item GRASS_BOTTLE = registerItem("grass_bottle", settings ->
+            new EnergyBottleItem(settings, ModEffects.GRASS, EnergyBottleItem.EffectTime.HALF_AN_HOUR)
     );
 
 
@@ -39,5 +44,8 @@ public class ModItems {
 
     public static void registerModItems() {
         System.out.println("Registering Mod Items for " + LifeLocke.MOD_ID);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register((itemgroup) -> {
+                itemgroup.add(FIRE_MOB_SPAWN_EGG);
+        });
     }
 }

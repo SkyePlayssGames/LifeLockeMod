@@ -25,7 +25,9 @@ import net.minecraft.world.World;
 import org.apache.logging.log4j.core.jmx.Server;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 public class GrassMobEntity extends HostileEntity {
     private static final int MAX_HEALTH = 20;
@@ -33,8 +35,8 @@ public class GrassMobEntity extends HostileEntity {
     private static final int ATTACK_DAMAGE = 3;
     private static final int FOLLOW_RANGE = 16;
 
-    private static final ImmutableList<BlockState> HIDEABLE_BLOCKS = Blocks.SHORT_GRASS.getStateManager().getStates();
-    private static final ImmutableList<BlockState> ATTACKABLE_BLOCKS = Blocks.GRASS_BLOCK.getStateManager().getStates();
+    private static final BlockState[] HIDEABLE_BLOCKS = Blocks.SHORT_GRASS.getStateManager().getStates().toArray(new BlockState[0]);
+    private static final BlockState[] ATTACKABLE_BLOCKS = Blocks.GRASS_BLOCK.getStateManager().getStates().toArray(new BlockState[0]);
     private static final Identifier HIDDEN_ID = Identifier.of(LifeLocke.MOD_ID, "hidden");
 
     private int grassAttackCooldownTicks = 0;
@@ -135,7 +137,7 @@ public class GrassMobEntity extends HostileEntity {
             boolean hitAnyone = false;
 
             for (ServerPlayerEntity player : world.getPlayers()) {
-                if (ATTACKABLE_BLOCKS.contains(world.getBlockState(player.getBlockPos().down())) &&
+                if (Arrays.stream(ATTACKABLE_BLOCKS).anyMatch(Predicate.isEqual(world.getBlockState(player.getBlockPos().down()))) &&
                         this.canSee(player) &&
                         (player.getGameMode() == GameMode.SURVIVAL || player.getGameMode() == GameMode.ADVENTURE)
                 ) {

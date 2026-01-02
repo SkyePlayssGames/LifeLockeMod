@@ -2,6 +2,7 @@ package com.galaxyy.lifelocke.entity.custom;
 
 import com.galaxyy.lifelocke.entity.ai.HealBlockGoal;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.EntityType;
@@ -28,6 +29,8 @@ public class FireMobEntity extends HostileEntity {
     private static final int FOLLOW_RANGE = 32;
     private static final int BURNING_TIME = 0;
 
+    private static final BlockState[] HEALING_BLOCKS = Blocks.FIRE.getStateManager().getStates().toArray(new BlockState[0]);
+
     public FireMobEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -35,7 +38,7 @@ public class FireMobEntity extends HostileEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(1, new HealBlockGoal(this, 2, Blocks.FIRE.getStateManager().getStates()));
+        this.goalSelector.add(1, new HealBlockGoal(this, 2, HEALING_BLOCKS));
         this.goalSelector.add(2, new MeleeAttackGoal(this, 1.5, false));
         this.goalSelector.add(3, new WanderAroundGoal(this, 1.0));
         this.goalSelector.add(4, new LookAroundGoal(this));

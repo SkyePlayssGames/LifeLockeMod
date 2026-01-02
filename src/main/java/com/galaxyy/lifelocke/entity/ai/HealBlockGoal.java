@@ -19,13 +19,13 @@ public class HealBlockGoal extends Goal {
     private final double speed;
     private final int distance;
     private final int hpDifference;
-    private final ImmutableList<BlockState> blockStates;
+    private final BlockState[] blockStates;
 
     public HealBlockGoal(MobEntity mob, double speed, BlockState blockState) {
         this(mob, speed, blockState, 5);
     }
 
-    public HealBlockGoal(MobEntity mob, double speed, ImmutableList<BlockState> blockStates) {
+    public HealBlockGoal(MobEntity mob, double speed, BlockState[] blockStates) {
         this(mob, speed, blockStates, 5);
     }
 
@@ -33,22 +33,21 @@ public class HealBlockGoal extends Goal {
         this(mob, speed, blockState, hpDifference, 8);
     }
 
-    public HealBlockGoal(MobEntity mob, double speed, ImmutableList<BlockState> blockStates, int hpDifference) {
+    public HealBlockGoal(MobEntity mob, double speed, BlockState[] blockStates, int hpDifference) {
         this(mob, speed, blockStates, hpDifference, 8);
     }
 
     public HealBlockGoal(MobEntity mob, double speed, BlockState blockState, int hpDifference, int distance) {
-        this(mob, speed, ImmutableList.of(blockState), hpDifference, distance);
+        this(mob, speed, new BlockState[] {blockState}, hpDifference, distance);
     }
 
-    public HealBlockGoal(MobEntity mob, double speed, ImmutableList<BlockState> blockStates, int hpDifference, int distance) {
+    public HealBlockGoal(MobEntity mob, double speed, BlockState[] blockStates, int hpDifference, int distance) {
         this.mob = mob;
         this.speed = speed;
         this.blockStates = blockStates;
         this.distance = distance;
         this.hpDifference = hpDifference;
         this.setControls(EnumSet.of(Goal.Control.MOVE));
-        System.out.println(blockStates.toString());
     }
 
 

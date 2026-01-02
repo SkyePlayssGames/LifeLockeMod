@@ -11,11 +11,11 @@ import static com.galaxyy.lifelocke.entity.ai.BlockFinder.isTouchingBlock;
 
 public class HideBlockGoal extends Goal {
     private final MobEntity mob;
-    private final ImmutableList<BlockState> blockStates;
+    private final BlockState[] blockStates;
     private final int distance;
     private final double speed;
 
-    public HideBlockGoal(MobEntity mob, ImmutableList<BlockState> blockStates, double speed, int distance) {
+    public HideBlockGoal(MobEntity mob, BlockState[] blockStates, double speed, int distance) {
         this.mob = mob;
         this.blockStates = blockStates;
         this.distance = distance;

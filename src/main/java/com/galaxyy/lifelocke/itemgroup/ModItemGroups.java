@@ -20,8 +20,7 @@ public class ModItemGroups {
                     .displayName(Text.translatable("itemgroup.lifelocke.lifelocke_stuff"))
                     .entries((displayContext, entries) -> {
                         entries.add(ModItems.FIRE_BOTTLE);
-
-                        entries.add(ModItems.FIRE_MOB_SPAWN_EGG);
+                        entries.add(ModItems.GRASS_BOTTLE);
                     }).build());
 
     public static void registerItemGroups() {

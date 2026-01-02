@@ -9,7 +9,9 @@ import net.minecraft.world.World;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.function.Predicate;
 
 public class BlockFinder {
     private static ArrayList<BlockPos> getChecks(MobEntity mob, int distance) {
@@ -49,10 +51,10 @@ public class BlockFinder {
         return toCheck;
     }
 
-    private static ArrayList<BlockPos> check(ArrayList<BlockPos> toCheck, ImmutableList<BlockState> blockStates, World world) {
+    private static ArrayList<BlockPos> check(ArrayList<BlockPos> toCheck, BlockState[] blockStates, World world) {
         ArrayList<BlockPos> toReturn = new ArrayList<>();
         for (BlockPos blockPos : toCheck) {
-            if (blockStates.contains(world.getBlockState(blockPos))) {
+            if (Arrays.stream(blockStates).anyMatch(Predicate.isEqual(world.getBlockState(blockPos)))) {
                 toReturn.add(blockPos);
             }
         }
@@ -91,7 +93,7 @@ public class BlockFinder {
         return result;
     }
 
-    public static BlockPos findNearbyBlock(MobEntity mob, ImmutableList<BlockState> blockStates, int distance) {
+    public static BlockPos findNearbyBlock(MobEntity mob, BlockState[] blockStates, int distance) {
         ArrayList<BlockPos> toCheck = getChecks(mob, distance);
         ArrayList<BlockPos> checked = check(toCheck, blockStates, mob.getEntityWorld());
         HashMap<BlockPos, Float> distances = getDistances(checked, mob.getBlockPos());
@@ -102,8 +104,8 @@ public class BlockFinder {
         return new BlockPos(toGo.getX(), toGo.getY() + 1, toGo.getZ());
     }
 
-    public static boolean isTouchingBlock(MobEntity mob, ImmutableList<BlockState> blockStates) {
+    public static boolean isTouchingBlock(MobEntity mob, BlockState[] blockStates) {
         World world = mob.getEntityWorld();
-        return blockStates.contains(world.getBlockState(mob.getBlockPos()));
+        return Arrays.stream(blockStates).anyMatch(Predicate.isEqual(world.getBlockState(mob.getBlockPos())));
     }
 }
