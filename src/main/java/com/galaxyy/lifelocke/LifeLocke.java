@@ -60,6 +60,7 @@ public class LifeLocke implements ModInitializer {
 
 		ServerLivingEntityEvents.ALLOW_DAMAGE.register(new ElectricImmunityPower());
 		ServerLivingEntityEvents.ALLOW_DAMAGE.register(new ChangeDamageEvent());
+		ServerLivingEntityEvents.ALLOW_DEATH.register(new NormalPower());
 
 		AttackEntityCallback.EVENT.register(new ElectricPower());
 		AttackEntityCallback.EVENT.register(new IcePower());

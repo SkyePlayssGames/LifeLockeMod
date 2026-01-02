@@ -62,6 +62,7 @@ public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPay
         EFFECT_FUNCTION_MAP.put(ModEffects.WATER, new WaterTrigger());
         EFFECT_FUNCTION_MAP.put(ModEffects.ROCK, new RockTrigger());
         EFFECT_FUNCTION_MAP.put(ModEffects.GHOST, new GhostTrigger());
+        EFFECT_FUNCTION_MAP.put(ModEffects.NORMAL, new NormalTrigger());
 
         TOGGLED_ABILITIES.add(ModEffects.ICE);
         TOGGLED_ABILITIES.add(ModEffects.ELECTRIC);

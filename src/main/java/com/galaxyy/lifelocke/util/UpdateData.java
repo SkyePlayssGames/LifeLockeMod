@@ -1,12 +1,30 @@
 package com.galaxyy.lifelocke.util;
 
 import com.galaxyy.lifelocke.networking.RenderTypeIconS2CPayload;
+import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.DataResult;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 
 public class UpdateData {
+    public static ItemStack swapNormalItemStack(ServerPlayerEntity playerEntity, ItemStack itemStack) {
+        NbtCompound nbt = ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData();
+        NbtElement newItem = ItemStack.CODEC.encodeStart(NbtOps.INSTANCE, itemStack).result().orElse(new NbtCompound());
+        NbtCompound oldItemNbt = nbt.getCompound("normal_item").orElse(null);
+        ItemStack oldItem = ItemStack.EMPTY;
+        if (oldItemNbt != null) {
+            oldItem = ItemStack.CODEC.decode(NbtOps.INSTANCE, oldItemNbt).result()
+                    .orElse(Pair.of(ItemStack.EMPTY, new NbtCompound())).getFirst();
+        }
+        nbt.put("normal_item", newItem);
+        return oldItem;
+    }
+
     public static void setStuckBlockPos(ServerPlayerEntity playerEntity, BlockPos pos) {
         NbtCompound nbt = ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData();
         nbt.putIntArray("stuck_block_pos", new int[] {pos.getX(), pos.getY(), pos.getZ()});

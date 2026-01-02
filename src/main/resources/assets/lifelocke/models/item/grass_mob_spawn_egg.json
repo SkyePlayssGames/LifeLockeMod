@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "lifelocke:item/grass_mob_spawn_egg"
+  }
+}
