@@ -15,21 +15,21 @@ import net.minecraft.util.Formatting;
 public class EnergyBottleItem extends Item {
     public enum EffectTime {
         HALF_AN_HOUR,
-        HOUR
-    }
+        HOUR;
 
-    public static int effectTimeToTicks(EffectTime time) {
-        return switch(time) {
-            case HALF_AN_HOUR -> 36000;
-            case HOUR -> 72000;
-        };
-    }
+        public int lengthTicks() {
+            return switch(this) {
+                case HALF_AN_HOUR -> 36000;
+                case HOUR -> 72000;
+            };
+        }
 
-    public static Text effectTimeToText(EffectTime time) {
-        return switch(time) {
-            case HALF_AN_HOUR -> Text.literal("(00:30:00)");
-            case HOUR -> Text.literal("(01:00:00)");
-        };
+        public Text tooltip() {
+            return switch(this) {
+                case HALF_AN_HOUR -> Text.literal("(00:30:00)");
+                case HOUR -> Text.literal("(01:00:00)");
+            };
+        }
     }
 
     public EnergyBottleItem(Settings settings, RegistryEntry<StatusEffect> type, EffectTime time) {
@@ -37,7 +37,7 @@ public class EnergyBottleItem extends Item {
         AddTooltipsEvent.append_tooltip(this, Text.translatable(
                 "tooltip.lifelocke.energy_bottle",
                 type.value().getName(),
-                effectTimeToText(time)
+                time.tooltip()
                 )
                 .formatted(Formatting.BLUE)
         );
@@ -46,7 +46,7 @@ public class EnergyBottleItem extends Item {
 
     public static ConsumableComponent getConsumableComponent(RegistryEntry<StatusEffect> type, EffectTime time) {
         return ConsumableComponents.drink().consumeEffect(new ApplyEffectsConsumeEffect(
-                new StatusEffectInstance(type, effectTimeToTicks(time))
+                new StatusEffectInstance(type, time.lengthTicks())
         )).build();
     }
 
