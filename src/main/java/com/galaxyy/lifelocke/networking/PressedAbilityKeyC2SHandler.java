@@ -31,11 +31,11 @@ public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPay
         for (StatusEffectInstance effect : playerEntity.getStatusEffects()) {
             if (TOGGLED_ABILITIES.containsKey(effect.getEffectType())) {
                 if (TOGGLED_ABILITIES.get(effect.getEffectType()).toggle(playerEntity)) {
-                    world.playSound(playerEntity, playerEntity.getBlockPos(), payload.toggledSoundEvent(), SoundCategory.PLAYERS);
+                    world.playSound(null, playerEntity.getBlockPos(), payload.toggledSoundEvent(), SoundCategory.PLAYERS);
                 }
             } else if (ACTIVATED_ABILITIES.containsKey(effect.getEffectType())) {
                 if (ACTIVATED_ABILITIES.get(effect.getEffectType()).activate(playerEntity, payload.hitPos())) {
-                    world.playSound(playerEntity, playerEntity.getBlockPos(), payload.activatedSoundEvent(), SoundCategory.PLAYERS);
+                    world.playSound(null, playerEntity.getBlockPos(), payload.activatedSoundEvent(), SoundCategory.PLAYERS);
                 }
             }
         }
