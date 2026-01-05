@@ -1,8 +1,8 @@
 package com.galaxyy.lifelocke.power;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
-import com.galaxyy.lifelocke.util.HungerCost;
-import com.galaxyy.lifelocke.util.iEntityDataSaver;
+import com.galaxyy.lifelocke.triggers.HungerCost;
+import com.galaxyy.lifelocke.playerdata.iEntityDataSaver;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;

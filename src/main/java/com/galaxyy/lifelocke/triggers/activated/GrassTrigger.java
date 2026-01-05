@@ -1,10 +1,7 @@
 package com.galaxyy.lifelocke.triggers.activated;
 
 import com.galaxyy.lifelocke.triggers.ActivatedAbility;
-import com.galaxyy.lifelocke.util.BlockUseConsumer;
-import com.galaxyy.lifelocke.util.HungerCost;
-import com.galaxyy.lifelocke.util.UpdateData;
-import com.galaxyy.lifelocke.util.iEntityDataSaver;
+import com.galaxyy.lifelocke.triggers.HungerCost;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.item.*;
@@ -14,7 +11,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3i;
-import net.minecraft.world.World;
 
 public class GrassTrigger implements ActivatedAbility {
     private final EntityType[] ANIMALS = {

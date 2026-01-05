@@ -3,7 +3,7 @@ package com.galaxyy.lifelocke.rendering;
 import com.galaxyy.lifelocke.LifeLocke;
 import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
-import com.galaxyy.lifelocke.util.iEntityDataSaver;
+import com.galaxyy.lifelocke.playerdata.iEntityDataSaver;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;

@@ -1,24 +1,19 @@
 package com.galaxyy.lifelocke.command;
 
-import com.galaxyy.lifelocke.LifeLocke;
 import com.galaxyy.lifelocke.effect.ModEffects;
-import com.galaxyy.lifelocke.util.PlayerCopyHandler;
-import com.galaxyy.lifelocke.util.UpdateData;
-import com.galaxyy.lifelocke.util.iEntityDataSaver;
+import com.galaxyy.lifelocke.playerdata.UpdateData;
+import com.galaxyy.lifelocke.playerdata.iEntityDataSaver;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
-import jdk.jshell.Snippet;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.CommandRegistryAccess;
-import net.minecraft.command.argument.ArgumentTypes;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.command.permission.Permission;
 import net.minecraft.command.permission.PermissionLevel;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;

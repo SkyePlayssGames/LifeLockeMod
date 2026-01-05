@@ -2,8 +2,8 @@ package com.galaxyy.lifelocke.command;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.gamerule.ModGameRules;
-import com.galaxyy.lifelocke.util.UpdateData;
-import com.galaxyy.lifelocke.util.iEntityDataSaver;
+import com.galaxyy.lifelocke.playerdata.UpdateData;
+import com.galaxyy.lifelocke.playerdata.iEntityDataSaver;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -15,12 +15,10 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 
 import java.util.Arrays;

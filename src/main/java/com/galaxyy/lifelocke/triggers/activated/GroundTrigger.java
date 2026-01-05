@@ -1,19 +1,14 @@
 package com.galaxyy.lifelocke.triggers.activated;
 
 import com.galaxyy.lifelocke.triggers.ActivatedAbility;
-import com.galaxyy.lifelocke.util.BlockUseConsumer;
-import com.galaxyy.lifelocke.util.HungerCost;
-import com.galaxyy.lifelocke.util.UpdateData;
-import com.galaxyy.lifelocke.util.iEntityDataSaver;
+import com.galaxyy.lifelocke.triggers.HungerCost;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
-import net.minecraft.world.World;
 
 import java.util.Arrays;
 import java.util.HashMap;

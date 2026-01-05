@@ -1,6 +1,6 @@
 package com.galaxyy.lifelocke.power;
 
-import com.galaxyy.lifelocke.util.UpdateData;
+import com.galaxyy.lifelocke.playerdata.UpdateData;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;

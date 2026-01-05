@@ -2,7 +2,7 @@ package com.galaxyy.lifelocke.event;
 
 import com.galaxyy.lifelocke.LifeLocke;
 import com.galaxyy.lifelocke.networking.ServerModCheckC2SPayload;
-import com.galaxyy.lifelocke.util.iEntityDataSaver;
+import com.galaxyy.lifelocke.playerdata.iEntityDataSaver;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.client.MinecraftClient;

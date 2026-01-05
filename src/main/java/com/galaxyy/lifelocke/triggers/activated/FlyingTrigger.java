@@ -1,18 +1,12 @@
 package com.galaxyy.lifelocke.triggers.activated;
 
 import com.galaxyy.lifelocke.triggers.ActivatedAbility;
-import com.galaxyy.lifelocke.util.BlockUseConsumer;
-import com.galaxyy.lifelocke.util.HungerCost;
-import com.galaxyy.lifelocke.util.UpdateData;
-import com.galaxyy.lifelocke.util.iEntityDataSaver;
+import com.galaxyy.lifelocke.triggers.HungerCost;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3i;
-import net.minecraft.world.World;
 
 public class FlyingTrigger implements ActivatedAbility {
 

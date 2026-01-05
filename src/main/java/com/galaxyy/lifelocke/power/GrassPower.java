@@ -1,15 +1,10 @@
 package com.galaxyy.lifelocke.power;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
-import com.galaxyy.lifelocke.util.HungerCost;
-import com.galaxyy.lifelocke.util.iEntityDataSaver;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.EntityHitResult;

@@ -1,8 +1,8 @@
 package com.galaxyy.lifelocke.power;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
-import com.galaxyy.lifelocke.util.HungerCost;
-import com.galaxyy.lifelocke.util.iEntityDataSaver;
+import com.galaxyy.lifelocke.triggers.HungerCost;
+import com.galaxyy.lifelocke.playerdata.iEntityDataSaver;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -14,7 +14,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import org.jspecify.annotations.NonNull;
 
 public class PsychicPower implements AttackEntityCallback {
     @Override

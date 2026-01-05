@@ -1,8 +1,7 @@
-package com.galaxyy.lifelocke.util;
+package com.galaxyy.lifelocke.playerdata;
 
 import com.galaxyy.lifelocke.networking.RenderTypeIconS2CPayload;
 import com.mojang.datafixers.util.Pair;
-import com.mojang.serialization.DataResult;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;

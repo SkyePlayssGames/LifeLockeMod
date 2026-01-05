@@ -1,6 +1,6 @@
 package com.galaxyy.lifelocke.networking;
 
-import com.galaxyy.lifelocke.util.iEntityDataSaver;
+import com.galaxyy.lifelocke.playerdata.iEntityDataSaver;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 
 public class RenderTypeIconS2CHandler implements ClientPlayNetworking.PlayPayloadHandler<RenderTypeIconS2CPayload> {

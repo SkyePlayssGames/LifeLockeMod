@@ -2,7 +2,7 @@ package com.galaxyy.lifelocke.networking;
 
 import com.galaxyy.lifelocke.LifeLocke;
 import com.galaxyy.lifelocke.events.ModdedPlayerJoinServerCallback;
-import com.galaxyy.lifelocke.util.iEntityDataSaver;
+import com.galaxyy.lifelocke.playerdata.iEntityDataSaver;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;

@@ -1,4 +1,4 @@
-package com.galaxyy.lifelocke.util;
+package com.galaxyy.lifelocke.playerdata;
 
 import net.minecraft.nbt.NbtCompound;
 

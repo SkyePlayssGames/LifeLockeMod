@@ -1,4 +1,4 @@
-package com.galaxyy.lifelocke.util;
+package com.galaxyy.lifelocke.playerdata;
 
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.minecraft.server.network.ServerPlayerEntity;

@@ -1,15 +1,13 @@
 package com.galaxyy.lifelocke.effect;
 
 import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
-import com.galaxyy.lifelocke.util.UpdateData;
+import com.galaxyy.lifelocke.playerdata.UpdateData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-
-import java.util.Iterator;
 
 public class PoisonEffect extends StatusEffect {
     protected PoisonEffect(StatusEffectCategory category, int color) {

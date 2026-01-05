@@ -1,7 +1,7 @@
 package com.galaxyy.lifelocke.event;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
-import com.galaxyy.lifelocke.util.UpdateData;
+import com.galaxyy.lifelocke.playerdata.UpdateData;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.registry.entry.RegistryEntry;

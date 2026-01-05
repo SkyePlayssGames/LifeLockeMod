@@ -1,8 +1,8 @@
 package com.galaxyy.lifelocke.effect;
 
 import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
-import com.galaxyy.lifelocke.util.UpdateData;
-import com.galaxyy.lifelocke.util.iEntityDataSaver;
+import com.galaxyy.lifelocke.playerdata.UpdateData;
+import com.galaxyy.lifelocke.playerdata.iEntityDataSaver;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;

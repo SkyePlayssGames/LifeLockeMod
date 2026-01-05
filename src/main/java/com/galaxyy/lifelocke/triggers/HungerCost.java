@@ -1,4 +1,4 @@
-package com.galaxyy.lifelocke.util;
+package com.galaxyy.lifelocke.triggers;
 
 import net.minecraft.entity.player.PlayerEntity;
 

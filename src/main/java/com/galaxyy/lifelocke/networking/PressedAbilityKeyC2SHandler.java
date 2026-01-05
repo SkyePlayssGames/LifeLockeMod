@@ -1,23 +1,17 @@
 package com.galaxyy.lifelocke.networking;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
-import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
 import com.galaxyy.lifelocke.triggers.*;
 import com.galaxyy.lifelocke.triggers.activated.*;
 import com.galaxyy.lifelocke.triggers.toggled.*;
-import com.galaxyy.lifelocke.util.BlockUseConsumer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPayloadHandler<@org.jetbrains.annotations.NotNull PressedAbilityKeyC2SPayload> {
