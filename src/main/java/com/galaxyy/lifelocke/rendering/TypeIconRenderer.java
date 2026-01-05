@@ -22,11 +22,16 @@ public class TypeIconRenderer {
     private static final Identifier GHOST_ID = Identifier.of(LifeLocke.MOD_ID, "textures/mob_effect/ghost.png");
     private static final Identifier NONE_ID = Identifier.of(LifeLocke.MOD_ID, "textures/no_effect.png");
 
+    private static void drawTypeIcon(Identifier ID, DrawContext context, int x, int y) {
+        context.drawTexture(RenderPipelines.GUI_TEXTURED, ID, x, y, 0, 0, 18, 18, 18, 18);
+    }
+
     public static void render(DrawContext context, RenderTickCounter tickCounter) {
         SettingsFileHandler.create();
 
         Arm mainHand = MinecraftClient.getInstance().options.getMainArm().getValue();
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
+        assert player != null;
         int icon = ((iEntityDataSaver) player).lifelocke$getPersistentData().getInt("type_icon", 0);
 
         final Window window = MinecraftClient.getInstance().getWindow();
@@ -44,83 +49,83 @@ public class TypeIconRenderer {
         if (mainHand == Arm.RIGHT) { switch (icon) {
             case 1:
                 if (player.hasStatusEffect(ModEffects.ELECTRIC)) {
-                    context.drawTexture(RenderPipelines.GUI_TEXTURED, ELECTRIC_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    drawTypeIcon(ELECTRIC_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 2:
                 if (player.hasStatusEffect(ModEffects.ICE)) {
-                    context.drawTexture(RenderPipelines.GUI_TEXTURED, ICE_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    drawTypeIcon(ICE_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 3:
                 if (player.hasStatusEffect(ModEffects.POISON)) {
-                    context.drawTexture(RenderPipelines.GUI_TEXTURED, POISON_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    drawTypeIcon(POISON_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 4:
                 if (player.hasStatusEffect(ModEffects.DARK)) {
-                    context.drawTexture(RenderPipelines.GUI_TEXTURED, DARK_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    drawTypeIcon(DARK_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 5:
                 if (player.hasStatusEffect(ModEffects.PSYCHIC)) {
-                    context.drawTexture(RenderPipelines.GUI_TEXTURED, PSYCHIC_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    drawTypeIcon(PSYCHIC_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 6:
                 if (player.hasStatusEffect(ModEffects.GHOST)) {
-                    context.drawTexture(RenderPipelines.GUI_TEXTURED, GHOST_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    drawTypeIcon(GHOST_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             default:
-                context.drawTexture(RenderPipelines.GUI_TEXTURED, NONE_ID, X_COORDINATE_RIGHT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                drawTypeIcon(NONE_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
                 showed_icon = true;
                 break;
         }} else { switch (icon) {
             case 1:
                 if (player.hasStatusEffect(ModEffects.ELECTRIC)) {
-                    context.drawTexture(RenderPipelines.GUI_TEXTURED, ELECTRIC_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    drawTypeIcon(ELECTRIC_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 2:
                 if (player.hasStatusEffect(ModEffects.ICE)) {
-                    context.drawTexture(RenderPipelines.GUI_TEXTURED, ICE_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    drawTypeIcon(ICE_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 3:
                 if (player.hasStatusEffect(ModEffects.POISON)) {
-                    context.drawTexture(RenderPipelines.GUI_TEXTURED, POISON_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    drawTypeIcon(POISON_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 4:
                 if (player.hasStatusEffect(ModEffects.DARK)) {
-                    context.drawTexture(RenderPipelines.GUI_TEXTURED, DARK_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    drawTypeIcon(DARK_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 5:
                 if (player.hasStatusEffect(ModEffects.PSYCHIC)) {
-                    context.drawTexture(RenderPipelines.GUI_TEXTURED, PSYCHIC_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    drawTypeIcon(PSYCHIC_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 6:
                 if (player.hasStatusEffect(ModEffects.GHOST)) {
-                    context.drawTexture(RenderPipelines.GUI_TEXTURED, GHOST_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                    drawTypeIcon(GHOST_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             default:
-                context.drawTexture(RenderPipelines.GUI_TEXTURED, NONE_ID, X_COORDINATE_LEFT, Y_COORDINATE, 0, 0, 18, 18, 18, 18);
+                drawTypeIcon(NONE_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
                 showed_icon = true;
                 break;
         }}
