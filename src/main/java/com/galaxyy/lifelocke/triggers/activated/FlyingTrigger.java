@@ -1,5 +1,6 @@
-package com.galaxyy.lifelocke.triggers;
+package com.galaxyy.lifelocke.triggers.activated;
 
+import com.galaxyy.lifelocke.triggers.ActivatedAbility;
 import com.galaxyy.lifelocke.util.BlockUseConsumer;
 import com.galaxyy.lifelocke.util.HungerCost;
 import com.galaxyy.lifelocke.util.UpdateData;
@@ -13,17 +14,17 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
-public class FlyingTrigger implements BlockUseConsumer {
+public class FlyingTrigger implements ActivatedAbility {
 
     @Override
-    public boolean accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
-        if (world.isClient() || !UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())
-            || !(HungerCost.checkHunger(playerEntity, 6) || playerEntity.isCreative())
+    public boolean activate(ServerPlayerEntity playerEntity, Vec3i pos) {
+        if (!(HungerCost.checkHunger(playerEntity, 6) || playerEntity.isCreative())
             || (playerEntity.isHolding(Items.SHIELD) && playerEntity.isUsingItem())) {
             return false;
         }
 
-        EntityType.WIND_CHARGE.spawn((ServerWorld) world, playerEntity.getBlockPos().up(2), SpawnReason.TRIGGERED).setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0, 10, 0);
+        EntityType.WIND_CHARGE.spawn(playerEntity.getEntityWorld(), playerEntity.getBlockPos().up(2), SpawnReason.TRIGGERED)
+                .setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0, 10, 0);
         HungerCost.takeHunger(playerEntity, 3);
         return true;
     }

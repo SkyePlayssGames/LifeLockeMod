@@ -1,5 +1,6 @@
-package com.galaxyy.lifelocke.triggers;
+package com.galaxyy.lifelocke.triggers.activated;
 
+import com.galaxyy.lifelocke.triggers.ActivatedAbility;
 import com.galaxyy.lifelocke.util.BlockUseConsumer;
 import com.galaxyy.lifelocke.util.HungerCost;
 import com.galaxyy.lifelocke.util.UpdateData;
@@ -15,17 +16,19 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
-public class GrassTrigger implements BlockUseConsumer {
+public class GrassTrigger implements ActivatedAbility {
     private final EntityType[] ANIMALS = {
             EntityType.COW, EntityType.SHEEP, EntityType.PIG, EntityType.CHICKEN
     };
 
     @Override
-    public boolean accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
-        if (world.isClient() || !UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())
-                || !(HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative())) {
+    public boolean activate(ServerPlayerEntity playerEntity, Vec3i pos) {
+        if (!(HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative())) {
             return false;
         }
+
+        ServerWorld world = playerEntity.getEntityWorld();
+        Hand hand = playerEntity.getActiveHand();
 
         ItemStack stack = new ItemStack(Items.BONE_MEAL);
         BlockHitResult blockHitResult = new BlockHitResult(

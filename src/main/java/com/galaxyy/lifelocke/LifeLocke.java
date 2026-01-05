@@ -19,7 +19,7 @@ import com.galaxyy.lifelocke.modmenu.settings.PowerSoundSetting;
 import com.galaxyy.lifelocke.networking.*;
 import com.galaxyy.lifelocke.power.*;
 import com.galaxyy.lifelocke.sound.ModSounds;
-import com.galaxyy.lifelocke.triggers.GroundTrigger;
+import com.galaxyy.lifelocke.triggers.activated.GroundTrigger;
 import com.galaxyy.lifelocke.util.PlayerCopyHandler;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;

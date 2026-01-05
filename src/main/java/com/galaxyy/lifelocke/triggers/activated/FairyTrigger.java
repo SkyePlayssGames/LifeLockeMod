@@ -1,5 +1,6 @@
-package com.galaxyy.lifelocke.triggers;
+package com.galaxyy.lifelocke.triggers.activated;
 
+import com.galaxyy.lifelocke.triggers.ActivatedAbility;
 import com.galaxyy.lifelocke.util.BlockUseConsumer;
 import com.galaxyy.lifelocke.util.HungerCost;
 import com.galaxyy.lifelocke.util.UpdateData;
@@ -12,14 +13,13 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
-public class FairyTrigger implements BlockUseConsumer {
+public class FairyTrigger implements ActivatedAbility {
     public static final int FAIRY_BOOST_TIME = 400;
     public static final int FAIRY_COOLDOWN = 1200;
 
     @Override
-    public boolean accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
-        if (world.isClient() || !UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())
-            || !(HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative())
+    public boolean activate(ServerPlayerEntity playerEntity, Vec3i pos) {
+        if (!(HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative())
             || playerEntity.hasStatusEffect(StatusEffects.GLOWING)) {
             return false;
         }

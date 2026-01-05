@@ -1,5 +1,6 @@
-package com.galaxyy.lifelocke.triggers;
+package com.galaxyy.lifelocke.triggers.activated;
 
+import com.galaxyy.lifelocke.triggers.ActivatedAbility;
 import com.galaxyy.lifelocke.util.BlockUseConsumer;
 import com.galaxyy.lifelocke.util.HungerCost;
 import com.galaxyy.lifelocke.util.UpdateData;
@@ -14,16 +15,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
-public class FireTrigger implements BlockUseConsumer {
-
+public class FireTrigger implements ActivatedAbility {
     @Override
-    public boolean accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
-        if (world.isClient() || !UpdateData.tryAndStoreCooldown(((iEntityDataSaver) playerEntity), world.getTime())
-            || !(HungerCost.checkHunger(playerEntity, 6) || playerEntity.isCreative())
+    public boolean activate(ServerPlayerEntity playerEntity, Vec3i pos) {
+        if (!(HungerCost.checkHunger(playerEntity, 6) || playerEntity.isCreative())
             || (playerEntity.isHolding(Items.SHIELD) && playerEntity.isUsingItem())) {
             return false;
         }
-        EntityType.FIREBALL.spawn((ServerWorld) world, BlockPos.ofFloored(pos.getX(), pos.getY(), pos.getZ()).up(), SpawnReason.TRIGGERED).setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0, 3, 0);
+        EntityType.FIREBALL.spawn(playerEntity.getEntityWorld(), BlockPos.ofFloored(pos.getX(), pos.getY(), pos.getZ()).up(), SpawnReason.TRIGGERED)
+                .setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0, 3, 0);
         HungerCost.takeHunger(playerEntity, 2);
         return true;
     }

@@ -1,6 +1,7 @@
-package com.galaxyy.lifelocke.triggers;
+package com.galaxyy.lifelocke.triggers.activated;
 
 import com.galaxyy.lifelocke.gamerule.ModGameRules;
+import com.galaxyy.lifelocke.triggers.ActivatedAbility;
 import com.galaxyy.lifelocke.util.BlockUseConsumer;
 import com.galaxyy.lifelocke.util.UpdateData;
 import net.minecraft.item.ItemStack;
@@ -10,10 +11,10 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
-public class NormalTrigger implements BlockUseConsumer {
+public class NormalTrigger implements ActivatedAbility {
     @Override
-    public boolean accept(ServerPlayerEntity playerEntity, World world, Hand hand, Vec3i pos) {
-        if (!((ServerWorld) world).getGameRules().getValue(ModGameRules.NORMAL_HAS_ABILITY)) {
+    public boolean activate(ServerPlayerEntity playerEntity, Vec3i pos) {
+        if (!playerEntity.getEntityWorld().getGameRules().getValue(ModGameRules.NORMAL_HAS_ABILITY)) {
             return false;
         }
 
