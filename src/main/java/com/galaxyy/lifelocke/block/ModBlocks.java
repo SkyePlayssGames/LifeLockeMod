@@ -13,23 +13,43 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
+import java.util.function.Function;
+
 public class ModBlocks {
-    public static final Block DUMMY_BLOCK = registerBlock("dummy_block", new Block(
-            AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(LifeLocke.MOD_ID, "dummy_block"))).breakInstantly()
-    ));
-    public static final Block FROSTED_OBSIDIAN = registerBlock("frosted_obsidian", new FrostedObsidianBlock(
-            AbstractBlock.Settings.create().registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(LifeLocke.MOD_ID, "frosted_obsidian")))
-                    .mapColor(MapColor.BLACK).instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(50.0F, 1200.0F)
+    public static final Block DUMMY_BLOCK = registerBlock("dummy_block", settings ->
+            new Block(settings
+                    .breakInstantly()
+                    .mapColor(MapColor.PINK)
+                    .instrument(NoteBlockInstrument.CREEPER)
+            ));
+    public static final Block FROSTED_OBSIDIAN = registerBlockWithoutBlockItem("frosted_obsidian", settings ->
+            new FrostedObsidianBlock(settings
+                    .mapColor(MapColor.BLACK)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .strength(50.0F, 1200.0F)
     ));
 
-    private static Block registerBlock(String name, Block block) {
-        registerBlockItem(name, block);
-        return Registry.register(Registries.BLOCK, Identifier.of(LifeLocke.MOD_ID, name), block);
+    private static Block registerBlock(String name, Function<AbstractBlock.Settings, Block> function) {
+        Identifier id = Identifier.of(LifeLocke.MOD_ID, name);
+        Block toRegister = function.apply(AbstractBlock.Settings.create().registryKey(RegistryKey.of(
+                RegistryKeys.BLOCK, id
+        )));
+        registerBlockItem(name, toRegister);
+        return Registry.register(Registries.BLOCK, id, toRegister);
+    }
+
+    private static Block registerBlockWithoutBlockItem(String name, Function<AbstractBlock.Settings, Block> function) {
+        Identifier id = Identifier.of(LifeLocke.MOD_ID, name);
+        Block toRegister = function.apply(AbstractBlock.Settings.create().registryKey(RegistryKey.of(
+                RegistryKeys.BLOCK, id
+        )));
+        return Registry.register(Registries.BLOCK, id, toRegister);
     }
 
     private static void registerBlockItem(String name, Block block) {
-        Registry.register(Registries.ITEM, Identifier.of(LifeLocke.MOD_ID, name),
-                new BlockItem(block, new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(LifeLocke.MOD_ID, "dummy_block")))));
+        Identifier id = Identifier.of(LifeLocke.MOD_ID, name);
+        Registry.register(Registries.ITEM, id,
+                new BlockItem(block, new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, id))));
     }
 
     public static void registerModBlocks() {
