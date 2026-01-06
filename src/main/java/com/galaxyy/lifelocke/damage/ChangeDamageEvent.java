@@ -5,7 +5,9 @@ import com.galaxyy.lifelocke.gamerule.ModGameRules;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageSources;
 import net.minecraft.entity.damage.DamageType;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,7 +23,7 @@ public class ChangeDamageEvent implements ServerLivingEntityEvents.AllowDamage {
     @Override
     public boolean allowDamage(LivingEntity entity, DamageSource source, float amount) {
         if (!(source.getAttacker() instanceof PlayerEntity) ||
-            deathMessages.containsValue(source.getTypeRegistryEntry().getKey().orElse(null)) ||
+            isModifiableDeathMessage(source) ||
             !(((ServerWorld) entity.getEntityWorld()).getGameRules().getValue(ModGameRules.TYPE_DEATH_MESSAGES))
         ) {
             return true;
@@ -36,6 +38,12 @@ public class ChangeDamageEvent implements ServerLivingEntityEvents.AllowDamage {
             }
         }
         return true;
+    }
+
+    private static boolean isModifiableDeathMessage(DamageSource source) {
+        return deathMessages.containsValue(source.getTypeRegistryEntry().getKey().orElse(null)) ||
+                source.getTypeRegistryEntry().getKey().orElseThrow() == DamageTypes.EXPLOSION
+                ;
     }
 
     public static void registerDeathMessages() {
