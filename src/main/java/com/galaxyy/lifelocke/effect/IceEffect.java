@@ -1,5 +1,6 @@
 package com.galaxyy.lifelocke.effect;
 
+import com.galaxyy.lifelocke.block.ModBlocks;
 import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
 import com.galaxyy.lifelocke.playerdata.UpdateData;
 import com.galaxyy.lifelocke.playerdata.iEntityDataSaver;
@@ -65,7 +66,7 @@ public class IceEffect extends StatusEffect {
             if (world.getBlockState(blockPos).isOf(Blocks.WATER)) {
                 world.setBlockState(blockPos, Blocks.FROSTED_ICE.getDefaultState());
             } else if (world.getBlockState(blockPos).isOf(Blocks.LAVA)) {
-                world.setBlockState(blockPos, Blocks.FROSTED_ICE.getDefaultState());
+                world.setBlockState(blockPos, ModBlocks.FROSTED_OBSIDIAN.getDefaultState());
             }
         }
 
