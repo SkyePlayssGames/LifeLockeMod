@@ -43,7 +43,7 @@ public class ModEffects {
                     -0.4, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
             ).addAttributeModifier(
                     EntityAttributes.FALL_DAMAGE_MULTIPLIER, Identifier.of(LifeLocke.MOD_ID, "bug"),
-                    -1, EntityAttributeModifier.Operation.ADD_VALUE
+                    -2.0f/3.0f, EntityAttributeModifier.Operation.ADD_VALUE
             ).addAttributeModifier(
                     EntityAttributes.MAX_HEALTH, Identifier.of(LifeLocke.MOD_ID, "bug"),
                     -4, EntityAttributeModifier.Operation.ADD_VALUE
