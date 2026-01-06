@@ -6,7 +6,9 @@
     "CrafterMixin",
     "CraftingTableMixin",
     "ExampleMixin",
-    "ModEntityDataSaverMixin"
+    "LivingEntityCanFreezeMixin",
+    "ModEntityDataSaverMixin",
+    "PowderSnowMixin"
   ],
   "injectors": {
     "defaultRequire": 1
