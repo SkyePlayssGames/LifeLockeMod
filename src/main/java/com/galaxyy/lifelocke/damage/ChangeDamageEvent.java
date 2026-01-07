@@ -5,9 +5,7 @@ import com.galaxyy.lifelocke.gamerule.ModGameRules;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageSources;
 import net.minecraft.entity.damage.DamageType;
-import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,28 +20,23 @@ public class ChangeDamageEvent implements ServerLivingEntityEvents.AllowDamage {
 
     @Override
     public boolean allowDamage(LivingEntity entity, DamageSource source, float amount) {
-        if (!(source.getAttacker() instanceof PlayerEntity) ||
-            isModifiableDeathMessage(source) ||
-            !(((ServerWorld) entity.getEntityWorld()).getGameRules().getValue(ModGameRules.TYPE_DEATH_MESSAGES))
+        if (!(source.getAttacker() instanceof PlayerEntity player) ||
+                !(entity instanceof PlayerEntity target) ||
+                deathMessages.containsValue(source.getTypeRegistryEntry().getKey().orElse(null)) ||
+                !(((ServerWorld) entity.getEntityWorld()).getGameRules().getValue(ModGameRules.TYPE_DEATH_MESSAGES))
         ) {
             return true;
         }
-        PlayerEntity player = (PlayerEntity) source.getAttacker();
+
         for (StatusEffectInstance effect : player.getStatusEffects()) {
             if (deathMessages.containsKey(effect.getEffectType())) {
-                entity.damage(((ServerWorld) entity.getEntityWorld()),
-                        ModDamageTypes.of(entity.getEntityWorld(), deathMessages.get(effect.getEffectType()), source.getAttacker()),
+                target.damage(((ServerWorld) target.getEntityWorld()),
+                        ModDamageTypes.of(target.getEntityWorld(), deathMessages.get(effect.getEffectType()), source.getAttacker()),
                         amount);
                 return false;
             }
         }
         return true;
-    }
-
-    private static boolean isModifiableDeathMessage(DamageSource source) {
-        return deathMessages.containsValue(source.getTypeRegistryEntry().getKey().orElse(null)) ||
-                source.getTypeRegistryEntry().getKey().orElseThrow() == DamageTypes.EXPLOSION
-                ;
     }
 
     public static void registerDeathMessages() {
