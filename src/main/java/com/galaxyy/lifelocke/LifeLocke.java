@@ -55,7 +55,7 @@ public class LifeLocke implements ModInitializer {
 		JoinIconFixEvent.registerJoinFixEventTypes();
 		ChangeDamageEvent.registerDeathMessages();
 
-		ServerPlayerEvents.COPY_FROM.register(new PlayerCopyHandler());
+		ServerPlayerEvents.AFTER_RESPAWN.register(new PlayerCopyHandler());
 		ServerPlayerEvents.JOIN.register(new JoinIconFixEvent());
 
 		ServerLivingEntityEvents.ALLOW_DAMAGE.register(new ElectricImmunityPower());
@@ -82,6 +82,7 @@ public class LifeLocke implements ModInitializer {
 		PayloadTypeRegistry.playS2C().register(RenderTypeIconS2CPayload.ID, RenderTypeIconS2CPayload.CODEC);
 		PayloadTypeRegistry.playS2C().register(ServerModCheckS2CPayload.ID, ServerModCheckS2CPayload.CODEC);
 		PayloadTypeRegistry.playS2C().register(GrassMobAnimationS2CPayload.ID, GrassMobAnimationS2CPayload.CODEC);
+		PayloadTypeRegistry.playS2C().register(CopyFromDeadPlayerS2CPayload.ID, CopyFromDeadPlayerS2CPayload.CODEC);
 
 		ServerPlayNetworking.registerGlobalReceiver(PressedAbilityKeyC2SPayload.ID, new PressedAbilityKeyC2SHandler());
 		ServerPlayNetworking.registerGlobalReceiver(ServerModCheckC2SPayload.ID, new ServerModCheckC2SHandler());
