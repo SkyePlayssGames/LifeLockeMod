@@ -1,0 +1,22 @@
+{
+  "values": [
+    "lifelocke:fall/bug",
+    "lifelocke:fall/dark",
+    "lifelocke:fall/curse_type",
+    "lifelocke:fall/dragon",
+    "lifelocke:fall/electric",
+    "lifelocke:fall/fairy",
+    "lifelocke:fall/fighting",
+    "lifelocke:fall/fire",
+    "lifelocke:fall/flying",
+    "lifelocke:fall/ghost",
+    "lifelocke:fall/grass",
+    "lifelocke:fall/ground",
+    "lifelocke:fall/ice",
+    "lifelocke:fall/poison",
+    "lifelocke:fall/psychic",
+    "lifelocke:fall/rock",
+    "lifelocke:fall/steel",
+    "lifelocke:fall/water"
+  ]
+}

@@ -3,6 +3,7 @@ package com.galaxyy.lifelocke;
 import com.galaxyy.lifelocke.block.ModBlocks;
 import com.galaxyy.lifelocke.command.*;
 import com.galaxyy.lifelocke.damage.ChangeDamageEvent;
+import com.galaxyy.lifelocke.damage.ModDamageTypes;
 import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.entity.ModEntities;
 import com.galaxyy.lifelocke.entity.custom.FireMobEntity;
@@ -47,13 +48,15 @@ public class LifeLocke implements ModInitializer {
 		ModDataComponents.registerModDataComponents();
 		ModSounds.registerSounds();
 		ModEntities.registerModEntities();
+		ModDamageTypes.registerSlainDamageTypes();
+		ModDamageTypes.registerProjectileDamageTypes();
+		ModDamageTypes.registerFallDamageTypes();
 
 		PressedAbilityKeyC2SHandler.registerEffectMap();
 		GroundTrigger.registerGroundMaps();
 		PowerSoundSetting.registerSoundEventMaps();
 		SettingsFileHandler.registerSettingsFile();
 		JoinIconFixEvent.registerJoinFixEventTypes();
-		ChangeDamageEvent.registerDeathMessages();
 
 		ServerPlayerEvents.AFTER_RESPAWN.register(new PlayerCopyHandler());
 		ServerPlayerEvents.JOIN.register(new JoinIconFixEvent());

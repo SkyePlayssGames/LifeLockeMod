@@ -1,0 +1,22 @@
+{
+  "values": [
+    "lifelocke:proj/bug",
+    "lifelocke:proj/dark",
+    "lifelocke:proj/curse_type",
+    "lifelocke:proj/dragon",
+    "lifelocke:proj/electric",
+    "lifelocke:proj/fairy",
+    "lifelocke:proj/fighting",
+    "lifelocke:proj/fire",
+    "lifelocke:proj/flying",
+    "lifelocke:proj/ghost",
+    "lifelocke:proj/grass",
+    "lifelocke:proj/ground",
+    "lifelocke:proj/ice",
+    "lifelocke:proj/poison",
+    "lifelocke:proj/psychic",
+    "lifelocke:proj/rock",
+    "lifelocke:proj/steel",
+    "lifelocke:proj/water"
+  ]
+}
