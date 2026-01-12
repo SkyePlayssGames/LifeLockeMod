@@ -1,17 +1,14 @@
 package com.galaxyy.lifelocke.entity.ai;
 
-import com.google.common.collect.ImmutableList;
-import net.minecraft.block.BlockState;
+import net.minecraft.block.Block;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.function.Predicate;
 
 public class BlockFinder {
     private static ArrayList<BlockPos> getChecks(MobEntity mob, int distance) {
@@ -51,10 +48,10 @@ public class BlockFinder {
         return toCheck;
     }
 
-    private static ArrayList<BlockPos> check(ArrayList<BlockPos> toCheck, BlockState[] blockStates, World world) {
+    private static ArrayList<BlockPos> check(ArrayList<BlockPos> toCheck, TagKey<Block> blockTag, World world) {
         ArrayList<BlockPos> toReturn = new ArrayList<>();
         for (BlockPos blockPos : toCheck) {
-            if (Arrays.stream(blockStates).anyMatch(Predicate.isEqual(world.getBlockState(blockPos)))) {
+            if (world.getBlockState(blockPos).isIn(blockTag)) {
                 toReturn.add(blockPos);
             }
         }
@@ -93,9 +90,9 @@ public class BlockFinder {
         return result;
     }
 
-    public static BlockPos findNearbyBlock(MobEntity mob, BlockState[] blockStates, int distance) {
+    public static BlockPos findNearbyBlock(MobEntity mob, TagKey<Block> blockTag, int distance) {
         ArrayList<BlockPos> toCheck = getChecks(mob, distance);
-        ArrayList<BlockPos> checked = check(toCheck, blockStates, mob.getEntityWorld());
+        ArrayList<BlockPos> checked = check(toCheck, blockTag, mob.getEntityWorld());
         HashMap<BlockPos, Float> distances = getDistances(checked, mob.getBlockPos());
         BlockPos toGo = getLowestDistance(distances);
 
@@ -104,8 +101,8 @@ public class BlockFinder {
         return new BlockPos(toGo.getX(), toGo.getY() + 1, toGo.getZ());
     }
 
-    public static boolean isTouchingBlock(MobEntity mob, BlockState[] blockStates) {
+    public static boolean isTouchingBlock(MobEntity mob, TagKey<Block> blockTag) {
         World world = mob.getEntityWorld();
-        return Arrays.stream(blockStates).anyMatch(Predicate.isEqual(world.getBlockState(mob.getBlockPos())));
+        return world.getBlockState(mob.getBlockPos()).isIn(blockTag);
     }
 }

@@ -1,10 +1,12 @@
 package com.galaxyy.lifelocke.entity.ai;
 
 import com.google.common.collect.ImmutableList;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -19,32 +21,20 @@ public class HealBlockGoal extends Goal {
     private final double speed;
     private final int distance;
     private final int hpDifference;
-    private final BlockState[] blockStates;
+    private final TagKey<Block> blockTag;
 
-    public HealBlockGoal(MobEntity mob, double speed, BlockState blockState) {
+    public HealBlockGoal(MobEntity mob, double speed, TagKey<Block> blockState) {
         this(mob, speed, blockState, 5);
     }
 
-    public HealBlockGoal(MobEntity mob, double speed, BlockState[] blockStates) {
-        this(mob, speed, blockStates, 5);
-    }
-
-    public HealBlockGoal(MobEntity mob, double speed, BlockState blockState, int hpDifference) {
+    public HealBlockGoal(MobEntity mob, double speed, TagKey<Block> blockState, int hpDifference) {
         this(mob, speed, blockState, hpDifference, 8);
     }
 
-    public HealBlockGoal(MobEntity mob, double speed, BlockState[] blockStates, int hpDifference) {
-        this(mob, speed, blockStates, hpDifference, 8);
-    }
-
-    public HealBlockGoal(MobEntity mob, double speed, BlockState blockState, int hpDifference, int distance) {
-        this(mob, speed, new BlockState[] {blockState}, hpDifference, distance);
-    }
-
-    public HealBlockGoal(MobEntity mob, double speed, BlockState[] blockStates, int hpDifference, int distance) {
+    public HealBlockGoal(MobEntity mob, double speed, TagKey<Block> blockStates, int hpDifference, int distance) {
         this.mob = mob;
         this.speed = speed;
-        this.blockStates = blockStates;
+        this.blockTag = blockStates;
         this.distance = distance;
         this.hpDifference = hpDifference;
         this.setControls(EnumSet.of(Goal.Control.MOVE));
@@ -55,13 +45,13 @@ public class HealBlockGoal extends Goal {
     @Override
     public boolean canStart() {
         if (this.mob.hasControllingPassenger()) { return false; }
-        return (this.mob.getHealth() < this.mob.getMaxHealth() - this.hpDifference && findNearbyBlock(this.mob, this.blockStates, this.distance) != null) || (this.mob.getHealth() < this.mob.getMaxHealth() && isTouchingBlock(this.mob, this.blockStates));
+        return (this.mob.getHealth() < this.mob.getMaxHealth() - this.hpDifference && findNearbyBlock(this.mob, this.blockTag, this.distance) != null) || (this.mob.getHealth() < this.mob.getMaxHealth() && isTouchingBlock(this.mob, this.blockTag));
     }
 
     @Override
     public void start() {
-        if (!isTouchingBlock(this.mob, this.blockStates)) {
-            BlockPos blockPos = findNearbyBlock(this.mob, this.blockStates, this.distance);
+        if (!isTouchingBlock(this.mob, this.blockTag)) {
+            BlockPos blockPos = findNearbyBlock(this.mob, this.blockTag, this.distance);
             if (blockPos == null) {
                 return;
             }

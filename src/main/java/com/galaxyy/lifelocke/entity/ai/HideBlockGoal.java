@@ -1,9 +1,10 @@
 package com.galaxyy.lifelocke.entity.ai;
 
-import com.google.common.collect.ImmutableList;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.math.BlockPos;
 
 import static com.galaxyy.lifelocke.entity.ai.BlockFinder.findNearbyBlock;
@@ -11,13 +12,13 @@ import static com.galaxyy.lifelocke.entity.ai.BlockFinder.isTouchingBlock;
 
 public class HideBlockGoal extends Goal {
     private final MobEntity mob;
-    private final BlockState[] blockStates;
+    private final TagKey<Block> blockTag;
     private final int distance;
     private final double speed;
 
-    public HideBlockGoal(MobEntity mob, BlockState[] blockStates, double speed, int distance) {
+    public HideBlockGoal(MobEntity mob, TagKey<Block> blockTag, double speed, int distance) {
         this.mob = mob;
-        this.blockStates = blockStates;
+        this.blockTag = blockTag;
         this.distance = distance;
         this.speed = speed;
     }
@@ -25,7 +26,7 @@ public class HideBlockGoal extends Goal {
     @Override
     public boolean canStart() {
         if (this.mob.hasControllingPassenger()) { return false; }
-        return findNearbyBlock(this.mob, this.blockStates, this.distance) != null || isTouchingBlock(this.mob, this.blockStates);
+        return findNearbyBlock(this.mob, this.blockTag, this.distance) != null || isTouchingBlock(this.mob, this.blockTag);
     }
 
     @Override
@@ -41,8 +42,8 @@ public class HideBlockGoal extends Goal {
 
     @Override
     public void start() {
-        if (!isTouchingBlock(this.mob, this.blockStates)) {
-            BlockPos blockPos = findNearbyBlock(this.mob, this.blockStates, this.distance);
+        if (!isTouchingBlock(this.mob, this.blockTag)) {
+            BlockPos blockPos = findNearbyBlock(this.mob, this.blockTag, this.distance);
             if (blockPos == null) {
                 return;
             }
