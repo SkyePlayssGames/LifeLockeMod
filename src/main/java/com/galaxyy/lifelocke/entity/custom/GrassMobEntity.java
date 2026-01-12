@@ -38,6 +38,7 @@ public class GrassMobEntity extends HostileEntity {
     private static final float MOVEMENT_SPEED = 0.25f;
     private static final int ATTACK_DAMAGE = 3;
     private static final int FOLLOW_RANGE = 16;
+    private static final int GRASS_ATTACK_DAMAGE = 6;
 
     private static final TagKey<Block> HIDEABLE_BLOCKS = ModTags.GRASS_MOB_HIDE;
     private static final TagKey<Block> ATTACKABLE_BLOCKS = ModTags.GRASS_MOB_ATTACK;
@@ -147,7 +148,8 @@ public class GrassMobEntity extends HostileEntity {
                 ) {
                     hitAnyone = true;
                     sendAnimationPacket(player, GrassMobAnimationS2CPayload.ANIMATION.MAGIC_ATTACK);
-                    player.damage(world, ModDamageTypes.of(world, ModDamageTypes.PLANT_ATTACK, this), 2);
+                    player.damage(world, ModDamageTypes.of(world, ModDamageTypes.PLANT_ATTACK, this),
+                            GRASS_ATTACK_DAMAGE);
                 }
             }
             if (hitAnyone) {
