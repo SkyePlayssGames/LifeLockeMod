@@ -5,8 +5,10 @@ import com.galaxyy.lifelocke.damage.ModDamageTypes;
 import com.galaxyy.lifelocke.entity.ai.BlockFinder;
 import com.galaxyy.lifelocke.entity.ai.HideBlockGoal;
 import com.galaxyy.lifelocke.networking.GrassMobAnimationS2CPayload;
+import com.galaxyy.lifelocke.tags.ModTags;
 import com.google.common.collect.ImmutableList;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AnimationState;
@@ -15,6 +17,8 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
@@ -35,8 +39,8 @@ public class GrassMobEntity extends HostileEntity {
     private static final int ATTACK_DAMAGE = 3;
     private static final int FOLLOW_RANGE = 16;
 
-    private static final BlockState[] HIDEABLE_BLOCKS = Blocks.SHORT_GRASS.getStateManager().getStates().toArray(new BlockState[0]);
-    private static final BlockState[] ATTACKABLE_BLOCKS = Blocks.GRASS_BLOCK.getStateManager().getStates().toArray(new BlockState[0]);
+    private static final TagKey<Block> HIDEABLE_BLOCKS = ModTags.GRASS_MOB_HIDE;
+    private static final TagKey<Block> ATTACKABLE_BLOCKS = ModTags.GRASS_MOB_ATTACK;
     private static final Identifier HIDDEN_ID = Identifier.of(LifeLocke.MOD_ID, "hidden");
 
     private int grassAttackCooldownTicks = 0;
@@ -137,7 +141,7 @@ public class GrassMobEntity extends HostileEntity {
             boolean hitAnyone = false;
 
             for (ServerPlayerEntity player : world.getPlayers()) {
-                if (Arrays.stream(ATTACKABLE_BLOCKS).anyMatch(Predicate.isEqual(world.getBlockState(player.getBlockPos().down()))) &&
+                if (world.getBlockState(player.getBlockPos().down()).isIn(ATTACKABLE_BLOCKS) &&
                         this.canSee(player) &&
                         (player.getGameMode() == GameMode.SURVIVAL || player.getGameMode() == GameMode.ADVENTURE)
                 ) {

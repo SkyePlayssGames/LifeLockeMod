@@ -1,0 +1,4 @@
+// 1.21.11	-999999999-01-01T00:00:00	LifeLocke/Tags for minecraft:block
+cfc7922b6067a9f2372b34fc3c27c843a1cf74a7 data/lifelocke/tags/block/entity/fire_mob/heal.json
+5994b2b791e239aafdd228eb853417c87e47e9f8 data/lifelocke/tags/block/entity/grass_mob/attack.json
+7b0db838520f1c43bc5e97e14f0807ce3084f7ef data/lifelocke/tags/block/entity/grass_mob/hide.json

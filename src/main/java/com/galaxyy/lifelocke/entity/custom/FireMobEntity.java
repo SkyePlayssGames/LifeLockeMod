@@ -1,7 +1,10 @@
 package com.galaxyy.lifelocke.entity.custom;
 
+import com.galaxyy.lifelocke.entity.ai.BlockFinder;
 import com.galaxyy.lifelocke.entity.ai.HealBlockGoal;
+import com.galaxyy.lifelocke.tags.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.AnimationState;
@@ -12,6 +15,8 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -29,7 +34,7 @@ public class FireMobEntity extends HostileEntity {
     private static final int FOLLOW_RANGE = 32;
     private static final int BURNING_TIME = 0;
 
-    private static final BlockState[] HEALING_BLOCKS = Blocks.FIRE.getStateManager().getStates().toArray(new BlockState[0]);
+    private static final TagKey<Block> HEALING_BLOCKS = ModTags.FIRE_MOB_HEAL;
 
     public FireMobEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
