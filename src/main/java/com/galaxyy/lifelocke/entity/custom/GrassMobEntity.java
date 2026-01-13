@@ -6,32 +6,24 @@ import com.galaxyy.lifelocke.entity.ai.BlockFinder;
 import com.galaxyy.lifelocke.entity.ai.HideBlockGoal;
 import com.galaxyy.lifelocke.networking.GrassMobAnimationS2CPayload;
 import com.galaxyy.lifelocke.tags.ModTags;
-import com.google.common.collect.ImmutableList;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.*;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameMode;
 import net.minecraft.world.World;
-import org.apache.logging.log4j.core.jmx.Server;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
 import java.util.Objects;
-import java.util.function.Predicate;
 
 public class GrassMobEntity extends HostileEntity {
     private static final int MAX_HEALTH = 20;
