@@ -1,10 +1,10 @@
 package com.galaxyy.lifelocke.sound;
 
 import com.galaxyy.lifelocke.LifeLocke;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.sounds.SoundEvent;
 
 public class ModSounds {
     public static final SoundEvent EMPTY = registerSound("empty");
@@ -19,8 +19,8 @@ public class ModSounds {
 
 
     private static SoundEvent registerSound(String name) {
-        Identifier identifier = Identifier.of(LifeLocke.MOD_ID, name);
-        return Registry.register(Registries.SOUND_EVENT, identifier, SoundEvent.of(identifier));
+        Identifier identifier = Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, name);
+        return Registry.register(BuiltInRegistries.SOUND_EVENT, identifier, SoundEvent.createVariableRangeEvent(identifier));
     }
 
     public static void registerSounds() {

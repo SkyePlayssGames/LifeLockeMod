@@ -16,7 +16,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
 import net.fabricmc.fabric.impl.client.rendering.EntityRendererRegistryImpl;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.Identifier;
 
 public class LifeLockeClient implements ClientModInitializer {
     @Override
@@ -30,7 +30,7 @@ public class LifeLockeClient implements ClientModInitializer {
         ClientPlayConnectionEvents.JOIN.register(new ModCheckExistingEvent());
 
         HudElementRegistry.attachElementBefore(VanillaHudElements.CHAT,
-                Identifier.of(LifeLocke.MOD_ID, "type_icon"), TypeIconRenderer::render);
+                Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "type_icon"), TypeIconRenderer::render);
 
         EntityModelLayerRegistry.registerModelLayer(FireMobModel.FIRE_MOB, FireMobModel::getTexturedModelData);
         EntityRendererRegistryImpl.register(ModEntities.FIRE_MOB, FireMobRenderer::new);

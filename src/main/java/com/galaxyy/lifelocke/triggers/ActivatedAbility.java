@@ -1,8 +1,8 @@
 package com.galaxyy.lifelocke.triggers;
 
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.math.Vec3i;
+import net.minecraft.core.Vec3i;
+import net.minecraft.server.level.ServerPlayer;
 
 public interface ActivatedAbility {
-    boolean activate(ServerPlayerEntity playerEntity, Vec3i pos);
+    boolean activate(ServerPlayer playerEntity, Vec3i pos);
 }

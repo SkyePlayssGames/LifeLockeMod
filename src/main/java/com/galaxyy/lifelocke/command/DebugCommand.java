@@ -9,47 +9,46 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.minecraft.command.CommandRegistryAccess;
-import net.minecraft.command.argument.EntityArgumentType;
-import net.minecraft.command.permission.Permission;
-import net.minecraft.command.permission.PermissionLevel;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-
+import net.minecraft.commands.CommandBuildContext;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.permissions.Permission;
+import net.minecraft.server.permissions.PermissionLevel;
+import net.minecraft.world.effect.MobEffect;
 import java.util.Collection;
 
 public class DebugCommand implements CommandRegistrationCallback {
-    private int resetTypes(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-        Collection<ServerPlayerEntity> players = EntityArgumentType.getPlayers(context, "player");
-        for (ServerPlayerEntity player : players) {
+    private int resetTypes(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
+        Collection<ServerPlayer> players = EntityArgument.getPlayers(context, "player");
+        for (ServerPlayer player : players) {
             UpdateData.setTypeList(((iEntityDataSaver) player), new int[]{});
-            player.sendMessage(Text.translatable("text.lifelocke.command.debug.reset_types"), false);
+            player.displayClientMessage(Component.translatable("text.lifelocke.command.debug.reset_types"), false);
         }
         return 1;
     }
 
-    private int addType(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-        Collection<ServerPlayerEntity> players = EntityArgumentType.getPlayers(context, "player");
+    private int addType(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
+        Collection<ServerPlayer> players = EntityArgument.getPlayers(context, "player");
         String effect = StringArgumentType.getString(context, "effect");
         int i = 0;
         while (i < ModEffects.EFFECTS.length) {
-            RegistryEntry<StatusEffect> statusEffect = ModEffects.EFFECTS[i];
-            if (statusEffect.matchesId(Identifier.of(effect))) {
+            Holder<MobEffect> statusEffect = ModEffects.EFFECTS[i];
+            if (statusEffect.is(Identifier.parse(effect))) {
                 break;
             }
             i++;
         }
 
         if (i == ModEffects.EFFECTS.length) {
-            throw new SimpleCommandExceptionType(Text.translatable("text.lifelocke.command_error.debug.not_a_type")).create();
+            throw new SimpleCommandExceptionType(Component.translatable("text.lifelocke.command_error.debug.not_a_type")).create();
         }
 
-        for (ServerPlayerEntity player : players) {
+        for (ServerPlayer player : players) {
             int[] types_had = UpdateData.getTypeList(((iEntityDataSaver) player));
 
             int[] types_have = new int[types_had.length+1];
@@ -62,21 +61,21 @@ public class DebugCommand implements CommandRegistrationCallback {
 
             UpdateData.setTypeList(((iEntityDataSaver) player), types_have);
             int finalI = i;
-            player.sendMessage(Text.translatable("text.lifelocke.command.debug.added_type", ((StatusEffect) ModEffects.EFFECTS[finalI].value()).getName()), false);
+            player.displayClientMessage(Component.translatable("text.lifelocke.command.debug.added_type", ((MobEffect) ModEffects.EFFECTS[finalI].value()).getDisplayName()), false);
         }
         return 1;
     }
 
     @Override
-    public void register(CommandDispatcher<ServerCommandSource> commandDispatcher, CommandRegistryAccess commandRegistryAccess, CommandManager.RegistrationEnvironment registrationEnvironment) {
-        commandDispatcher.register(CommandManager.literal("lifelocke_debug")
-                .requires(source -> source.getPermissions().hasPermission(new Permission.Level(PermissionLevel.MODERATORS)))
-                .then(CommandManager.literal("reset_types")
-                        .then(CommandManager.argument("player", EntityArgumentType.players())
+    public void register(CommandDispatcher<CommandSourceStack> commandDispatcher, CommandBuildContext commandRegistryAccess, Commands.CommandSelection registrationEnvironment) {
+        commandDispatcher.register(Commands.literal("lifelocke_debug")
+                .requires(source -> source.permissions().hasPermission(new Permission.HasCommandLevel(PermissionLevel.MODERATORS)))
+                .then(Commands.literal("reset_types")
+                        .then(Commands.argument("player", EntityArgument.players())
                                 .executes(this::resetTypes)))
-                .then(CommandManager.literal("add_type")
-                        .then(CommandManager.argument("player", EntityArgumentType.players())
-                                .then(CommandManager.argument("effect", StringArgumentType.string())
+                .then(Commands.literal("add_type")
+                        .then(Commands.argument("player", EntityArgument.players())
+                                .then(Commands.argument("effect", StringArgumentType.string())
                                         .executes(this::addType))))
 
         );

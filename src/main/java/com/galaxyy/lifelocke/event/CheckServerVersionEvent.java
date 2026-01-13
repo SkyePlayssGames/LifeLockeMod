@@ -1,18 +1,18 @@
 package com.galaxyy.lifelocke.event;
 
 import com.galaxyy.lifelocke.events.ModdedPlayerJoinServerCallback;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.ActionResult;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionResult;
 
 public class CheckServerVersionEvent implements ModdedPlayerJoinServerCallback {
     private static final int MINIMUM_CLIENT_VERSION = 14;
 
     @Override
-    public ActionResult check(ServerPlayerEntity player, int version) {
+    public InteractionResult check(ServerPlayer player, int version) {
         if (MINIMUM_CLIENT_VERSION <= version) {
-            return ActionResult.PASS;
+            return InteractionResult.PASS;
         } else {
-            return ActionResult.FAIL;
+            return InteractionResult.FAIL;
         }
     }
 }

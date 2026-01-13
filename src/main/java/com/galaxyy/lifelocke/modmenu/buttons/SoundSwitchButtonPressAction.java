@@ -6,34 +6,30 @@ import com.galaxyy.lifelocke.modmenu.settings.IntSetting;
 import com.galaxyy.lifelocke.modmenu.settings.ModMenuSetting;
 import com.galaxyy.lifelocke.modmenu.settings.PowerSoundSetting;
 import com.galaxyy.lifelocke.sound.ModSounds;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.sound.AbstractBeeSoundInstance;
-import net.minecraft.client.sound.AbstractSoundInstance;
-import net.minecraft.client.sound.PositionedSoundInstance;
-import net.minecraft.client.sound.SoundInstance;
-import net.minecraft.client.toast.SystemToast;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.toasts.SystemToast;
+import net.minecraft.client.resources.sounds.AbstractSoundInstance;
+import net.minecraft.client.resources.sounds.SoundInstance;
+import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
 
-public class SoundSwitchButtonPressAction implements ButtonWidget.PressAction {
+public class SoundSwitchButtonPressAction implements Button.OnPress {
     static class ModMenuSoundInstance extends AbstractSoundInstance {
         protected ModMenuSoundInstance(SoundEvent sound) {
-            super(sound, SoundCategory.UI, SoundInstance.createRandom());
+            super(sound, SoundSource.UI, SoundInstance.createUnseededRandom());
         }
     }
 
 
-    private final MinecraftClient client;
+    private final Minecraft client;
     private final int SETTINGS_LINE;
     private final int SETTINGS_ORDER;
     private final String description_key;
     private final boolean toggled;
 
-    public SoundSwitchButtonPressAction(MinecraftClient client, boolean toggled) {
+    public SoundSwitchButtonPressAction(Minecraft client, boolean toggled) {
         this.client = client;
         this.toggled = toggled;
         if (toggled) {
@@ -48,7 +44,7 @@ public class SoundSwitchButtonPressAction implements ButtonWidget.PressAction {
     }
 
     @Override
-    public void onPress(ButtonWidget button) {
+    public void onPress(Button button) {
         SettingsFileHandler.create();
         ModMenuSetting[] settings = SettingsFileHandler.try_read(null);
 
@@ -60,10 +56,10 @@ public class SoundSwitchButtonPressAction implements ButtonWidget.PressAction {
         settings[SETTINGS_ORDER] = order;
         SettingsFileHandler.try_write(settings);
 
-        this.client.getToastManager().add(
-                SystemToast.create(this.client, SystemToast.Type.NARRATOR_TOGGLE,
-                        Text.translatable("text.lifelocke.modmenu.updated_settings"),
-                        Text.translatable(description_key, sound.to_string().substring(4))
+        this.client.getToastManager().addToast(
+                SystemToast.multiline(this.client, SystemToast.SystemToastId.NARRATOR_TOGGLE,
+                        Component.translatable("text.lifelocke.modmenu.updated_settings"),
+                        Component.translatable(description_key, sound.to_string().substring(4))
                 )
         );
 

@@ -2,15 +2,17 @@ package com.galaxyy.lifelocke.triggers.activated;
 
 import com.galaxyy.lifelocke.triggers.ActivatedAbility;
 import com.galaxyy.lifelocke.triggers.HungerCost;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.item.*;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3i;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.phys.BlockHitResult;
 
 public class GrassTrigger implements ActivatedAbility {
     private final EntityType[] ANIMALS = {
@@ -18,34 +20,34 @@ public class GrassTrigger implements ActivatedAbility {
     };
 
     @Override
-    public boolean activate(ServerPlayerEntity playerEntity, Vec3i pos) {
+    public boolean activate(ServerPlayer playerEntity, Vec3i pos) {
         if (!(HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative())) {
             return false;
         }
 
-        ServerWorld world = playerEntity.getEntityWorld();
-        Hand hand = playerEntity.getActiveHand();
+        ServerLevel world = playerEntity.level();
+        InteractionHand hand = playerEntity.getUsedItemHand();
 
         ItemStack stack = new ItemStack(Items.BONE_MEAL);
         BlockHitResult blockHitResult = new BlockHitResult(
-                playerEntity.getEntityPos().add(0, 0, 0), Direction.UP,
-                playerEntity.getBlockPos(), false
+                playerEntity.position().add(0, 0, 0), Direction.UP,
+                playerEntity.blockPosition(), false
         );
-        stack.useOnBlock(new ItemUsageContext(world, playerEntity, hand, stack, blockHitResult));
+        stack.useOn(new UseOnContext(world, playerEntity, hand, stack, blockHitResult));
         blockHitResult = new BlockHitResult(
-                playerEntity.getEntityPos().add(0, 0, 0), Direction.UP,
-                playerEntity.getBlockPos().up(), false
+                playerEntity.position().add(0, 0, 0), Direction.UP,
+                playerEntity.blockPosition().above(), false
         );
-        stack.useOnBlock(new ItemUsageContext(world, playerEntity, hand, stack, blockHitResult));
+        stack.useOn(new UseOnContext(world, playerEntity, hand, stack, blockHitResult));
         blockHitResult = new BlockHitResult(
-                playerEntity.getEntityPos().add(0, 0, 0), Direction.UP,
-                playerEntity.getBlockPos().down(), false
+                playerEntity.position().add(0, 0, 0), Direction.UP,
+                playerEntity.blockPosition().below(), false
         );
-        stack.useOnBlock(new ItemUsageContext(world, playerEntity, hand, stack, blockHitResult));
+        stack.useOn(new UseOnContext(world, playerEntity, hand, stack, blockHitResult));
         HungerCost.takeHunger(playerEntity, 1);
 
-        if (playerEntity.getRandom().nextBetweenExclusive(0, 10) == 0) {
-            ANIMALS[playerEntity.getRandom().nextBetweenExclusive(0, ANIMALS.length)].spawn(((ServerWorld) world), playerEntity.getBlockPos(), SpawnReason.TRIGGERED);
+        if (playerEntity.getRandom().nextInt(0, 10) == 0) {
+            ANIMALS[playerEntity.getRandom().nextInt(0, ANIMALS.length)].spawn(((ServerLevel) world), playerEntity.blockPosition(), EntitySpawnReason.TRIGGERED);
             HungerCost.takeHunger(playerEntity, 2);
         }
         return true;

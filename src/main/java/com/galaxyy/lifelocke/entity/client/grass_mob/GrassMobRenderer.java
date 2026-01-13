@@ -2,18 +2,18 @@ package com.galaxyy.lifelocke.entity.client.grass_mob;
 
 import com.galaxyy.lifelocke.LifeLocke;
 import com.galaxyy.lifelocke.entity.custom.GrassMobEntity;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.Identifier;
 
-public class GrassMobRenderer extends MobEntityRenderer<GrassMobEntity, GrassMobRenderState, GrassMobModel> {
-    public GrassMobRenderer(EntityRendererFactory.Context context) {
-        super(context, new GrassMobModel(context.getPart(GrassMobModel.GRASS_MOB)), 0.65f);
+public class GrassMobRenderer extends MobRenderer<GrassMobEntity, GrassMobRenderState, GrassMobModel> {
+    public GrassMobRenderer(EntityRendererProvider.Context context) {
+        super(context, new GrassMobModel(context.bakeLayer(GrassMobModel.GRASS_MOB)), 0.65f);
     }
 
     @Override
-    public Identifier getTexture(GrassMobRenderState state) {
-        return Identifier.of(LifeLocke.MOD_ID, "textures/entity/grass_mob.png");
+    public Identifier getTextureLocation(GrassMobRenderState state) {
+        return Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "textures/entity/grass_mob.png");
     }
 
     @Override
@@ -22,8 +22,8 @@ public class GrassMobRenderer extends MobEntityRenderer<GrassMobEntity, GrassMob
     }
 
     @Override
-    public void updateRenderState(GrassMobEntity grassMob, GrassMobRenderState grassMobRenderState, float f) {
-        super.updateRenderState(grassMob, grassMobRenderState, f);
+    public void extractRenderState(GrassMobEntity grassMob, GrassMobRenderState grassMobRenderState, float f) {
+        super.extractRenderState(grassMob, grassMobRenderState, f);
 
         grassMobRenderState.hidingAnimationState = grassMob.hidingAnimationState;
         grassMobRenderState.unhidingAnimationState = grassMob.unhidingAnimationState;

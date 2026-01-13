@@ -2,32 +2,32 @@ package com.galaxyy.lifelocke.effect;
 
 import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
 import com.galaxyy.lifelocke.playerdata.UpdateData;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
 
-public class PoisonEffect extends StatusEffect {
-    protected PoisonEffect(StatusEffectCategory category, int color) {
+public class PoisonEffect extends MobEffect {
+    protected PoisonEffect(MobEffectCategory category, int color) {
         super(category, color);
     }
 
     @Override
-    public void onApplied(LivingEntity entity, int amplifier) {
+    public void onEffectStarted(LivingEntity entity, int amplifier) {
         SettingsFileHandler.create();
         Boolean setting = SettingsFileHandler.try_read(null)[SettingsFileHandler.SETTINGS.POWER_DEFAULT.ordinal()].get_boolean();
-        if (UpdateData.togglePoisonPower((ServerPlayerEntity) entity) != setting) {
-            UpdateData.togglePoisonPower(((ServerPlayerEntity) entity));
+        if (UpdateData.togglePoisonPower((ServerPlayer) entity) != setting) {
+            UpdateData.togglePoisonPower(((ServerPlayer) entity));
         }
     }
 
     @Override
-    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
-        for (StatusEffectInstance effectInstance : entity.getStatusEffects()) {
-            if (effectInstance.getEffectType().value().getCategory() == StatusEffectCategory.HARMFUL) {
-                entity.removeStatusEffect(effectInstance.getEffectType());
+    public boolean applyEffectTick(ServerLevel world, LivingEntity entity, int amplifier) {
+        for (MobEffectInstance effectInstance : entity.getActiveEffects()) {
+            if (effectInstance.getEffect().value().getCategory() == MobEffectCategory.HARMFUL) {
+                entity.removeEffect(effectInstance.getEffect());
             }
         }
 
@@ -35,7 +35,7 @@ public class PoisonEffect extends StatusEffect {
     }
 
     @Override
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return true;
     }
 }

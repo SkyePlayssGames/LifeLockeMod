@@ -1,55 +1,54 @@
 package com.galaxyy.lifelocke.block;
 
 import com.galaxyy.lifelocke.LifeLocke;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.MapColor;
-import net.minecraft.block.enums.NoteBlockInstrument;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
-
 import java.util.function.Function;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 
 public class ModBlocks {
     public static final Block DUMMY_BLOCK = registerBlock("dummy_block", settings ->
             new Block(settings
-                    .breakInstantly()
-                    .mapColor(MapColor.PINK)
+                    .instabreak()
+                    .mapColor(MapColor.COLOR_PINK)
                     .instrument(NoteBlockInstrument.CREEPER)
             ));
     public static final Block FROSTED_OBSIDIAN = registerBlockWithoutBlockItem("frosted_obsidian", settings ->
             new FrostedObsidianBlock(settings
-                    .mapColor(MapColor.BLACK)
+                    .mapColor(MapColor.COLOR_BLACK)
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .strength(50.0F, 1200.0F)
     ));
 
-    private static Block registerBlock(String name, Function<AbstractBlock.Settings, Block> function) {
-        Identifier id = Identifier.of(LifeLocke.MOD_ID, name);
-        Block toRegister = function.apply(AbstractBlock.Settings.create().registryKey(RegistryKey.of(
-                RegistryKeys.BLOCK, id
+    private static Block registerBlock(String name, Function<BlockBehaviour.Properties, Block> function) {
+        Identifier id = Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, name);
+        Block toRegister = function.apply(BlockBehaviour.Properties.of().setId(ResourceKey.create(
+                Registries.BLOCK, id
         )));
         registerBlockItem(name, toRegister);
-        return Registry.register(Registries.BLOCK, id, toRegister);
+        return Registry.register(BuiltInRegistries.BLOCK, id, toRegister);
     }
 
-    private static Block registerBlockWithoutBlockItem(String name, Function<AbstractBlock.Settings, Block> function) {
-        Identifier id = Identifier.of(LifeLocke.MOD_ID, name);
-        Block toRegister = function.apply(AbstractBlock.Settings.create().registryKey(RegistryKey.of(
-                RegistryKeys.BLOCK, id
+    private static Block registerBlockWithoutBlockItem(String name, Function<BlockBehaviour.Properties, Block> function) {
+        Identifier id = Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, name);
+        Block toRegister = function.apply(BlockBehaviour.Properties.of().setId(ResourceKey.create(
+                Registries.BLOCK, id
         )));
-        return Registry.register(Registries.BLOCK, id, toRegister);
+        return Registry.register(BuiltInRegistries.BLOCK, id, toRegister);
     }
 
     private static void registerBlockItem(String name, Block block) {
-        Identifier id = Identifier.of(LifeLocke.MOD_ID, name);
-        Registry.register(Registries.ITEM, id,
-                new BlockItem(block, new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, id))));
+        Identifier id = Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, name);
+        Registry.register(BuiltInRegistries.ITEM, id,
+                new BlockItem(block, new Item.Properties().setId(ResourceKey.create(Registries.ITEM, id))));
     }
 
     public static void registerModBlocks() {

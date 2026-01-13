@@ -1,11 +1,10 @@
 package com.galaxyy.lifelocke.modmenu.settings;
 
 import com.galaxyy.lifelocke.sound.ModSounds;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 
 public class PowerSoundSetting extends ModMenuSetting {
     private static final HashMap<String, SoundEvent> stringSoundEventMap = new HashMap<>();
@@ -65,11 +64,11 @@ public class PowerSoundSetting extends ModMenuSetting {
     }
 
     public static void registerSoundEventMaps() {
-        registerMapEntry("none", ModSounds.EMPTY, ModSounds.EMPTY, SoundEvents.BLOCK_CANDLE_FALL);
-        registerMapEntry("conduit", ModSounds.CONDUIT_TOGGLE, ModSounds.CONDUIT_ACTIVATE, SoundEvents.BLOCK_CONDUIT_DEACTIVATE);
-        registerMapEntry("place", ModSounds.PLACE_TOGGLE, ModSounds.PLACE_ACTIVATE, SoundEvents.BLOCK_GRASS_PLACE);
-        registerMapEntry("eye", ModSounds.EYE_TOGGLE, ModSounds.EYE_ACTIVATE, SoundEvents.BLOCK_END_PORTAL_FRAME_FILL);
-        registerMapEntry("horse", ModSounds.HORSE_TOGGLE, ModSounds.HORSE_ACTIVATE, SoundEvents.ENTITY_HORSE_DEATH);
+        registerMapEntry("none", ModSounds.EMPTY, ModSounds.EMPTY, SoundEvents.CANDLE_FALL);
+        registerMapEntry("conduit", ModSounds.CONDUIT_TOGGLE, ModSounds.CONDUIT_ACTIVATE, SoundEvents.CONDUIT_DEACTIVATE);
+        registerMapEntry("place", ModSounds.PLACE_TOGGLE, ModSounds.PLACE_ACTIVATE, SoundEvents.GRASS_PLACE);
+        registerMapEntry("eye", ModSounds.EYE_TOGGLE, ModSounds.EYE_ACTIVATE, SoundEvents.END_PORTAL_FRAME_FILL);
+        registerMapEntry("horse", ModSounds.HORSE_TOGGLE, ModSounds.HORSE_ACTIVATE, SoundEvents.HORSE_DEATH);
 
         amountOfSounds = toggledSoundOrder.size();
     }

@@ -2,16 +2,15 @@ package com.galaxyy.lifelocke.triggers.activated;
 
 import com.galaxyy.lifelocke.triggers.ActivatedAbility;
 import com.galaxyy.lifelocke.triggers.HungerCost;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3i;
-
 import java.util.Arrays;
 import java.util.HashMap;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Vec3i;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
 public class GroundTrigger implements ActivatedAbility {
     private enum SUMMONABLE_ORES {
@@ -41,18 +40,18 @@ public class GroundTrigger implements ActivatedAbility {
     private static final int AMOUNT_OF_STONES = SUMMONABLE_STONE_VARIANTS.values().length;
 
     @Override
-    public boolean activate(ServerPlayerEntity playerEntity, Vec3i pos) {
+    public boolean activate(ServerPlayer playerEntity, Vec3i pos) {
         if (!(HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative())) {
             return false;
         }
 
-        ServerWorld world = playerEntity.getEntityWorld();
+        ServerLevel world = playerEntity.level();
 
-        if (!playerEntity.isSneaking()) {
-            world.setBlockState(playerEntity.getBlockPos().down(), Blocks.DIRT.getDefaultState());
+        if (!playerEntity.isShiftKeyDown()) {
+            world.setBlockAndUpdate(playerEntity.blockPosition().below(), Blocks.DIRT.defaultBlockState());
             HungerCost.takeHunger(playerEntity, 0.25f);
         } else {
-            BlockPos center = playerEntity.getBlockPos().down();
+            BlockPos center = playerEntity.blockPosition().below();
             BlockPos[] blocks = {
                     center.north().west(), center.north(), center.north().east(),
                     center.west(), center, center.east(),
@@ -60,7 +59,7 @@ public class GroundTrigger implements ActivatedAbility {
             };
 
             for (BlockPos blockPos : blocks) {
-                world.setBlockState(blockPos, getRandomOreBlock(playerEntity).getDefaultState());
+                world.setBlockAndUpdate(blockPos, getRandomOreBlock(playerEntity).defaultBlockState());
             }
 
             HungerCost.takeHunger(playerEntity, 1);
@@ -68,16 +67,16 @@ public class GroundTrigger implements ActivatedAbility {
         return true;
     }
 
-    private Block getRandomOreBlock(PlayerEntity playerEntity) {
+    private Block getRandomOreBlock(Player playerEntity) {
         int stoneType = playerEntity.getRandom().nextInt(100);
         if (stoneType > 10) {
             return Blocks.STONE;
         } else if (stoneType > 0) {
-            int random = playerEntity.getRandom().nextBetweenExclusive(0, AMOUNT_OF_STONES);
+            int random = playerEntity.getRandom().nextInt(0, AMOUNT_OF_STONES);
             HungerCost.takeHunger(playerEntity, 0.25f);
             return STONE_MAP.get(Arrays.stream(SUMMONABLE_STONE_VARIANTS.values()).toArray()[random]);
         } else {
-            int random = playerEntity.getRandom().nextBetweenExclusive(0, AMOUNT_OF_ORES);
+            int random = playerEntity.getRandom().nextInt(0, AMOUNT_OF_ORES);
             HungerCost.takeHunger(playerEntity, 1);
             return ORE_MAP.get(Arrays.stream(SUMMONABLE_ORES.values()).toArray()[random]);
         }

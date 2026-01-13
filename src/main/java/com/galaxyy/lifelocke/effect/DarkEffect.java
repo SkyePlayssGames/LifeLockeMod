@@ -2,42 +2,42 @@ package com.galaxyy.lifelocke.effect;
 
 import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
 import com.galaxyy.lifelocke.playerdata.UpdateData;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 
-public class DarkEffect extends StatusEffect {
-    protected DarkEffect(StatusEffectCategory category, int color) {
+public class DarkEffect extends MobEffect {
+    protected DarkEffect(MobEffectCategory category, int color) {
         super(category, color);
     }
 
     @Override
-    public void onApplied(LivingEntity entity, int amplifier) {
+    public void onEffectStarted(LivingEntity entity, int amplifier) {
         SettingsFileHandler.create();
         Boolean setting = SettingsFileHandler.try_read(null)[SettingsFileHandler.SETTINGS.POWER_DEFAULT.ordinal()].get_boolean();
-        if (UpdateData.toggleDarkPower((ServerPlayerEntity) entity) != setting) {
-            UpdateData.toggleDarkPower(((ServerPlayerEntity) entity));
+        if (UpdateData.toggleDarkPower((ServerPlayer) entity) != setting) {
+            UpdateData.toggleDarkPower(((ServerPlayer) entity));
         }
     }
 
     @Override
-    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
-        long time = world.getTimeOfDay() % 24000;
+    public boolean applyEffectTick(ServerLevel world, LivingEntity entity, int amplifier) {
+        long time = world.getDayTime() % 24000;
         if (time > 13000 && time < 23000) {
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 5, 0, false, false));
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 5, 0, false, false));
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 5, 0, false, false));
+            entity.addEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 5, 0, false, false));
+            entity.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 5, 0, false, false));
+            entity.addEffect(new MobEffectInstance(MobEffects.RESISTANCE, 5, 0, false, false));
         }
 
         return true;
     }
 
     @Override
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return true;
     }
 }

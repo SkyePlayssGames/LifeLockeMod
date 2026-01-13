@@ -7,25 +7,31 @@ import com.galaxyy.lifelocke.entity.ai.HideBlockGoal;
 import com.galaxyy.lifelocke.networking.GrassMobAnimationS2CPayload;
 import com.galaxyy.lifelocke.tags.ModTags;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.block.Block;
-import net.minecraft.entity.AnimationState;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.attribute.*;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.GameMode;
-import net.minecraft.world.World;
+import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.GameType;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-public class GrassMobEntity extends HostileEntity {
+public class GrassMobEntity extends Monster {
     private static final int MAX_HEALTH = 20;
     private static final float MOVEMENT_SPEED = 0.25f;
     private static final int ATTACK_DAMAGE = 3;
@@ -34,7 +40,7 @@ public class GrassMobEntity extends HostileEntity {
 
     private static final TagKey<Block> HIDEABLE_BLOCKS = ModTags.GRASS_MOB_HIDE;
     private static final TagKey<Block> ATTACKABLE_BLOCKS = ModTags.GRASS_MOB_ATTACK;
-    private static final Identifier HIDDEN_ID = Identifier.of(LifeLocke.MOD_ID, "hidden");
+    private static final Identifier HIDDEN_ID = Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "hidden");
 
     private int grassAttackCooldownTicks = 0;
 
@@ -46,33 +52,33 @@ public class GrassMobEntity extends HostileEntity {
     public final AnimationState unhidingAnimationState = new AnimationState();
     public final AnimationState magicAttackAnimationState = new AnimationState();
 
-    public GrassMobEntity(EntityType<? extends HostileEntity> entityType, World world) {
+    public GrassMobEntity(EntityType<? extends Monster> entityType, Level world) {
         super(entityType, world);
     }
 
     @Override
-    protected void initGoals() {
-        this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(1, new MeleeAttackGoal(this, 1.00, true));
-        this.goalSelector.add(2, new HideBlockGoal(this, HIDEABLE_BLOCKS, 1.00, 8));
-        this.goalSelector.add(3, new LookAroundGoal(this));
+    protected void registerGoals() {
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.00, true));
+        this.goalSelector.addGoal(2, new HideBlockGoal(this, HIDEABLE_BLOCKS, 1.00, 8));
+        this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
 
-        this.targetSelector.add(0, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
-    public static DefaultAttributeContainer.Builder createMobAttributes() {
-        return HostileEntity.createMobAttributes()
-                .add(EntityAttributes.MAX_HEALTH, MAX_HEALTH)
-                .add(EntityAttributes.MOVEMENT_SPEED, MOVEMENT_SPEED)
-                .add(EntityAttributes.ATTACK_DAMAGE, ATTACK_DAMAGE)
-                .add(EntityAttributes.FOLLOW_RANGE, FOLLOW_RANGE);
+    public static AttributeSupplier.Builder createMobAttributes() {
+        return Monster.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, MAX_HEALTH)
+                .add(Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED)
+                .add(Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE)
+                .add(Attributes.FOLLOW_RANGE, FOLLOW_RANGE);
     }
 
     @Override
     public void tick() {
         super.tick();
 
-        if (getEntityWorld().isClient()) {
+        if (level().isClientSide()) {
             tick_client();
         } else {
             tick_server();
@@ -84,19 +90,19 @@ public class GrassMobEntity extends HostileEntity {
 
         if (playHidingAnimation) {
             stop_animations();
-            hidingAnimationState.start(this.age);
+            hidingAnimationState.start(this.tickCount);
             playHidingAnimation = false;
         }
 
         if (playUnhidingAnimation) {
             stop_animations();
-            unhidingAnimationState.start(this.age);
+            unhidingAnimationState.start(this.tickCount);
             playUnhidingAnimation = false;
         }
 
         if (playMagicAttackAnimation) {
             stop_animations();
-            magicAttackAnimationState.start(this.age);
+            magicAttackAnimationState.start(this.tickCount);
             playMagicAttackAnimation = false;
         }
     }
@@ -108,13 +114,13 @@ public class GrassMobEntity extends HostileEntity {
     }
 
     private void tick_server() {
-        EntityAttributeInstance followAttribute = Objects.requireNonNull(this.getAttributes().getCustomInstance(EntityAttributes.FOLLOW_RANGE));
-        Vec3d speed = this.getVelocity();
+        AttributeInstance followAttribute = Objects.requireNonNull(this.getAttributes().getInstance(Attributes.FOLLOW_RANGE));
+        Vec3 speed = this.getDeltaMovement();
 
         if (speed.x < 0.1d && speed.z < 0.1d && BlockFinder.isTouchingBlock(this, HIDEABLE_BLOCKS)) {
             if (!followAttribute.hasModifier(HIDDEN_ID)) {
-                followAttribute.addTemporaryModifier(
-                        new EntityAttributeModifier(HIDDEN_ID, -11, EntityAttributeModifier.Operation.ADD_VALUE)
+                followAttribute.addTransientModifier(
+                        new AttributeModifier(HIDDEN_ID, -11, AttributeModifier.Operation.ADD_VALUE)
                 );
                 sendAnimationPacket(null, GrassMobAnimationS2CPayload.ANIMATION.HIDE);
             }
@@ -129,18 +135,18 @@ public class GrassMobEntity extends HostileEntity {
     }
 
     public void handleGrassAttack() {
-        ServerWorld world = (ServerWorld) getEntityWorld();
+        ServerLevel world = (ServerLevel) level();
         if (grassAttackCooldownTicks <= 0) {
             boolean hitAnyone = false;
 
-            for (ServerPlayerEntity player : world.getPlayers()) {
-                if (world.getBlockState(player.getBlockPos().down()).isIn(ATTACKABLE_BLOCKS) &&
-                        this.canSee(player) &&
-                        (player.getGameMode() == GameMode.SURVIVAL || player.getGameMode() == GameMode.ADVENTURE)
+            for (ServerPlayer player : world.players()) {
+                if (world.getBlockState(player.blockPosition().below()).is(ATTACKABLE_BLOCKS) &&
+                        this.hasLineOfSight(player) &&
+                        (player.gameMode() == GameType.SURVIVAL || player.gameMode() == GameType.ADVENTURE)
                 ) {
                     hitAnyone = true;
                     sendAnimationPacket(player, GrassMobAnimationS2CPayload.ANIMATION.MAGIC_ATTACK);
-                    player.damage(world, ModDamageTypes.of(world, ModDamageTypes.PLANT_ATTACK, this),
+                    player.hurtServer(world, ModDamageTypes.of(world, ModDamageTypes.PLANT_ATTACK, this),
                             GRASS_ATTACK_DAMAGE);
                 }
             }
@@ -152,12 +158,12 @@ public class GrassMobEntity extends HostileEntity {
         }
     }
 
-    private void sendAnimationPacket(@Nullable ServerPlayerEntity player, GrassMobAnimationS2CPayload.ANIMATION animation) {
+    private void sendAnimationPacket(@Nullable ServerPlayer player, GrassMobAnimationS2CPayload.ANIMATION animation) {
         if (player != null) {
-            ServerPlayNetworking.send(player, new GrassMobAnimationS2CPayload(this.uuid, animation.asString()));
+            ServerPlayNetworking.send(player, new GrassMobAnimationS2CPayload(this.uuid, animation.getSerializedName()));
         } else {
-            for (ServerPlayerEntity playerEntity : ((ServerWorld) getEntityWorld()).getPlayers()) {
-                ServerPlayNetworking.send(playerEntity, new GrassMobAnimationS2CPayload(this.uuid, animation.asString()));
+            for (ServerPlayer playerEntity : ((ServerLevel) level()).players()) {
+                ServerPlayNetworking.send(playerEntity, new GrassMobAnimationS2CPayload(this.uuid, animation.getSerializedName()));
             }
         }
     }

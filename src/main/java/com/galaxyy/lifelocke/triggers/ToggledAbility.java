@@ -1,22 +1,21 @@
 package com.galaxyy.lifelocke.triggers;
 
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
-
 import java.util.function.Function;
+import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffect;
 
 public interface ToggledAbility {
-    boolean toggle(ServerPlayerEntity playerEntity);
-    default void updateData(ServerPlayerEntity playerEntity, Function<ServerPlayerEntity, Boolean> updateDataFunc,
-                            RegistryEntry<StatusEffect> type) {
+    boolean toggle(ServerPlayer playerEntity);
+    default void updateData(ServerPlayer playerEntity, Function<ServerPlayer, Boolean> updateDataFunc,
+                            Holder<MobEffect> type) {
         if (updateDataFunc.apply(playerEntity)) {
-            playerEntity.sendMessage(Text.translatable("text.lifelocke.power_turned_on",
-                    type.value().getName()), false);
+            playerEntity.displayClientMessage(Component.translatable("text.lifelocke.power_turned_on",
+                    type.value().getDisplayName()), false);
         } else {
-            playerEntity.sendMessage(Text.translatable("text.lifelocke.power_turned_off",
-                    type.value().getName()), false);
+            playerEntity.displayClientMessage(Component.translatable("text.lifelocke.power_turned_off",
+                    type.value().getDisplayName()), false);
         }
     }
 }

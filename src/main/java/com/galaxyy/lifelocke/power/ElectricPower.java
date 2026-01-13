@@ -4,30 +4,30 @@ import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.triggers.HungerCost;
 import com.galaxyy.lifelocke.playerdata.iEntityDataSaver;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.EntityHitResult;
-import net.minecraft.world.World;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.EntityHitResult;
 import org.jetbrains.annotations.Nullable;
 
 public class ElectricPower implements AttackEntityCallback {
     @Override
-    public ActionResult interact(PlayerEntity playerEntity, World world, Hand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
-        if (playerEntity.hasStatusEffect(ModEffects.ELECTRIC) && !world.isClient() &&
+    public InteractionResult interact(Player playerEntity, Level world, InteractionHand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
+        if (playerEntity.hasEffect(ModEffects.ELECTRIC) && !world.isClientSide() &&
                 (HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative()) &&
                 ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getBoolean("electric_power").orElse(false)
                 && entity instanceof LivingEntity) {
 
-            EntityType.LIGHTNING_BOLT.spawn((ServerWorld) world, entity.getBlockPos(), SpawnReason.TRIGGERED);
+            EntityType.LIGHTNING_BOLT.spawn((ServerLevel) world, entity.blockPosition(), EntitySpawnReason.TRIGGERED);
             HungerCost.takeHunger(playerEntity, 2);
         }
 
-        return ActionResult.PASS;
+        return InteractionResult.PASS;
     }
 }

@@ -1,11 +1,11 @@
 package com.galaxyy.lifelocke.mixin;
 
 import com.galaxyy.lifelocke.playerdata.iEntityDataSaver;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.storage.ReadView;
-import net.minecraft.storage.WriteView;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -18,28 +18,28 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class ModEntityDataSaverMixin implements iEntityDataSaver {
     @Shadow @Final private EntityType<?> type;
     @Unique
-    private NbtCompound persistentData;
+    private CompoundTag persistentData;
 
     @Override
-    public NbtCompound lifelocke$getPersistentData() {
+    public CompoundTag lifelocke$getPersistentData() {
         if (this.persistentData == null) {
-            this.persistentData = new NbtCompound();
+            this.persistentData = new CompoundTag();
         }
 
         return persistentData;
     }
 
-    @Inject(method = "writeData", at = @At("HEAD"))
-    protected void injectWriteMethod(WriteView view, CallbackInfo ci) {
+    @Inject(method = "saveWithoutId", at = @At("HEAD"))
+    protected void injectWriteMethod(ValueOutput view, CallbackInfo ci) {
         if (persistentData != null) {
-            view.put("lifelocke.data", NbtCompound.CODEC, persistentData);
+            view.store("lifelocke.data", CompoundTag.CODEC, persistentData);
         }
     }
 
-    @Inject(method = "readData", at = @At("HEAD"))
-    protected void injectReadMethod(ReadView view, CallbackInfo ci) {
+    @Inject(method = "load", at = @At("HEAD"))
+    protected void injectReadMethod(ValueInput view, CallbackInfo ci) {
         if (view.contains("lifelocke.data")) {
-            persistentData = view.read("lifelocke.data", NbtCompound.CODEC).orElse(new NbtCompound());
+            persistentData = view.read("lifelocke.data", CompoundTag.CODEC).orElse(new CompoundTag());
         }
     }
 }

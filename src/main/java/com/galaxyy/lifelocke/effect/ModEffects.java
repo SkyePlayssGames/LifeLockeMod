@@ -2,90 +2,88 @@ package com.galaxyy.lifelocke.effect;
 
 import com.galaxyy.lifelocke.LifeLocke;
 import jdk.jshell.Snippet;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.stat.Stat;
-import net.minecraft.util.Identifier;
-
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import java.util.Locale;
 
 public class ModEffects {
-    public static final RegistryEntry<StatusEffect> ELECTRIC = registerStatusEffect("electric",
-            new ElectricEffect(StatusEffectCategory.BENEFICIAL, 0xfae43c));
-    public static final RegistryEntry<StatusEffect> FIGHTING = registerStatusEffect("fighting",
-            new FightingEffect(StatusEffectCategory.BENEFICIAL, 0xd44e2c).addAttributeModifier(
-                    EntityAttributes.ATTACK_SPEED, Identifier.of(LifeLocke.MOD_ID, "fighting"),
-                    2, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE));
-    public static final RegistryEntry<StatusEffect> WATER = registerStatusEffect("water",
-            new WaterEffect(StatusEffectCategory.BENEFICIAL, 0x70d2ff));
-    public static final RegistryEntry<StatusEffect> NORMAL = registerStatusEffect("normal",
-            new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0xe1e8eb));
-    public static final RegistryEntry<StatusEffect> FIRE = registerStatusEffect("fire",
-            new FireEffect(StatusEffectCategory.BENEFICIAL, 0xeb761c));
-    public static final RegistryEntry<StatusEffect> GRASS = registerStatusEffect("grass",
-            new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0x1ceb34));
-    public static final RegistryEntry<StatusEffect> ICE = registerStatusEffect("ice",
-            new IceEffect(StatusEffectCategory.BENEFICIAL, 0x4dfff0));
-    public static final RegistryEntry<StatusEffect> POISON = registerStatusEffect("poison",
-            new PoisonEffect(StatusEffectCategory.BENEFICIAL, 0x3517a3));
-    public static final RegistryEntry<StatusEffect> GROUND = registerStatusEffect("ground",
-            new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0xa37017));
-    public static final RegistryEntry<StatusEffect> FLYING = registerStatusEffect("flying",
-            new FlyingEffect(StatusEffectCategory.BENEFICIAL, 0xa7e8df));
-    public static final RegistryEntry<StatusEffect> BUG = registerStatusEffect("bug",
-            new BugEffect(StatusEffectCategory.BENEFICIAL, 0xbcf542).addAttributeModifier(
-                    EntityAttributes.SCALE, Identifier.of(LifeLocke.MOD_ID, "bug"),
-                    -0.4, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+    public static final Holder<MobEffect> ELECTRIC = registerStatusEffect("electric",
+            new ElectricEffect(MobEffectCategory.BENEFICIAL, 0xfae43c));
+    public static final Holder<MobEffect> FIGHTING = registerStatusEffect("fighting",
+            new FightingEffect(MobEffectCategory.BENEFICIAL, 0xd44e2c).addAttributeModifier(
+                    Attributes.ATTACK_SPEED, Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fighting"),
+                    2, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+    public static final Holder<MobEffect> WATER = registerStatusEffect("water",
+            new WaterEffect(MobEffectCategory.BENEFICIAL, 0x70d2ff));
+    public static final Holder<MobEffect> NORMAL = registerStatusEffect("normal",
+            new CheckedEffect(MobEffectCategory.BENEFICIAL, 0xe1e8eb));
+    public static final Holder<MobEffect> FIRE = registerStatusEffect("fire",
+            new FireEffect(MobEffectCategory.BENEFICIAL, 0xeb761c));
+    public static final Holder<MobEffect> GRASS = registerStatusEffect("grass",
+            new CheckedEffect(MobEffectCategory.BENEFICIAL, 0x1ceb34));
+    public static final Holder<MobEffect> ICE = registerStatusEffect("ice",
+            new IceEffect(MobEffectCategory.BENEFICIAL, 0x4dfff0));
+    public static final Holder<MobEffect> POISON = registerStatusEffect("poison",
+            new PoisonEffect(MobEffectCategory.BENEFICIAL, 0x3517a3));
+    public static final Holder<MobEffect> GROUND = registerStatusEffect("ground",
+            new CheckedEffect(MobEffectCategory.BENEFICIAL, 0xa37017));
+    public static final Holder<MobEffect> FLYING = registerStatusEffect("flying",
+            new FlyingEffect(MobEffectCategory.BENEFICIAL, 0xa7e8df));
+    public static final Holder<MobEffect> BUG = registerStatusEffect("bug",
+            new BugEffect(MobEffectCategory.BENEFICIAL, 0xbcf542).addAttributeModifier(
+                    Attributes.SCALE, Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "bug"),
+                    -0.4, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
             ).addAttributeModifier(
-                    EntityAttributes.FALL_DAMAGE_MULTIPLIER, Identifier.of(LifeLocke.MOD_ID, "bug"),
-                    -2.0f/3.0f, EntityAttributeModifier.Operation.ADD_VALUE
+                    Attributes.FALL_DAMAGE_MULTIPLIER, Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "bug"),
+                    -2.0f/3.0f, AttributeModifier.Operation.ADD_VALUE
             ).addAttributeModifier(
-                    EntityAttributes.MAX_HEALTH, Identifier.of(LifeLocke.MOD_ID, "bug"),
-                    -4, EntityAttributeModifier.Operation.ADD_VALUE
+                    Attributes.MAX_HEALTH, Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "bug"),
+                    -4, AttributeModifier.Operation.ADD_VALUE
             ));
-    public static final RegistryEntry<StatusEffect> ROCK = registerStatusEffect("rock",
-            new RockEffect(StatusEffectCategory.BENEFICIAL, 0xab7333));
-    public static final RegistryEntry<StatusEffect> GHOST = registerStatusEffect("ghost",
-            new GhostEffect(StatusEffectCategory.BENEFICIAL, 0x791a9c));
-    public static final RegistryEntry<StatusEffect> DRAGON = registerStatusEffect("dragon",
-            new DragonEffect(StatusEffectCategory.BENEFICIAL, 0x312696).addAttributeModifier(
-                    EntityAttributes.SCALE, Identifier.of(LifeLocke.MOD_ID, "dragon"),
-                    0.3, EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+    public static final Holder<MobEffect> ROCK = registerStatusEffect("rock",
+            new RockEffect(MobEffectCategory.BENEFICIAL, 0xab7333));
+    public static final Holder<MobEffect> GHOST = registerStatusEffect("ghost",
+            new GhostEffect(MobEffectCategory.BENEFICIAL, 0x791a9c));
+    public static final Holder<MobEffect> DRAGON = registerStatusEffect("dragon",
+            new DragonEffect(MobEffectCategory.BENEFICIAL, 0x312696).addAttributeModifier(
+                    Attributes.SCALE, Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "dragon"),
+                    0.3, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
             ).addAttributeModifier(
-                    EntityAttributes.MAX_HEALTH, Identifier.of(LifeLocke.MOD_ID, "dragon"),
-                    4, EntityAttributeModifier.Operation.ADD_VALUE
+                    Attributes.MAX_HEALTH, Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "dragon"),
+                    4, AttributeModifier.Operation.ADD_VALUE
             ));
-    public static final RegistryEntry<StatusEffect> STEEL = registerStatusEffect("steel",
-            new SteelEffect(StatusEffectCategory.BENEFICIAL, 0x9fb3b2));
-    public static final RegistryEntry<StatusEffect> FAIRY = registerStatusEffect("fairy",
-            new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0xdf76e3));
-    public static final RegistryEntry<StatusEffect> DARK = registerStatusEffect("dark",
-            new DarkEffect(StatusEffectCategory.BENEFICIAL, 0x000000));
-    public static final RegistryEntry<StatusEffect> PSYCHIC = registerStatusEffect("psychic",
-            new PsychicEffect(StatusEffectCategory.BENEFICIAL, 0xca67e0));
-    public static final RegistryEntry<StatusEffect> CURSE_TYPE = registerStatusEffect("curse_type",
-            new CheckedEffect(StatusEffectCategory.BENEFICIAL, 0x4a40e3));
+    public static final Holder<MobEffect> STEEL = registerStatusEffect("steel",
+            new SteelEffect(MobEffectCategory.BENEFICIAL, 0x9fb3b2));
+    public static final Holder<MobEffect> FAIRY = registerStatusEffect("fairy",
+            new CheckedEffect(MobEffectCategory.BENEFICIAL, 0xdf76e3));
+    public static final Holder<MobEffect> DARK = registerStatusEffect("dark",
+            new DarkEffect(MobEffectCategory.BENEFICIAL, 0x000000));
+    public static final Holder<MobEffect> PSYCHIC = registerStatusEffect("psychic",
+            new PsychicEffect(MobEffectCategory.BENEFICIAL, 0xca67e0));
+    public static final Holder<MobEffect> CURSE_TYPE = registerStatusEffect("curse_type",
+            new CheckedEffect(MobEffectCategory.BENEFICIAL, 0x4a40e3));
 
-    public static final RegistryEntry<StatusEffect> STUCK = registerStatusEffect("stuck",
-            new StuckEffect(StatusEffectCategory.HARMFUL, 0xab7333)
-                    .addAttributeModifier(EntityAttributes.GRAVITY, Identifier.of(LifeLocke.MOD_ID, "stuck"), -0.08, EntityAttributeModifier.Operation.ADD_VALUE)
-                    .addAttributeModifier(EntityAttributes.JUMP_STRENGTH, Identifier.of(LifeLocke.MOD_ID, "stuck"), -0.42, EntityAttributeModifier.Operation.ADD_VALUE)
+    public static final Holder<MobEffect> STUCK = registerStatusEffect("stuck",
+            new StuckEffect(MobEffectCategory.HARMFUL, 0xab7333)
+                    .addAttributeModifier(Attributes.GRAVITY, Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "stuck"), -0.08, AttributeModifier.Operation.ADD_VALUE)
+                    .addAttributeModifier(Attributes.JUMP_STRENGTH, Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "stuck"), -0.42, AttributeModifier.Operation.ADD_VALUE)
     );
 
-    public static final RegistryEntry[] EFFECTS = {NORMAL, ELECTRIC, FIGHTING, WATER, FIRE, GRASS, ICE, POISON, GROUND, FLYING, BUG,
+    public static final Holder[] EFFECTS = {NORMAL, ELECTRIC, FIGHTING, WATER, FIRE, GRASS, ICE, POISON, GROUND, FLYING, BUG,
             ROCK, GHOST, DRAGON, STEEL, FAIRY, DARK, PSYCHIC, CURSE_TYPE};
 
-    public static final RegistryEntry[] ROLLABLE_EFFECTS = {NORMAL, ELECTRIC, FIGHTING, WATER, FIRE, GRASS, ICE, POISON, GROUND, FLYING, BUG,
+    public static final Holder[] ROLLABLE_EFFECTS = {NORMAL, ELECTRIC, FIGHTING, WATER, FIRE, GRASS, ICE, POISON, GROUND, FLYING, BUG,
             ROCK, GHOST, DRAGON, STEEL, FAIRY, DARK, PSYCHIC};
 
 
-    private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect statusEffect) {
-        return Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(LifeLocke.MOD_ID, name), statusEffect);
+    private static Holder<MobEffect> registerStatusEffect(String name, MobEffect statusEffect) {
+        return Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, name), statusEffect);
     }
 
     public static void registerEffects() {

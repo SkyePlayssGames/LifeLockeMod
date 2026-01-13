@@ -3,20 +3,19 @@ package com.galaxyy.lifelocke.event;
 import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.playerdata.UpdateData;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.server.network.ServerPlayerEntity;
-
+import net.minecraft.core.Holder;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffect;
 import java.util.HashMap;
 import java.util.function.Function;
 
 public class JoinIconFixEvent implements ServerPlayerEvents.Join {
-    private static final HashMap<RegistryEntry<StatusEffect>, Function<ServerPlayerEntity, Boolean>> TOGGLE_TYPES = new HashMap<>();
+    private static final HashMap<Holder<MobEffect>, Function<ServerPlayer, Boolean>> TOGGLE_TYPES = new HashMap<>();
 
     @Override
-    public void onJoin(ServerPlayerEntity player) {
-        for (RegistryEntry<StatusEffect> status : TOGGLE_TYPES.keySet()) {
-            if (player.hasStatusEffect(status)) {
+    public void onJoin(ServerPlayer player) {
+        for (Holder<MobEffect> status : TOGGLE_TYPES.keySet()) {
+            if (player.hasEffect(status)) {
                 TOGGLE_TYPES.get(status).apply(player);
                 TOGGLE_TYPES.get(status).apply(player);
                 return;

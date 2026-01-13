@@ -8,38 +8,38 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.minecraft.command.CommandRegistryAccess;
-import net.minecraft.command.argument.EntityArgumentType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Text;
+import net.minecraft.commands.CommandBuildContext;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.player.Player;
 
 public class HealCommand implements CommandRegistrationCallback {
     private static final float DAMAGE_RATIO = 2f;
 
-    private int command(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-        final PlayerEntity user = context.getSource().getPlayer();
-        final PlayerEntity player = EntityArgumentType.getPlayer(context, "player");
+    private int command(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
+        final Player user = context.getSource().getPlayer();
+        final Player player = EntityArgument.getPlayer(context, "player");
         final int amount = IntegerArgumentType.getInteger(context, "amount");
-        final ServerWorld world = context.getSource().getWorld();
+        final ServerLevel world = context.getSource().getLevel();
 
-        if (user == null || !user.hasStatusEffect(ModEffects.FAIRY)) {
-            throw new SimpleCommandExceptionType(Text.translatable("text.lifelocke.command_error.heal.not_fairy")).create();
+        if (user == null || !user.hasEffect(ModEffects.FAIRY)) {
+            throw new SimpleCommandExceptionType(Component.translatable("text.lifelocke.command_error.heal.not_fairy")).create();
         }
 
-        user.damage(world, ModDamageTypes.of(world, ModDamageTypes.FAIRY_HEAL), amount*DAMAGE_RATIO);
+        user.hurtServer(world, ModDamageTypes.of(world, ModDamageTypes.FAIRY_HEAL), amount*DAMAGE_RATIO);
         player.heal(amount);
 
         return 1;
     }
 
     @Override
-    public void register(CommandDispatcher<ServerCommandSource> commandDispatcher, CommandRegistryAccess commandRegistryAccess, CommandManager.RegistrationEnvironment registrationEnvironment) {
-        commandDispatcher.register(CommandManager.literal("heal")
-                .then(CommandManager.argument("player", EntityArgumentType.player())
-                        .then(CommandManager.argument("amount", IntegerArgumentType.integer(0, 20))
+    public void register(CommandDispatcher<CommandSourceStack> commandDispatcher, CommandBuildContext commandRegistryAccess, Commands.CommandSelection registrationEnvironment) {
+        commandDispatcher.register(Commands.literal("heal")
+                .then(Commands.argument("player", EntityArgument.player())
+                        .then(Commands.argument("amount", IntegerArgumentType.integer(0, 20))
                         .executes(this::command)
                 )));
     }

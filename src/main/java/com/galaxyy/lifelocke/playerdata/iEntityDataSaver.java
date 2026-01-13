@@ -1,7 +1,7 @@
 package com.galaxyy.lifelocke.playerdata;
 
-import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.CompoundTag;
 
 public interface iEntityDataSaver {
-    NbtCompound lifelocke$getPersistentData();
+    CompoundTag lifelocke$getPersistentData();
 }

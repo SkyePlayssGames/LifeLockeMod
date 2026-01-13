@@ -4,26 +4,25 @@ import com.galaxyy.lifelocke.entity.ai.BlockFinder;
 import com.galaxyy.lifelocke.entity.ai.HealBlockGoal;
 import com.galaxyy.lifelocke.tags.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.AnimationState;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
-public class FireMobEntity extends HostileEntity {
+public class FireMobEntity extends Monster {
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
     private int healingCooldownTicks = 0;
@@ -36,34 +35,34 @@ public class FireMobEntity extends HostileEntity {
 
     private static final TagKey<Block> HEALING_BLOCKS = ModTags.FIRE_MOB_HEAL;
 
-    public FireMobEntity(EntityType<? extends HostileEntity> entityType, World world) {
+    public FireMobEntity(EntityType<? extends Monster> entityType, Level world) {
         super(entityType, world);
     }
 
     @Override
-    protected void initGoals() {
-        this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(1, new HealBlockGoal(this, 2, HEALING_BLOCKS));
-        this.goalSelector.add(2, new MeleeAttackGoal(this, 1.5, false));
-        this.goalSelector.add(3, new WanderAroundGoal(this, 1.0));
-        this.goalSelector.add(4, new LookAroundGoal(this));
+    protected void registerGoals() {
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new HealBlockGoal(this, 2, HEALING_BLOCKS));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.5, false));
+        this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1.0));
+        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
 
-        this.targetSelector.add(0, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
-    public static DefaultAttributeContainer.Builder createMobAttributes() {
-        return HostileEntity.createMobAttributes()
-                .add(EntityAttributes.MAX_HEALTH, MAX_HEALTH)
-                .add(EntityAttributes.MOVEMENT_SPEED, MOVEMENT_SPEED)
-                .add(EntityAttributes.ATTACK_DAMAGE, ATTACK_DAMAGE)
-                .add(EntityAttributes.FOLLOW_RANGE, FOLLOW_RANGE)
-                .add(EntityAttributes.BURNING_TIME, BURNING_TIME);
+    public static AttributeSupplier.Builder createMobAttributes() {
+        return Monster.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, MAX_HEALTH)
+                .add(Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED)
+                .add(Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE)
+                .add(Attributes.FOLLOW_RANGE, FOLLOW_RANGE)
+                .add(Attributes.BURNING_TIME, BURNING_TIME);
     }
 
     private void setupAnimationStates() {
         if (this.idleAnimationTimeout <= 0) {
             this.idleAnimationTimeout = 80;
-            this.idleAnimationState.start(this.age);
+            this.idleAnimationState.start(this.tickCount);
         } else {
             this.idleAnimationTimeout--;
         }
@@ -73,10 +72,10 @@ public class FireMobEntity extends HostileEntity {
     public void tick() {
         super.tick();
 
-        if (this.getEntityWorld().isClient()) {
+        if (this.level().isClientSide()) {
             this.setupAnimationStates();
         } else {
-            if (Blocks.FIRE.getStateManager().getStates().contains(this.getEntityWorld().getBlockState(this.getBlockPos())) &&
+            if (Blocks.FIRE.getStateDefinition().getPossibleStates().contains(this.level().getBlockState(this.blockPosition())) &&
                 this.checkHealingCooldown()) {
                 this.heal(2);
             }

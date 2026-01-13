@@ -4,17 +4,16 @@ import com.galaxyy.lifelocke.LifeLocke;
 import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.entity.ModEntities;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
-import net.minecraft.item.Items;
-import net.minecraft.item.SpawnEggItem;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
-
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.SpawnEggItem;
 import java.util.function.Function;
 
 public class ModItems {
@@ -38,23 +37,23 @@ public class ModItems {
     public static final Item FIRE_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.FIRE_MOB);
     public static final Item GRASS_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.GRASS_MOB);
 
-    private static Item registerItem(String name, Function<Item.Settings, Item> function) {
-        Identifier id = Identifier.of(LifeLocke.MOD_ID, name);
-        return Registry.register(Registries.ITEM, id,
-                function.apply(new Item.Settings().registryKey(RegistryKey.of(RegistryKeys.ITEM, id))));
+    private static Item registerItem(String name, Function<Item.Properties, Item> function) {
+        Identifier id = Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, name);
+        return Registry.register(BuiltInRegistries.ITEM, id,
+                function.apply(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, id))));
     }
 
     private static Item registerSpawnEgg(EntityType<?> type) {
-        return Items.register(
-                RegistryKey.of(RegistryKeys.ITEM, EntityType.getId(type).withSuffixedPath("_spawn_egg")), SpawnEggItem::new, new Item.Settings().spawnEgg(type)
+        return Items.registerItem(
+                ResourceKey.create(Registries.ITEM, EntityType.getKey(type).withSuffix("_spawn_egg")), SpawnEggItem::new, new Item.Properties().spawnEgg(type)
         );
     }
 
     public static void registerModItems() {
         System.out.println("Registering Mod Items for " + LifeLocke.MOD_ID);
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register((itemgroup) -> {
-                itemgroup.add(FIRE_MOB_SPAWN_EGG);
-                itemgroup.add(GRASS_MOB_SPAWN_EGG);
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.SPAWN_EGGS).register((itemgroup) -> {
+                itemgroup.accept(FIRE_MOB_SPAWN_EGG);
+                itemgroup.accept(GRASS_MOB_SPAWN_EGG);
         });
     }
 }

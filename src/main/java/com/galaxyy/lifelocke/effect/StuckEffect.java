@@ -1,44 +1,44 @@
 package com.galaxyy.lifelocke.effect;
 
 import com.galaxyy.lifelocke.playerdata.UpdateData;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 
-public class StuckEffect extends StatusEffect {
-    protected StuckEffect(StatusEffectCategory category, int color) {
+public class StuckEffect extends MobEffect {
+    protected StuckEffect(MobEffectCategory category, int color) {
         super(category, color);
     }
 
     @Override
-    public void onApplied(LivingEntity entity, int amplifier) {
-        if (!(entity instanceof ServerPlayerEntity)) {
+    public void onEffectStarted(LivingEntity entity, int amplifier) {
+        if (!(entity instanceof ServerPlayer)) {
             return;
         }
-        UpdateData.setStuckBlockPos((ServerPlayerEntity) entity, entity.getBlockPos());
+        UpdateData.setStuckBlockPos((ServerPlayer) entity, entity.blockPosition());
     }
 
     @Override
-    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
-        if (!(entity instanceof ServerPlayerEntity)) {
+    public boolean applyEffectTick(ServerLevel world, LivingEntity entity, int amplifier) {
+        if (!(entity instanceof ServerPlayer)) {
             return false;
         }
-        BlockPos pos = UpdateData.getStuckBlockPos(((ServerPlayerEntity) entity));
-        if (pos == BlockPos.ORIGIN) {
+        BlockPos pos = UpdateData.getStuckBlockPos(((ServerPlayer) entity));
+        if (pos == BlockPos.ZERO) {
             return false;
         }
-        entity.requestTeleport(pos.getX(), pos.getY(), pos.getZ());
-        entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 5, 255, false, false));
+        entity.teleportTo(pos.getX(), pos.getY(), pos.getZ());
+        entity.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 5, 255, false, false));
         return true;
     }
 
     @Override
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return true;
     }
 }

@@ -1,16 +1,16 @@
 package com.galaxyy.lifelocke.item;
 
 import com.galaxyy.lifelocke.event.AddTooltipsEvent;
-import net.minecraft.component.type.ConsumableComponent;
-import net.minecraft.component.type.ConsumableComponents;
-import net.minecraft.component.type.FoodComponent;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.item.Item;
-import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.component.Consumable;
+import net.minecraft.world.item.component.Consumables;
+import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
 
 public class EnergyBottleItem extends Item {
     public enum EffectTime {
@@ -24,29 +24,29 @@ public class EnergyBottleItem extends Item {
             };
         }
 
-        public Text tooltip() {
+        public Component tooltip() {
             return switch(this) {
-                case HALF_AN_HOUR -> Text.literal("(00:30:00)");
-                case HOUR -> Text.literal("(01:00:00)");
+                case HALF_AN_HOUR -> Component.literal("(00:30:00)");
+                case HOUR -> Component.literal("(01:00:00)");
             };
         }
     }
 
-    public EnergyBottleItem(Settings settings, RegistryEntry<StatusEffect> type, EffectTime time) {
-        super(settings.food(new FoodComponent(0, 0, true), getConsumableComponent(type, time)));
-        AddTooltipsEvent.append_tooltip(this, Text.translatable(
+    public EnergyBottleItem(Properties settings, Holder<MobEffect> type, EffectTime time) {
+        super(settings.food(new FoodProperties(0, 0, true), getConsumableComponent(type, time)));
+        AddTooltipsEvent.append_tooltip(this, Component.translatable(
                 "tooltip.lifelocke.energy_bottle",
-                type.value().getName(),
+                type.value().getDisplayName(),
                 time.tooltip()
                 )
-                .formatted(Formatting.BLUE)
+                .withStyle(ChatFormatting.BLUE)
         );
     }
 
 
-    public static ConsumableComponent getConsumableComponent(RegistryEntry<StatusEffect> type, EffectTime time) {
-        return ConsumableComponents.drink().consumeEffect(new ApplyEffectsConsumeEffect(
-                new StatusEffectInstance(type, time.lengthTicks())
+    public static Consumable getConsumableComponent(Holder<MobEffect> type, EffectTime time) {
+        return Consumables.defaultDrink().onConsume(new ApplyStatusEffectsConsumeEffect(
+                new MobEffectInstance(type, time.lengthTicks())
         )).build();
     }
 

@@ -3,55 +3,55 @@ package com.galaxyy.lifelocke.playerdata;
 import com.galaxyy.lifelocke.networking.RenderTypeIconS2CPayload;
 import com.mojang.datafixers.util.Pair;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.nbt.Tag;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
 
 public class UpdateData {
-    public static ItemStack swapNormalItemStack(ServerPlayerEntity playerEntity, ItemStack itemStack) {
-        NbtCompound nbt = ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData();
-        NbtElement newItem = ItemStack.CODEC.encodeStart(NbtOps.INSTANCE, itemStack).result().orElse(new NbtCompound());
-        NbtCompound oldItemNbt = nbt.getCompound("normal_item").orElse(null);
+    public static ItemStack swapNormalItemStack(ServerPlayer playerEntity, ItemStack itemStack) {
+        CompoundTag nbt = ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData();
+        Tag newItem = ItemStack.CODEC.encodeStart(NbtOps.INSTANCE, itemStack).result().orElse(new CompoundTag());
+        CompoundTag oldItemNbt = nbt.getCompound("normal_item").orElse(null);
         ItemStack oldItem = ItemStack.EMPTY;
         if (oldItemNbt != null) {
             oldItem = ItemStack.CODEC.decode(NbtOps.INSTANCE, oldItemNbt).result()
-                    .orElse(Pair.of(ItemStack.EMPTY, new NbtCompound())).getFirst();
+                    .orElse(Pair.of(ItemStack.EMPTY, new CompoundTag())).getFirst();
         }
         nbt.put("normal_item", newItem);
         return oldItem;
     }
 
-    public static void setStuckBlockPos(ServerPlayerEntity playerEntity, BlockPos pos) {
-        NbtCompound nbt = ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData();
+    public static void setStuckBlockPos(ServerPlayer playerEntity, BlockPos pos) {
+        CompoundTag nbt = ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData();
         nbt.putIntArray("stuck_block_pos", new int[] {pos.getX(), pos.getY(), pos.getZ()});
     }
 
-    public static BlockPos getStuckBlockPos(ServerPlayerEntity playerEntity) {
-        NbtCompound nbt = ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData();
+    public static BlockPos getStuckBlockPos(ServerPlayer playerEntity) {
+        CompoundTag nbt = ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData();
         int[] ints = nbt.getIntArray("stuck_block_pos").orElse(new int[] {0,0,0});
         return new BlockPos(ints[0], ints[1], ints[2]);
     }
 
-    public static int getTimeSneaked(ServerPlayerEntity playerEntity) {
-        return ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getInt("time_sneaked", 0);
+    public static int getTimeSneaked(ServerPlayer playerEntity) {
+        return ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getIntOr("time_sneaked", 0);
     }
 
-    public static int incrementTimeSneaked(ServerPlayerEntity playerEntity) {
-        NbtCompound nbt = ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData();
+    public static int incrementTimeSneaked(ServerPlayer playerEntity) {
+        CompoundTag nbt = ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData();
         int time = getTimeSneaked(playerEntity);
         nbt.putInt("time_sneaked", time+1);
 
         return time + 1;
     }
 
-    public static void resetTimeSneaked(ServerPlayerEntity playerEntity) {
+    public static void resetTimeSneaked(ServerPlayer playerEntity) {
         ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().putInt("time_sneaked", 0);
     }
 
-    public static void setShownTypeIcon(ServerPlayerEntity playerEntity, RenderTypeIconS2CPayload.ICONS icon) {
+    public static void setShownTypeIcon(ServerPlayer playerEntity, RenderTypeIconS2CPayload.ICONS icon) {
         ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().putInt("type_icon", icon.ordinal());
         ServerPlayNetworking.send(playerEntity,
                 new RenderTypeIconS2CPayload(icon.ordinal())
@@ -59,16 +59,16 @@ public class UpdateData {
     }
 
     public static boolean getAndSetRolltypeConfirmation(iEntityDataSaver player) {
-        NbtCompound nbt = player.lifelocke$getPersistentData();
+        CompoundTag nbt = player.lifelocke$getPersistentData();
         boolean confirmation = nbt.getBoolean("rolltype_confirmation").orElse(false);
         nbt.putBoolean("rolltype_confirmation", true);
 
         return confirmation;
     }
 
-    public static boolean toggleElectricPower(ServerPlayerEntity playerEntity) {
+    public static boolean toggleElectricPower(ServerPlayer playerEntity) {
         iEntityDataSaver player = ((iEntityDataSaver) playerEntity);
-        NbtCompound nbt = player.lifelocke$getPersistentData();
+        CompoundTag nbt = player.lifelocke$getPersistentData();
         boolean electricPower = nbt.getBoolean("electric_power").orElse(false);
 
         electricPower = !electricPower;
@@ -84,9 +84,9 @@ public class UpdateData {
         return electricPower;
     }
 
-    public static boolean toggleGhostPower(ServerPlayerEntity playerEntity) {
+    public static boolean toggleGhostPower(ServerPlayer playerEntity) {
         iEntityDataSaver player = ((iEntityDataSaver) playerEntity);
-        NbtCompound nbt = player.lifelocke$getPersistentData();
+        CompoundTag nbt = player.lifelocke$getPersistentData();
         boolean ghostPower = nbt.getBoolean("ghost_power").orElse(false);
 
         ghostPower = !ghostPower;
@@ -102,9 +102,9 @@ public class UpdateData {
         return ghostPower;
     }
 
-    public static boolean toggleIcePower(ServerPlayerEntity playerEntity) {
+    public static boolean toggleIcePower(ServerPlayer playerEntity) {
         iEntityDataSaver player = ((iEntityDataSaver) playerEntity);
-        NbtCompound nbt = player.lifelocke$getPersistentData();
+        CompoundTag nbt = player.lifelocke$getPersistentData();
         boolean icePower = nbt.getBoolean("ice_power").orElse(false);
 
         icePower = !icePower;
@@ -119,9 +119,9 @@ public class UpdateData {
         return icePower;
     }
 
-    public static boolean togglePoisonPower(ServerPlayerEntity playerEntity) {
+    public static boolean togglePoisonPower(ServerPlayer playerEntity) {
         iEntityDataSaver player = ((iEntityDataSaver) playerEntity);
-        NbtCompound nbt = player.lifelocke$getPersistentData();
+        CompoundTag nbt = player.lifelocke$getPersistentData();
         boolean poisonPower = nbt.getBoolean("poison_power").orElse(false);
 
         poisonPower = !poisonPower;
@@ -136,9 +136,9 @@ public class UpdateData {
         return poisonPower;
     }
 
-    public static boolean toggleDarkPower(ServerPlayerEntity playerEntity) {
+    public static boolean toggleDarkPower(ServerPlayer playerEntity) {
         iEntityDataSaver player = ((iEntityDataSaver) playerEntity);
-        NbtCompound nbt = player.lifelocke$getPersistentData();
+        CompoundTag nbt = player.lifelocke$getPersistentData();
         boolean darkPower = nbt.getBoolean("dark_power").orElse(false);
 
         darkPower = !darkPower;
@@ -153,9 +153,9 @@ public class UpdateData {
         return darkPower;
     }
 
-    public static boolean togglePsychicPower(ServerPlayerEntity playerEntity) {
+    public static boolean togglePsychicPower(ServerPlayer playerEntity) {
         iEntityDataSaver player = ((iEntityDataSaver) playerEntity);
-        NbtCompound nbt = player.lifelocke$getPersistentData();
+        CompoundTag nbt = player.lifelocke$getPersistentData();
         boolean psychicPower = nbt.getBoolean("psychic_power").orElse(false);
 
         psychicPower = !psychicPower;
@@ -171,7 +171,7 @@ public class UpdateData {
     }
 
     public static boolean tryAndStoreCooldown(iEntityDataSaver player, long time) {
-        NbtCompound nbt = player.lifelocke$getPersistentData();
+        CompoundTag nbt = player.lifelocke$getPersistentData();
         long ticks = nbt.getLong("time").orElse(0L);
         if (time == ticks) { return false; }
 
@@ -180,12 +180,12 @@ public class UpdateData {
     }
 
     public static int[] getTypeList(iEntityDataSaver player) {
-        NbtCompound nbt = player.lifelocke$getPersistentData();
+        CompoundTag nbt = player.lifelocke$getPersistentData();
         return nbt.getIntArray("types").orElse(new int[] {});
     }
 
     public static void setTypeList(iEntityDataSaver player, int[] list) {
-        NbtCompound nbt = player.lifelocke$getPersistentData();
+        CompoundTag nbt = player.lifelocke$getPersistentData();
         nbt.putIntArray("types", list);
     }
 }

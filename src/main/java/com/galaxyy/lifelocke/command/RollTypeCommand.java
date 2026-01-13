@@ -9,53 +9,52 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
-import net.minecraft.block.Blocks;
-import net.minecraft.command.CommandRegistryAccess;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.text.Text;
-
+import net.minecraft.commands.CommandBuildContext;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
 import java.util.Arrays;
 
 public class RollTypeCommand implements CommandRegistrationCallback {
-    private int command(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-        PlayerEntity player = context.getSource().getPlayer();
-        boolean type_duplication = context.getSource().getWorld().getGameRules().getValue(ModGameRules.TYPE_DUPLICATION);
-        boolean special_types = context.getSource().getWorld().getGameRules().getValue(ModGameRules.SPECIAL_TYPE_ROLL);
-        RegistryEntry<StatusEffect>[] effectsList = special_types ? ModEffects.EFFECTS : ModEffects.ROLLABLE_EFFECTS;
+    private int command(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
+        Player player = context.getSource().getPlayer();
+        boolean type_duplication = context.getSource().getLevel().getGameRules().get(ModGameRules.TYPE_DUPLICATION);
+        boolean special_types = context.getSource().getLevel().getGameRules().get(ModGameRules.SPECIAL_TYPE_ROLL);
+        Holder<MobEffect>[] effectsList = special_types ? ModEffects.EFFECTS : ModEffects.ROLLABLE_EFFECTS;
 
         if (player == null) {
-            throw new SimpleCommandExceptionType(Text.translatable("text.lifelocke.command_error.rolltype.not_player_sent")).create();
+            throw new SimpleCommandExceptionType(Component.translatable("text.lifelocke.command_error.rolltype.not_player_sent")).create();
         }
-        for (RegistryEntry<StatusEffect> effect : ModEffects.EFFECTS) {
-            if (player.hasStatusEffect(effect)) {
-                throw new SimpleCommandExceptionType(Text.translatable("text.lifelocke.command_error.rolltype.already_has_type")).create();
+        for (Holder<MobEffect> effect : ModEffects.EFFECTS) {
+            if (player.hasEffect(effect)) {
+                throw new SimpleCommandExceptionType(Component.translatable("text.lifelocke.command_error.rolltype.already_has_type")).create();
             }
         }
 
         int[] types_had = UpdateData.getTypeList((iEntityDataSaver) player);
         if (types_had.length >= effectsList.length && !type_duplication) {
-            throw new SimpleCommandExceptionType(Text.translatable("text.lifelocke.command_error.rolltype.has_had_all_types")).create();
+            throw new SimpleCommandExceptionType(Component.translatable("text.lifelocke.command_error.rolltype.has_had_all_types")).create();
         }
 
         if (!UpdateData.getAndSetRolltypeConfirmation(((iEntityDataSaver) player))) {
-            context.getSource().sendFeedback(() -> Text.translatable("text.lifelocke.command.rolltype.confirm"), false);
+            context.getSource().sendSuccess(() -> Component.translatable("text.lifelocke.command.rolltype.confirm"), false);
             return 0;
         }
 
-        player.equipStack(EquipmentSlot.HEAD, new ItemStack(Blocks.AIR));
-        player.equipStack(EquipmentSlot.CHEST, new ItemStack(Blocks.AIR));
-        player.equipStack(EquipmentSlot.LEGS, new ItemStack(Blocks.AIR));
-        player.equipStack(EquipmentSlot.FEET, new ItemStack(Blocks.AIR));
+        player.setItemSlot(EquipmentSlot.HEAD, new ItemStack(Blocks.AIR));
+        player.setItemSlot(EquipmentSlot.CHEST, new ItemStack(Blocks.AIR));
+        player.setItemSlot(EquipmentSlot.LEGS, new ItemStack(Blocks.AIR));
+        player.setItemSlot(EquipmentSlot.FEET, new ItemStack(Blocks.AIR));
 
         while (true) {
-            int type_rolled = player.getRandom().nextBetween(0, effectsList.length-1);
+            int type_rolled = player.getRandom().nextIntBetweenInclusive(0, effectsList.length-1);
             if (Arrays.stream(types_had).anyMatch(value -> value == type_rolled) && !type_duplication) {
                 continue;
             }
@@ -72,11 +71,11 @@ public class RollTypeCommand implements CommandRegistrationCallback {
                 UpdateData.setTypeList(((iEntityDataSaver) player), types_have);
             }
             
-            player.addStatusEffect(new StatusEffectInstance(effectsList[type_rolled], -1));
+            player.addEffect(new MobEffectInstance(effectsList[type_rolled], -1));
 
-            for (PlayerEntity playerEntity : context.getSource().getWorld().getPlayers()) {
-                playerEntity.sendMessage(Text.translatable("text.lifelocke.command.rolltype.rolled_type",
-                        player.getName(), effectsList[type_rolled].value().getName()), false);
+            for (Player playerEntity : context.getSource().getLevel().players()) {
+                playerEntity.displayClientMessage(Component.translatable("text.lifelocke.command.rolltype.rolled_type",
+                        player.getName(), effectsList[type_rolled].value().getDisplayName()), false);
             }
 
             break;
@@ -86,8 +85,8 @@ public class RollTypeCommand implements CommandRegistrationCallback {
     }
 
     @Override
-    public void register(CommandDispatcher<ServerCommandSource> commandDispatcher, CommandRegistryAccess commandRegistryAccess, CommandManager.RegistrationEnvironment registrationEnvironment) {
-        commandDispatcher.register(CommandManager.literal("rolltype")
+    public void register(CommandDispatcher<CommandSourceStack> commandDispatcher, CommandBuildContext commandRegistryAccess, Commands.CommandSelection registrationEnvironment) {
+        commandDispatcher.register(Commands.literal("rolltype")
                 .executes(this::command));
     }
 

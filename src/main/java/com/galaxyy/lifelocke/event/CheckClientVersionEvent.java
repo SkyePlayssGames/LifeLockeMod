@@ -1,18 +1,18 @@
 package com.galaxyy.lifelocke.event;
 
 import com.galaxyy.lifelocke.events.ModdedPlayerJoinClientCallback;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ActionResult;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 
 public class CheckClientVersionEvent implements ModdedPlayerJoinClientCallback {
     private static final int MAXIMUM_SERVER_VERSION = 14;
 
     @Override
-    public ActionResult check(PlayerEntity player, int version) {
+    public InteractionResult check(Player player, int version) {
         if (MAXIMUM_SERVER_VERSION >= version) {
-            return ActionResult.PASS;
+            return InteractionResult.PASS;
         } else {
-            return ActionResult.FAIL;
+            return InteractionResult.FAIL;
         }
     }
 }

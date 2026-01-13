@@ -4,40 +4,40 @@ import com.galaxyy.lifelocke.block.ModBlocks;
 import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
 import com.galaxyy.lifelocke.playerdata.UpdateData;
 import com.galaxyy.lifelocke.playerdata.iEntityDataSaver;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.Blocks;
 
-public class IceEffect extends StatusEffect {
-    protected IceEffect(StatusEffectCategory category, int color) {
+public class IceEffect extends MobEffect {
+    protected IceEffect(MobEffectCategory category, int color) {
         super(category, color);
     }
 
     @Override
-    public void onApplied(LivingEntity entity, int amplifier) {
+    public void onEffectStarted(LivingEntity entity, int amplifier) {
         SettingsFileHandler.create();
         Boolean setting = SettingsFileHandler.try_read(null)[SettingsFileHandler.SETTINGS.POWER_DEFAULT.ordinal()].get_boolean();
-        if (UpdateData.toggleIcePower((ServerPlayerEntity) entity) != setting) {
-            UpdateData.toggleIcePower(((ServerPlayerEntity) entity));
+        if (UpdateData.toggleIcePower((ServerPlayer) entity) != setting) {
+            UpdateData.toggleIcePower(((ServerPlayer) entity));
         }
     }
 
     @Override
-    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
-        if (!(entity instanceof PlayerEntity)) {
+    public boolean applyEffectTick(ServerLevel world, LivingEntity entity, int amplifier) {
+        if (!(entity instanceof Player)) {
             return true;
         }
         iEntityDataSaver playerData = (iEntityDataSaver) entity;
         if (!(playerData.lifelocke$getPersistentData().getBoolean("ice_power")).orElse(false)) {
             return true;
         }
-        PlayerEntity player = ((PlayerEntity) playerData);
-        BlockPos start = player.getBlockPos().down();
+        Player player = ((Player) playerData);
+        BlockPos start = player.blockPosition().below();
 
         BlockPos[] toReplace = new BlockPos[25];
         BlockPos[] eastWestToDo = new BlockPos[5];
@@ -63,10 +63,10 @@ public class IceEffect extends StatusEffect {
         }
 
         for (BlockPos blockPos : toReplace) {
-            if (world.getBlockState(blockPos).isOf(Blocks.WATER)) {
-                world.setBlockState(blockPos, Blocks.FROSTED_ICE.getDefaultState());
-            } else if (world.getBlockState(blockPos).isOf(Blocks.LAVA)) {
-                world.setBlockState(blockPos, ModBlocks.FROSTED_OBSIDIAN.getDefaultState());
+            if (world.getBlockState(blockPos).is(Blocks.WATER)) {
+                world.setBlockAndUpdate(blockPos, Blocks.FROSTED_ICE.defaultBlockState());
+            } else if (world.getBlockState(blockPos).is(Blocks.LAVA)) {
+                world.setBlockAndUpdate(blockPos, ModBlocks.FROSTED_OBSIDIAN.defaultBlockState());
             }
         }
 
@@ -74,7 +74,7 @@ public class IceEffect extends StatusEffect {
     }
 
     @Override
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return true;
     }
 }

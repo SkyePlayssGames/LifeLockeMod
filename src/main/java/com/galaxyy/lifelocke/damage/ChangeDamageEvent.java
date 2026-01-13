@@ -2,17 +2,16 @@ package com.galaxyy.lifelocke.damage;
 
 import com.galaxyy.lifelocke.gamerule.ModGameRules;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageType;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.DamageTypeTags;
-import net.minecraft.server.world.ServerWorld;
-
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import java.util.HashMap;
 
 import static com.galaxyy.lifelocke.damage.ModDamageTypes.*;
@@ -23,30 +22,30 @@ public class ChangeDamageEvent implements ServerLivingEntityEvents.AllowDamage {
         if (damageNotChanged(entity, source)) {
             return true;
         }
-        assert entity instanceof PlayerEntity;
-        assert source.getAttacker() instanceof PlayerEntity;
-        assert source.getAttacker() != null;
+        assert entity instanceof Player;
+        assert source.getEntity() instanceof Player;
+        assert source.getEntity() != null;
 
-        PlayerEntity target = ((PlayerEntity) entity);
-        PlayerEntity player = ((PlayerEntity) source.getAttacker());
+        Player target = ((Player) entity);
+        Player player = ((Player) source.getEntity());
 
-        if (source.isIn(DamageTypeTags.IS_PROJECTILE)) {
+        if (source.is(DamageTypeTags.IS_PROJECTILE)) {
             return changeDamageType(player, target, amount, PROJ_DAMAGE_TYPES);
-        } else if (source.isIn(DamageTypeTags.IS_EXPLOSION)) {
+        } else if (source.is(DamageTypeTags.IS_EXPLOSION)) {
             return true;
-        } else if (source.isIn(DamageTypeTags.IS_FALL)) {
+        } else if (source.is(DamageTypeTags.IS_FALL)) {
             return changeDamageType(player, target, amount, FALL_DAMAGE_TYPES);
         } else {
             return changeDamageType(player, target, amount, SLAIN_DAMAGE_TYPES);
         }
     }
 
-    private static boolean changeDamageType(PlayerEntity player, PlayerEntity target, float amount,
-                                            HashMap<RegistryEntry<StatusEffect>, RegistryKey<DamageType>> typeMap) {
-        for (StatusEffectInstance effect : player.getStatusEffects()) {
-            if (typeMap.containsKey(effect.getEffectType())) {
-                target.damage(((ServerWorld) target.getEntityWorld()),
-                        ModDamageTypes.of(target.getEntityWorld(), typeMap.get(effect.getEffectType()), player),
+    private static boolean changeDamageType(Player player, Player target, float amount,
+                                            HashMap<Holder<MobEffect>, ResourceKey<DamageType>> typeMap) {
+        for (MobEffectInstance effect : player.getActiveEffects()) {
+            if (typeMap.containsKey(effect.getEffect())) {
+                target.hurtServer(((ServerLevel) target.level()),
+                        ModDamageTypes.of(target.level(), typeMap.get(effect.getEffect()), player),
                         amount);
                 return false;
             }
@@ -55,15 +54,15 @@ public class ChangeDamageEvent implements ServerLivingEntityEvents.AllowDamage {
     }
 
     private static boolean damageNotChanged(LivingEntity entity, DamageSource source) {
-        if (!(source.getAttacker() instanceof PlayerEntity) || !(entity instanceof PlayerEntity)) {
+        if (!(source.getEntity() instanceof Player) || !(entity instanceof Player)) {
             return true;
         }
-        if (!((ServerWorld) entity.getEntityWorld()).getGameRules().getValue(ModGameRules.TYPE_DEATH_MESSAGES)) {
+        if (!((ServerLevel) entity.level()).getGameRules().get(ModGameRules.TYPE_DEATH_MESSAGES)) {
             return true;
         }
-        if (SLAIN_DAMAGE_TYPES.containsValue(source.getTypeRegistryEntry().getKey().orElse(null)) ||
-                PROJ_DAMAGE_TYPES.containsValue(source.getTypeRegistryEntry().getKey().orElse(null)) ||
-                FALL_DAMAGE_TYPES.containsValue(source.getTypeRegistryEntry().getKey().orElse(null))) {
+        if (SLAIN_DAMAGE_TYPES.containsValue(source.typeHolder().unwrapKey().orElse(null)) ||
+                PROJ_DAMAGE_TYPES.containsValue(source.typeHolder().unwrapKey().orElse(null)) ||
+                FALL_DAMAGE_TYPES.containsValue(source.typeHolder().unwrapKey().orElse(null))) {
             return true;
         }
         return false;

@@ -2,49 +2,49 @@ package com.galaxyy.lifelocke.effect;
 
 import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
 import com.galaxyy.lifelocke.playerdata.UpdateData;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 
-public class ElectricEffect extends StatusEffect {
-    protected ElectricEffect(StatusEffectCategory category, int color) {
+public class ElectricEffect extends MobEffect {
+    protected ElectricEffect(MobEffectCategory category, int color) {
         super(category, color);
     }
 
     @Override
-    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
-        if (!(entity instanceof ServerPlayerEntity)) {
+    public boolean applyEffectTick(ServerLevel world, LivingEntity entity, int amplifier) {
+        if (!(entity instanceof ServerPlayer)) {
             return true;
         }
 
-        if (entity.isSneaking()) {
-            UpdateData.incrementTimeSneaked(((ServerPlayerEntity) entity));
+        if (entity.isShiftKeyDown()) {
+            UpdateData.incrementTimeSneaked(((ServerPlayer) entity));
         } else {
-            UpdateData.resetTimeSneaked(((ServerPlayerEntity) entity));
+            UpdateData.resetTimeSneaked(((ServerPlayer) entity));
         }
 
-        if (UpdateData.getTimeSneaked(((ServerPlayerEntity) entity)) >= 20) {
-            entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 100, 2, false, false));
+        if (UpdateData.getTimeSneaked(((ServerPlayer) entity)) >= 20) {
+            entity.addEffect(new MobEffectInstance(MobEffects.SPEED, 100, 2, false, false));
         }
 
         return true;
     }
 
     @Override
-    public void onApplied(LivingEntity entity, int amplifier) {
+    public void onEffectStarted(LivingEntity entity, int amplifier) {
         SettingsFileHandler.create();
         Boolean setting = SettingsFileHandler.try_read(null)[SettingsFileHandler.SETTINGS.POWER_DEFAULT.ordinal()].get_boolean();
-        if (UpdateData.toggleElectricPower((ServerPlayerEntity) entity) != setting) {
-            UpdateData.toggleElectricPower(((ServerPlayerEntity) entity));
+        if (UpdateData.toggleElectricPower((ServerPlayer) entity) != setting) {
+            UpdateData.toggleElectricPower(((ServerPlayer) entity));
         }
     }
 
     @Override
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return true;
     }
 }

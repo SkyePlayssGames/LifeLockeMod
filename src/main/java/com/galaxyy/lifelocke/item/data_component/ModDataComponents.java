@@ -2,21 +2,20 @@ package com.galaxyy.lifelocke.item.data_component;
 
 import com.galaxyy.lifelocke.LifeLocke;
 import com.mojang.serialization.Codec;
-import net.minecraft.component.ComponentType;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Unit;
 
 public class ModDataComponents {
-    public static final ComponentType<Unit> STEEL = Registry.register(
-            Registries.DATA_COMPONENT_TYPE, Identifier.of(LifeLocke.MOD_ID, "steel"),
-            ComponentType.<Unit>builder().codec(Unit.CODEC).build()
+    public static final DataComponentType<Unit> STEEL = Registry.register(
+            BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "steel"),
+            DataComponentType.<Unit>builder().persistent(Unit.CODEC).build()
     );
-    public static final ComponentType<Unit> FLYING = Registry.register(
-            Registries.DATA_COMPONENT_TYPE, Identifier.of(LifeLocke.MOD_ID, "flying"),
-            ComponentType.<Unit>builder().codec(Unit.CODEC).build()
+    public static final DataComponentType<Unit> FLYING = Registry.register(
+            BuiltInRegistries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "flying"),
+            DataComponentType.<Unit>builder().persistent(Unit.CODEC).build()
     );
 
     public static void registerModDataComponents() {

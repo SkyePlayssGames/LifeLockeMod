@@ -2,145 +2,144 @@ package com.galaxyy.lifelocke.damage;
 
 import com.galaxyy.lifelocke.LifeLocke;
 import com.galaxyy.lifelocke.effect.ModEffects;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageType;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
-
 import java.util.HashMap;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
 
 public class ModDamageTypes {
-    public static final RegistryKey<DamageType> FAIRY_HEAL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "fairy_heal"));
+    public static final ResourceKey<DamageType> FAIRY_HEAL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fairy_heal"));
 
-    public static final RegistryKey<DamageType> PLANT_ATTACK = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "plant_attack"));
+    public static final ResourceKey<DamageType> PLANT_ATTACK = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "plant_attack"));
 
-    public static final HashMap<RegistryEntry<StatusEffect>, RegistryKey<DamageType>> SLAIN_DAMAGE_TYPES = new HashMap<>();
-    public static final RegistryKey<DamageType> BUG = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "slain/bug"));
-    public static final RegistryKey<DamageType> FIRE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "slain/fire"));
-    public static final RegistryKey<DamageType> DARK = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "slain/dark"));
-    public static final RegistryKey<DamageType> WATER = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "slain/water"));
-    public static final RegistryKey<DamageType> GROUND = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "slain/ground"));
-    public static final RegistryKey<DamageType> ROCK = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "slain/rock"));
-    public static final RegistryKey<DamageType> ICE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "slain/ice"));
-    public static final RegistryKey<DamageType> PSYCHIC = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "slain/psychic"));
-    public static final RegistryKey<DamageType> FLYING = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "slain/flying"));
-    public static final RegistryKey<DamageType> POISON = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "slain/poison"));
-    public static final RegistryKey<DamageType> GRASS = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "slain/grass"));
-    public static final RegistryKey<DamageType> ELECTRIC = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "slain/electric"));
-    public static final RegistryKey<DamageType> FIGHTING = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "slain/fighting"));
-    public static final RegistryKey<DamageType> GHOST = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "slain/ghost"));
-    public static final RegistryKey<DamageType> STEEL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "slain/steel"));
-    public static final RegistryKey<DamageType> CURSE_TYPE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "slain/curse_type"));
-    public static final RegistryKey<DamageType> DRAGON = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "slain/dragon"));
-    public static final RegistryKey<DamageType> FAIRY = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "slain/fairy"));
+    public static final HashMap<Holder<MobEffect>, ResourceKey<DamageType>> SLAIN_DAMAGE_TYPES = new HashMap<>();
+    public static final ResourceKey<DamageType> BUG = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "slain/bug"));
+    public static final ResourceKey<DamageType> FIRE = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "slain/fire"));
+    public static final ResourceKey<DamageType> DARK = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "slain/dark"));
+    public static final ResourceKey<DamageType> WATER = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "slain/water"));
+    public static final ResourceKey<DamageType> GROUND = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "slain/ground"));
+    public static final ResourceKey<DamageType> ROCK = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "slain/rock"));
+    public static final ResourceKey<DamageType> ICE = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "slain/ice"));
+    public static final ResourceKey<DamageType> PSYCHIC = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "slain/psychic"));
+    public static final ResourceKey<DamageType> FLYING = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "slain/flying"));
+    public static final ResourceKey<DamageType> POISON = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "slain/poison"));
+    public static final ResourceKey<DamageType> GRASS = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "slain/grass"));
+    public static final ResourceKey<DamageType> ELECTRIC = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "slain/electric"));
+    public static final ResourceKey<DamageType> FIGHTING = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "slain/fighting"));
+    public static final ResourceKey<DamageType> GHOST = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "slain/ghost"));
+    public static final ResourceKey<DamageType> STEEL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "slain/steel"));
+    public static final ResourceKey<DamageType> CURSE_TYPE = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "slain/curse_type"));
+    public static final ResourceKey<DamageType> DRAGON = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "slain/dragon"));
+    public static final ResourceKey<DamageType> FAIRY = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "slain/fairy"));
 
-    public static final HashMap<RegistryEntry<StatusEffect>, RegistryKey<DamageType>> PROJ_DAMAGE_TYPES = new HashMap<>();
-    public static final RegistryKey<DamageType> BUG_PROJ = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "proj/bug"));
-    public static final RegistryKey<DamageType> FIRE_PROJ = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "proj/fire"));
-    public static final RegistryKey<DamageType> DARK_PROJ = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "proj/dark"));
-    public static final RegistryKey<DamageType> WATER_PROJ = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "proj/water"));
-    public static final RegistryKey<DamageType> GROUND_PROJ = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "proj/ground"));
-    public static final RegistryKey<DamageType> ROCK_PROJ = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "proj/rock"));
-    public static final RegistryKey<DamageType> ICE_PROJ = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "proj/ice"));
-    public static final RegistryKey<DamageType> PSYCHIC_PROJ = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "proj/psychic"));
-    public static final RegistryKey<DamageType> FLYING_PROJ = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "proj/flying"));
-    public static final RegistryKey<DamageType> POISON_PROJ = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "proj/poison"));
-    public static final RegistryKey<DamageType> GRASS_PROJ = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "proj/grass"));
-    public static final RegistryKey<DamageType> ELECTRIC_PROJ = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "proj/electric"));
-    public static final RegistryKey<DamageType> FIGHTING_PROJ = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "proj/fighting"));
-    public static final RegistryKey<DamageType> GHOST_PROJ = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "proj/ghost"));
-    public static final RegistryKey<DamageType> STEEL_PROJ = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "proj/steel"));
-    public static final RegistryKey<DamageType> CURSE_TYPE_PROJ = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "proj/curse_type"));
-    public static final RegistryKey<DamageType> DRAGON_PROJ = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "proj/dragon"));
-    public static final RegistryKey<DamageType> FAIRY_PROJ = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "proj/fairy"));
+    public static final HashMap<Holder<MobEffect>, ResourceKey<DamageType>> PROJ_DAMAGE_TYPES = new HashMap<>();
+    public static final ResourceKey<DamageType> BUG_PROJ = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "proj/bug"));
+    public static final ResourceKey<DamageType> FIRE_PROJ = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "proj/fire"));
+    public static final ResourceKey<DamageType> DARK_PROJ = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "proj/dark"));
+    public static final ResourceKey<DamageType> WATER_PROJ = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "proj/water"));
+    public static final ResourceKey<DamageType> GROUND_PROJ = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "proj/ground"));
+    public static final ResourceKey<DamageType> ROCK_PROJ = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "proj/rock"));
+    public static final ResourceKey<DamageType> ICE_PROJ = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "proj/ice"));
+    public static final ResourceKey<DamageType> PSYCHIC_PROJ = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "proj/psychic"));
+    public static final ResourceKey<DamageType> FLYING_PROJ = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "proj/flying"));
+    public static final ResourceKey<DamageType> POISON_PROJ = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "proj/poison"));
+    public static final ResourceKey<DamageType> GRASS_PROJ = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "proj/grass"));
+    public static final ResourceKey<DamageType> ELECTRIC_PROJ = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "proj/electric"));
+    public static final ResourceKey<DamageType> FIGHTING_PROJ = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "proj/fighting"));
+    public static final ResourceKey<DamageType> GHOST_PROJ = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "proj/ghost"));
+    public static final ResourceKey<DamageType> STEEL_PROJ = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "proj/steel"));
+    public static final ResourceKey<DamageType> CURSE_TYPE_PROJ = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "proj/curse_type"));
+    public static final ResourceKey<DamageType> DRAGON_PROJ = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "proj/dragon"));
+    public static final ResourceKey<DamageType> FAIRY_PROJ = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "proj/fairy"));
 
-    public static final HashMap<RegistryEntry<StatusEffect>, RegistryKey<DamageType>> FALL_DAMAGE_TYPES = new HashMap<>();
-    public static final RegistryKey<DamageType> BUG_FALL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "fall/bug"));
-    public static final RegistryKey<DamageType> FIRE_FALL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "fall/fire"));
-    public static final RegistryKey<DamageType> DARK_FALL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "fall/dark"));
-    public static final RegistryKey<DamageType> WATER_FALL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "fall/water"));
-    public static final RegistryKey<DamageType> GROUND_FALL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "fall/ground"));
-    public static final RegistryKey<DamageType> ROCK_FALL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "fall/rock"));
-    public static final RegistryKey<DamageType> ICE_FALL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "fall/ice"));
-    public static final RegistryKey<DamageType> PSYCHIC_FALL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "fall/psychic"));
-    public static final RegistryKey<DamageType> FLYING_FALL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "fall/flying"));
-    public static final RegistryKey<DamageType> POISON_FALL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "fall/poison"));
-    public static final RegistryKey<DamageType> GRASS_FALL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "fall/grass"));
-    public static final RegistryKey<DamageType> ELECTRIC_FALL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "fall/electric"));
-    public static final RegistryKey<DamageType> FIGHTING_FALL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "fall/fighting"));
-    public static final RegistryKey<DamageType> GHOST_FALL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "fall/ghost"));
-    public static final RegistryKey<DamageType> STEEL_FALL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "fall/steel"));
-    public static final RegistryKey<DamageType> CURSE_TYPE_FALL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "fall/curse_type"));
-    public static final RegistryKey<DamageType> DRAGON_FALL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "fall/dragon"));
-    public static final RegistryKey<DamageType> FAIRY_FALL = RegistryKey.of(RegistryKeys.DAMAGE_TYPE,
-            Identifier.of(LifeLocke.MOD_ID, "fall/fairy"));
+    public static final HashMap<Holder<MobEffect>, ResourceKey<DamageType>> FALL_DAMAGE_TYPES = new HashMap<>();
+    public static final ResourceKey<DamageType> BUG_FALL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fall/bug"));
+    public static final ResourceKey<DamageType> FIRE_FALL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fall/fire"));
+    public static final ResourceKey<DamageType> DARK_FALL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fall/dark"));
+    public static final ResourceKey<DamageType> WATER_FALL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fall/water"));
+    public static final ResourceKey<DamageType> GROUND_FALL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fall/ground"));
+    public static final ResourceKey<DamageType> ROCK_FALL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fall/rock"));
+    public static final ResourceKey<DamageType> ICE_FALL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fall/ice"));
+    public static final ResourceKey<DamageType> PSYCHIC_FALL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fall/psychic"));
+    public static final ResourceKey<DamageType> FLYING_FALL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fall/flying"));
+    public static final ResourceKey<DamageType> POISON_FALL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fall/poison"));
+    public static final ResourceKey<DamageType> GRASS_FALL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fall/grass"));
+    public static final ResourceKey<DamageType> ELECTRIC_FALL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fall/electric"));
+    public static final ResourceKey<DamageType> FIGHTING_FALL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fall/fighting"));
+    public static final ResourceKey<DamageType> GHOST_FALL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fall/ghost"));
+    public static final ResourceKey<DamageType> STEEL_FALL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fall/steel"));
+    public static final ResourceKey<DamageType> CURSE_TYPE_FALL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fall/curse_type"));
+    public static final ResourceKey<DamageType> DRAGON_FALL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fall/dragon"));
+    public static final ResourceKey<DamageType> FAIRY_FALL = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fall/fairy"));
 
 
-    public static DamageSource of(World world, RegistryKey<DamageType> key) {
-        return new DamageSource(world.getRegistryManager().getEntryOrThrow(key));
+    public static DamageSource of(Level world, ResourceKey<DamageType> key) {
+        return new DamageSource(world.registryAccess().getOrThrow(key));
     }
-    public static DamageSource of(World world, RegistryKey<DamageType> key, Entity attacker) {
-        return new DamageSource(world.getRegistryManager().getEntryOrThrow(key), attacker);
+    public static DamageSource of(Level world, ResourceKey<DamageType> key, Entity attacker) {
+        return new DamageSource(world.registryAccess().getOrThrow(key), attacker);
     }
 
     public static void registerSlainDamageTypes() {
