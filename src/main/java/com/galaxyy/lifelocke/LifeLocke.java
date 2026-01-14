@@ -19,6 +19,7 @@ import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
 import com.galaxyy.lifelocke.modmenu.settings.PowerSoundSetting;
 import com.galaxyy.lifelocke.networking.*;
 import com.galaxyy.lifelocke.power.*;
+import com.galaxyy.lifelocke.rendering.particles.ModParticles;
 import com.galaxyy.lifelocke.sound.ModSounds;
 import com.galaxyy.lifelocke.triggers.activated.GroundTrigger;
 import com.galaxyy.lifelocke.playerdata.PlayerCopyHandler;
@@ -51,6 +52,7 @@ public class LifeLocke implements ModInitializer {
 		ModDamageTypes.registerSlainDamageTypes();
 		ModDamageTypes.registerProjectileDamageTypes();
 		ModDamageTypes.registerFallDamageTypes();
+		ModParticles.registerModParticlesServer();
 
 		PressedAbilityKeyC2SHandler.registerEffectMap();
 		GroundTrigger.registerGroundMaps();

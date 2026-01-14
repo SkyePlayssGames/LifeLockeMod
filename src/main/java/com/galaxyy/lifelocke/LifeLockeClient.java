@@ -9,6 +9,7 @@ import com.galaxyy.lifelocke.event.ModCheckExistingEvent;
 import com.galaxyy.lifelocke.keybind.KeyInputHandler;
 import com.galaxyy.lifelocke.networking.*;
 import com.galaxyy.lifelocke.rendering.TypeIconRenderer;
+import com.galaxyy.lifelocke.rendering.particles.ModParticles;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -21,6 +22,8 @@ import net.minecraft.resources.Identifier;
 public class LifeLockeClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        ModParticles.registerModParticlesClient();
+
         KeyInputHandler.registerKeyBindings();
         ClientPlayNetworking.registerGlobalReceiver(RenderTypeIconS2CPayload.ID, new RenderTypeIconS2CHandler());
         ClientPlayNetworking.registerGlobalReceiver(ServerModCheckS2CPayload.ID, new ServerModCheckS2CHandler());

@@ -8,13 +8,14 @@ public class GrassMobAnimationS2CHandler implements ClientPlayNetworking.PlayPay
     @Override
     public void receive(GrassMobAnimationS2CPayload grassMobAnimationS2CPayload, ClientPlayNetworking.Context context) {
         Entity entity = context.player().level().getEntity(grassMobAnimationS2CPayload.uuid());
-        if (!(entity instanceof GrassMobEntity)) {
-            if (entity == null) {
-                System.err.println("Tried playing a Grass Mob Animation on a null entity");
-            } else {
-                System.err.println("Tried playing a Grass Mob Animation on entity \"" + entity.getType() +
-                        "\" and UUID " + entity.getUUID() + "\"");
-            }
+
+        if (entity == null) {
+            System.err.println("Tried playing a Grass Mob Animation on a null entity");
+            return;
+        } else if (!(entity instanceof GrassMobEntity)) {
+            System.err.println("Tried playing a Grass Mob Animation on entity \"" + entity.getType() +
+                    "\" and UUID " + entity.getUUID() + "\"");
+            return;
         }
 
         assert entity instanceof GrassMobEntity;

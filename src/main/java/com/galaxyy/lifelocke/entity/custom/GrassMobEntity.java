@@ -5,6 +5,7 @@ import com.galaxyy.lifelocke.damage.ModDamageTypes;
 import com.galaxyy.lifelocke.entity.ai.BlockFinder;
 import com.galaxyy.lifelocke.entity.ai.HideBlockGoal;
 import com.galaxyy.lifelocke.networking.GrassMobAnimationS2CPayload;
+import com.galaxyy.lifelocke.rendering.particles.ModParticles;
 import com.galaxyy.lifelocke.tags.ModTags;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.resources.Identifier;
