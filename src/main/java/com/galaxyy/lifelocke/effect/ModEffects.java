@@ -74,6 +74,8 @@ public class ModEffects {
                     .addAttributeModifier(Attributes.GRAVITY, Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "stuck"), -0.08, AttributeModifier.Operation.ADD_VALUE)
                     .addAttributeModifier(Attributes.JUMP_STRENGTH, Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "stuck"), -0.42, AttributeModifier.Operation.ADD_VALUE)
     );
+    public static final Holder<MobEffect> IN_TRIAL = registerStatusEffect("in_trial",
+            new CheckedEffect(MobEffectCategory.HARMFUL, 4866583));
 
     public static final Holder[] EFFECTS = {NORMAL, ELECTRIC, FIGHTING, WATER, FIRE, GRASS, ICE, POISON, GROUND, FLYING, BUG,
             ROCK, GHOST, DRAGON, STEEL, FAIRY, DARK, PSYCHIC, CURSE_TYPE};

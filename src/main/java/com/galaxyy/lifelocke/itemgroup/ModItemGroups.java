@@ -23,6 +23,7 @@ public class ModItemGroups {
                         entries.accept(ModItems.LONG_FIRE_BOTTLE);
                         entries.accept(ModItems.GRASS_BOTTLE);
                         entries.accept(ModItems.LONG_GRASS_BOTTLE);
+                        entries.accept(ModBlocks.TERA_TRIAL_BLOCK);
                     }).build());
 
     public static void registerItemGroups() {

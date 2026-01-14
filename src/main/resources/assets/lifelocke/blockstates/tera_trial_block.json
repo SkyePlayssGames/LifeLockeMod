@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "type=null": {
+      "model": "minecraft:block/white_concrete"
+    },
+    "type=fire": {
+      "model": "minecraft:block/orange_concrete"
+    }
+  }
+}
