@@ -17,7 +17,7 @@ import net.minecraft.world.item.SpawnEggItem;
 import java.util.function.Function;
 
 public class ModItems {
-    public static final Item DUMMY_ITEM = registerItem("dummy_item", Item::new);
+    public static final Item DUMMY_ITEM = registerItem("dummy_item", DummyItem::new);
 
     public static final Item FIRE_BOTTLE = registerItem("fire_bottle", settings ->
             new EnergyBottleItem(settings, ModEffects.FIRE, EnergyBottleItem.EffectTime.HALF_AN_HOUR)
