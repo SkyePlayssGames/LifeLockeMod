@@ -5,10 +5,8 @@ import com.mojang.serialization.DataResult;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.TrialSpawnerBlock;
@@ -19,18 +17,25 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TeraTrialBlockEntity extends BlockEntity {
-    private final ArrayList<BlockPos> spawnerPositions = new ArrayList<>();
+    private final ArrayList<BlockPos> spawnerOffsets = new ArrayList<>();
 
+    private static BlockPos add(BlockPos pos, BlockPos other) {
+        return new BlockPos(pos.getX() + other.getX(), pos.getY() + other.getY(), pos.getZ() + other.getZ());
+    }
 
     public ArrayList<BlockPos> getSpawnerPositions() {
+        ArrayList<BlockPos> spawnerPositions = new ArrayList<>();
+        for (BlockPos blockPos : this.spawnerOffsets) {
+            spawnerPositions.add(add(blockPos, this.worldPosition));
+        }
+
         return spawnerPositions;
     }
 
-    public void appendSpawnerPosition(BlockPos blockPos) {
-        spawnerPositions.add(blockPos);
+    public void appendSpawnerOffset(BlockPos blockPos) {
+        spawnerOffsets.add(blockPos);
     }
 
     private static int[] encodeBlockPos(ArrayList<BlockPos> blockPosArrayList, int i) {
@@ -54,7 +59,7 @@ public class TeraTrialBlockEntity extends BlockEntity {
     @Override
     protected void saveAdditional(ValueOutput valueOutput) {
         for (int i = 0; i < 4; i++) {
-            valueOutput.putIntArray("spawner" + i, encodeBlockPos(this.spawnerPositions, i));
+            valueOutput.putIntArray("spawner" + i, encodeBlockPos(this.spawnerOffsets, i));
         }
 
         super.saveAdditional(valueOutput);
@@ -63,11 +68,11 @@ public class TeraTrialBlockEntity extends BlockEntity {
     @Override
     protected void loadAdditional(ValueInput valueInput) {
         super.loadAdditional(valueInput);
-        this.spawnerPositions.clear();
+        this.spawnerOffsets.clear();
 
         for (int i = 0; i < 4; i++) {
             BlockPos x = decodeBlockPos(valueInput.getIntArray("spawner" + i).orElse(new int[] {0, 0, 0}));
-            if (x != null) this.spawnerPositions.add(x);
+            if (x != null) this.spawnerOffsets.add(x);
         }
     }
 
@@ -88,6 +93,8 @@ public class TeraTrialBlockEntity extends BlockEntity {
     private static boolean spawnersActive(Level level, TeraTrialBlockEntity blockEntity) {
         for (BlockPos blockPos : blockEntity.getSpawnerPositions()) {
             if (blockPos == null) {
+                continue;
+            } else if (!(level.getBlockState(blockPos).getBlock() instanceof TrialSpawnerBlock)) {
                 continue;
             }
             if (level.getBlockState(blockPos).getValue(TrialSpawnerBlock.STATE) == TrialSpawnerState.ACTIVE) {

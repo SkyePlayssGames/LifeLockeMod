@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 public class TeraTrialBlock extends BaseEntityBlock {
@@ -20,12 +21,11 @@ public class TeraTrialBlock extends BaseEntityBlock {
         FIRE;
 
         @Override
-        public String getSerializedName() {
-            switch (this) {
-                case NULL: return "null";
-                case FIRE: return "fire";
-                default: return "null";
-            }
+        public @NonNull String getSerializedName() {
+            return switch (this) {
+                case NULL -> "null";
+                case FIRE -> "fire";
+            };
         }
     }
 
