@@ -4,7 +4,7 @@
       "model": "minecraft:block/white_concrete"
     },
     "type=fire": {
-      "model": "minecraft:block/orange_concrete"
+      "model": "lifelocke:block/tera_trial_block/fire"
     }
   }
 }

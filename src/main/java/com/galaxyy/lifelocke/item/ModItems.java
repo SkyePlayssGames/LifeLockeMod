@@ -1,6 +1,7 @@
 package com.galaxyy.lifelocke.item;
 
 import com.galaxyy.lifelocke.LifeLocke;
+import com.galaxyy.lifelocke.block.ModBlocks;
 import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.entity.ModEntities;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -54,6 +55,10 @@ public class ModItems {
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.SPAWN_EGGS).register((itemgroup) -> {
                 itemgroup.accept(FIRE_MOB_SPAWN_EGG);
                 itemgroup.accept(GRASS_MOB_SPAWN_EGG);
+        });
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.OP_BLOCKS).register(itemgroup -> {
+                itemgroup.accept(DUMMY_ITEM);
+                itemgroup.accept(ModBlocks.DUMMY_BLOCK);
         });
     }
 }
