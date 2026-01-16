@@ -3,6 +3,8 @@ package com.galaxyy.lifelocke;
 import com.galaxyy.lifelocke.entity.ModEntities;
 import com.galaxyy.lifelocke.entity.client.fire_mob.FireMobModel;
 import com.galaxyy.lifelocke.entity.client.fire_mob.FireMobRenderer;
+import com.galaxyy.lifelocke.entity.client.ghost_mob.GhostMobModel;
+import com.galaxyy.lifelocke.entity.client.ghost_mob.GhostMobRenderer;
 import com.galaxyy.lifelocke.entity.client.grass_mob.GrassMobModel;
 import com.galaxyy.lifelocke.entity.client.grass_mob.GrassMobRenderer;
 import com.galaxyy.lifelocke.event.ModCheckExistingEvent;
@@ -39,5 +41,7 @@ public class LifeLockeClient implements ClientModInitializer {
         EntityRendererRegistryImpl.register(ModEntities.FIRE_MOB, FireMobRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(GrassMobModel.GRASS_MOB, GrassMobModel::getTexturedModelData);
         EntityRendererRegistryImpl.register(ModEntities.GRASS_MOB, GrassMobRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(GhostMobModel.GHOST_MOB, GhostMobModel::getTexturedModelData);
+        EntityRendererRegistryImpl.register(ModEntities.GHOST_MOB, GhostMobRenderer::new);
     }
 }
