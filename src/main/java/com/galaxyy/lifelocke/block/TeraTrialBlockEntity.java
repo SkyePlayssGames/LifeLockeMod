@@ -87,6 +87,8 @@ public class TeraTrialBlockEntity extends BlockEntity {
         switch (blockState.getValue(TeraTrialBlock.TYPE)) {
             case NULL -> handleNullTick(level, blockPos, blockState, blockEntity);
             case FIRE -> handleFireTick(level, blockPos, blockState, blockEntity);
+            case GRASS -> handleGrassTick(level, blockPos, blockState, blockEntity);
+            case GHOST -> handleGhostTick(level, blockPos, blockState, blockEntity);
         }
     }
 
@@ -117,5 +119,13 @@ public class TeraTrialBlockEntity extends BlockEntity {
                 player.addEffect(new MobEffectInstance(ModEffects.IN_TRIAL, 10, 1, false, false));
             }
         }
+    }
+
+    private static void handleGrassTick(Level level, BlockPos blockPos, BlockState blockState, TeraTrialBlockEntity blockEntity) {
+
+    }
+
+    private static void handleGhostTick(Level level, BlockPos blockPos, BlockState blockState, TeraTrialBlockEntity blockEntity) {
+
     }
 }

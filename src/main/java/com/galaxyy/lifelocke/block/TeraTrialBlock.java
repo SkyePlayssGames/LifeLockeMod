@@ -18,13 +18,17 @@ import org.jspecify.annotations.Nullable;
 public class TeraTrialBlock extends BaseEntityBlock {
     public enum TeraTrialType implements StringRepresentable {
         NULL,
-        FIRE;
+        FIRE,
+        GRASS,
+        GHOST;
 
         @Override
         public @NonNull String getSerializedName() {
             return switch (this) {
                 case NULL -> "null";
                 case FIRE -> "fire";
+                case GRASS -> "grass";
+                case GHOST -> "ghost";
             };
         }
     }

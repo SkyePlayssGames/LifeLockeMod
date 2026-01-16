@@ -5,6 +5,12 @@
     },
     "type=fire": {
       "model": "lifelocke:block/tera_trial_block/fire"
+    },
+    "type=grass": {
+      "model": "lifelocke:block/tera_trial_block/grass"
+    },
+    "type=ghost": {
+      "model": "lifelocke:block/tera_trial_block/ghost"
     }
   }
 }

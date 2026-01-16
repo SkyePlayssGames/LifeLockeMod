@@ -32,7 +32,12 @@ public class ModBlocks {
                     .strength(50.0F, 1200.0F)
     ));
 
-    public static final Block TERA_TRIAL_BLOCK = registerBlock("tera_trial_block", TeraTrialBlock::new);
+    public static final Block TERA_TRIAL_BLOCK = registerBlock("tera_trial_block", settings ->
+            new TeraTrialBlock(settings
+                    // .mapColor(TODO)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .strength(-1, 1200)
+                    .lightLevel(state -> 15)));
 
     public static final BlockEntityType<TeraTrialBlockEntity> TERA_TRIAL_BLOCK_ENTITY = registerBlockEntity(
             "tera_trial_block_entity", TeraTrialBlockEntity::new, TERA_TRIAL_BLOCK
