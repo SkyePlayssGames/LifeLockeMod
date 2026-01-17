@@ -4,7 +4,10 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SyncedDataHolder;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -12,18 +15,23 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.pig.Pig;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.zombie.Zombie;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import static net.minecraft.world.entity.EntityEvent.START_ATTACKING;
 
 public class GhostMobEntity extends Monster implements SyncedDataHolder {
     private static final int MAX_HEALTH = 20;
     private static final float MOVEMENT_SPEED = 0.28f;
-    private static final int ATTACK_DAMAGE = 40;
+    private static final int ATTACK_DAMAGE = 4;
+    public static final int ATTACK_ANIM_TICKS = 6;
 
     private static final EntityDataAccessor<Integer> StartAttackAnim = SynchedEntityData.defineId(
             GhostMobEntity.class, EntityDataSerializers.INT);
@@ -42,7 +50,7 @@ public class GhostMobEntity extends Monster implements SyncedDataHolder {
         goalSelector.addGoal(2, new RandomStrollGoal(this, 1));
         goalSelector.addGoal(3, new RandomLookAroundGoal(this));
 
-        targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Pig.class, true));
+        targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
     public static AttributeSupplier.@NonNull Builder createMobAttributes() {
@@ -50,18 +58,6 @@ public class GhostMobEntity extends Monster implements SyncedDataHolder {
                 .add(Attributes.MAX_HEALTH, MAX_HEALTH)
                 .add(Attributes.MOVEMENT_SPEED, MOVEMENT_SPEED)
                 .add(Attributes.ATTACK_DAMAGE, ATTACK_DAMAGE);
-    }
-
-    @Override
-    public void handleEntityEvent(byte entityStatus) {
-        System.out.println("Handle Entity Event: " + entityStatus);
-        switch (entityStatus) {
-            case 4 -> {
-                attackAnimationState.start(tickCount);
-                System.out.println("Attacking!");
-            }
-            default -> super.handleEntityEvent(entityStatus);
-        }
     }
 
     @Override
@@ -73,9 +69,8 @@ public class GhostMobEntity extends Monster implements SyncedDataHolder {
     @Override
     protected void playAttackSound() {
         super.playAttackSound();
-        System.out.println("Attacking!");
-        System.out.println("Animating? " + this.entityData.get(StartAttackAnim));
         this.entityData.set(StartAttackAnim, this.tickCount);
+        this.removeEffect(MobEffects.INVISIBILITY);
     }
 
     @Override
@@ -99,10 +94,14 @@ public class GhostMobEntity extends Monster implements SyncedDataHolder {
     }
 
     private void tickServer() {
-
+        if (this.tickCount == this.entityData.get(StartAttackAnim) + ATTACK_ANIM_TICKS || this.entityData.get(StartAttackAnim) == 0) {
+            this.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, -1, 0, false, false));
+        }
     }
 
     private void stopAllAnimations() {
         attackAnimationState.stop();
     }
+
+
 }
