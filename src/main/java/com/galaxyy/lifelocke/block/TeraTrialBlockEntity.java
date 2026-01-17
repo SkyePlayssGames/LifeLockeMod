@@ -107,6 +107,14 @@ public class TeraTrialBlockEntity extends BlockEntity {
         return false;
     }
 
+    private static void applyInTrial(Level level, BlockPos blockPos, float distance) {
+        for (Player player : level.players()) {
+            if (Mth.sqrt((float) player.distanceToSqr(blockPos.getCenter())) < distance) {
+                player.addEffect(new MobEffectInstance(ModEffects.IN_TRIAL, 10, 1, false, false));
+            }
+        }
+    }
+
     private static void handleNullTick(Level level, BlockPos blockPos, BlockState blockState, TeraTrialBlockEntity blockEntity) {
         return;
     }
@@ -115,15 +123,14 @@ public class TeraTrialBlockEntity extends BlockEntity {
         if (!spawnersActive(level, blockEntity)) {
             return;
         }
-        for (Player player : level.players()) {
-            if (Mth.sqrt((float) player.distanceToSqr(blockPos.getCenter())) < 10) {
-                player.addEffect(new MobEffectInstance(ModEffects.IN_TRIAL, 10, 1, false, false));
-            }
-        }
+        applyInTrial(level, blockPos, 7);
     }
 
     private static void handleGrassTick(Level level, BlockPos blockPos, BlockState blockState, TeraTrialBlockEntity blockEntity) {
-
+        if (!spawnersActive(level, blockEntity)) {
+            return;
+        }
+        applyInTrial(level, blockPos, 5);
     }
 
     private static void handleGhostTick(Level level, BlockPos blockPos, BlockState blockState, TeraTrialBlockEntity blockEntity) {
