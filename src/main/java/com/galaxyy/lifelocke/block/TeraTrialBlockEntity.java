@@ -36,6 +36,7 @@ public class TeraTrialBlockEntity extends BlockEntity {
 
     public void appendSpawnerOffset(BlockPos blockPos) {
         spawnerOffsets.add(blockPos);
+        setChanged();
     }
 
     private static int[] encodeBlockPos(ArrayList<BlockPos> blockPosArrayList, int i) {
@@ -58,11 +59,11 @@ public class TeraTrialBlockEntity extends BlockEntity {
 
     @Override
     protected void saveAdditional(ValueOutput valueOutput) {
+        super.saveAdditional(valueOutput);
+
         for (int i = 0; i < 4; i++) {
             valueOutput.putIntArray("spawner" + i, encodeBlockPos(this.spawnerOffsets, i));
         }
-
-        super.saveAdditional(valueOutput);
     }
 
     @Override

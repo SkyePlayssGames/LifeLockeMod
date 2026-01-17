@@ -39,8 +39,8 @@ public class GhostMobEntity extends Monster implements SyncedDataHolder {
     protected void registerGoals() {
         goalSelector.addGoal(0, new FloatGoal(this));
         goalSelector.addGoal(1, new MeleeAttackGoal(this, 1, true));
-        //goalSelector.addGoal(2, new RandomStrollGoal(this, 1));
-        //goalSelector.addGoal(3, new RandomLookAroundGoal(this));
+        goalSelector.addGoal(2, new RandomStrollGoal(this, 1));
+        goalSelector.addGoal(3, new RandomLookAroundGoal(this));
 
         targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Pig.class, true));
     }
