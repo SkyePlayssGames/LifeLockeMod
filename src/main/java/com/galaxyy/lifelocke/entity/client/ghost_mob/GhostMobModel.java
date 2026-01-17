@@ -64,9 +64,9 @@ public class GhostMobModel extends EntityModel<GhostMobRenderState> {
 
     private void setHeadAngles(float headYaw, float headPitch) {
         headYaw = Mth.clamp(headYaw, -30.0F, 30.0F);
-        headPitch = Mth.clamp(headPitch, -25.0F, 45.0F);
+        headPitch = Mth.clamp(headPitch, -15.0F, 15.0F);
 
         this.head.yRot = headYaw * (float) (Math.PI / 180.0);
-        this.head.xRot = headPitch * (float) (Math.PI / 180.0);
+        // this.head.xRot = headPitch * (float) (Math.PI / 180.0);
     }
 }
