@@ -3,10 +3,13 @@ package com.galaxyy.lifelocke.block;
 import com.galaxyy.lifelocke.effect.ModEffects;
 import com.mojang.serialization.DataResult;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
 import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.TrialSpawnerBlock;
@@ -107,10 +110,10 @@ public class TeraTrialBlockEntity extends BlockEntity {
         return false;
     }
 
-    private static void applyInTrial(Level level, BlockPos blockPos, float distance) {
+    private static void applyEffectInRadius(Level level, BlockPos blockPos, float distance, Holder<MobEffect> effect) {
         for (Player player : level.players()) {
             if (Mth.sqrt((float) player.distanceToSqr(blockPos.getCenter())) < distance) {
-                player.addEffect(new MobEffectInstance(ModEffects.IN_TRIAL, 10, 1, false, false));
+                player.addEffect(new MobEffectInstance(effect, 10, 1, false, false));
             }
         }
     }
@@ -123,17 +126,21 @@ public class TeraTrialBlockEntity extends BlockEntity {
         if (!spawnersActive(level, blockEntity)) {
             return;
         }
-        applyInTrial(level, blockPos, 7);
+        applyEffectInRadius(level, blockPos, 7, ModEffects.IN_TRIAL);
     }
 
     private static void handleGrassTick(Level level, BlockPos blockPos, BlockState blockState, TeraTrialBlockEntity blockEntity) {
         if (!spawnersActive(level, blockEntity)) {
             return;
         }
-        applyInTrial(level, blockPos, 5);
+        applyEffectInRadius(level, blockPos, 5, ModEffects.IN_TRIAL);
     }
 
     private static void handleGhostTick(Level level, BlockPos blockPos, BlockState blockState, TeraTrialBlockEntity blockEntity) {
-
+        if (!spawnersActive(level, blockEntity)) {
+            return;
+        }
+        applyEffectInRadius(level, blockPos, 10, ModEffects.IN_TRIAL);
+        applyEffectInRadius(level, blockPos, 10, MobEffects.SLOW_FALLING);
     }
 }
