@@ -37,8 +37,8 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRe
 
 public class LifeLocke implements ModInitializer {
 	public static final String MOD_ID = "lifelocke";
-	public static final int CLIENT_VERSION = 14;
-	public static final int SERVER_VERSION = 14;
+	public static final int CLIENT_VERSION = 15;
+	public static final int SERVER_VERSION = 15;
 
 	@Override
 	public void onInitialize() {

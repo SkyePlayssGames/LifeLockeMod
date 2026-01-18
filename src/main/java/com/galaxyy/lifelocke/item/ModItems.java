@@ -34,9 +34,17 @@ public class ModItems {
             new EnergyBottleItem(settings, ModEffects.GRASS, EnergyBottleItem.EffectTime.HOUR)
     );
 
+    public static final Item GHOST_BOTTLE = registerItem("ghost_bottle", settings ->
+            new EnergyBottleItem(settings, ModEffects.GHOST, EnergyBottleItem.EffectTime.HALF_AN_HOUR)
+    );
+    public static final Item LONG_GHOST_BOTTLE = registerItem("long_ghost_bottle", settings ->
+            new EnergyBottleItem(settings, ModEffects.GHOST, EnergyBottleItem.EffectTime.HOUR)
+    );
+
 
     public static final Item FIRE_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.FIRE_MOB);
     public static final Item GRASS_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.GRASS_MOB);
+    public static final Item GHOST_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.GHOST_MOB);
 
     private static Item registerItem(String name, Function<Item.Properties, Item> function) {
         Identifier id = Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, name);
@@ -55,6 +63,7 @@ public class ModItems {
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.SPAWN_EGGS).register((itemgroup) -> {
                 itemgroup.accept(FIRE_MOB_SPAWN_EGG);
                 itemgroup.accept(GRASS_MOB_SPAWN_EGG);
+                itemgroup.accept(GHOST_MOB_SPAWN_EGG);
         });
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.OP_BLOCKS).register(itemgroup -> {
                 itemgroup.accept(DUMMY_ITEM);

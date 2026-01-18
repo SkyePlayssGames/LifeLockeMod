@@ -7,6 +7,10 @@
     {
       "structure": "lifelocke:grass_peta",
       "weight": 1
+    },
+    {
+      "structure": "lifelocke:ghost_peta",
+      "weight": 1
     }
   ],
   "placement": {

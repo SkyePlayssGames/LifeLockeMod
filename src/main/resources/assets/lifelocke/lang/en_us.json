@@ -4,17 +4,23 @@
   "item.lifelocke.long_fire_bottle": "Extended Bottle of Fire Energy",
   "item.lifelocke.grass_bottle": "Bottle of Grass Energy",
   "item.lifelocke.long_grass_bottle": "Extended Bottle of Grass Energy",
+  "item.lifelocke.ghost_bottle": "Bottle of Ghost Energy",
+  "item.lifelocke.long_ghost_bottle": "Extended Bottle of Ghost Energy",
 
   "item.lifelocke.fire_mob_spawn_egg": "Fire Mob Spawn Egg",
   "item.lifelocke.grass_mob_spawn_egg": "Grass Mob Spawn Egg",
+  "item.lifelocke.ghost_mob_spawn_egg": "Ghost Mob Spawn Egg",
 
   "block.lifelocke.dummy_block": "Dummy Block",
   "item.lifelocke.dummy_block": "Dummy Block",
+  "block.lifelocke.tera_trial_block": "Tera Trial Block",
+  "item.lifelocke.tera_trial_block": "Tera Trial Block",
 
   "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
 
   "entity.lifelocke.fire_mob": "Fire Mob",
   "entity.lifelocke.grass_mob": "Grass Mob",
+  "entity.lifelocke.ghost_mob": "Ghost Mob",
 
   "gamerule.lifelocke.fighting_crafting_nerf": "Fighting Crafting Nerf",
   "gamerule.lifelocke.type_duplication": "Type Duplication",
@@ -84,6 +90,7 @@
   "effect.lifelocke.rock": "Rock",
   "effect.lifelocke.curse_type": "???",
   "effect.lifelocke.stuck": "Stuck",
+  "effect.lifelocke.in_trial": "In Trial",
 
   "key.category.lifelocke.category": "LifeLocke",
   "key.lifelocke.ability": "Ability",
