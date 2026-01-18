@@ -15,30 +15,23 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SpawnEggItem;
+
+import java.util.HashMap;
 import java.util.function.Function;
 
 public class ModItems {
     public static final Item DUMMY_ITEM = registerItem("dummy_item", DummyItem::new);
 
-    public static final Item FIRE_BOTTLE = registerItem("fire_bottle", settings ->
-            new EnergyBottleItem(settings, ModEffects.FIRE, EnergyBottleItem.EffectTime.HALF_AN_HOUR)
-    );
-    public static final Item LONG_FIRE_BOTTLE = registerItem("long_fire_bottle", settings ->
-            new EnergyBottleItem(settings, ModEffects.FIRE, EnergyBottleItem.EffectTime.HOUR)
+    public static final HashMap<String, EnergyBottleItem> FIRE_BOTTLES = EnergyBottleItem.energyBottleGroup(
+            new Item.Properties(), ModEffects.FIRE, LifeLocke.MOD_ID, "fire_bottle"
     );
 
-    public static final Item GRASS_BOTTLE = registerItem("grass_bottle", settings ->
-            new EnergyBottleItem(settings, ModEffects.GRASS, EnergyBottleItem.EffectTime.HALF_AN_HOUR)
-    );
-    public static final Item LONG_GRASS_BOTTLE = registerItem("long_grass_bottle", settings ->
-            new EnergyBottleItem(settings, ModEffects.GRASS, EnergyBottleItem.EffectTime.HOUR)
+    public static final HashMap<String, EnergyBottleItem> GRASS_BOTTLES = EnergyBottleItem.energyBottleGroup(
+            new Item.Properties(), ModEffects.GRASS, LifeLocke.MOD_ID, "grass_bottle"
     );
 
-    public static final Item GHOST_BOTTLE = registerItem("ghost_bottle", settings ->
-            new EnergyBottleItem(settings, ModEffects.GHOST, EnergyBottleItem.EffectTime.HALF_AN_HOUR)
-    );
-    public static final Item LONG_GHOST_BOTTLE = registerItem("long_ghost_bottle", settings ->
-            new EnergyBottleItem(settings, ModEffects.GHOST, EnergyBottleItem.EffectTime.HOUR)
+    public static final HashMap<String, EnergyBottleItem> GHOST_BOTTLES = EnergyBottleItem.energyBottleGroup(
+            new Item.Properties(), ModEffects.GHOST, LifeLocke.MOD_ID, "ghost_bottle"
     );
 
 

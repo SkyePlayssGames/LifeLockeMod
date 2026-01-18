@@ -19,12 +19,12 @@ public class ModItemGroups {
                     .icon(() -> new ItemStack(Blocks.BARRIER))
                     .title(Component.translatable("itemgroup.lifelocke.lifelocke_stuff"))
                     .displayItems((displayContext, entries) -> {
-                        entries.accept(ModItems.FIRE_BOTTLE);
-                        entries.accept(ModItems.LONG_FIRE_BOTTLE);
-                        entries.accept(ModItems.GRASS_BOTTLE);
-                        entries.accept(ModItems.LONG_GRASS_BOTTLE);
-                        entries.accept(ModItems.GHOST_BOTTLE);
-                        entries.accept(ModItems.LONG_GHOST_BOTTLE);
+                        entries.accept(ModItems.FIRE_BOTTLES.get("regular"));
+                        entries.accept(ModItems.FIRE_BOTTLES.get("extended"));
+                        entries.accept(ModItems.GRASS_BOTTLES.get("regular"));
+                        entries.accept(ModItems.GRASS_BOTTLES.get("extended"));
+                        entries.accept(ModItems.GHOST_BOTTLES.get("regular"));
+                        entries.accept(ModItems.GHOST_BOTTLES.get("extended"));
                         entries.accept(ModBlocks.TERA_TRIAL_BLOCK);
                     }).build());
 
