@@ -20,10 +20,13 @@ public class ModItemGroups {
                     .title(Component.translatable("itemgroup.lifelocke.lifelocke_stuff"))
                     .displayItems((displayContext, entries) -> {
                         entries.accept(ModItems.FIRE_BOTTLES.get("regular"));
+                        entries.accept(ModItems.FIRE_BOTTLES.get("burst"));
                         entries.accept(ModItems.FIRE_BOTTLES.get("extended"));
                         entries.accept(ModItems.GRASS_BOTTLES.get("regular"));
+                        entries.accept(ModItems.GRASS_BOTTLES.get("burst"));
                         entries.accept(ModItems.GRASS_BOTTLES.get("extended"));
                         entries.accept(ModItems.GHOST_BOTTLES.get("regular"));
+                        entries.accept(ModItems.GHOST_BOTTLES.get("burst"));
                         entries.accept(ModItems.GHOST_BOTTLES.get("extended"));
                         entries.accept(ModBlocks.TERA_TRIAL_BLOCK);
                     }).build());

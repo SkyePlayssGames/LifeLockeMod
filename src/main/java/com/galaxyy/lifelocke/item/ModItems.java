@@ -39,6 +39,8 @@ public class ModItems {
     public static final Item GRASS_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.GRASS_MOB);
     public static final Item GHOST_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.GHOST_MOB);
 
+    public static final Item FIRE_ENERGY = registerItem("fire_energy", Item::new);
+
     private static Item registerItem(String name, Function<Item.Properties, Item> function) {
         Identifier id = Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, name);
         return Registry.register(BuiltInRegistries.ITEM, id,

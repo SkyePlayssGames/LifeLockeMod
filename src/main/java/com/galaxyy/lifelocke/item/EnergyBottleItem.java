@@ -21,11 +21,13 @@ import java.util.HashMap;
 
 public class EnergyBottleItem extends Item {
     public enum EffectTime {
+        MINUTE,
         HALF_AN_HOUR,
         HOUR;
 
         public int lengthTicks() {
             return switch(this) {
+                case MINUTE -> 1200;
                 case HALF_AN_HOUR -> 36000;
                 case HOUR -> 72000;
             };
@@ -33,6 +35,7 @@ public class EnergyBottleItem extends Item {
 
         public Component tooltip() {
             return switch(this) {
+                case MINUTE -> Component.literal("(00:01:00)");
                 case HALF_AN_HOUR -> Component.literal("(00:30:00)");
                 case HOUR -> Component.literal("(01:00:00)");
             };
@@ -42,19 +45,25 @@ public class EnergyBottleItem extends Item {
     public static HashMap<String, EnergyBottleItem> energyBottleGroup(
             Properties settings, Holder<MobEffect> type, String namespace, String base_name) {
         Identifier regular_id = Identifier.fromNamespaceAndPath(namespace, base_name);
+        Identifier burst_id = Identifier.fromNamespaceAndPath(namespace, "burst_" + base_name);
         Identifier extended_id = Identifier.fromNamespaceAndPath(namespace, "long_" + base_name);
 
         EnergyBottleItem regular = new EnergyBottleItem(settings.setId(
                 ResourceKey.create(Registries.ITEM, regular_id)), type, EffectTime.HALF_AN_HOUR);
 
+        EnergyBottleItem burst = new EnergyBottleItem(settings.setId(
+                ResourceKey.create(Registries.ITEM, burst_id)), type, EffectTime.MINUTE);
+
         EnergyBottleItem extended = new EnergyBottleItem(settings.setId(
                 ResourceKey.create(Registries.ITEM, extended_id)), type, EffectTime.HOUR);
 
         Registry.register(BuiltInRegistries.ITEM, regular_id, regular);
+        Registry.register(BuiltInRegistries.ITEM, burst_id, burst);
         Registry.register(BuiltInRegistries.ITEM, extended_id, extended);
 
         HashMap<String, EnergyBottleItem> result = new HashMap<>();
         result.put("regular", regular);
+        result.put("burst", burst);
         result.put("extended", extended);
 
         return result;
