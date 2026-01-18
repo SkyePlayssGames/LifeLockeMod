@@ -9,6 +9,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -67,10 +68,10 @@ public class GhostMobEntity extends Monster implements SyncedDataHolder {
     }
 
     @Override
-    protected void playAttackSound() {
-        super.playAttackSound();
+    public boolean doHurtTarget(ServerLevel serverLevel, Entity entity) {
         this.entityData.set(StartAttackAnim, this.tickCount);
         this.removeEffect(MobEffects.INVISIBILITY);
+        return super.doHurtTarget(serverLevel, entity);
     }
 
     @Override
