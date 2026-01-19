@@ -4,10 +4,10 @@
       "model": "minecraft:block/obsidian"
     },
     "age=1": {
-      "model": "minecraft:block/obsidian"
+      "model": "lifelocke:block/frosted_obsidian1"
     },
     "age=2": {
-      "model": "minecraft:block/crying_obsidian"
+      "model": "lifelocke:block/frosted_obsidian2"
     },
     "age=3": {
       "model": "minecraft:block/crying_obsidian"
