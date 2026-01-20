@@ -28,6 +28,9 @@ public class ModItemGroups {
                         entries.accept(ModItems.GHOST_BOTTLES.get("regular"));
                         entries.accept(ModItems.GHOST_BOTTLES.get("burst"));
                         entries.accept(ModItems.GHOST_BOTTLES.get("extended"));
+                        entries.accept(ModItems.FIRE_ENERGY);
+                        entries.accept(ModItems.GRASS_ENERGY);
+                        entries.accept(ModItems.GHOST_ENERGY);
                         entries.accept(ModBlocks.TERA_TRIAL_BLOCK);
                     }).build());
 

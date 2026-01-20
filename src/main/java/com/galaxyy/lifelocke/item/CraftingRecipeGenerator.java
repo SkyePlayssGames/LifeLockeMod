@@ -29,6 +29,19 @@ public class CraftingRecipeGenerator extends FabricRecipeProvider {
                         .requires(Items.GLASS_BOTTLE)
                         .unlockedBy(getHasName(ModItems.FIRE_ENERGY), has(ModItems.FIRE_ENERGY))
                         .save(output);
+
+                shapeless(RecipeCategory.BREWING, ModItems.GRASS_BOTTLES.get("burst"))
+                        .requires(ModItems.GRASS_ENERGY)
+                        .requires(Items.GLASS_BOTTLE)
+                        .unlockedBy(getHasName(ModItems.GRASS_ENERGY), has(ModItems.GRASS_ENERGY))
+                        .save(output);
+
+                shapeless(RecipeCategory.BREWING, ModItems.GHOST_BOTTLES.get("burst"))
+                        .requires(ModItems.GHOST_ENERGY)
+                        .requires(Items.GLASS_BOTTLE)
+                        .unlockedBy(getHasName(ModItems.GHOST_ENERGY), has(ModItems.GHOST_ENERGY))
+                        .save(output);
+
             }
         };
     }
