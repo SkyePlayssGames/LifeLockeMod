@@ -8,12 +8,17 @@ import com.galaxyy.lifelocke.networking.GrassMobAnimationS2CPayload;
 import com.galaxyy.lifelocke.rendering.particles.ModParticles;
 import com.galaxyy.lifelocke.tags.ModTags;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -39,6 +44,8 @@ public class GrassMobEntity extends Monster {
     private static final int FOLLOW_RANGE = 16;
     private static final int GRASS_ATTACK_DAMAGE = 6;
 
+    private static final EntityDimensions HIDDEN_DIMENSIONS = EntityDimensions.scalable(0.8f, 1.05f);
+
     private static final TagKey<Block> HIDEABLE_BLOCKS = ModTags.GRASS_MOB_HIDE;
     private static final TagKey<Block> ATTACKABLE_BLOCKS = ModTags.GRASS_MOB_ATTACK;
     private static final Identifier HIDDEN_ID = Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "hidden");
@@ -52,6 +59,9 @@ public class GrassMobEntity extends Monster {
     public final AnimationState hidingAnimationState = new AnimationState();
     public final AnimationState unhidingAnimationState = new AnimationState();
     public final AnimationState magicAttackAnimationState = new AnimationState();
+
+    private static final EntityDataAccessor<Boolean> HIDDEN = SynchedEntityData.defineId(
+            GrassMobEntity.class, EntityDataSerializers.BOOLEAN);
 
     public GrassMobEntity(EntityType<? extends Monster> entityType, Level world) {
         super(entityType, world);
@@ -115,6 +125,7 @@ public class GrassMobEntity extends Monster {
     }
 
     private void tick_server() {
+
         AttributeInstance followAttribute = Objects.requireNonNull(this.getAttributes().getInstance(Attributes.FOLLOW_RANGE));
         Vec3 speed = this.getDeltaMovement();
 
@@ -124,6 +135,7 @@ public class GrassMobEntity extends Monster {
                         new AttributeModifier(HIDDEN_ID, -11, AttributeModifier.Operation.ADD_VALUE)
                 );
                 sendAnimationPacket(null, GrassMobAnimationS2CPayload.ANIMATION.HIDE);
+                this.entityData.set(HIDDEN, true);
             }
 
             handleGrassAttack();
@@ -131,8 +143,8 @@ public class GrassMobEntity extends Monster {
         } else if (!BlockFinder.isTouchingBlock(this, HIDEABLE_BLOCKS) && followAttribute.hasModifier(HIDDEN_ID)) {
             followAttribute.removeModifier(HIDDEN_ID);
             sendAnimationPacket(null, GrassMobAnimationS2CPayload.ANIMATION.UNHIDE);
+            this.entityData.set(HIDDEN, false);
         }
-
     }
 
     public void handleGrassAttack() {
@@ -167,5 +179,28 @@ public class GrassMobEntity extends Monster {
                 ServerPlayNetworking.send(playerEntity, new GrassMobAnimationS2CPayload(this.uuid, animation.getSerializedName()));
             }
         }
+    }
+
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+
+        builder.define(HIDDEN, false);
+    }
+
+    @Override
+    public void onSyncedDataUpdated(EntityDataAccessor<?> entityDataAccessor) {
+        if (HIDDEN.equals(entityDataAccessor)) {
+            this.refreshDimensions();
+        }
+
+        super.onSyncedDataUpdated(entityDataAccessor);
+    }
+
+    @Override
+    public EntityDimensions getDefaultDimensions(Pose pose) {
+        //System.out.println("Setting dimensions!\n" + hidden + "\n" +
+        //        (this.hidden ? HIDDEN_DIMENSIONS.height() : super.getDefaultDimensions(pose).height()));
+        return entityData.get(HIDDEN) ? HIDDEN_DIMENSIONS : super.getDefaultDimensions(pose);
     }
 }
