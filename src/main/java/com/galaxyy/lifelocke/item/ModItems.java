@@ -34,6 +34,10 @@ public class ModItems {
             new Item.Properties(), ModEffects.GHOST, LifeLocke.MOD_ID, "ghost_bottle"
     );
 
+    public static final HashMap<String, EnergyBottleItem> PSYCHIC_BOTTLES = EnergyBottleItem.energyBottleGroup(
+            new Item.Properties(), ModEffects.PSYCHIC, LifeLocke.MOD_ID, "psychic_bottle"
+    );
+
 
     public static final Item FIRE_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.FIRE_MOB);
     public static final Item GRASS_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.GRASS_MOB);
