@@ -4,6 +4,7 @@ import com.galaxyy.lifelocke.LifeLocke;
 import com.galaxyy.lifelocke.entity.custom.FireMobEntity;
 import com.galaxyy.lifelocke.entity.custom.GhostMobEntity;
 import com.galaxyy.lifelocke.entity.custom.GrassMobEntity;
+import com.galaxyy.lifelocke.entity.custom.PsychicMobEntity;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -19,6 +20,8 @@ public class ModEntities {
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "grass_mob"));
     public static final ResourceKey<EntityType<?>> GHOST_MOB_KEY = ResourceKey.create(Registries.ENTITY_TYPE,
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "ghost_mob"));
+    public static final ResourceKey<EntityType<?>> PSYCHIC_MOB_KEY = ResourceKey.create(Registries.ENTITY_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "psychic_mob"));
 
     public static final EntityType<FireMobEntity> FIRE_MOB = Registry.register(BuiltInRegistries.ENTITY_TYPE,
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fire_mob"),
@@ -40,6 +43,13 @@ public class ModEntities {
             EntityType.Builder.of(GhostMobEntity::new, MobCategory.MONSTER)
                     .sized(0.6f, 1.8f)
                     .build(GHOST_MOB_KEY)
+    );
+
+    public static final EntityType<PsychicMobEntity> PSYCHIC_MOB = Registry.register(BuiltInRegistries.ENTITY_TYPE,
+            Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "psychic_mob"),
+            EntityType.Builder.of(PsychicMobEntity::new, MobCategory.MONSTER)
+                    .sized(0.95f, 0.95f)
+                    .build(PSYCHIC_MOB_KEY)
     );
 
     public static void registerModEntities() {

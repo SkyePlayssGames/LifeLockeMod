@@ -7,6 +7,8 @@ import com.galaxyy.lifelocke.entity.client.ghost_mob.GhostMobModel;
 import com.galaxyy.lifelocke.entity.client.ghost_mob.GhostMobRenderer;
 import com.galaxyy.lifelocke.entity.client.grass_mob.GrassMobModel;
 import com.galaxyy.lifelocke.entity.client.grass_mob.GrassMobRenderer;
+import com.galaxyy.lifelocke.entity.client.psychic_mob.PsychicMobModel;
+import com.galaxyy.lifelocke.entity.client.psychic_mob.PsychicMobRenderer;
 import com.galaxyy.lifelocke.event.ModCheckExistingEvent;
 import com.galaxyy.lifelocke.keybind.KeyInputHandler;
 import com.galaxyy.lifelocke.networking.*;
@@ -43,5 +45,7 @@ public class LifeLockeClient implements ClientModInitializer {
         EntityRendererRegistryImpl.register(ModEntities.GRASS_MOB, GrassMobRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(GhostMobModel.GHOST_MOB, GhostMobModel::getTexturedModelData);
         EntityRendererRegistryImpl.register(ModEntities.GHOST_MOB, GhostMobRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(PsychicMobModel.PSYCHIC_MOB, PsychicMobModel::getTexturedModelData);
+        EntityRendererRegistryImpl.register(ModEntities.PSYCHIC_MOB, PsychicMobRenderer::new);
     }
 }

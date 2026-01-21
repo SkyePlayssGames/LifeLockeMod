@@ -9,6 +9,7 @@ import com.galaxyy.lifelocke.entity.ModEntities;
 import com.galaxyy.lifelocke.entity.custom.FireMobEntity;
 import com.galaxyy.lifelocke.entity.custom.GhostMobEntity;
 import com.galaxyy.lifelocke.entity.custom.GrassMobEntity;
+import com.galaxyy.lifelocke.entity.custom.PsychicMobEntity;
 import com.galaxyy.lifelocke.event.*;
 import com.galaxyy.lifelocke.events.ModdedPlayerJoinServerCallback;
 import com.galaxyy.lifelocke.events.ModdedPlayerJoinClientCallback;
@@ -101,5 +102,6 @@ public class LifeLocke implements ModInitializer {
 		FabricDefaultAttributeRegistry.register(ModEntities.FIRE_MOB, FireMobEntity.createMobAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.GRASS_MOB, GrassMobEntity.createMobAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.GHOST_MOB, GhostMobEntity.createMobAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.PSYCHIC_MOB, PsychicMobEntity.createMobAttributes());
 	}
 }
