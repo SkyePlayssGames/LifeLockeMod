@@ -1,7 +1,7 @@
 package com.galaxyy.lifelocke.entity.client.psychic_mob;
 
 import com.galaxyy.lifelocke.LifeLocke;
-import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -9,15 +9,19 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.AnimationState;
 
 public class PsychicMobModel extends EntityModel<PsychicMobRenderState> {
     public static final ModelLayerLocation PSYCHIC_MOB = new ModelLayerLocation(Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "psychic_mob"), "main");
     private final ModelPart head;
 
+    private final KeyframeAnimation idleAnimation;
+
     public PsychicMobModel(ModelPart root) {
         super(root);
         this.head = root.getChild("root").getChild("swirls").getChild("head");
+
+        this.idleAnimation = PsychicMobAnimations.IDLE_ANIM.bake(root);
     }
 
     public static LayerDefinition getTexturedModelData() {
@@ -67,6 +71,8 @@ public class PsychicMobModel extends EntityModel<PsychicMobRenderState> {
     public void setupAnim(PsychicMobRenderState state) {
         super.setupAnim(state);
         this.setHeadAngles(state.yRot, state.xRot);
+
+        this.idleAnimation.apply(state.idleAnimationState, state.ageInTicks);
     }
 
     private void setHeadAngles(float headYaw, float headPitch) {

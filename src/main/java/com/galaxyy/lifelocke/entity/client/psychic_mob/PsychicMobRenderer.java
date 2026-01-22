@@ -8,7 +8,7 @@ import net.minecraft.resources.Identifier;
 
 public class PsychicMobRenderer extends MobRenderer<PsychicMobEntity, PsychicMobRenderState, PsychicMobModel> {
     public PsychicMobRenderer(EntityRendererProvider.Context context) {
-        super(context, new PsychicMobModel(context.bakeLayer(PsychicMobModel.PSYCHIC_MOB)), 1);
+        super(context, new PsychicMobModel(context.bakeLayer(PsychicMobModel.PSYCHIC_MOB)), 0.5f);
     }
 
     @Override
@@ -19,5 +19,12 @@ public class PsychicMobRenderer extends MobRenderer<PsychicMobEntity, PsychicMob
     @Override
     public PsychicMobRenderState createRenderState() {
         return new PsychicMobRenderState();
+    }
+
+    @Override
+    public void extractRenderState(PsychicMobEntity psychicMob, PsychicMobRenderState psychicMobRenderState, float f) {
+        super.extractRenderState(psychicMob, psychicMobRenderState, f);
+
+        psychicMobRenderState.idleAnimationState = psychicMob.idleAnimationState;
     }
 }

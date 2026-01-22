@@ -2,6 +2,7 @@ package com.galaxyy.lifelocke;
 
 import com.galaxyy.lifelocke.item.CraftingRecipeGenerator;
 import com.galaxyy.lifelocke.tags.BlockTagGenerator;
+import com.galaxyy.lifelocke.tags.EntityTypeTagGenerator;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
@@ -11,6 +12,7 @@ public class LifeLockeDataGenerator implements DataGeneratorEntrypoint {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
 		pack.addProvider(BlockTagGenerator::new);
+		pack.addProvider(EntityTypeTagGenerator::new);
 		pack.addProvider(CraftingRecipeGenerator::new);
 	}
 }
