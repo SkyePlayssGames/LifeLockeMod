@@ -2,6 +2,7 @@ package com.galaxyy.lifelocke.entity.custom;
 
 import com.galaxyy.lifelocke.entity.ai.RandomFlyAroundGoal;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.AnimationState;
@@ -112,13 +113,46 @@ public class PsychicMobEntity extends Monster {
         private void set_mode() {
             assert this.mob.getTarget() != null;
 
-            if (Math.sqrt(this.mob.distanceToSqr(this.mob.getTarget())) < 6) {
+            if (shouldFlee()) {
                 this.mode = Mode.FLEEING;
             } else if (attackCooldownTicks > 0) {
                 this.mode = Mode.COOLDOWN;
             } else {
                 this.mode = Mode.ATTACKING;
             }
+        }
+
+        private boolean shouldFlee() {
+            return Math.sqrt(this.mob.distanceToSqr(this.mob.getTarget())) < 6 && !pathBlocked();
+        }
+
+        private boolean pathBlocked() {
+            LivingEntity target = this.mob.getTarget();
+            Level level = this.mob.level();
+
+            assert target != null;
+            Vec3 toTarget = makeSpeedVec(this.mob, target.getX(), target.getY(), target.getZ(), 1);
+            Vec3 fromTarget = new Vec3(-toTarget.x(), -toTarget.y(), -toTarget.z());
+
+            if (fromTarget.x < 0) {
+                if (level.getBlockState(this.mob.blockPosition().west()).is(BlockTags.AIR)) {
+                    return false;
+                }
+            } else {
+                if (level.getBlockState(this.mob.blockPosition().east()).is(BlockTags.AIR)) {
+                    return false;
+                }
+            }
+            if (fromTarget.z < 0) {
+                if (level.getBlockState(this.mob.blockPosition().north()).is(BlockTags.AIR)) {
+                    return false;
+                }
+            } else {
+                if (level.getBlockState(this.mob.blockPosition().south()).is(BlockTags.AIR)) {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private void flee() {

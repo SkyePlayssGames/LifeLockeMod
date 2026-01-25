@@ -20,7 +20,6 @@ public class PathfindHelper {
         while (level.getBlockState(blockPos.below(i)).is(BlockTags.AIR) && blockPos.below(i).getY() > -64) {
             i += 1;
         }
-        System.out.println(i);
         return i;
     }
 
