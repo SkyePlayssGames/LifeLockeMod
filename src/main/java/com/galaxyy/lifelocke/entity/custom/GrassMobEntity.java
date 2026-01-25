@@ -2,10 +2,9 @@ package com.galaxyy.lifelocke.entity.custom;
 
 import com.galaxyy.lifelocke.LifeLocke;
 import com.galaxyy.lifelocke.damage.ModDamageTypes;
-import com.galaxyy.lifelocke.entity.ai.BlockFinder;
+import com.galaxyy.lifelocke.entity.ai.PathfindHelper;
 import com.galaxyy.lifelocke.entity.ai.HideBlockGoal;
 import com.galaxyy.lifelocke.networking.GrassMobAnimationS2CPayload;
-import com.galaxyy.lifelocke.rendering.particles.ModParticles;
 import com.galaxyy.lifelocke.tags.ModTags;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -129,7 +128,7 @@ public class GrassMobEntity extends Monster {
         AttributeInstance followAttribute = Objects.requireNonNull(this.getAttributes().getInstance(Attributes.FOLLOW_RANGE));
         Vec3 speed = this.getDeltaMovement();
 
-        if (speed.x < 0.1d && speed.z < 0.1d && BlockFinder.isTouchingBlock(this, HIDEABLE_BLOCKS)) {
+        if (speed.x < 0.1d && speed.z < 0.1d && PathfindHelper.isTouchingBlock(this, HIDEABLE_BLOCKS)) {
             if (!followAttribute.hasModifier(HIDDEN_ID)) {
                 followAttribute.addTransientModifier(
                         new AttributeModifier(HIDDEN_ID, -11, AttributeModifier.Operation.ADD_VALUE)
@@ -140,7 +139,7 @@ public class GrassMobEntity extends Monster {
 
             handleGrassAttack();
 
-        } else if (!BlockFinder.isTouchingBlock(this, HIDEABLE_BLOCKS) && followAttribute.hasModifier(HIDDEN_ID)) {
+        } else if (!PathfindHelper.isTouchingBlock(this, HIDEABLE_BLOCKS) && followAttribute.hasModifier(HIDDEN_ID)) {
             followAttribute.removeModifier(HIDDEN_ID);
             sendAnimationPacket(null, GrassMobAnimationS2CPayload.ANIMATION.UNHIDE);
             this.entityData.set(HIDDEN, false);

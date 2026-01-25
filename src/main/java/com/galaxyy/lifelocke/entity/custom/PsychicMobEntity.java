@@ -1,22 +1,26 @@
 package com.galaxyy.lifelocke.entity.custom;
 
 import com.galaxyy.lifelocke.entity.ai.RandomFlyAroundGoal;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.pig.Pig;
-import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+
+import static com.galaxyy.lifelocke.entity.ai.PathfindHelper.findNearestFloor;
+import static com.galaxyy.lifelocke.entity.ai.PathfindHelper.makeSpeedVec;
 
 public class PsychicMobEntity extends Monster {
     public final AnimationState idleAnimationState = new AnimationState();
@@ -40,10 +44,10 @@ public class PsychicMobEntity extends Monster {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new RandomFlyAroundGoal(this, 0.05));
-        this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 8));
+        this.goalSelector.addGoal(1, new FuckYouGoal(this));
+        this.goalSelector.addGoal(2, new RandomFlyAroundGoal(this, 0.05));
 
-        this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Pig.class, true));
+        this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
     @Override
@@ -66,4 +70,93 @@ public class PsychicMobEntity extends Monster {
     }
 
     private void tick_server() {}
+
+    private static class FuckYouGoal extends Goal {
+        private enum Mode {
+            FLEEING,
+            COOLDOWN,
+            ATTACKING
+        }
+
+        private final PsychicMobEntity mob;
+        private Mode mode;
+        private int attackCooldownTicks = 0;
+        private int healCooldownTicks = 0;
+
+        private FuckYouGoal(PsychicMobEntity mob) {
+            this.mob = mob;
+        }
+
+        @Override
+        public boolean canUse() {
+            return this.mob.getTarget() != null;
+        }
+
+        @Override
+        public boolean requiresUpdateEveryTick() {
+            return true;
+        }
+
+        @Override
+        public void tick() {
+            if (this.mob.getTarget() == null) { return; }
+            set_mode();
+            System.out.println("\nMode: " + this.mode + "\nCooldown: " + this.attackCooldownTicks);
+            switch (this.mode) {
+                case FLEEING: flee(); break;
+                case COOLDOWN: cooldown(); break;
+                case ATTACKING: attack(); break;
+            }
+        }
+
+        private void set_mode() {
+            assert this.mob.getTarget() != null;
+
+            if (Math.sqrt(this.mob.distanceToSqr(this.mob.getTarget())) < 6) {
+                this.mode = Mode.FLEEING;
+            } else if (attackCooldownTicks > 0) {
+                this.mode = Mode.COOLDOWN;
+            } else {
+                this.mode = Mode.ATTACKING;
+            }
+        }
+
+        private void flee() {
+            LivingEntity target = this.mob.getTarget();
+            assert target != null;
+            Vec3 toTarget = makeSpeedVec(this.mob, target.getX(), target.getY(), target.getZ(), 1.5);
+            Vec3 fromTarget;
+            if (findNearestFloor(this.mob.level(), this.mob.blockPosition()) < 4) {
+                fromTarget = new Vec3(-toTarget.x, -toTarget.y, -toTarget.z);
+            } else {
+                fromTarget = new Vec3(-toTarget.x, -Math.abs(toTarget.y), -toTarget.z);
+            }
+            this.mob.setDeltaMovement(fromTarget);
+
+            attackCooldownTicks--;
+        }
+
+        private void cooldown() {
+            this.mob.setDeltaMovement(this.mob.getDeltaMovement().multiply(0.5, 0.5, 0.5));
+            attackCooldownTicks--;
+            healCooldownTicks--;
+            if (healCooldownTicks <= 0) {
+                this.mob.heal(2);
+                healCooldownTicks = 40;
+            }
+        }
+
+        private void attack() {
+            LivingEntity target = this.mob.getTarget();
+            assert target != null;
+
+            target.hurtServer(((ServerLevel) this.mob.level()),
+                    new DamageSource(this.mob.level().registryAccess().getOrThrow(DamageTypes.MOB_ATTACK), this.mob),
+                    4);
+
+            this.mob.setDeltaMovement(makeSpeedVec(this.mob, target.getX(), target.getY(), target.getZ(), 0.75));
+
+            attackCooldownTicks = 40;
+        }
+    }
 }

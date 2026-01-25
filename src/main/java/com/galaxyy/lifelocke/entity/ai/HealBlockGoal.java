@@ -1,7 +1,5 @@
 package com.galaxyy.lifelocke.entity.ai;
 
-import com.google.common.collect.ImmutableList;
-import java.util.ArrayList;
 import java.util.EnumSet;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.TagKey;
@@ -9,8 +7,8 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.level.block.Block;
 
-import static com.galaxyy.lifelocke.entity.ai.BlockFinder.findNearbyBlock;
-import static com.galaxyy.lifelocke.entity.ai.BlockFinder.isTouchingBlock;
+import static com.galaxyy.lifelocke.entity.ai.PathfindHelper.findNearbyBlock;
+import static com.galaxyy.lifelocke.entity.ai.PathfindHelper.isTouchingBlock;
 
 public class HealBlockGoal extends Goal {
     private final Mob mob;

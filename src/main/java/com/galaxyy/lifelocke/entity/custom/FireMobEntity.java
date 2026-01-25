@@ -1,9 +1,7 @@
 package com.galaxyy.lifelocke.entity.custom;
 
-import com.galaxyy.lifelocke.entity.ai.BlockFinder;
 import com.galaxyy.lifelocke.entity.ai.HealBlockGoal;
 import com.galaxyy.lifelocke.tags.ModTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
@@ -19,8 +17,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import java.util.ArrayList;
-import java.util.EnumSet;
 
 public class FireMobEntity extends Monster {
     public final AnimationState idleAnimationState = new AnimationState();

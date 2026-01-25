@@ -3,12 +3,14 @@ package com.galaxyy.lifelocke.entity.ai;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.phys.Vec3;
 
 import java.util.EnumSet;
+
+import static com.galaxyy.lifelocke.entity.ai.PathfindHelper.findNearestFloor;
+import static com.galaxyy.lifelocke.entity.ai.PathfindHelper.makeSpeedVec;
 
 public class RandomFlyAroundGoal extends Goal {
     private final PathfinderMob mob;
@@ -40,7 +42,7 @@ public class RandomFlyAroundGoal extends Goal {
         this.odds = odds;
         this.maxDistanceOffGround = maxDistanceOffGround;
         this.timeout = timeout;
-        this.setFlags(EnumSet.of(Flag.MOVE));
+        this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
     }
 
     @Override
@@ -62,17 +64,11 @@ public class RandomFlyAroundGoal extends Goal {
             return false;
         }
 
-        return checkCloseEnoughToGround(BlockPos.containing(wantedX, wantedY, wantedZ));
+        return checkCloseEnoughToGround(this.mob.level(), BlockPos.containing(wantedX, wantedY, wantedZ));
     }
 
-    private boolean checkCloseEnoughToGround(BlockPos pos) {
-        boolean result = false;
-        for (int i = 1; i <= this.maxDistanceOffGround; ++i) {
-            if (this.mob.level().getBlockState(pos.below(i)).getBlock() != Blocks.AIR) {
-                result = true;
-            }
-        }
-        return result;
+    private boolean checkCloseEnoughToGround(Level level, BlockPos pos) {
+        return findNearestFloor(level, pos) < maxDistanceOffGround;
     }
 
     @Override
@@ -97,37 +93,13 @@ public class RandomFlyAroundGoal extends Goal {
     @Override
     public void tick() {
         ticksRun++;
-        mob.setDeltaMovement(makeSpeedVec(1.0f));
+        mob.setDeltaMovement(makeSpeedVec(mob, wantedX, wantedY, wantedZ, 1.0f));
     }
 
     @Override
     public void stop() {
-        mob.setDeltaMovement(makeSpeedVec(0.25f));
+        mob.setDeltaMovement(makeSpeedVec(mob, wantedX, wantedY, wantedZ, 0.25f));
     }
 
-    private Vec3 makeSpeedVec(double speed_modifier) {
-        double speed = this.mob.getAttributeValue(Attributes.FLYING_SPEED);
 
-        double x = 0;
-        double y = 0;
-        double z = 0;
-
-        if (wantedX > mob.getX()) {
-            x = speed * speed_modifier;
-        } else if (wantedX < mob.getX()) {
-            x = -speed * speed_modifier;
-        }
-        if (wantedY > mob.getY()) {
-            y = speed * speed_modifier;
-        }  else if (wantedY < mob.getY()) {
-            y = -speed * speed_modifier;
-        }
-        if (wantedZ > mob.getZ()) {
-            z = speed * speed_modifier;
-        } else if (wantedZ < mob.getZ()) {
-            z = -speed * speed_modifier;
-        }
-
-        return new Vec3(x, y, z);
-    }
 }

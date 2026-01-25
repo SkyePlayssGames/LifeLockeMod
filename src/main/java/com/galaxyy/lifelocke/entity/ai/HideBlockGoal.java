@@ -1,7 +1,7 @@
 package com.galaxyy.lifelocke.entity.ai;
 
-import static com.galaxyy.lifelocke.entity.ai.BlockFinder.findNearbyBlock;
-import static com.galaxyy.lifelocke.entity.ai.BlockFinder.isTouchingBlock;
+import static com.galaxyy.lifelocke.entity.ai.PathfindHelper.findNearbyBlock;
+import static com.galaxyy.lifelocke.entity.ai.PathfindHelper.isTouchingBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.TagKey;
