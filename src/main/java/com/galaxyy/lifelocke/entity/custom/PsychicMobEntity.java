@@ -1,5 +1,6 @@
 package com.galaxyy.lifelocke.entity.custom;
 
+import com.galaxyy.lifelocke.entity.ai.FlyingMonster;
 import com.galaxyy.lifelocke.entity.ai.RandomFlyAroundGoal;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
@@ -23,7 +24,7 @@ import net.minecraft.world.phys.Vec3;
 import static com.galaxyy.lifelocke.entity.ai.PathfindHelper.findNearestFloor;
 import static com.galaxyy.lifelocke.entity.ai.PathfindHelper.makeSpeedVec;
 
-public class PsychicMobEntity extends Monster {
+public class PsychicMobEntity extends FlyingMonster {
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
@@ -33,7 +34,7 @@ public class PsychicMobEntity extends Monster {
 
     public static AttributeSupplier.Builder createMobAttributes() {
         return Monster.createMonsterAttributes()
-                .add(Attributes.FLYING_SPEED, 0.15)
+                .add(Attributes.FLYING_SPEED, 0.2)
                 .add(Attributes.FALL_DAMAGE_MULTIPLIER, 0);
     }
 
@@ -70,7 +71,9 @@ public class PsychicMobEntity extends Monster {
         }
     }
 
-    private void tick_server() {}
+    private void tick_server() {
+
+    }
 
     private static class FuckYouGoal extends Goal {
         private enum Mode {
@@ -165,13 +168,13 @@ public class PsychicMobEntity extends Monster {
             } else {
                 fromTarget = new Vec3(-toTarget.x, -Math.abs(toTarget.y), -toTarget.z);
             }
-            this.mob.setDeltaMovement(fromTarget);
+            this.mob.setTargetSpeed(fromTarget);
 
             attackCooldownTicks--;
         }
 
         private void cooldown() {
-            this.mob.setDeltaMovement(this.mob.getDeltaMovement().multiply(0.5, 0.5, 0.5));
+            this.mob.setTargetSpeed(Vec3.ZERO);
             attackCooldownTicks--;
             healCooldownTicks--;
             if (healCooldownTicks <= 0) {
@@ -188,7 +191,7 @@ public class PsychicMobEntity extends Monster {
                     new DamageSource(this.mob.level().registryAccess().getOrThrow(DamageTypes.MOB_ATTACK), this.mob),
                     4);
 
-            this.mob.setDeltaMovement(makeSpeedVec(this.mob, target.getX(), target.getY(), target.getZ(), 0.75));
+            this.mob.setTargetSpeed(makeSpeedVec(this.mob, target.getX(), target.getY() + 2.5, target.getZ(), 0.5));
 
             attackCooldownTicks = 40;
         }

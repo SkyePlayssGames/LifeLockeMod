@@ -6,6 +6,7 @@ import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.EnumSet;
 
@@ -13,7 +14,7 @@ import static com.galaxyy.lifelocke.entity.ai.PathfindHelper.findNearestFloor;
 import static com.galaxyy.lifelocke.entity.ai.PathfindHelper.makeSpeedVec;
 
 public class RandomFlyAroundGoal extends Goal {
-    private final PathfinderMob mob;
+    private final FlyingMonster mob;
     private final double odds;
     private final int timeout;
     private final int maxDistanceOffGround;
@@ -25,20 +26,20 @@ public class RandomFlyAroundGoal extends Goal {
     private int ticksRun;
 
 
-    public RandomFlyAroundGoal(PathfinderMob pathfinderMob) {
-        this(pathfinderMob, 0.02);
+    public RandomFlyAroundGoal(FlyingMonster flyingMonster) {
+        this(flyingMonster, 0.02);
     }
 
-    public RandomFlyAroundGoal(PathfinderMob pathfinderMob, double odds) {
-        this(pathfinderMob, odds, 6);
+    public RandomFlyAroundGoal(FlyingMonster flyingMonster, double odds) {
+        this(flyingMonster, odds, 6);
     }
 
-    public RandomFlyAroundGoal(PathfinderMob pathfinderMob, double odds, int maxDistanceOffGround) {
-        this(pathfinderMob, odds, maxDistanceOffGround, 200);
+    public RandomFlyAroundGoal(FlyingMonster flyingMonster, double odds, int maxDistanceOffGround) {
+        this(flyingMonster, odds, maxDistanceOffGround, 200);
     }
 
-    public RandomFlyAroundGoal(PathfinderMob pathfinderMob, double odds, int maxDistanceOffGround, int timeout) {
-        this.mob = pathfinderMob;
+    public RandomFlyAroundGoal(FlyingMonster flyingMonster, double odds, int maxDistanceOffGround, int timeout) {
+        this.mob = flyingMonster;
         this.odds = odds;
         this.maxDistanceOffGround = maxDistanceOffGround;
         this.timeout = timeout;
@@ -93,12 +94,12 @@ public class RandomFlyAroundGoal extends Goal {
     @Override
     public void tick() {
         ticksRun++;
-        mob.setDeltaMovement(makeSpeedVec(mob, wantedX, wantedY, wantedZ, 1.0f));
+        mob.setTargetSpeed(makeSpeedVec(mob, wantedX, wantedY, wantedZ, 1.0f));
     }
 
     @Override
     public void stop() {
-        mob.setDeltaMovement(makeSpeedVec(mob, wantedX, wantedY, wantedZ, 0.25f));
+        mob.setTargetSpeed(Vec3.ZERO);
     }
 
 
