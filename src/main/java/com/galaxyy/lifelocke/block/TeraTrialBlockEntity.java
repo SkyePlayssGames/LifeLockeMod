@@ -93,6 +93,7 @@ public class TeraTrialBlockEntity extends BlockEntity {
             case FIRE -> handleFireTick(level, blockPos, blockState, blockEntity);
             case GRASS -> handleGrassTick(level, blockPos, blockState, blockEntity);
             case GHOST -> handleGhostTick(level, blockPos, blockState, blockEntity);
+            case PSYCHIC -> handlePsychicTick(level, blockPos, blockState, blockEntity);
         }
     }
 
@@ -142,5 +143,12 @@ public class TeraTrialBlockEntity extends BlockEntity {
         }
         applyEffectInRadius(level, blockPos, 10, ModEffects.IN_TRIAL);
         applyEffectInRadius(level, blockPos, 10, MobEffects.SLOW_FALLING);
+    }
+
+    private static void handlePsychicTick(Level level, BlockPos blockPos, BlockState blockState, TeraTrialBlockEntity blockEntity) {
+        if (!spawnersActive(level, blockEntity)) {
+            return;
+        }
+        applyEffectInRadius(level, blockPos, 10, ModEffects.IN_TRIAL);
     }
 }

@@ -20,7 +20,8 @@ public class TeraTrialBlock extends BaseEntityBlock {
         NULL,
         FIRE,
         GRASS,
-        GHOST;
+        GHOST,
+        PSYCHIC;
 
         @Override
         public @NonNull String getSerializedName() {
@@ -29,6 +30,7 @@ public class TeraTrialBlock extends BaseEntityBlock {
                 case FIRE -> "fire";
                 case GRASS -> "grass";
                 case GHOST -> "ghost";
+                case PSYCHIC -> "psychic";
             };
         }
     }

@@ -42,6 +42,7 @@ public class ModItems {
     public static final Item FIRE_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.FIRE_MOB);
     public static final Item GRASS_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.GRASS_MOB);
     public static final Item GHOST_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.GHOST_MOB);
+    public static final Item PSYCHIC_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.PSYCHIC_MOB);
 
     public static final Item FIRE_ENERGY = registerItem("fire_energy", Item::new);
     public static final Item GRASS_ENERGY = registerItem("grass_energy", Item::new);
@@ -65,6 +66,7 @@ public class ModItems {
                 itemgroup.accept(FIRE_MOB_SPAWN_EGG);
                 itemgroup.accept(GRASS_MOB_SPAWN_EGG);
                 itemgroup.accept(GHOST_MOB_SPAWN_EGG);
+                itemgroup.accept(PSYCHIC_MOB_SPAWN_EGG);
         });
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.OP_BLOCKS).register(itemgroup -> {
                 itemgroup.accept(DUMMY_ITEM);

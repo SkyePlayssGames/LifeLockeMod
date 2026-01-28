@@ -11,6 +11,9 @@
     },
     "type=ghost": {
       "model": "lifelocke:block/tera_trial_block/ghost"
+    },
+    "type=psychic": {
+      "model": "lifelocke:block/tera_trial_block/psychic"
     }
   }
 }

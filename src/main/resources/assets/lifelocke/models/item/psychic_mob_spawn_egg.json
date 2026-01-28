@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "lifelocke:item/psychic_bottle"
+    "layer0": "lifelocke:item/psychic_mob_spawn_egg"
   }
 }
