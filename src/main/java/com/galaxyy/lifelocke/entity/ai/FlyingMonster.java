@@ -1,59 +1,55 @@
 package com.galaxyy.lifelocke.entity.ai;
 
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.FlyingMoveControl;
+import net.minecraft.world.entity.ai.control.MoveControl;
+import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.animal.FlyingAnimal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
+import org.jspecify.annotations.NonNull;
 
-public abstract class FlyingMonster extends Monster {
+public abstract class FlyingMonster extends Monster implements FlyingAnimal {
+    @Override
+    public boolean isFlying() {
+        return true;
+    }
+
     protected FlyingMonster(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
+        this.moveControl = new FlyingMoveControl(this, 10, false);
     }
-
-    private static final double acceleration = 0.025;
-    private Vec3 targetSpeed = Vec3.ZERO;
 
     @Override
-    public void tick() {
-        super.tick();
-        if (!this.level().isClientSide()) {
-            accelerate();
-        }
+    public boolean onGround() {
+        return false;
     }
 
-    private void accelerate() {
-        Vec3 speed = this.getDeltaMovement();
-        double x, y, z;
-
-        if (targetSpeed.x > speed.x) {
-            x = Math.min(targetSpeed.x, speed.x + acceleration);
-        } else if (targetSpeed.x < speed.x) {
-            x = Math.max(targetSpeed.x, speed.x - acceleration);
-        } else {
-            x = targetSpeed.x;
-        }
-        if (targetSpeed.y > speed.y) {
-            y = Math.min(targetSpeed.y, speed.y + acceleration);
-        } else if (targetSpeed.y < speed.y) {
-            y = Math.max(targetSpeed.y, speed.y - acceleration);
-        } else {
-            y = targetSpeed.y;
-        }
-        if (targetSpeed.z > speed.z) {
-            z = Math.min(targetSpeed.z, speed.z + acceleration);
-        } else if (targetSpeed.z < speed.z) {
-            z = Math.max(targetSpeed.z, speed.z - acceleration);
-        } else {
-            z = targetSpeed.z;
-        }
-        this.setDeltaMovement(x, y, z);
+    @Override
+    public @NonNull PathNavigation createNavigation(@NonNull Level level) {
+        NewNavi navi = new NewNavi(this, level);
+        navi.setCanFloat(true);
+        navi.setCanOpenDoors(false);
+        return navi;
     }
 
-    public void setTargetSpeed(Vec3 targetSpeed) {
-        this.targetSpeed = targetSpeed;
-    }
+    static class NewNavi extends FlyingPathNavigation {
+        public NewNavi(PathfinderMob mob, Level level) {
+            super(mob, level);
+        }
 
-    public Vec3 getTargetSpeed() {
-        return this.targetSpeed;
+        @Override
+        public void tick() {
+            Path path = this.path;
+            super.tick();
+            this.path = path;
+        }
     }
 }

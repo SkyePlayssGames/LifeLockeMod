@@ -34,20 +34,16 @@ public class PsychicMobEntity extends FlyingMonster {
 
     public static AttributeSupplier.Builder createMobAttributes() {
         return Monster.createMonsterAttributes()
-                .add(Attributes.FLYING_SPEED, 0.2)
+                .add(Attributes.FLYING_SPEED, 0.13)
+                .add(Attributes.MOVEMENT_SPEED, 1.2)
                 .add(Attributes.FALL_DAMAGE_MULTIPLIER, 0);
-    }
-
-    @Override
-    public PathNavigation getNavigation() {
-        return new FlyingPathNavigation(this, this.level());
     }
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new FuckYouGoal(this));
-        this.goalSelector.addGoal(2, new RandomFlyAroundGoal(this, 0.05));
+        this.goalSelector.addGoal(2, new RandomFlyAroundGoal(this, 2, 8));
 
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
@@ -126,55 +122,26 @@ public class PsychicMobEntity extends FlyingMonster {
         }
 
         private boolean shouldFlee() {
-            return Math.sqrt(this.mob.distanceToSqr(this.mob.getTarget())) < 6 && !pathBlocked();
-        }
-
-        private boolean pathBlocked() {
-            LivingEntity target = this.mob.getTarget();
-            Level level = this.mob.level();
-
-            assert target != null;
-            Vec3 toTarget = makeSpeedVec(this.mob, target.getX(), target.getY(), target.getZ(), 1);
-            Vec3 fromTarget = new Vec3(-toTarget.x(), -toTarget.y(), -toTarget.z());
-
-            if (fromTarget.x < 0) {
-                if (level.getBlockState(this.mob.blockPosition().west()).is(BlockTags.AIR)) {
-                    return false;
-                }
-            } else {
-                if (level.getBlockState(this.mob.blockPosition().east()).is(BlockTags.AIR)) {
-                    return false;
-                }
-            }
-            if (fromTarget.z < 0) {
-                if (level.getBlockState(this.mob.blockPosition().north()).is(BlockTags.AIR)) {
-                    return false;
-                }
-            } else {
-                if (level.getBlockState(this.mob.blockPosition().south()).is(BlockTags.AIR)) {
-                    return false;
-                }
-            }
-            return true;
+            return Math.sqrt(this.mob.distanceToSqr(this.mob.getTarget())) < 6;
         }
 
         private void flee() {
             LivingEntity target = this.mob.getTarget();
             assert target != null;
-            Vec3 toTarget = makeSpeedVec(this.mob, target.getX(), target.getY(), target.getZ(), 1.5);
-            Vec3 fromTarget;
-            if (findNearestFloor(this.mob.level(), this.mob.blockPosition()) < 4) {
-                fromTarget = new Vec3(-toTarget.x, -toTarget.y, -toTarget.z);
-            } else {
-                fromTarget = new Vec3(-toTarget.x, -Math.abs(toTarget.y), -toTarget.z);
-            }
-            this.mob.setTargetSpeed(fromTarget);
+
+            this.mob.getNavigation().moveTo(
+                    this.mob.getX() - Math.clamp(target.getX() - this.mob.getX(), -1, 1),
+                    this.mob.getY() - Math.clamp(target.getY() - this.mob.getY(),
+                            findNearestFloor(this.mob.level(), this.mob.blockPosition()) < 4 ?  -1 : 0.5, 1),
+                    this.mob.getZ() - Math.clamp(target.getZ() - this.mob.getZ(), -1, 1),
+                    1.5
+            );
 
             attackCooldownTicks--;
         }
 
         private void cooldown() {
-            this.mob.setTargetSpeed(Vec3.ZERO);
+            this.mob.getNavigation().stop();
             attackCooldownTicks--;
             healCooldownTicks--;
             if (healCooldownTicks <= 0) {
@@ -190,8 +157,6 @@ public class PsychicMobEntity extends FlyingMonster {
             target.hurtServer(((ServerLevel) this.mob.level()),
                     new DamageSource(this.mob.level().registryAccess().getOrThrow(DamageTypes.MOB_ATTACK), this.mob),
                     4);
-
-            this.mob.setTargetSpeed(makeSpeedVec(this.mob, target.getX(), target.getY() + 2.5, target.getZ(), 0.5));
 
             attackCooldownTicks = 40;
         }
