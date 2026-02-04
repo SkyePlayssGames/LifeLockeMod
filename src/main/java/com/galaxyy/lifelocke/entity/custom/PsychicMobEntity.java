@@ -25,6 +25,9 @@ import static com.galaxyy.lifelocke.entity.ai.PathfindHelper.findNearestFloor;
 import static com.galaxyy.lifelocke.entity.ai.PathfindHelper.makeSpeedVec;
 
 public class PsychicMobEntity extends FlyingMonster {
+    private static final double FLYING_SPEED = 0.18;
+    private static final double MAX_HEALTH = 20;
+
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
@@ -34,8 +37,8 @@ public class PsychicMobEntity extends FlyingMonster {
 
     public static AttributeSupplier.Builder createMobAttributes() {
         return Monster.createMonsterAttributes()
-                .add(Attributes.FLYING_SPEED, 0.13)
-                .add(Attributes.MOVEMENT_SPEED, 1.2)
+                .add(Attributes.FLYING_SPEED, FLYING_SPEED)
+                .add(Attributes.MAX_HEALTH, MAX_HEALTH)
                 .add(Attributes.FALL_DAMAGE_MULTIPLIER, 0);
     }
 
