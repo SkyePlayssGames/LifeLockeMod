@@ -42,6 +42,12 @@ public class CraftingRecipeGenerator extends FabricRecipeProvider {
                         .unlockedBy(getHasName(ModItems.GHOST_ENERGY), has(ModItems.GHOST_ENERGY))
                         .save(output);
 
+                shapeless(RecipeCategory.BREWING, ModItems.PSYCHIC_BOTTLES.get("burst"))
+                        .requires(ModItems.PSYCHIC_ENERGY)
+                        .requires(Items.GLASS_BOTTLE)
+                        .unlockedBy(getHasName(ModItems.PSYCHIC_ENERGY), has(ModItems.PSYCHIC_ENERGY))
+                        .save(output);
+
             }
         };
     }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "lifelocke:item/ghost_bottle"
+    "layer0": "lifelocke:item/psychic_energy"
   }
 }
