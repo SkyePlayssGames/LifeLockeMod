@@ -22,6 +22,7 @@ import net.minecraft.world.level.storage.ValueOutput;
 import java.util.ArrayList;
 
 public class TeraTrialBlockEntity extends BlockEntity {
+    private Integer countdownTicks = null;
     private final ArrayList<BlockPos> spawnerOffsets = new ArrayList<>();
 
     private static BlockPos add(BlockPos pos, BlockPos other) {
@@ -111,10 +112,11 @@ public class TeraTrialBlockEntity extends BlockEntity {
         return false;
     }
 
-    private static void applyEffectInRadius(Level level, BlockPos blockPos, float distance, Holder<MobEffect> effect) {
+    private static void applyEffectInRadius(Level level, BlockPos blockPos, float distance, Holder<MobEffect> effect, Integer duration) {
+        if (duration == null) duration = 10;
         for (Player player : level.players()) {
             if (Mth.sqrt((float) player.distanceToSqr(blockPos.getCenter())) < distance) {
-                player.addEffect(new MobEffectInstance(effect, 10, 1, false, false));
+                player.addEffect(new MobEffectInstance(effect, duration, 1, false, false));
             }
         }
     }
@@ -127,28 +129,38 @@ public class TeraTrialBlockEntity extends BlockEntity {
         if (!spawnersActive(level, blockEntity)) {
             return;
         }
-        applyEffectInRadius(level, blockPos, 7, ModEffects.IN_TRIAL);
+        applyEffectInRadius(level, blockPos, 7, ModEffects.IN_TRIAL, null);
     }
 
     private static void handleGrassTick(Level level, BlockPos blockPos, BlockState blockState, TeraTrialBlockEntity blockEntity) {
         if (!spawnersActive(level, blockEntity)) {
             return;
         }
-        applyEffectInRadius(level, blockPos, 5, ModEffects.IN_TRIAL);
+        applyEffectInRadius(level, blockPos, 5, ModEffects.IN_TRIAL, null);
     }
 
     private static void handleGhostTick(Level level, BlockPos blockPos, BlockState blockState, TeraTrialBlockEntity blockEntity) {
         if (!spawnersActive(level, blockEntity)) {
             return;
         }
-        applyEffectInRadius(level, blockPos, 10, ModEffects.IN_TRIAL);
-        applyEffectInRadius(level, blockPos, 10, MobEffects.SLOW_FALLING);
+        applyEffectInRadius(level, blockPos, 10, ModEffects.IN_TRIAL, null);
+        applyEffectInRadius(level, blockPos, 10, MobEffects.SLOW_FALLING, null);
     }
 
     private static void handlePsychicTick(Level level, BlockPos blockPos, BlockState blockState, TeraTrialBlockEntity blockEntity) {
         if (!spawnersActive(level, blockEntity)) {
             return;
         }
-        applyEffectInRadius(level, blockPos, 10, ModEffects.IN_TRIAL);
+
+        applyEffectInRadius(level, blockPos, 10, ModEffects.IN_TRIAL, null);
+
+        if (blockEntity.countdownTicks == null) {
+            blockEntity.countdownTicks = 600;
+        } else if (blockEntity.countdownTicks <= 0) {
+            applyEffectInRadius(level, blockPos, 10, MobEffects.LEVITATION, 50);
+            blockEntity.countdownTicks = 600;
+        } else {
+            blockEntity.countdownTicks--;
+        }
     }
 }
