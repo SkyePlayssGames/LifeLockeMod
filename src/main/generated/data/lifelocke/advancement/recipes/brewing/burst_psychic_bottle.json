@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_psychic_energy": {
+      "conditions": {
+        "items": [
+          {
+            "items": "lifelocke:psychic_energy"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "lifelocke:burst_psychic_bottle"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_psychic_energy"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "lifelocke:burst_psychic_bottle"
+    ]
+  }
+}
