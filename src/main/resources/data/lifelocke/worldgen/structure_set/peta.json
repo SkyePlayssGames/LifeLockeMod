@@ -11,6 +11,10 @@
     {
       "structure": "lifelocke:ghost_peta",
       "weight": 1
+    },
+    {
+      "structure": "lifelocke:psychic_peta",
+      "weight": 1
     }
   ],
   "placement": {
