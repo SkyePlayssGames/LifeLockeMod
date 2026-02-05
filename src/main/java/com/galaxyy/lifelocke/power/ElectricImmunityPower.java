@@ -1,6 +1,7 @@
 package com.galaxyy.lifelocke.power;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.effect.Types;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageType;
@@ -12,7 +13,7 @@ public class ElectricImmunityPower implements ServerLivingEntityEvents.AllowDama
     @Override
     public boolean allowDamage(LivingEntity entity, @NonNull DamageSource source, float amount) {
         DamageType lightningDamageType = entity.registryAccess().getOrThrow(DamageTypes.LIGHTNING_BOLT).value();
-        if (entity.hasEffect(ModEffects.ELECTRIC) && source.type() == lightningDamageType) {
+        if (entity.hasEffect(Types.ELECTRIC_TYPE.type) && source.type() == lightningDamageType) {
             return false;
         }
         return true;

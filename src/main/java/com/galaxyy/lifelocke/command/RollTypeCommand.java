@@ -1,6 +1,7 @@
 package com.galaxyy.lifelocke.command;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.effect.Types;
 import com.galaxyy.lifelocke.gamerule.ModGameRules;
 import com.galaxyy.lifelocke.playerdata.UpdateData;
 import com.galaxyy.lifelocke.playerdata.iEntityDataSaver;
@@ -20,6 +21,8 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class RollTypeCommand implements CommandRegistrationCallback {
@@ -27,19 +30,19 @@ public class RollTypeCommand implements CommandRegistrationCallback {
         Player player = context.getSource().getPlayer();
         boolean type_duplication = context.getSource().getLevel().getGameRules().get(ModGameRules.TYPE_DUPLICATION);
         boolean special_types = context.getSource().getLevel().getGameRules().get(ModGameRules.SPECIAL_TYPE_ROLL);
-        Holder<MobEffect>[] effectsList = special_types ? ModEffects.EFFECTS : ModEffects.ROLLABLE_EFFECTS;
+        ArrayList<Holder<MobEffect>> effectsList = special_types ? Types.TYPES : Types.ROLLABLE_TYPES;
 
         if (player == null) {
             throw new SimpleCommandExceptionType(Component.translatable("text.lifelocke.command_error.rolltype.not_player_sent")).create();
         }
-        for (Holder<MobEffect> effect : ModEffects.EFFECTS) {
+        for (Holder<MobEffect> effect : Types.TYPES) {
             if (player.hasEffect(effect)) {
                 throw new SimpleCommandExceptionType(Component.translatable("text.lifelocke.command_error.rolltype.already_has_type")).create();
             }
         }
 
         int[] types_had = UpdateData.getTypeList((iEntityDataSaver) player);
-        if (types_had.length >= effectsList.length && !type_duplication) {
+        if (types_had.length >= effectsList.size() && !type_duplication) {
             throw new SimpleCommandExceptionType(Component.translatable("text.lifelocke.command_error.rolltype.has_had_all_types")).create();
         }
 
@@ -54,7 +57,7 @@ public class RollTypeCommand implements CommandRegistrationCallback {
         player.setItemSlot(EquipmentSlot.FEET, new ItemStack(Blocks.AIR));
 
         while (true) {
-            int type_rolled = player.getRandom().nextIntBetweenInclusive(0, effectsList.length-1);
+            int type_rolled = player.getRandom().nextIntBetweenInclusive(0, effectsList.size()-1);
             if (Arrays.stream(types_had).anyMatch(value -> value == type_rolled) && !type_duplication) {
                 continue;
             }
@@ -71,11 +74,11 @@ public class RollTypeCommand implements CommandRegistrationCallback {
                 UpdateData.setTypeList(((iEntityDataSaver) player), types_have);
             }
             
-            player.addEffect(new MobEffectInstance(effectsList[type_rolled], -1));
+            player.addEffect(new MobEffectInstance(effectsList.get(type_rolled), -1));
 
             for (Player playerEntity : context.getSource().getLevel().players()) {
                 playerEntity.displayClientMessage(Component.translatable("text.lifelocke.command.rolltype.rolled_type",
-                        player.getName(), effectsList[type_rolled].value().getDisplayName()), false);
+                        player.getName(), effectsList.get(type_rolled).value().getDisplayName()), false);
             }
 
             break;

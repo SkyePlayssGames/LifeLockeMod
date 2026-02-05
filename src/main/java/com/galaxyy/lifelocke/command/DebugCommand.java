@@ -1,6 +1,7 @@
 package com.galaxyy.lifelocke.command;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.effect.Types;
 import com.galaxyy.lifelocke.playerdata.UpdateData;
 import com.galaxyy.lifelocke.playerdata.iEntityDataSaver;
 import com.mojang.brigadier.CommandDispatcher;
@@ -36,15 +37,15 @@ public class DebugCommand implements CommandRegistrationCallback {
         Collection<ServerPlayer> players = EntityArgument.getPlayers(context, "player");
         String effect = StringArgumentType.getString(context, "effect");
         int i = 0;
-        while (i < ModEffects.EFFECTS.length) {
-            Holder<MobEffect> statusEffect = ModEffects.EFFECTS[i];
+        while (i < Types.TYPES.size()) {
+            Holder<MobEffect> statusEffect = Types.TYPES.get(i);
             if (statusEffect.is(Identifier.parse(effect))) {
                 break;
             }
             i++;
         }
 
-        if (i == ModEffects.EFFECTS.length) {
+        if (i == Types.TYPES.size()) {
             throw new SimpleCommandExceptionType(Component.translatable("text.lifelocke.command_error.debug.not_a_type")).create();
         }
 
@@ -61,7 +62,7 @@ public class DebugCommand implements CommandRegistrationCallback {
 
             UpdateData.setTypeList(((iEntityDataSaver) player), types_have);
             int finalI = i;
-            player.displayClientMessage(Component.translatable("text.lifelocke.command.debug.added_type", ((MobEffect) ModEffects.EFFECTS[finalI].value()).getDisplayName()), false);
+            player.displayClientMessage(Component.translatable("text.lifelocke.command.debug.added_type", ((MobEffect) Types.TYPES.get(finalI).value()).getDisplayName()), false);
         }
         return 1;
     }

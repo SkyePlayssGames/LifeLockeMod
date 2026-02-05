@@ -1,6 +1,7 @@
 package com.galaxyy.lifelocke.power;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.effect.Types;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -14,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 public class GrassPower implements AttackEntityCallback {
     @Override
     public InteractionResult interact(Player playerEntity, Level world, InteractionHand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
-        if (playerEntity.hasEffect(ModEffects.GRASS) && !world.isClientSide() && entity instanceof LivingEntity) {
+        if (playerEntity.hasEffect(Types.GRASS_TYPE.type) && !world.isClientSide() && entity instanceof LivingEntity) {
             playerEntity.heal(1);
         }
 

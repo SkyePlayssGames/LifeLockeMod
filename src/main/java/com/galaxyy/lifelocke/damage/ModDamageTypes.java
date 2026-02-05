@@ -3,6 +3,8 @@ package com.galaxyy.lifelocke.damage;
 import com.galaxyy.lifelocke.LifeLocke;
 import com.galaxyy.lifelocke.effect.ModEffects;
 import java.util.HashMap;
+
+import com.galaxyy.lifelocke.effect.Types;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
@@ -143,65 +145,65 @@ public class ModDamageTypes {
     }
 
     public static void registerSlainDamageTypes() {
-        SLAIN_DAMAGE_TYPES.put(ModEffects.BUG, ModDamageTypes.BUG);
-        SLAIN_DAMAGE_TYPES.put(ModEffects.FIRE, ModDamageTypes.FIRE);
-        SLAIN_DAMAGE_TYPES.put(ModEffects.DARK, ModDamageTypes.DARK);
-        SLAIN_DAMAGE_TYPES.put(ModEffects.WATER, ModDamageTypes.WATER);
-        SLAIN_DAMAGE_TYPES.put(ModEffects.GROUND, ModDamageTypes.GROUND);
-        SLAIN_DAMAGE_TYPES.put(ModEffects.ROCK, ModDamageTypes.ROCK);
-        SLAIN_DAMAGE_TYPES.put(ModEffects.ICE, ModDamageTypes.ICE);
-        SLAIN_DAMAGE_TYPES.put(ModEffects.PSYCHIC, ModDamageTypes.PSYCHIC);
-        SLAIN_DAMAGE_TYPES.put(ModEffects.FLYING, ModDamageTypes.FLYING);
-        SLAIN_DAMAGE_TYPES.put(ModEffects.POISON, ModDamageTypes.POISON);
-        SLAIN_DAMAGE_TYPES.put(ModEffects.GRASS, ModDamageTypes.GRASS);
-        SLAIN_DAMAGE_TYPES.put(ModEffects.ELECTRIC, ModDamageTypes.ELECTRIC);
-        SLAIN_DAMAGE_TYPES.put(ModEffects.FIGHTING, ModDamageTypes.FIGHTING);
-        SLAIN_DAMAGE_TYPES.put(ModEffects.GHOST, ModDamageTypes.GHOST);
-        SLAIN_DAMAGE_TYPES.put(ModEffects.STEEL, ModDamageTypes.STEEL);
-        SLAIN_DAMAGE_TYPES.put(ModEffects.CURSE_TYPE, ModDamageTypes.CURSE_TYPE);
-        SLAIN_DAMAGE_TYPES.put(ModEffects.DRAGON, ModDamageTypes.DRAGON);
-        SLAIN_DAMAGE_TYPES.put(ModEffects.FAIRY, ModDamageTypes.FAIRY);
+        SLAIN_DAMAGE_TYPES.put(Types.BUG_TYPE.type, ModDamageTypes.BUG);
+        SLAIN_DAMAGE_TYPES.put(Types.FIRE_TYPE.type, ModDamageTypes.FIRE);
+        SLAIN_DAMAGE_TYPES.put(Types.DARK_TYPE.type, ModDamageTypes.DARK);
+        SLAIN_DAMAGE_TYPES.put(Types.WATER_TYPE.type, ModDamageTypes.WATER);
+        SLAIN_DAMAGE_TYPES.put(Types.GROUND_TYPE.type, ModDamageTypes.GROUND);
+        SLAIN_DAMAGE_TYPES.put(Types.ROCK_TYPE.type, ModDamageTypes.ROCK);
+        SLAIN_DAMAGE_TYPES.put(Types.ICE_TYPE.type, ModDamageTypes.ICE);
+        SLAIN_DAMAGE_TYPES.put(Types.PSYCHIC_TYPE.type, ModDamageTypes.PSYCHIC);
+        SLAIN_DAMAGE_TYPES.put(Types.FLYING_TYPE.type, ModDamageTypes.FLYING);
+        SLAIN_DAMAGE_TYPES.put(Types.POISON_TYPE.type, ModDamageTypes.POISON);
+        SLAIN_DAMAGE_TYPES.put(Types.GRASS_TYPE.type, ModDamageTypes.GRASS);
+        SLAIN_DAMAGE_TYPES.put(Types.ELECTRIC_TYPE.type, ModDamageTypes.ELECTRIC);
+        SLAIN_DAMAGE_TYPES.put(Types.FIGHTING_TYPE.type, ModDamageTypes.FIGHTING);
+        SLAIN_DAMAGE_TYPES.put(Types.GHOST_TYPE.type, ModDamageTypes.GHOST);
+        SLAIN_DAMAGE_TYPES.put(Types.STEEL_TYPE.type, ModDamageTypes.STEEL);
+        SLAIN_DAMAGE_TYPES.put(Types.CURSE_TYPE.type, ModDamageTypes.CURSE_TYPE);
+        SLAIN_DAMAGE_TYPES.put(Types.DRAGON_TYPE.type, ModDamageTypes.DRAGON);
+        SLAIN_DAMAGE_TYPES.put(Types.FAIRY_TYPE.type, ModDamageTypes.FAIRY);
     }
 
     public static void registerFallDamageTypes() {
-        FALL_DAMAGE_TYPES.put(ModEffects.BUG, ModDamageTypes.BUG_FALL);
-        FALL_DAMAGE_TYPES.put(ModEffects.FIRE, ModDamageTypes.FIRE_FALL);
-        FALL_DAMAGE_TYPES.put(ModEffects.DARK, ModDamageTypes.DARK_FALL);
-        FALL_DAMAGE_TYPES.put(ModEffects.WATER, ModDamageTypes.WATER_FALL);
-        FALL_DAMAGE_TYPES.put(ModEffects.GROUND, ModDamageTypes.GROUND_FALL);
-        FALL_DAMAGE_TYPES.put(ModEffects.ROCK, ModDamageTypes.ROCK_FALL);
-        FALL_DAMAGE_TYPES.put(ModEffects.ICE, ModDamageTypes.ICE_FALL);
-        FALL_DAMAGE_TYPES.put(ModEffects.PSYCHIC, ModDamageTypes.PSYCHIC_FALL);
-        FALL_DAMAGE_TYPES.put(ModEffects.FLYING, ModDamageTypes.FLYING_FALL);
-        FALL_DAMAGE_TYPES.put(ModEffects.POISON, ModDamageTypes.POISON_FALL);
-        FALL_DAMAGE_TYPES.put(ModEffects.GRASS, ModDamageTypes.GRASS_FALL);
-        FALL_DAMAGE_TYPES.put(ModEffects.ELECTRIC, ModDamageTypes.ELECTRIC_FALL);
-        FALL_DAMAGE_TYPES.put(ModEffects.FIGHTING, ModDamageTypes.FIGHTING_FALL);
-        FALL_DAMAGE_TYPES.put(ModEffects.GHOST, ModDamageTypes.GHOST_FALL);
-        FALL_DAMAGE_TYPES.put(ModEffects.STEEL, ModDamageTypes.STEEL_FALL);
-        FALL_DAMAGE_TYPES.put(ModEffects.CURSE_TYPE, ModDamageTypes.CURSE_TYPE_FALL);
-        FALL_DAMAGE_TYPES.put(ModEffects.DRAGON, ModDamageTypes.DRAGON_FALL);
-        FALL_DAMAGE_TYPES.put(ModEffects.FAIRY, ModDamageTypes.FAIRY_FALL);
+        FALL_DAMAGE_TYPES.put(Types.BUG_TYPE.type, ModDamageTypes.BUG_FALL);
+        FALL_DAMAGE_TYPES.put(Types.FIRE_TYPE.type, ModDamageTypes.FIRE_FALL);
+        FALL_DAMAGE_TYPES.put(Types.DARK_TYPE.type, ModDamageTypes.DARK_FALL);
+        FALL_DAMAGE_TYPES.put(Types.WATER_TYPE.type, ModDamageTypes.WATER_FALL);
+        FALL_DAMAGE_TYPES.put(Types.GROUND_TYPE.type, ModDamageTypes.GROUND_FALL);
+        FALL_DAMAGE_TYPES.put(Types.ROCK_TYPE.type, ModDamageTypes.ROCK_FALL);
+        FALL_DAMAGE_TYPES.put(Types.ICE_TYPE.type, ModDamageTypes.ICE_FALL);
+        FALL_DAMAGE_TYPES.put(Types.PSYCHIC_TYPE.type, ModDamageTypes.PSYCHIC_FALL);
+        FALL_DAMAGE_TYPES.put(Types.FLYING_TYPE.type, ModDamageTypes.FLYING_FALL);
+        FALL_DAMAGE_TYPES.put(Types.POISON_TYPE.type, ModDamageTypes.POISON_FALL);
+        FALL_DAMAGE_TYPES.put(Types.GRASS_TYPE.type, ModDamageTypes.GRASS_FALL);
+        FALL_DAMAGE_TYPES.put(Types.ELECTRIC_TYPE.type, ModDamageTypes.ELECTRIC_FALL);
+        FALL_DAMAGE_TYPES.put(Types.FIGHTING_TYPE.type, ModDamageTypes.FIGHTING_FALL);
+        FALL_DAMAGE_TYPES.put(Types.GHOST_TYPE.type, ModDamageTypes.GHOST_FALL);
+        FALL_DAMAGE_TYPES.put(Types.STEEL_TYPE.type, ModDamageTypes.STEEL_FALL);
+        FALL_DAMAGE_TYPES.put(Types.CURSE_TYPE.type, ModDamageTypes.CURSE_TYPE_FALL);
+        FALL_DAMAGE_TYPES.put(Types.DRAGON_TYPE.type, ModDamageTypes.DRAGON_FALL);
+        FALL_DAMAGE_TYPES.put(Types.FAIRY_TYPE.type, ModDamageTypes.FAIRY_FALL);
     }
 
     public static void registerProjectileDamageTypes() {
-        PROJ_DAMAGE_TYPES.put(ModEffects.BUG, ModDamageTypes.BUG_PROJ);
-        PROJ_DAMAGE_TYPES.put(ModEffects.FIRE, ModDamageTypes.FIRE_PROJ);
-        PROJ_DAMAGE_TYPES.put(ModEffects.DARK, ModDamageTypes.DARK_PROJ);
-        PROJ_DAMAGE_TYPES.put(ModEffects.WATER, ModDamageTypes.WATER_PROJ);
-        PROJ_DAMAGE_TYPES.put(ModEffects.GROUND, ModDamageTypes.GROUND_PROJ);
-        PROJ_DAMAGE_TYPES.put(ModEffects.ROCK, ModDamageTypes.ROCK_PROJ);
-        PROJ_DAMAGE_TYPES.put(ModEffects.ICE, ModDamageTypes.ICE_PROJ);
-        PROJ_DAMAGE_TYPES.put(ModEffects.PSYCHIC, ModDamageTypes.PSYCHIC_PROJ);
-        PROJ_DAMAGE_TYPES.put(ModEffects.FLYING, ModDamageTypes.FLYING_PROJ);
-        PROJ_DAMAGE_TYPES.put(ModEffects.POISON, ModDamageTypes.POISON_PROJ);
-        PROJ_DAMAGE_TYPES.put(ModEffects.GRASS, ModDamageTypes.GRASS_PROJ);
-        PROJ_DAMAGE_TYPES.put(ModEffects.ELECTRIC, ModDamageTypes.ELECTRIC_PROJ);
-        PROJ_DAMAGE_TYPES.put(ModEffects.FIGHTING, ModDamageTypes.FIGHTING_PROJ);
-        PROJ_DAMAGE_TYPES.put(ModEffects.GHOST, ModDamageTypes.GHOST_PROJ);
-        PROJ_DAMAGE_TYPES.put(ModEffects.STEEL, ModDamageTypes.STEEL_PROJ);
-        PROJ_DAMAGE_TYPES.put(ModEffects.CURSE_TYPE, ModDamageTypes.CURSE_TYPE_PROJ);
-        PROJ_DAMAGE_TYPES.put(ModEffects.DRAGON, ModDamageTypes.DRAGON_PROJ);
-        PROJ_DAMAGE_TYPES.put(ModEffects.FAIRY, ModDamageTypes.FAIRY_PROJ);
+        PROJ_DAMAGE_TYPES.put(Types.BUG_TYPE.type, ModDamageTypes.BUG_PROJ);
+        PROJ_DAMAGE_TYPES.put(Types.FIRE_TYPE.type, ModDamageTypes.FIRE_PROJ);
+        PROJ_DAMAGE_TYPES.put(Types.DARK_TYPE.type, ModDamageTypes.DARK_PROJ);
+        PROJ_DAMAGE_TYPES.put(Types.WATER_TYPE.type, ModDamageTypes.WATER_PROJ);
+        PROJ_DAMAGE_TYPES.put(Types.GROUND_TYPE.type, ModDamageTypes.GROUND_PROJ);
+        PROJ_DAMAGE_TYPES.put(Types.ROCK_TYPE.type, ModDamageTypes.ROCK_PROJ);
+        PROJ_DAMAGE_TYPES.put(Types.ICE_TYPE.type, ModDamageTypes.ICE_PROJ);
+        PROJ_DAMAGE_TYPES.put(Types.PSYCHIC_TYPE.type, ModDamageTypes.PSYCHIC_PROJ);
+        PROJ_DAMAGE_TYPES.put(Types.FLYING_TYPE.type, ModDamageTypes.FLYING_PROJ);
+        PROJ_DAMAGE_TYPES.put(Types.POISON_TYPE.type, ModDamageTypes.POISON_PROJ);
+        PROJ_DAMAGE_TYPES.put(Types.GRASS_TYPE.type, ModDamageTypes.GRASS_PROJ);
+        PROJ_DAMAGE_TYPES.put(Types.ELECTRIC_TYPE.type, ModDamageTypes.ELECTRIC_PROJ);
+        PROJ_DAMAGE_TYPES.put(Types.FIGHTING_TYPE.type, ModDamageTypes.FIGHTING_PROJ);
+        PROJ_DAMAGE_TYPES.put(Types.GHOST_TYPE.type, ModDamageTypes.GHOST_PROJ);
+        PROJ_DAMAGE_TYPES.put(Types.STEEL_TYPE.type, ModDamageTypes.STEEL_PROJ);
+        PROJ_DAMAGE_TYPES.put(Types.CURSE_TYPE.type, ModDamageTypes.CURSE_TYPE_PROJ);
+        PROJ_DAMAGE_TYPES.put(Types.DRAGON_TYPE.type, ModDamageTypes.DRAGON_PROJ);
+        PROJ_DAMAGE_TYPES.put(Types.FAIRY_TYPE.type, ModDamageTypes.FAIRY_PROJ);
     }
 }

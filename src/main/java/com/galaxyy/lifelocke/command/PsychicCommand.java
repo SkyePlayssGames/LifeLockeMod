@@ -1,6 +1,7 @@
 package com.galaxyy.lifelocke.command;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.effect.Types;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -14,7 +15,7 @@ import net.minecraft.world.entity.player.Player;
 
 public class PsychicCommand implements net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback {
     private int command(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-        if (!context.getSource().getPlayer().hasEffect(ModEffects.PSYCHIC)) {
+        if (!context.getSource().getPlayer().hasEffect(Types.PSYCHIC_TYPE.type)) {
             throw new SimpleCommandExceptionType(Component.translatable("text.lifelocke.command_error.psychic.not_psychic")).create();
         }
 

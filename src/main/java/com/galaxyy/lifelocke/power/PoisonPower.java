@@ -1,6 +1,7 @@
 package com.galaxyy.lifelocke.power;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.effect.Types;
 import com.galaxyy.lifelocke.triggers.HungerCost;
 import com.galaxyy.lifelocke.playerdata.iEntityDataSaver;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
@@ -18,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 public class PoisonPower implements AttackEntityCallback {
     @Override
     public InteractionResult interact(Player playerEntity, Level world, InteractionHand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
-        if (playerEntity.hasEffect(ModEffects.POISON) && !world.isClientSide() &&
+        if (playerEntity.hasEffect(Types.POISON_TYPE.type) && !world.isClientSide() &&
                 (HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative()) &&
                 ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getBoolean("poison_power").orElse(false) &&
                 entity instanceof LivingEntity) {

@@ -1,6 +1,7 @@
 package com.galaxyy.lifelocke.mixin;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.effect.Types;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.Block;
@@ -19,7 +20,7 @@ public abstract class PowderSnowMixin extends Block implements BucketPickup {
 
     @Inject(at = @At("HEAD"), method = "canEntityWalkOnPowderSnow", cancellable = true)
     private static void onCanWalkOnPowderSnow(Entity entity, CallbackInfoReturnable<Boolean> cir) {
-        if (entity instanceof LivingEntity && ((LivingEntity) entity).hasEffect(ModEffects.ICE)) {
+        if (entity instanceof LivingEntity && ((LivingEntity) entity).hasEffect(Types.ICE_TYPE.type)) {
             cir.setReturnValue(true);
         }
     }

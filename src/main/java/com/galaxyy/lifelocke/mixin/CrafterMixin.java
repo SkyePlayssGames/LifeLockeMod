@@ -1,6 +1,7 @@
 package com.galaxyy.lifelocke.mixin;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.effect.Types;
 import com.galaxyy.lifelocke.gamerule.ModGameRules;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -24,7 +25,7 @@ public abstract class CrafterMixin extends Block {
 
     @Inject(at = @At("HEAD"), method = "useWithoutItem", cancellable = true)
     protected void onOnUse(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit, CallbackInfoReturnable<InteractionResult> cir) {
-        if (player.hasEffect(ModEffects.FIGHTING) && !world.isClientSide() &&
+        if (player.hasEffect(Types.FIGHTING_TYPE.type) && !world.isClientSide() &&
         ((ServerLevel) world).getGameRules().get(ModGameRules.FIGHTING_CRAFTING_NERF)) {
             cir.setReturnValue(InteractionResult.FAIL);
         }

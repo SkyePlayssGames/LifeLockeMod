@@ -1,6 +1,7 @@
 package com.galaxyy.lifelocke.command;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.effect.Types;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -17,7 +18,7 @@ public class TypeCommand implements net.fabricmc.fabric.api.command.v2.CommandRe
     private int command(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
         Player player = EntityArgument.getPlayer(context, "person");
         boolean i = true;
-        for (Holder<MobEffect> effect : ModEffects.EFFECTS) {
+        for (Holder<MobEffect> effect : Types.TYPES) {
             if (player.hasEffect(effect)) {
                 i = false;
                 context.getSource().sendSuccess(() -> Component.translatable("text.lifelocke.command.type.has_type", player.getName(), effect.value().getDisplayName()), false);

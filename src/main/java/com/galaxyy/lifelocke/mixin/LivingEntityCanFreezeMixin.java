@@ -1,6 +1,7 @@
 package com.galaxyy.lifelocke.mixin;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.effect.Types;
 import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Attackable;
@@ -26,7 +27,7 @@ public abstract class LivingEntityCanFreezeMixin extends Entity implements Attac
 
     @Inject(at = @At("HEAD"), method = "canFreeze", cancellable = true)
     protected void onCanFreeze(CallbackInfoReturnable<Boolean> cir) {
-        if (this.hasEffect(ModEffects.ICE)) {
+        if (this.hasEffect(Types.ICE_TYPE.type)) {
             cir.setReturnValue(false);
         }
     }

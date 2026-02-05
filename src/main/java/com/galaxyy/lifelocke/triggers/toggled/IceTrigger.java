@@ -1,13 +1,14 @@
 package com.galaxyy.lifelocke.triggers.toggled;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.effect.Types;
 import com.galaxyy.lifelocke.triggers.ToggledAbility;
 import net.minecraft.server.level.ServerPlayer;
 import com.galaxyy.lifelocke.playerdata.UpdateData;
 
 public class IceTrigger implements ToggledAbility {
     public boolean toggle(ServerPlayer playerEntity) {
-        updateData(playerEntity, UpdateData::toggleIcePower, ModEffects.ICE);
+        updateData(playerEntity, UpdateData::toggleIcePower, Types.ICE_TYPE.type);
         return true;
     }
 }

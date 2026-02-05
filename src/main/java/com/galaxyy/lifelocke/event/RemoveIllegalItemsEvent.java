@@ -1,6 +1,7 @@
 package com.galaxyy.lifelocke.event;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.effect.Types;
 import com.galaxyy.lifelocke.item.data_component.ModDataComponents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.server.MinecraftServer;
@@ -17,11 +18,11 @@ public class RemoveIllegalItemsEvent implements ServerTickEvents.EndWorldTick{
             for (int i = 0; i < inventory.getContainerSize(); i++) {
                 ItemStack item = inventory.getItem(i);
                 if (item.getOrDefault(ModDataComponents.STEEL, null) != null &&
-                        !player.hasEffect(ModEffects.STEEL)) {
+                        !player.hasEffect(Types.STEEL_TYPE.type)) {
                     inventory.removeItemNoUpdate(i);
                 }
                 if (item.getOrDefault(ModDataComponents.FLYING, null) != null &&
-                        !player.hasEffect(ModEffects.FLYING)) {
+                        !player.hasEffect(Types.FLYING_TYPE.type)) {
                     inventory.removeItemNoUpdate(i);
                 }
             }

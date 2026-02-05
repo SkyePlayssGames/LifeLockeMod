@@ -22,23 +22,6 @@ import java.util.function.Function;
 public class ModItems {
     public static final Item DUMMY_ITEM = registerItem("dummy_item", DummyItem::new);
 
-    public static final HashMap<String, EnergyBottleItem> FIRE_BOTTLES = EnergyBottleItem.energyBottleGroup(
-            new Item.Properties(), ModEffects.FIRE, LifeLocke.MOD_ID, "fire_bottle"
-    );
-
-    public static final HashMap<String, EnergyBottleItem> GRASS_BOTTLES = EnergyBottleItem.energyBottleGroup(
-            new Item.Properties(), ModEffects.GRASS, LifeLocke.MOD_ID, "grass_bottle"
-    );
-
-    public static final HashMap<String, EnergyBottleItem> GHOST_BOTTLES = EnergyBottleItem.energyBottleGroup(
-            new Item.Properties(), ModEffects.GHOST, LifeLocke.MOD_ID, "ghost_bottle"
-    );
-
-    public static final HashMap<String, EnergyBottleItem> PSYCHIC_BOTTLES = EnergyBottleItem.energyBottleGroup(
-            new Item.Properties(), ModEffects.PSYCHIC, LifeLocke.MOD_ID, "psychic_bottle"
-    );
-
-
     public static final Item FIRE_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.FIRE_MOB);
     public static final Item GRASS_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.GRASS_MOB);
     public static final Item GHOST_MOB_SPAWN_EGG = registerSpawnEgg(ModEntities.GHOST_MOB);

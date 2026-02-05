@@ -1,6 +1,7 @@
 package com.galaxyy.lifelocke.event;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.effect.Types;
 import com.galaxyy.lifelocke.playerdata.UpdateData;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.minecraft.core.Holder;
@@ -24,10 +25,10 @@ public class JoinIconFixEvent implements ServerPlayerEvents.Join {
     }
 
     public static void registerJoinFixEventTypes() {
-        TOGGLE_TYPES.put(ModEffects.DARK, UpdateData::toggleDarkPower);
-        TOGGLE_TYPES.put(ModEffects.ICE, UpdateData::toggleIcePower);
-        TOGGLE_TYPES.put(ModEffects.ELECTRIC, UpdateData::toggleElectricPower);
-        TOGGLE_TYPES.put(ModEffects.PSYCHIC, UpdateData::togglePsychicPower);
-        TOGGLE_TYPES.put(ModEffects.POISON, UpdateData::togglePoisonPower);
+        TOGGLE_TYPES.put(Types.DARK_TYPE.type, UpdateData::toggleDarkPower);
+        TOGGLE_TYPES.put(Types.ICE_TYPE.type, UpdateData::toggleIcePower);
+        TOGGLE_TYPES.put(Types.ELECTRIC_TYPE.type, UpdateData::toggleElectricPower);
+        TOGGLE_TYPES.put(Types.PSYCHIC_TYPE.type, UpdateData::togglePsychicPower);
+        TOGGLE_TYPES.put(Types.POISON_TYPE.type, UpdateData::togglePoisonPower);
     }
 }

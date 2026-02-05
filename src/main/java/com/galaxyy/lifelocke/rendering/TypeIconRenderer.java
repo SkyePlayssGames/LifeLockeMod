@@ -2,6 +2,7 @@ package com.galaxyy.lifelocke.rendering;
 
 import com.galaxyy.lifelocke.LifeLocke;
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.effect.Types;
 import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
 import com.galaxyy.lifelocke.playerdata.iEntityDataSaver;
 import com.mojang.blaze3d.platform.Window;
@@ -48,37 +49,37 @@ public class TypeIconRenderer {
 
         if (mainHand == HumanoidArm.RIGHT) { switch (icon) {
             case 1:
-                if (player.hasEffect(ModEffects.ELECTRIC)) {
+                if (player.hasEffect(Types.ELECTRIC_TYPE.type)) {
                     drawTypeIcon(ELECTRIC_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 2:
-                if (player.hasEffect(ModEffects.ICE)) {
+                if (player.hasEffect(Types.ICE_TYPE.type)) {
                     drawTypeIcon(ICE_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 3:
-                if (player.hasEffect(ModEffects.POISON)) {
+                if (player.hasEffect(Types.POISON_TYPE.type)) {
                     drawTypeIcon(POISON_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 4:
-                if (player.hasEffect(ModEffects.DARK)) {
+                if (player.hasEffect(Types.DARK_TYPE.type)) {
                     drawTypeIcon(DARK_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 5:
-                if (player.hasEffect(ModEffects.PSYCHIC)) {
+                if (player.hasEffect(Types.PSYCHIC_TYPE.type)) {
                     drawTypeIcon(PSYCHIC_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 6:
-                if (player.hasEffect(ModEffects.GHOST)) {
+                if (player.hasEffect(Types.GHOST_TYPE.type)) {
                     drawTypeIcon(GHOST_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
                     showed_icon = true;
                 }
@@ -89,37 +90,37 @@ public class TypeIconRenderer {
                 break;
         }} else { switch (icon) {
             case 1:
-                if (player.hasEffect(ModEffects.ELECTRIC)) {
+                if (player.hasEffect(Types.ELECTRIC_TYPE.type)) {
                     drawTypeIcon(ELECTRIC_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 2:
-                if (player.hasEffect(ModEffects.ICE)) {
+                if (player.hasEffect(Types.ICE_TYPE.type)) {
                     drawTypeIcon(ICE_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 3:
-                if (player.hasEffect(ModEffects.POISON)) {
+                if (player.hasEffect(Types.POISON_TYPE.type)) {
                     drawTypeIcon(POISON_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 4:
-                if (player.hasEffect(ModEffects.DARK)) {
+                if (player.hasEffect(Types.DARK_TYPE.type)) {
                     drawTypeIcon(DARK_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 5:
-                if (player.hasEffect(ModEffects.PSYCHIC)) {
+                if (player.hasEffect(Types.PSYCHIC_TYPE.type)) {
                     drawTypeIcon(PSYCHIC_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
                     showed_icon = true;
                 }
                 break;
             case 6:
-                if (player.hasEffect(ModEffects.GHOST)) {
+                if (player.hasEffect(Types.GHOST_TYPE.type)) {
                     drawTypeIcon(GHOST_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
                     showed_icon = true;
                 }

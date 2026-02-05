@@ -2,6 +2,7 @@ package com.galaxyy.lifelocke.command;
 
 import com.galaxyy.lifelocke.damage.ModDamageTypes;
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.effect.Types;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
@@ -25,7 +26,7 @@ public class HealCommand implements CommandRegistrationCallback {
         final int amount = IntegerArgumentType.getInteger(context, "amount");
         final ServerLevel world = context.getSource().getLevel();
 
-        if (user == null || !user.hasEffect(ModEffects.FAIRY)) {
+        if (user == null || !user.hasEffect(Types.FAIRY_TYPE.type)) {
             throw new SimpleCommandExceptionType(Component.translatable("text.lifelocke.command_error.heal.not_fairy")).create();
         }
 

@@ -5,6 +5,7 @@ import com.galaxyy.lifelocke.command.*;
 import com.galaxyy.lifelocke.damage.ChangeDamageEvent;
 import com.galaxyy.lifelocke.damage.ModDamageTypes;
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.effect.Types;
 import com.galaxyy.lifelocke.entity.ModEntities;
 import com.galaxyy.lifelocke.entity.custom.FireMobEntity;
 import com.galaxyy.lifelocke.entity.custom.GhostMobEntity;
@@ -17,7 +18,7 @@ import com.galaxyy.lifelocke.gamerule.ModGameRules;
 import com.galaxyy.lifelocke.item.ModItems;
 import com.galaxyy.lifelocke.item.ModPotions;
 import com.galaxyy.lifelocke.item.data_component.ModDataComponents;
-import com.galaxyy.lifelocke.itemgroup.ModItemGroups;
+import com.galaxyy.lifelocke.item.ModItemGroups;
 import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
 import com.galaxyy.lifelocke.modmenu.settings.PowerSoundSetting;
 import com.galaxyy.lifelocke.networking.*;
@@ -57,8 +58,8 @@ public class LifeLocke implements ModInitializer {
 		ModDamageTypes.registerFallDamageTypes();
 		ModParticles.registerModParticlesServer();
 		ModPotions.registerModPotions();
+		Types.registerTypes();
 
-		PressedAbilityKeyC2SHandler.registerEffectMap();
 		GroundTrigger.registerGroundMaps();
 		PowerSoundSetting.registerSoundEventMaps();
 		SettingsFileHandler.registerSettingsFile();
