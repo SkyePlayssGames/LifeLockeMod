@@ -1,20 +1,40 @@
 {
   "item.lifelocke.dummy_item": "Objet de Test",
+
+  "item.lifelocke.fire_energy": "Énergie feu",
+  "item.lifelocke.grass_energy": "Énergie plante",
+  "item.lifelocke.ghost_energy": "Énergie spectre",
+  "item.lifelocke.psychic_energy": "Énergie psy",
+
   "item.lifelocke.fire_bottle": "Bouteille d'énergie feu",
   "item.lifelocke.long_fire_bottle": "Bouteille d'énergie feu longue",
+  "item.lifelocke.burst_fire_bottle": "Bouteille d'énergie feu courte",
   "item.lifelocke.grass_bottle": "Bouteille d'énergie plante",
   "item.lifelocke.long_grass_bottle": "Bouteille d'énergie plante longue",
+  "item.lifelocke.burst_grass_bottle": "Bouteille d'énergie plante courte",
+  "item.lifelocke.ghost_bottle": "Bouteille d'énergie spectre",
+  "item.lifelocke.long_ghost_bottle": "Bouteille d'énergie spectre longue",
+  "item.lifelocke.burst_ghost_bottle": "Bouteille d'énergie spectre courte",
+  "item.lifelocke.psychic_bottle": "Bouteille d'énergie psy",
+  "item.lifelocke.long_psychic_bottle": "Bouteille d'énergie psy longue",
+  "item.lifelocke.burst_psychic_bottle": "Bouteille d'énergie psy courte",
 
   "item.lifelocke.fire_mob_spawn_egg": "Oeuf spawneur d'animal feu",
   "item.lifelocke.grass_mob_spawn_egg": "Oeuf spawneur d'animal plante",
+  "item.lifelocke.ghost_mob_spawn_egg": "Oeuf spawneur d'animal spectre",
+  "item.lifelocke.psychic_mob_spawn_egg": "Oeuf spawneur d'animal psy",
 
   "block.lifelocke.dummy_block": "Bloc de Test",
   "item.lifelocke.dummy_block": "Bloc de Test",
+  "block.lifelocke.tera_trial_block": "Bloc d'épreuve Téra",
+  "item.lifelocke.tera_trial_block": "Bloc d'épreuve Téra",
 
   "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
 
   "entity.lifelocke.fire_mob": "Animal de Feu",
   "entity.lifelocke.grass_mob": "Animal de Plante",
+  "entity.lifelocke.ghost_mob": "Animal de Spectre",
+  "entity.lifelocke.psychic_mob": "Animal de Psy",
 
   "gamerule.lifelocke.fighting_crafting_nerf": "Nerf de Crafting de Combat",
   "gamerule.lifelocke.type_duplication": "Type Duplication",
@@ -85,6 +105,7 @@
   "effect.lifelocke.rock": "Roche",
   "effect.lifelocke.curse_type": "???",
   "effect.lifelocke.stuck": "Bloqué(e)",
+  "effect.lifelocke.in_trial": "Entre Épreuve",
 
   "key.category.lifelocke.category": "LifeLocke",
   "key.lifelocke.ability": "Capacité",
@@ -138,7 +159,7 @@
   "text.lifelocke.compatibility.player_kicked_server": "%s's version de LifeLocke etais trop vieille !",
 
   "modmenu.nameTranslation.lifelocke": "LifeLocke",
-  "modmenu.descriptionTranslation.lifelocke": "Un modification avec un théma Pokémon qui ajout des Types et ses abilités !"
+  "modmenu.descriptionTranslation.lifelocke": "Un modification avec un théma Pokémon qui ajout des Types et ses abilités !",
 
 
 }

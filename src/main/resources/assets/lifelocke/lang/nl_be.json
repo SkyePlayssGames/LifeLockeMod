@@ -1,21 +1,41 @@
 {
   "item.lifelocke.dummy_item": "Test Object",
-  "item.lifelocke.fire_bottle": "Vuurenergiefles",
-  "item.lifelocke.long_fire_bottle": "Verlengde Vuurenergiefles",
-  "item.lifelocke.grass_bottle": "Grasenergiefles",
-  "item.lifelocke.long_grass_bottle": "Verlengde Grasenergiefles",
+
+  "item.lifelocke.fire_energy": "Vuur Energie",
+  "item.lifelocke.grass_energy": "Gras Energie",
+  "item.lifelocke.ghost_energy": "Geest Energie",
+  "item.lifelocke.psychic_energy": "Psychisch Energie",
+
+  "item.lifelocke.fire_bottle": "Vuur-Energiefles",
+  "item.lifelocke.long_fire_bottle": "Verlengde Vuur-Energiefles",
+  "item.lifelocke.burst_fire_bottle": "Verkorte Vuur-Energiefles",
+  "item.lifelocke.grass_bottle": "Gras-Energiefles",
+  "item.lifelocke.long_grass_bottle": "Verlengde Gras-Energiefles",
+  "item.lifelocke.burst_grass_bottle": "Verkorte Gras-Energiefles",
+  "item.lifelocke.ghost_bottle": "Geest-Energiefles",
+  "item.lifelocke.long_ghost_bottle": "Verlengde Geest-Energiefles",
+  "item.lifelocke.burst_ghost_bottle": "Verkorte Geest-Energiefles",
+  "item.lifelocke.psychic_bottle": "Psychisch-Energiefles",
+  "item.lifelocke.long_psychic_bottle": "Verlengde Psychisch-Energiefles",
+  "item.lifelocke.burst_psychic_bottle": "Verkorte Psychisch-Energiefles",
 
   "item.lifelocke.fire_mob_spawn_egg": "Vuurbeest Spawnei",
   "item.lifelocke.grass_mob_spawn_egg": "Grasbeest Spawnei",
+  "item.lifelocke.ghost_mob_spawn_egg": "Geestenbeest Spawnei",
+  "item.lifelocke.psychic_mob_spawn_egg": "Psychischbeest Spawnei",
 
 
   "block.lifelocke.dummy_block": "Test Blok",
   "item.lifelocke.dummy_block": "Test Blok",
+  "block.lifelocke.tera_trial_block": "Teraproefblok",
+  "item.lifelocke.tera_trial_block": "Teraproefblok",
 
   "itemgroup.lifelocke.lifelocke_stuff": "LifeLocke",
 
   "entity.lifelocke.fire_mob": "Vuurbeest",
   "entity.lifelocke.grass_mob": "Grasbeest",
+  "entity.lifelocke.ghost_mob": "Geestenbeest",
+  "entity.lifelocke.psychic_mob": "Psychischbeest",
 
   "gamerule.lifelocke.fighting_crafting_nerf": "Vecht Vervaardigingsverzwakking",
   "gamerule.lifelocke.type_duplication": "Type Herhaling",
@@ -85,6 +105,7 @@
   "effect.lifelocke.rock": "Steen",
   "effect.lifelocke.curse_type": "???",
   "effect.lifelocke.stuck": "Vast",
+  "effect.lifelocke.in_trial": "In Proef",
 
   "key.category.lifelocke.category": "LifeLocke",
   "key.lifelocke.ability": "Kracht",
