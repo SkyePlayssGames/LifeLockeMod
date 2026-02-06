@@ -5,7 +5,6 @@ import com.galaxyy.lifelocke.item.EnergyBottleItem;
 import com.galaxyy.lifelocke.networking.PressedAbilityKeyC2SHandler;
 import com.galaxyy.lifelocke.power.*;
 import com.galaxyy.lifelocke.triggers.ActivatedAbility;
-import com.galaxyy.lifelocke.triggers.ToggledAbility;
 import com.galaxyy.lifelocke.triggers.activated.*;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
