@@ -1,30 +1,17 @@
 package com.galaxyy.lifelocke.effect;
 
 import com.galaxyy.lifelocke.block.ModBlocks;
-import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
-import com.galaxyy.lifelocke.playerdata.UpdateData;
 import com.galaxyy.lifelocke.playerdata.iEntityDataSaver;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Blocks;
 
-public class IceEffect extends MobEffect {
+public class IceEffect extends ToggledMobEffect {
     protected IceEffect(MobEffectCategory category, int color) {
         super(category, color);
-    }
-
-    @Override
-    public void onEffectStarted(LivingEntity entity, int amplifier) {
-        SettingsFileHandler.create();
-        Boolean setting = SettingsFileHandler.try_read(null)[SettingsFileHandler.SETTINGS.POWER_DEFAULT.ordinal()].get_boolean();
-        if (UpdateData.toggleIcePower((ServerPlayer) entity) != setting) {
-            UpdateData.toggleIcePower(((ServerPlayer) entity));
-        }
     }
 
     @Override

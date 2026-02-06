@@ -1,16 +1,14 @@
 package com.galaxyy.lifelocke.effect;
 
-import com.galaxyy.lifelocke.modmenu.SettingsFileHandler;
 import com.galaxyy.lifelocke.playerdata.UpdateData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 
-public class ElectricEffect extends MobEffect {
+public class ElectricEffect extends ToggledMobEffect {
     protected ElectricEffect(MobEffectCategory category, int color) {
         super(category, color);
     }
@@ -32,15 +30,6 @@ public class ElectricEffect extends MobEffect {
         }
 
         return true;
-    }
-
-    @Override
-    public void onEffectStarted(LivingEntity entity, int amplifier) {
-        SettingsFileHandler.create();
-        Boolean setting = SettingsFileHandler.try_read(null)[SettingsFileHandler.SETTINGS.POWER_DEFAULT.ordinal()].get_boolean();
-        if (UpdateData.toggleElectricPower((ServerPlayer) entity) != setting) {
-            UpdateData.toggleElectricPower(((ServerPlayer) entity));
-        }
     }
 
     @Override

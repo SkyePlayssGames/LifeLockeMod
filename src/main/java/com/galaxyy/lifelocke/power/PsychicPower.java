@@ -21,7 +21,8 @@ public class PsychicPower implements AttackEntityCallback {
     public InteractionResult interact(Player playerEntity, Level world, InteractionHand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
         if (playerEntity.hasEffect(Types.PSYCHIC_TYPE.type) && !world.isClientSide() &&
                 (HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative()) &&
-                ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getBoolean("psychic_power").orElse(false) &&
+                ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getStringOr("toggled_power", "lifelocke:null")
+                        .equals(Types.PSYCHIC_TYPE.id.toString()) &&
                 entity instanceof LivingEntity) {
             ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.LEVITATION, 40), playerEntity);
             HungerCost.takeHunger(playerEntity, 1);

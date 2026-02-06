@@ -1,5 +1,6 @@
 package com.galaxyy.lifelocke.playerdata;
 
+import com.galaxyy.lifelocke.effect.Types;
 import com.galaxyy.lifelocke.networking.RenderTypeIconS2CPayload;
 import com.mojang.datafixers.util.Pair;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -7,6 +8,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 
@@ -51,10 +54,9 @@ public class UpdateData {
         ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().putInt("time_sneaked", 0);
     }
 
-    public static void setShownTypeIcon(ServerPlayer playerEntity, RenderTypeIconS2CPayload.ICONS icon) {
-        ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().putInt("type_icon", icon.ordinal());
+    public static void setShownTypeIcon(ServerPlayer playerEntity, Identifier id) {
         ServerPlayNetworking.send(playerEntity,
-                new RenderTypeIconS2CPayload(icon.ordinal())
+                new RenderTypeIconS2CPayload(id)
         );
     }
 
@@ -66,108 +68,25 @@ public class UpdateData {
         return confirmation;
     }
 
-    public static boolean toggleElectricPower(ServerPlayer playerEntity) {
-        iEntityDataSaver player = ((iEntityDataSaver) playerEntity);
-        CompoundTag nbt = player.lifelocke$getPersistentData();
-        boolean electricPower = nbt.getBoolean("electric_power").orElse(false);
+    public static void setToggledPower(ServerPlayer playerEntity, Types.TypeContainer type, boolean showText) {
+        CompoundTag nbt = ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData();
+        String power = nbt.getStringOr("toggled_power", "lifelocke:null");
 
-        electricPower = !electricPower;
-
-        nbt.putBoolean("electric_power", electricPower);
-
-        if (electricPower) {
-            setShownTypeIcon(playerEntity, RenderTypeIconS2CPayload.ICONS.ELECTRIC);
+        if (power.equals(type.id.toString())) {
+            nbt.putString("toggled_power", "lifelocke:null");
+            if (showText) {
+                playerEntity.displayClientMessage(Component.translatable("text.lifelocke.power_turned_off",
+                        type.type.value().getDisplayName()), false);
+            }
         } else {
-            setShownTypeIcon(playerEntity, RenderTypeIconS2CPayload.ICONS.NONE);
+            nbt.putString("toggled_power", type.id.toString());
+            if (showText) {
+                playerEntity.displayClientMessage(Component.translatable("text.lifelocke.power_turned_on",
+                        type.type.value().getDisplayName()), false);
+            }
         }
 
-        return electricPower;
-    }
-
-    public static boolean toggleGhostPower(ServerPlayer playerEntity) {
-        iEntityDataSaver player = ((iEntityDataSaver) playerEntity);
-        CompoundTag nbt = player.lifelocke$getPersistentData();
-        boolean ghostPower = nbt.getBoolean("ghost_power").orElse(false);
-
-        ghostPower = !ghostPower;
-
-        nbt.putBoolean("ghost_power", ghostPower);
-
-        if (ghostPower) {
-            setShownTypeIcon(playerEntity, RenderTypeIconS2CPayload.ICONS.GHOST);
-        } else {
-            setShownTypeIcon(playerEntity, RenderTypeIconS2CPayload.ICONS.NONE);
-        }
-
-        return ghostPower;
-    }
-
-    public static boolean toggleIcePower(ServerPlayer playerEntity) {
-        iEntityDataSaver player = ((iEntityDataSaver) playerEntity);
-        CompoundTag nbt = player.lifelocke$getPersistentData();
-        boolean icePower = nbt.getBoolean("ice_power").orElse(false);
-
-        icePower = !icePower;
-
-        if (icePower) {
-            setShownTypeIcon(playerEntity, RenderTypeIconS2CPayload.ICONS.ICE);
-        } else {
-            setShownTypeIcon(playerEntity, RenderTypeIconS2CPayload.ICONS.NONE);
-        }
-
-        nbt.putBoolean("ice_power", icePower);
-        return icePower;
-    }
-
-    public static boolean togglePoisonPower(ServerPlayer playerEntity) {
-        iEntityDataSaver player = ((iEntityDataSaver) playerEntity);
-        CompoundTag nbt = player.lifelocke$getPersistentData();
-        boolean poisonPower = nbt.getBoolean("poison_power").orElse(false);
-
-        poisonPower = !poisonPower;
-
-        if (poisonPower) {
-            setShownTypeIcon(playerEntity, RenderTypeIconS2CPayload.ICONS.POISON);
-        } else {
-            setShownTypeIcon(playerEntity, RenderTypeIconS2CPayload.ICONS.NONE);
-        }
-
-        nbt.putBoolean("poison_power", poisonPower);
-        return poisonPower;
-    }
-
-    public static boolean toggleDarkPower(ServerPlayer playerEntity) {
-        iEntityDataSaver player = ((iEntityDataSaver) playerEntity);
-        CompoundTag nbt = player.lifelocke$getPersistentData();
-        boolean darkPower = nbt.getBoolean("dark_power").orElse(false);
-
-        darkPower = !darkPower;
-
-        if (darkPower) {
-            setShownTypeIcon(playerEntity, RenderTypeIconS2CPayload.ICONS.DARK);
-        } else {
-            setShownTypeIcon(playerEntity, RenderTypeIconS2CPayload.ICONS.NONE);
-        }
-
-        nbt.putBoolean("dark_power", darkPower);
-        return darkPower;
-    }
-
-    public static boolean togglePsychicPower(ServerPlayer playerEntity) {
-        iEntityDataSaver player = ((iEntityDataSaver) playerEntity);
-        CompoundTag nbt = player.lifelocke$getPersistentData();
-        boolean psychicPower = nbt.getBoolean("psychic_power").orElse(false);
-
-        psychicPower = !psychicPower;
-
-        if (psychicPower) {
-            setShownTypeIcon(playerEntity, RenderTypeIconS2CPayload.ICONS.PSYCHIC);
-        } else {
-            setShownTypeIcon(playerEntity, RenderTypeIconS2CPayload.ICONS.NONE);
-        }
-
-        nbt.putBoolean("psychic_power", psychicPower);
-        return psychicPower;
+        setShownTypeIcon(playerEntity, Identifier.parse(nbt.getStringOr("toggled_power", "lifelocke:null")));
     }
 
     public static boolean tryAndStoreCooldown(iEntityDataSaver player, long time) {

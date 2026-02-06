@@ -6,7 +6,6 @@ import com.galaxyy.lifelocke.networking.PressedAbilityKeyC2SHandler;
 import com.galaxyy.lifelocke.triggers.ActivatedAbility;
 import com.galaxyy.lifelocke.triggers.ToggledAbility;
 import com.galaxyy.lifelocke.triggers.activated.*;
-import com.galaxyy.lifelocke.triggers.toggled.*;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -20,8 +19,12 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class Types {
-    public static ArrayList<Holder<MobEffect>> TYPES = new ArrayList<>();
+    public static ArrayList<Holder<MobEffect>> TYPE_EFFECTS = new ArrayList<>();
     public static ArrayList<Holder<MobEffect>> ROLLABLE_TYPES = new ArrayList<>();
+    public static ArrayList<TypeContainer> TYPES = new ArrayList<>();
+    public static ArrayList<TypeContainer> TOGGLED_TYPES = new ArrayList<>();
+    public static ArrayList<TypeContainer> ACTIVATED_TYPES = new ArrayList<>();
+    public static ArrayList<TypeContainer> PASSIVE_TYPES = new ArrayList<>();
 
     public static TypeContainer FIGHTING_TYPE = registerPassiveType(
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fighting"),
@@ -30,7 +33,7 @@ public class Types {
 
     public static TypeContainer ELECTRIC_TYPE = registerToggledType(
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "electric"),
-            ModEffects.ELECTRIC, false, false, new ElectricTrigger()
+            ModEffects.ELECTRIC, false, false
     );
 
     public static TypeContainer WATER_TYPE = registerActivatedType(
@@ -55,12 +58,12 @@ public class Types {
 
     public static TypeContainer ICE_TYPE = registerToggledType(
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "ice"),
-            ModEffects.ICE, false, false, new IceTrigger()
+            ModEffects.ICE, false, false
     );
 
     public static TypeContainer POISON_TYPE = registerToggledType(
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "poison"),
-            ModEffects.POISON, false, false, new PoisonTrigger()
+            ModEffects.POISON, false, false
     );
 
     public static TypeContainer GROUND_TYPE = registerActivatedType(
@@ -85,7 +88,7 @@ public class Types {
 
     public static TypeContainer GHOST_TYPE = registerToggledType(
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "ghost"),
-            ModEffects.GHOST, true, false, new GhostTrigger()
+            ModEffects.GHOST, true, false
     );
 
     public static TypeContainer DRAGON_TYPE = registerActivatedType(
@@ -105,12 +108,12 @@ public class Types {
 
     public static TypeContainer PSYCHIC_TYPE = registerToggledType(
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "psychic"),
-            ModEffects.PSYCHIC, true, false, new PsychicTrigger()
+            ModEffects.PSYCHIC, true, false
     );
 
     public static TypeContainer DARK_TYPE = registerToggledType(
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "dark"),
-            ModEffects.DARK, false, false, new DarkTrigger()
+            ModEffects.DARK, false, false
     );
 
     public static TypeContainer CURSE_TYPE = registerActivatedType(
@@ -119,34 +122,61 @@ public class Types {
     );
 
     public static TypeContainer registerPassiveType(Identifier identifier, MobEffect type, boolean energyBottles, boolean special) {
-        TypeContainer typeContainer = new TypeContainer(identifier, type, null, null, energyBottles);
+        TypeContainer typeContainer = new TypeContainer(identifier, type, null, energyBottles);
 
-        TYPES.add(typeContainer.type);
+        TYPE_EFFECTS.add(typeContainer.type);
         if (!special) ROLLABLE_TYPES.add(typeContainer.type);
+
+        TYPES.add(typeContainer);
+        PASSIVE_TYPES.add(typeContainer);
 
         return typeContainer;
     }
 
-    public static TypeContainer registerToggledType(Identifier identifier, MobEffect type, boolean energyBottles, boolean special, ToggledAbility toggled) {
-        TypeContainer typeContainer = new TypeContainer(identifier, type, null, toggled, energyBottles);
+    public static TypeContainer registerToggledType(Identifier identifier, ToggledMobEffect type, boolean energyBottles, boolean special) {
+        TypeContainer typeContainer = new TypeContainer(identifier, type, null, energyBottles);
 
-        TYPES.add(typeContainer.type);
+        type.setId(identifier);
+
+        TYPE_EFFECTS.add(typeContainer.type);
         if (!special) ROLLABLE_TYPES.add(typeContainer.type);
 
-        PressedAbilityKeyC2SHandler.TOGGLED_ABILITIES.put(typeContainer.type, toggled);
+        TYPES.add(typeContainer);
+        TOGGLED_TYPES.add(typeContainer);
 
         return typeContainer;
     }
 
     public static TypeContainer registerActivatedType(Identifier identifier, MobEffect type, boolean energyBottles, boolean special, ActivatedAbility activated) {
-        TypeContainer typeContainer = new TypeContainer(identifier, type, activated, null, energyBottles);
+        TypeContainer typeContainer = new TypeContainer(identifier, type, activated, energyBottles);
 
-        TYPES.add(typeContainer.type);
+        TYPE_EFFECTS.add(typeContainer.type);
         if (!special) ROLLABLE_TYPES.add(typeContainer.type);
 
         PressedAbilityKeyC2SHandler.ACTIVATED_ABILITIES.put(typeContainer.type, activated);
+        TYPES.add(typeContainer);
+        ACTIVATED_TYPES.add(typeContainer);
 
         return typeContainer;
+    }
+
+    public static TypeContainer getType(Holder<MobEffect> effect) {
+        for (TypeContainer type : TYPES) {
+            if (type.type == effect) {
+                return type;
+            }
+        }
+        return null;
+    }
+
+    public static TypeContainer getType(Identifier id) {
+        for (TypeContainer type : TYPES) {
+            System.out.println("Comparing " + id + " to " + type.id);
+            if (type.id.toString().equals(id.toString())) {
+                return type;
+            }
+        }
+        return null;
     }
 
     public static void registerTypes() {
@@ -157,20 +187,16 @@ public class Types {
         public final Holder<MobEffect> type;
         public final Identifier id;
         public final Optional<ActivatedAbility> activated;
-        public final Optional<ToggledAbility> toggled;
         public final Optional<EnergyBottleItem.EnergyBottleGroup> bottles;
         public final @NotNull RKey rKey;
 
-        public TypeContainer(Identifier id, MobEffect type, @Nullable ActivatedAbility activated,
-                             @Nullable ToggledAbility toggled, boolean energyBottles) {
+        public TypeContainer(Identifier id, MobEffect type, @Nullable ActivatedAbility activated, boolean energyBottles) {
             this.id = id;
             this.type = Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, id, type);
             this.activated = Optional.ofNullable(activated);
-            this.toggled = Optional.ofNullable(toggled);
 
             if (activated != null) rKey = RKey.ACTIVE;
-            else if (toggled != null) rKey = RKey.TOGGLE;
-            else rKey = RKey.ACTIVE;
+            else rKey = RKey.NOTHING;
 
             if (energyBottles) bottles = Optional.of(new EnergyBottleItem.EnergyBottleGroup(
                     new Item.Properties(), this.type, id));
@@ -180,7 +206,6 @@ public class Types {
         public enum RKey {
             NOTHING,
             ACTIVE,
-            TOGGLE
         }
     }
 }

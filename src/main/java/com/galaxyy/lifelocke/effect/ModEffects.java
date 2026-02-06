@@ -13,7 +13,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import java.util.Locale;
 
 public class ModEffects {
-    public static final MobEffect ELECTRIC = new ElectricEffect(MobEffectCategory.BENEFICIAL, 0xfae43c);
+    public static final ToggledMobEffect ELECTRIC = new ElectricEffect(MobEffectCategory.BENEFICIAL, 0xfae43c);
     public static final MobEffect FIGHTING = new FightingEffect(MobEffectCategory.BENEFICIAL, 0xd44e2c)
             .addAttributeModifier(
                     Attributes.ATTACK_SPEED, Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "fighting"),
@@ -24,8 +24,8 @@ public class ModEffects {
     public static final MobEffect NORMAL = new CheckedEffect(MobEffectCategory.BENEFICIAL, 0xe1e8eb);
     public static final MobEffect FIRE = new FireEffect(MobEffectCategory.BENEFICIAL, 0xeb761c);
     public static final MobEffect GRASS = new CheckedEffect(MobEffectCategory.BENEFICIAL, 0x1ceb34);
-    public static final MobEffect ICE = new IceEffect(MobEffectCategory.BENEFICIAL, 0x4dfff0);
-    public static final MobEffect POISON = new PoisonEffect(MobEffectCategory.BENEFICIAL, 0x3517a3);
+    public static final ToggledMobEffect ICE = new IceEffect(MobEffectCategory.BENEFICIAL, 0x4dfff0);
+    public static final ToggledMobEffect POISON = new PoisonEffect(MobEffectCategory.BENEFICIAL, 0x3517a3);
     public static final MobEffect GROUND = new CheckedEffect(MobEffectCategory.BENEFICIAL, 0xa37017);
     public static final MobEffect FLYING = new FlyingEffect(MobEffectCategory.BENEFICIAL, 0xa7e8df);
     public static final MobEffect BUG = new BugEffect(MobEffectCategory.BENEFICIAL, 0xbcf542)
@@ -41,7 +41,7 @@ public class ModEffects {
             );
 
     public static final MobEffect ROCK = new RockEffect(MobEffectCategory.BENEFICIAL, 0xab7333);
-    public static final MobEffect GHOST = new GhostEffect(MobEffectCategory.BENEFICIAL, 0x791a9c);
+    public static final ToggledMobEffect GHOST = new GhostEffect(MobEffectCategory.BENEFICIAL, 0x791a9c);
     public static final MobEffect DRAGON = new DragonEffect(MobEffectCategory.BENEFICIAL, 0x312696)
             .addAttributeModifier(
                     Attributes.SCALE, Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "dragon"),
@@ -53,8 +53,8 @@ public class ModEffects {
 
     public static final MobEffect STEEL = new SteelEffect(MobEffectCategory.BENEFICIAL, 0x9fb3b2);
     public static final MobEffect FAIRY = new CheckedEffect(MobEffectCategory.BENEFICIAL, 0xdf76e3);
-    public static final MobEffect DARK = new DarkEffect(MobEffectCategory.BENEFICIAL, 0x000000);
-    public static final MobEffect PSYCHIC = new PsychicEffect(MobEffectCategory.BENEFICIAL, 0xca67e0);
+    public static final ToggledMobEffect DARK = new DarkEffect(MobEffectCategory.BENEFICIAL, 0x000000);
+    public static final ToggledMobEffect PSYCHIC = new PsychicEffect(MobEffectCategory.BENEFICIAL, 0xca67e0);
     public static final MobEffect CURSE_TYPE = new CheckedEffect(MobEffectCategory.BENEFICIAL, 0x4a40e3);
 
     public static final Holder<MobEffect> STUCK = registerStatusEffect("stuck",

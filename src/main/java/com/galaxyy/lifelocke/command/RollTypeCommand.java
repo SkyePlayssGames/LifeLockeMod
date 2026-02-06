@@ -1,6 +1,5 @@
 package com.galaxyy.lifelocke.command;
 
-import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.effect.Types;
 import com.galaxyy.lifelocke.gamerule.ModGameRules;
 import com.galaxyy.lifelocke.playerdata.UpdateData;
@@ -30,12 +29,12 @@ public class RollTypeCommand implements CommandRegistrationCallback {
         Player player = context.getSource().getPlayer();
         boolean type_duplication = context.getSource().getLevel().getGameRules().get(ModGameRules.TYPE_DUPLICATION);
         boolean special_types = context.getSource().getLevel().getGameRules().get(ModGameRules.SPECIAL_TYPE_ROLL);
-        ArrayList<Holder<MobEffect>> effectsList = special_types ? Types.TYPES : Types.ROLLABLE_TYPES;
+        ArrayList<Holder<MobEffect>> effectsList = special_types ? Types.TYPE_EFFECTS : Types.ROLLABLE_TYPES;
 
         if (player == null) {
             throw new SimpleCommandExceptionType(Component.translatable("text.lifelocke.command_error.rolltype.not_player_sent")).create();
         }
-        for (Holder<MobEffect> effect : Types.TYPES) {
+        for (Holder<MobEffect> effect : Types.TYPE_EFFECTS) {
             if (player.hasEffect(effect)) {
                 throw new SimpleCommandExceptionType(Component.translatable("text.lifelocke.command_error.rolltype.already_has_type")).create();
             }

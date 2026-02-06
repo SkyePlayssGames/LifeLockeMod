@@ -21,7 +21,8 @@ public class PoisonPower implements AttackEntityCallback {
     public InteractionResult interact(Player playerEntity, Level world, InteractionHand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
         if (playerEntity.hasEffect(Types.POISON_TYPE.type) && !world.isClientSide() &&
                 (HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative()) &&
-                ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getBoolean("poison_power").orElse(false) &&
+                ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getStringOr("toggled_power", "lifelocke:null")
+                        .equals(Types.POISON_TYPE.id.toString()) &&
                 entity instanceof LivingEntity) {
             ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.POISON, 100), playerEntity);
             HungerCost.takeHunger(playerEntity, 1);

@@ -21,7 +21,8 @@ public class DarkPower implements AttackEntityCallback {
     public InteractionResult interact(Player playerEntity, Level world, InteractionHand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
         if (playerEntity.hasEffect(Types.DARK_TYPE.type) && !world.isClientSide() &&
                 (HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative()) &&
-                ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getBoolean("dark_power").orElse(false) &&
+                ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getStringOr("toggled_power", "lifelocke:null")
+                        .equals(Types.DARK_TYPE.id.toString()) &&
                 entity instanceof LivingEntity) {
             ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200), playerEntity);
             HungerCost.takeHunger(playerEntity, 1);

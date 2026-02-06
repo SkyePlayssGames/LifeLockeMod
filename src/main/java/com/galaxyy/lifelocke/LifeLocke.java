@@ -63,7 +63,6 @@ public class LifeLocke implements ModInitializer {
 		GroundTrigger.registerGroundMaps();
 		PowerSoundSetting.registerSoundEventMaps();
 		SettingsFileHandler.registerSettingsFile();
-		JoinIconFixEvent.registerJoinFixEventTypes();
 
 		ServerPlayerEvents.AFTER_RESPAWN.register(new PlayerCopyHandler());
 		ServerPlayerEvents.JOIN.register(new JoinIconFixEvent());

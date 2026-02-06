@@ -14,13 +14,9 @@ import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.HumanoidArm;
 
+import java.util.Objects;
+
 public class TypeIconRenderer {
-    private static final Identifier ELECTRIC_ID = Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "textures/mob_effect/electric.png");
-    private static final Identifier ICE_ID = Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "textures/mob_effect/ice.png");
-    private static final Identifier POISON_ID = Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "textures/mob_effect/poison.png");
-    private static final Identifier DARK_ID = Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "textures/mob_effect/dark.png");
-    private static final Identifier PSYCHIC_ID = Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "textures/mob_effect/psychic.png");
-    private static final Identifier GHOST_ID = Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "textures/mob_effect/ghost.png");
     private static final Identifier NONE_ID = Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "textures/no_effect.png");
 
     private static void drawTypeIcon(Identifier ID, GuiGraphics context, int x, int y) {
@@ -33,105 +29,28 @@ public class TypeIconRenderer {
         HumanoidArm mainHand = Minecraft.getInstance().options.mainHand().get();
         LocalPlayer player = Minecraft.getInstance().player;
         assert player != null;
-        int icon = ((iEntityDataSaver) player).lifelocke$getPersistentData().getIntOr("type_icon", 0);
+        Identifier icon = Identifier.parse(((iEntityDataSaver) player).lifelocke$getPersistentData().getStringOr("toggled_power", "lifelocke:null"));
 
         final Window window = Minecraft.getInstance().getWindow();
         final int Y_COORDINATE  = (int) (((double) window.getGuiScaledHeight()) / 20.0 * 18.35);
         final int X_COORDINATE_RIGHT = (int) (((double) window.getGuiScaledWidth()) / 20.0 * 14.3);
         final int X_COORDINATE_LEFT = (int) (((double) window.getGuiScaledWidth()) / 20.0 * 4.8);
 
-        boolean showed_icon = false;
+        Identifier iconToShow = Objects.equals(icon, Identifier.fromNamespaceAndPath("lifelocke", "null")) ? NONE_ID :
+                Identifier.fromNamespaceAndPath(icon.getNamespace(), "textures/mob_effect/" + icon.getPath() + ".png");
 
         if (!((iEntityDataSaver) player).lifelocke$getPersistentData().getBooleanOr("server_has_mod", false)
         || !SettingsFileHandler.try_read(null)[SettingsFileHandler.SETTINGS.SHOW_TYPE_ICON.ordinal()].get_boolean()) {
             return;
         }
 
-        if (mainHand == HumanoidArm.RIGHT) { switch (icon) {
-            case 1:
-                if (player.hasEffect(Types.ELECTRIC_TYPE.type)) {
-                    drawTypeIcon(ELECTRIC_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
-                    showed_icon = true;
-                }
-                break;
-            case 2:
-                if (player.hasEffect(Types.ICE_TYPE.type)) {
-                    drawTypeIcon(ICE_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
-                    showed_icon = true;
-                }
-                break;
-            case 3:
-                if (player.hasEffect(Types.POISON_TYPE.type)) {
-                    drawTypeIcon(POISON_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
-                    showed_icon = true;
-                }
-                break;
-            case 4:
-                if (player.hasEffect(Types.DARK_TYPE.type)) {
-                    drawTypeIcon(DARK_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
-                    showed_icon = true;
-                }
-                break;
-            case 5:
-                if (player.hasEffect(Types.PSYCHIC_TYPE.type)) {
-                    drawTypeIcon(PSYCHIC_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
-                    showed_icon = true;
-                }
-                break;
-            case 6:
-                if (player.hasEffect(Types.GHOST_TYPE.type)) {
-                    drawTypeIcon(GHOST_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
-                    showed_icon = true;
-                }
-                break;
-            default:
-                drawTypeIcon(NONE_ID, context, X_COORDINATE_RIGHT, Y_COORDINATE);
-                showed_icon = true;
-                break;
-        }} else { switch (icon) {
-            case 1:
-                if (player.hasEffect(Types.ELECTRIC_TYPE.type)) {
-                    drawTypeIcon(ELECTRIC_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
-                    showed_icon = true;
-                }
-                break;
-            case 2:
-                if (player.hasEffect(Types.ICE_TYPE.type)) {
-                    drawTypeIcon(ICE_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
-                    showed_icon = true;
-                }
-                break;
-            case 3:
-                if (player.hasEffect(Types.POISON_TYPE.type)) {
-                    drawTypeIcon(POISON_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
-                    showed_icon = true;
-                }
-                break;
-            case 4:
-                if (player.hasEffect(Types.DARK_TYPE.type)) {
-                    drawTypeIcon(DARK_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
-                    showed_icon = true;
-                }
-                break;
-            case 5:
-                if (player.hasEffect(Types.PSYCHIC_TYPE.type)) {
-                    drawTypeIcon(PSYCHIC_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
-                    showed_icon = true;
-                }
-                break;
-            case 6:
-                if (player.hasEffect(Types.GHOST_TYPE.type)) {
-                    drawTypeIcon(GHOST_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
-                    showed_icon = true;
-                }
-                break;
-            default:
-                drawTypeIcon(NONE_ID, context, X_COORDINATE_LEFT, Y_COORDINATE);
-                showed_icon = true;
-                break;
-        }}
-        if (!showed_icon) {
-            ((iEntityDataSaver) player).lifelocke$getPersistentData().putInt("type_icon", 0);
+        if (mainHand == HumanoidArm.RIGHT) {
+            drawTypeIcon(iconToShow, context, X_COORDINATE_RIGHT, Y_COORDINATE);
+        } else {
+            drawTypeIcon(iconToShow, context, X_COORDINATE_LEFT, Y_COORDINATE);
+        }
+        if (iconToShow != NONE_ID && !player.hasEffect(Types.getType(icon).type)) {
+            ((iEntityDataSaver) player).lifelocke$getPersistentData().putString("toggled_power", "lifelocke:null");
         }
     }
 }

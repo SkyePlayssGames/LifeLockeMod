@@ -1,9 +1,10 @@
 package com.galaxyy.lifelocke.networking;
 
 import com.galaxyy.lifelocke.effect.ModEffects;
+import com.galaxyy.lifelocke.effect.Types;
+import com.galaxyy.lifelocke.playerdata.UpdateData;
 import com.galaxyy.lifelocke.triggers.*;
 import com.galaxyy.lifelocke.triggers.activated.*;
-import com.galaxyy.lifelocke.triggers.toggled.*;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerPlayer;
@@ -14,7 +15,6 @@ import net.minecraft.world.level.Level;
 import java.util.HashMap;
 
 public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPayloadHandler<@org.jetbrains.annotations.NotNull PressedAbilityKeyC2SPayload> {
-    public static final HashMap<Holder<MobEffect>, ToggledAbility> TOGGLED_ABILITIES = new HashMap<>();
     public static final HashMap<Holder<MobEffect>, ActivatedAbility> ACTIVATED_ABILITIES = new HashMap<>();
     @Override
     public void receive(PressedAbilityKeyC2SPayload payload, ServerPlayNetworking.Context context) {
@@ -22,10 +22,12 @@ public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPay
         Level world = context.player().level();
 
         for (MobEffectInstance effect : playerEntity.getActiveEffects()) {
-            if (TOGGLED_ABILITIES.containsKey(effect.getEffect())) {
-                if (TOGGLED_ABILITIES.get(effect.getEffect()).toggle(playerEntity)) {
-                    world.playSound(null, playerEntity.blockPosition(), payload.toggledSoundEvent(), SoundSource.PLAYERS);
-                }
+            if (Types.TOGGLED_TYPES.contains(Types.getType(effect.getEffect()))) {
+                Types.TypeContainer type = Types.getType(effect.getEffect());
+                assert type != null;
+                UpdateData.setToggledPower(playerEntity, type, true);
+                world.playSound(null, playerEntity.blockPosition(), payload.toggledSoundEvent(), SoundSource.PLAYERS);
+
             } else if (ACTIVATED_ABILITIES.containsKey(effect.getEffect())) {
                 if (ACTIVATED_ABILITIES.get(effect.getEffect()).activate(playerEntity, payload.hitPos())) {
                     world.playSound(null, playerEntity.blockPosition(), payload.activatedSoundEvent(), SoundSource.PLAYERS);

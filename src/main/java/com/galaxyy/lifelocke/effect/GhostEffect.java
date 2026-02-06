@@ -8,7 +8,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 
-public class GhostEffect extends MobEffect {
+public class GhostEffect extends ToggledMobEffect {
     protected GhostEffect(MobEffectCategory category, int color) {
         super(category, color);
     }

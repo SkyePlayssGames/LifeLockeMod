@@ -22,8 +22,9 @@ public class ElectricPower implements AttackEntityCallback {
     public InteractionResult interact(Player playerEntity, Level world, InteractionHand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
         if (playerEntity.hasEffect(Types.ELECTRIC_TYPE.type) && !world.isClientSide() &&
                 (HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative()) &&
-                ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getBoolean("electric_power").orElse(false)
-                && entity instanceof LivingEntity) {
+                ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getStringOr("toggled_power", "lifelocke:null")
+                        .equals(Types.ELECTRIC_TYPE.id.toString()) &&
+                entity instanceof LivingEntity) {
 
             EntityType.LIGHTNING_BOLT.spawn((ServerLevel) world, entity.blockPosition(), EntitySpawnReason.TRIGGERED);
             HungerCost.takeHunger(playerEntity, 2);
