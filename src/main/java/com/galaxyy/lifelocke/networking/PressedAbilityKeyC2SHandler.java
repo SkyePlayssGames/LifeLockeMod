@@ -1,6 +1,5 @@
 package com.galaxyy.lifelocke.networking;
 
-import com.galaxyy.lifelocke.effect.ModEffects;
 import com.galaxyy.lifelocke.effect.Types;
 import com.galaxyy.lifelocke.playerdata.UpdateData;
 import com.galaxyy.lifelocke.triggers.*;
@@ -25,7 +24,7 @@ public class PressedAbilityKeyC2SHandler implements ServerPlayNetworking.PlayPay
             if (Types.TOGGLED_TYPES.contains(Types.getType(effect.getEffect()))) {
                 Types.TypeContainer type = Types.getType(effect.getEffect());
                 assert type != null;
-                UpdateData.setToggledPower(playerEntity, type, true);
+                UpdateData.setToggledPower(playerEntity, type, false);
                 world.playSound(null, playerEntity.blockPosition(), payload.toggledSoundEvent(), SoundSource.PLAYERS);
 
             } else if (ACTIVATED_ABILITIES.containsKey(effect.getEffect())) {

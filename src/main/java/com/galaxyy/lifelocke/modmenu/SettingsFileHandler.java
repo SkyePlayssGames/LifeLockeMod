@@ -29,9 +29,9 @@ public class SettingsFileHandler {
             new IntSetting("3"),
             new BooleanSetting("T"),
             new BooleanSetting("F"),
-            new PowerSoundSetting("ps#conduit"),
+            new PowerSoundSetting("ps#tconduit"),
             new IntSetting("1"),
-            new PowerSoundSetting("ps#conduit"),
+            new PowerSoundSetting("ps#aconduit"),
             new IntSetting("1")
     };
 
