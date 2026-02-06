@@ -13,13 +13,14 @@ public class DarkEffect extends ToggledMobEffect {
 
     @Override
     public boolean applyEffectTick(ServerLevel world, LivingEntity entity, int amplifier) {
-        long time = world.getDayTime() % 24000;
-        if (time > 13000 && time < 23000) {
-            entity.addEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 5, 0, false, false));
-            entity.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 5, 0, false, false));
-            entity.addEffect(new MobEffectInstance(MobEffects.RESISTANCE, 5, 0, false, false));
+        if (world.getGameTime() % 17 == 0) {
+            long time = world.getDayTime() % 24000;
+            if (time > 13000 && time < 23000) {
+                entity.addEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 19, 0, false, false));
+                entity.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 299, 0, false, false));
+                entity.addEffect(new MobEffectInstance(MobEffects.RESISTANCE, 19, 0, false, false));
+            }
         }
-
         return true;
     }
 

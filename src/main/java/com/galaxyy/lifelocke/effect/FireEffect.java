@@ -14,8 +14,9 @@ public class FireEffect extends MobEffect {
 
     @Override
     public boolean applyEffectTick(ServerLevel world, LivingEntity entity, int amplifier) {
-        entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 5, 0, false, false));
-
+        if (world.getGameTime() % 17 == 0) {
+            entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 19, 0, false, false));
+        }
         return true;
     }
 

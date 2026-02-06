@@ -14,7 +14,8 @@ public class RockEffect extends MobEffect {
 
     @Override
     public boolean applyEffectTick(ServerLevel world, LivingEntity entity, int amplifier) {
-        entity.addEffect(new MobEffectInstance(MobEffects.HASTE, 5, 4, false, false));
+        if (world.getGameTime() % 17 == 0) {}
+        entity.addEffect(new MobEffectInstance(MobEffects.HASTE, 19, 4, false, false));
         return true;
     }
 

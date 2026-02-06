@@ -14,10 +14,11 @@ public class WaterEffect extends MobEffect {
 
     @Override
     public boolean applyEffectTick(ServerLevel world, LivingEntity entity, int amplifier) {
-        entity.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER, 5, 0, false, false));
-        entity.addEffect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 5, 0, false, false));
-        entity.addEffect(new MobEffectInstance(MobEffects.LUCK, 5, 0, false, false));
-
+        if (world.getGameTime() % 17 == 0) {
+            entity.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER, 19, 0, false, false));
+            entity.addEffect(new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 19, 0, false, false));
+            entity.addEffect(new MobEffectInstance(MobEffects.LUCK, 19, 0, false, false));
+        }
         return true;
     }
 

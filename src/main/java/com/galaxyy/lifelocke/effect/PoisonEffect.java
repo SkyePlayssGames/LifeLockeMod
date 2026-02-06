@@ -11,12 +11,13 @@ public class PoisonEffect extends ToggledMobEffect {
     }
     @Override
     public boolean applyEffectTick(ServerLevel world, LivingEntity entity, int amplifier) {
-        for (MobEffectInstance effectInstance : entity.getActiveEffects()) {
-            if (effectInstance.getEffect().value().getCategory() == MobEffectCategory.HARMFUL) {
-                entity.removeEffect(effectInstance.getEffect());
+        if (world.getGameTime() % 5 == 0) {
+            for (MobEffectInstance effectInstance : entity.getActiveEffects()) {
+                if (effectInstance.getEffect().value().getCategory() == MobEffectCategory.HARMFUL) {
+                    entity.removeEffect(effectInstance.getEffect());
+                }
             }
         }
-
         return true;
     }
 

@@ -17,15 +17,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import org.jetbrains.annotations.Nullable;
 
-public class ElectricPower implements AttackEntityCallback {
+public class ElectricPower extends ToggledPower {
     @Override
     public InteractionResult interact(Player playerEntity, Level world, InteractionHand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
-        if (playerEntity.hasEffect(Types.ELECTRIC_TYPE.type) && !world.isClientSide() &&
-                (HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative()) &&
-                ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getStringOr("toggled_power", "lifelocke:null")
-                        .equals(Types.ELECTRIC_TYPE.id.toString()) &&
-                entity instanceof LivingEntity) {
-
+        if (canAffect(playerEntity, world, entity)) {
             EntityType.LIGHTNING_BOLT.spawn((ServerLevel) world, entity.blockPosition(), EntitySpawnReason.TRIGGERED);
             HungerCost.takeHunger(playerEntity, 2);
         }

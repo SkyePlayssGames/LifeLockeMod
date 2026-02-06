@@ -16,14 +16,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import org.jetbrains.annotations.Nullable;
 
-public class PoisonPower implements AttackEntityCallback {
+public class PoisonPower extends ToggledPower {
     @Override
     public InteractionResult interact(Player playerEntity, Level world, InteractionHand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
-        if (playerEntity.hasEffect(Types.POISON_TYPE.type) && !world.isClientSide() &&
-                (HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative()) &&
-                ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getStringOr("toggled_power", "lifelocke:null")
-                        .equals(Types.POISON_TYPE.id.toString()) &&
-                entity instanceof LivingEntity) {
+        if (canAffect(playerEntity, world, entity)) {
             ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.POISON, 100), playerEntity);
             HungerCost.takeHunger(playerEntity, 1);
         }

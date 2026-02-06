@@ -14,7 +14,9 @@ public class BugEffect extends MobEffect {
 
     @Override
     public boolean applyEffectTick(ServerLevel world, LivingEntity entity, int amplifier) {
-        entity.addEffect(new MobEffectInstance(MobEffects.JUMP_BOOST, 5, 1, false, false));
+        if (world.getGameTime() % 17 == 0) {
+            entity.addEffect(new MobEffectInstance(MobEffects.JUMP_BOOST, 19, 1, false, false));
+        }
         return true;
     }
 

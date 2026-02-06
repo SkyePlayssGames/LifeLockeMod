@@ -3,6 +3,7 @@ package com.galaxyy.lifelocke.effect;
 import com.galaxyy.lifelocke.LifeLocke;
 import com.galaxyy.lifelocke.item.EnergyBottleItem;
 import com.galaxyy.lifelocke.networking.PressedAbilityKeyC2SHandler;
+import com.galaxyy.lifelocke.power.*;
 import com.galaxyy.lifelocke.triggers.ActivatedAbility;
 import com.galaxyy.lifelocke.triggers.ToggledAbility;
 import com.galaxyy.lifelocke.triggers.activated.*;
@@ -33,7 +34,7 @@ public class Types {
 
     public static TypeContainer ELECTRIC_TYPE = registerToggledType(
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "electric"),
-            ModEffects.ELECTRIC, false, false
+            ModEffects.ELECTRIC, false, false, new ElectricPower()
     );
 
     public static TypeContainer WATER_TYPE = registerActivatedType(
@@ -58,12 +59,12 @@ public class Types {
 
     public static TypeContainer ICE_TYPE = registerToggledType(
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "ice"),
-            ModEffects.ICE, false, false
+            ModEffects.ICE, false, false, new IcePower()
     );
 
     public static TypeContainer POISON_TYPE = registerToggledType(
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "poison"),
-            ModEffects.POISON, false, false
+            ModEffects.POISON, false, false, new PoisonPower()
     );
 
     public static TypeContainer GROUND_TYPE = registerActivatedType(
@@ -88,7 +89,7 @@ public class Types {
 
     public static TypeContainer GHOST_TYPE = registerToggledType(
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "ghost"),
-            ModEffects.GHOST, true, false
+            ModEffects.GHOST, true, false, null
     );
 
     public static TypeContainer DRAGON_TYPE = registerActivatedType(
@@ -108,12 +109,12 @@ public class Types {
 
     public static TypeContainer PSYCHIC_TYPE = registerToggledType(
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "psychic"),
-            ModEffects.PSYCHIC, true, false
+            ModEffects.PSYCHIC, true, false, new PsychicPower()
     );
 
     public static TypeContainer DARK_TYPE = registerToggledType(
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "dark"),
-            ModEffects.DARK, false, false
+            ModEffects.DARK, false, false, new DarkPower()
     );
 
     public static TypeContainer CURSE_TYPE = registerActivatedType(
@@ -133,10 +134,13 @@ public class Types {
         return typeContainer;
     }
 
-    public static TypeContainer registerToggledType(Identifier identifier, ToggledMobEffect type, boolean energyBottles, boolean special) {
+    public static TypeContainer registerToggledType(Identifier identifier, ToggledMobEffect type, boolean energyBottles, boolean special, @Nullable ToggledPower power) {
         TypeContainer typeContainer = new TypeContainer(identifier, type, null, energyBottles);
 
         type.setId(identifier);
+        if (power != null) {
+            power.setType(typeContainer);
+        }
 
         TYPE_EFFECTS.add(typeContainer.type);
         if (!special) ROLLABLE_TYPES.add(typeContainer.type);

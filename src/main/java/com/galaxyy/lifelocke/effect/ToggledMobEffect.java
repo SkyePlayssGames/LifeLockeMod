@@ -11,7 +11,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 
 public class ToggledMobEffect extends MobEffect {
-    private Identifier id;
+    protected Identifier id;
 
     protected ToggledMobEffect(MobEffectCategory mobEffectCategory, int i) {
         super(mobEffectCategory, i);

@@ -16,7 +16,7 @@ public class GhostEffect extends ToggledMobEffect {
     @Override
     public boolean applyEffectTick(ServerLevel world, LivingEntity entity, int amplifier) {
         entity.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 5, 0, false, false));
-        if (((iEntityDataSaver) entity).lifelocke$getPersistentData().getBoolean("ghost_power").orElse(false)) {
+        if (((iEntityDataSaver) entity).lifelocke$getPersistentData().getStringOr("toggled_power", "lifelocke:null").equals(this.id.toString())) {
             entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 5, 0, false, false));
         }
         return true;
