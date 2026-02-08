@@ -46,7 +46,7 @@ public class PsychicMobEntity extends FlyingMonster {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new StayNearTrialGoal(this, 20, 3, 10, 1.5f));
+        this.goalSelector.addGoal(1, new StayNearTrialGoal(this, 25, 3, 20, 1.5f));
         this.goalSelector.addGoal(2, new FuckYouGoal(this));
         this.goalSelector.addGoal(3, new RandomFlyAroundGoal(this, 2, 8));
 
@@ -80,7 +80,8 @@ public class PsychicMobEntity extends FlyingMonster {
         private enum Mode {
             FLEEING,
             COOLDOWN,
-            ATTACKING
+            ATTACKING,
+            CHASING
         }
 
         private final PsychicMobEntity mob;
@@ -111,6 +112,7 @@ public class PsychicMobEntity extends FlyingMonster {
                 case FLEEING: flee(); break;
                 case COOLDOWN: cooldown(); break;
                 case ATTACKING: attack(); break;
+                case CHASING: chase(); break;
             }
         }
 
@@ -119,6 +121,8 @@ public class PsychicMobEntity extends FlyingMonster {
 
             if (shouldFlee()) {
                 this.mode = Mode.FLEEING;
+            } else if (shouldChase()) {
+                this.mode = Mode.CHASING;
             } else if (attackCooldownTicks > 0) {
                 this.mode = Mode.COOLDOWN;
             } else {
@@ -128,6 +132,10 @@ public class PsychicMobEntity extends FlyingMonster {
 
         private boolean shouldFlee() {
             return Math.sqrt(this.mob.distanceToSqr(this.mob.getTarget())) < 6;
+        }
+
+        private boolean shouldChase() {
+            return Math.sqrt(this.mob.distanceToSqr(this.mob.getTarget())) > 10;
         }
 
         private void flee() {
@@ -143,6 +151,16 @@ public class PsychicMobEntity extends FlyingMonster {
             );
 
             attackCooldownTicks--;
+        }
+
+        private void chase() {
+            LivingEntity target = this.mob.getTarget();
+            assert target != null;
+
+            this.mob.getNavigation().moveTo(target, 1.2);
+
+            attackCooldownTicks -= 3;
+            healCooldownTicks--;
         }
 
         private void cooldown() {
