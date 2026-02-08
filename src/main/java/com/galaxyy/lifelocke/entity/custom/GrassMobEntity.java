@@ -4,6 +4,7 @@ import com.galaxyy.lifelocke.LifeLocke;
 import com.galaxyy.lifelocke.damage.ModDamageTypes;
 import com.galaxyy.lifelocke.entity.ai.PathfindHelper;
 import com.galaxyy.lifelocke.entity.ai.HideBlockGoal;
+import com.galaxyy.lifelocke.entity.ai.StayNearTrialGoal;
 import com.galaxyy.lifelocke.networking.GrassMobAnimationS2CPayload;
 import com.galaxyy.lifelocke.tags.ModTags;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -69,9 +70,10 @@ public class GrassMobEntity extends Monster {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.00, true));
-        this.goalSelector.addGoal(2, new HideBlockGoal(this, HIDEABLE_BLOCKS, 1.00, 8));
-        this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(1, new StayNearTrialGoal(this, 12, 3, 7, 1.6f));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.00, true));
+        this.goalSelector.addGoal(3, new HideBlockGoal(this, HIDEABLE_BLOCKS, 1.00, 5));
+        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
 
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }

@@ -38,7 +38,7 @@ public class HealBlockGoal extends Goal {
 
     @Override
     public boolean canUse() {
-        if (this.mob.hasControllingPassenger()) { return false; }
+        if (this.mob.hasControllingPassenger() || !this.mob.getNavigation().isDone()) return false;
         return (this.mob.getHealth() < this.mob.getMaxHealth() - this.hpDifference && findNearbyBlock(this.mob, this.blockTag, this.distance) != null) || (this.mob.getHealth() < this.mob.getMaxHealth() && isTouchingBlock(this.mob, this.blockTag));
     }
 

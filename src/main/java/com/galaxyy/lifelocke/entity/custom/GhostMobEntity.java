@@ -1,5 +1,6 @@
 package com.galaxyy.lifelocke.entity.custom;
 
+import com.galaxyy.lifelocke.entity.ai.StayNearTrialGoal;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SyncedDataHolder;
@@ -47,9 +48,10 @@ public class GhostMobEntity extends Monster implements SyncedDataHolder {
     @Override
     protected void registerGoals() {
         goalSelector.addGoal(0, new FloatGoal(this));
-        goalSelector.addGoal(1, new MeleeAttackGoal(this, 1, true));
-        goalSelector.addGoal(2, new RandomStrollGoal(this, 1));
-        goalSelector.addGoal(3, new RandomLookAroundGoal(this));
+        goalSelector.addGoal(1, new StayNearTrialGoal(this, 15, 2, 10, 1.4f));
+        goalSelector.addGoal(2, new MeleeAttackGoal(this, 1, true));
+        goalSelector.addGoal(3, new RandomStrollGoal(this, 1));
+        goalSelector.addGoal(4, new RandomLookAroundGoal(this));
 
         targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }

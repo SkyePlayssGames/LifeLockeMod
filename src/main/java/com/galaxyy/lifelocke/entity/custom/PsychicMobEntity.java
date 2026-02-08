@@ -2,6 +2,7 @@ package com.galaxyy.lifelocke.entity.custom;
 
 import com.galaxyy.lifelocke.entity.ai.FlyingMonster;
 import com.galaxyy.lifelocke.entity.ai.RandomFlyAroundGoal;
+import com.galaxyy.lifelocke.entity.ai.StayNearTrialGoal;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.damagesource.DamageSource;
@@ -45,8 +46,9 @@ public class PsychicMobEntity extends FlyingMonster {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new FuckYouGoal(this));
-        this.goalSelector.addGoal(2, new RandomFlyAroundGoal(this, 2, 8));
+        this.goalSelector.addGoal(1, new StayNearTrialGoal(this, 20, 3, 10, 1.5f));
+        this.goalSelector.addGoal(2, new FuckYouGoal(this));
+        this.goalSelector.addGoal(3, new RandomFlyAroundGoal(this, 2, 8));
 
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
@@ -92,7 +94,7 @@ public class PsychicMobEntity extends FlyingMonster {
 
         @Override
         public boolean canUse() {
-            return this.mob.getTarget() != null;
+            return this.mob.getTarget() != null && this.mob.getNavigation().isDone();
         }
 
         @Override

@@ -1,6 +1,7 @@
 package com.galaxyy.lifelocke.entity.custom;
 
 import com.galaxyy.lifelocke.entity.ai.HealBlockGoal;
+import com.galaxyy.lifelocke.entity.ai.StayNearTrialGoal;
 import com.galaxyy.lifelocke.tags.ModTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.AnimationState;
@@ -38,10 +39,11 @@ public class FireMobEntity extends Monster {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new HealBlockGoal(this, 2, HEALING_BLOCKS));
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.5, false));
-        this.goalSelector.addGoal(3, new RandomStrollGoal(this, 1.0));
-        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(1, new StayNearTrialGoal(this, 12, 3, 8, 1.5f));
+        this.goalSelector.addGoal(2, new HealBlockGoal(this, 2, HEALING_BLOCKS));
+        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.5, false));
+        this.goalSelector.addGoal(4, new RandomStrollGoal(this, 1.0));
+        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
 
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }

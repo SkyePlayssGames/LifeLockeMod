@@ -2,6 +2,8 @@ package com.galaxyy.lifelocke.entity.ai;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import com.google.common.collect.ImmutableList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -12,6 +14,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 public class PathfindHelper {
@@ -96,6 +99,16 @@ public class PathfindHelper {
         return toReturn;
     }
 
+    private static ArrayList<BlockPos> check(ArrayList<BlockPos> toCheck, ImmutableList<BlockState> blockStates, Level world) {
+        ArrayList<BlockPos> toReturn = new ArrayList<>();
+        for (BlockPos blockPos : toCheck) {
+            if (blockStates.contains(world.getBlockState(blockPos))) {
+                toReturn.add(blockPos);
+            }
+        }
+        return toReturn;
+    }
+
     private static float abs_sqrt(int a) {
         return abs_sqrt(((float) a));
     }
@@ -131,6 +144,17 @@ public class PathfindHelper {
     public static BlockPos findNearbyBlock(Mob mob, TagKey<Block> blockTag, int distance) {
         ArrayList<BlockPos> toCheck = getChecks(mob, distance);
         ArrayList<BlockPos> checked = check(toCheck, blockTag, mob.level());
+        HashMap<BlockPos, Float> distances = getDistances(checked, mob.blockPosition());
+        BlockPos toGo = getLowestDistance(distances);
+
+        if (toGo == null) { return null; }
+
+        return new BlockPos(toGo.getX(), toGo.getY() + 1, toGo.getZ());
+    }
+
+    public static BlockPos findNearbyBlock(Mob mob, ImmutableList<BlockState> blockStates, int distance) {
+        ArrayList<BlockPos> toCheck = getChecks(mob, distance);
+        ArrayList<BlockPos> checked = check(toCheck, blockStates, mob.level());
         HashMap<BlockPos, Float> distances = getDistances(checked, mob.blockPosition());
         BlockPos toGo = getLowestDistance(distances);
 
