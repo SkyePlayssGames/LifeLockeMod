@@ -45,7 +45,7 @@ public class StayNearTrialGoal extends Goal {
     @Override
     public boolean canContinueToUse() {
         BlockPos trial = findNearbyBlock(this.mob, ModBlocks.TERA_TRIAL_BLOCK.getStateDefinition().getPossibleStates(), this.maxSearchDistance);
-        return (trial == null) || (Math.sqrt(trial.distToCenterSqr(this.mob.position())) < minAwayDistance && !this.mob.hasControllingPassenger());
+        return (trial == null) || (Math.sqrt(trial.distToCenterSqr(this.mob.position())) > minAwayDistance && !this.mob.hasControllingPassenger());
     }
 
     @Override
