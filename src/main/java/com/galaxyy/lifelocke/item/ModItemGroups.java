@@ -19,23 +19,23 @@ public class ModItemGroups {
                     .icon(() -> new ItemStack(Blocks.BARRIER))
                     .title(Component.translatable("itemgroup.lifelocke.lifelocke_stuff"))
                     .displayItems((displayContext, entries) -> {
-                        assert Types.FIRE_TYPE.bottles.isPresent();
-                        assert Types.GRASS_TYPE.bottles.isPresent();
-                        assert Types.GHOST_TYPE.bottles.isPresent();
-                        assert Types.PSYCHIC_TYPE.bottles.isPresent();
+                        assert Types.FIRE_TYPE.bottles != null;
+                        assert Types.GRASS_TYPE.bottles != null;
+                        assert Types.GHOST_TYPE.bottles != null;
+                        assert Types.PSYCHIC_TYPE.bottles != null;
 
-                        entries.accept(Types.FIRE_TYPE.bottles.get().regular);
-                        entries.accept(Types.FIRE_TYPE.bottles.get().extended);
-                        entries.accept(Types.FIRE_TYPE.bottles.get().burst);
-                        entries.accept(Types.GRASS_TYPE.bottles.get().regular);
-                        entries.accept(Types.GRASS_TYPE.bottles.get().extended);
-                        entries.accept(Types.GRASS_TYPE.bottles.get().burst);
-                        entries.accept(Types.GHOST_TYPE.bottles.get().regular);
-                        entries.accept(Types.GHOST_TYPE.bottles.get().extended);
-                        entries.accept(Types.GHOST_TYPE.bottles.get().burst);
-                        entries.accept(Types.PSYCHIC_TYPE.bottles.get().regular);
-                        entries.accept(Types.PSYCHIC_TYPE.bottles.get().extended);
-                        entries.accept(Types.PSYCHIC_TYPE.bottles.get().burst);
+                        entries.accept(Types.FIRE_TYPE.bottles.regular);
+                        entries.accept(Types.FIRE_TYPE.bottles.extended);
+                        entries.accept(Types.FIRE_TYPE.bottles.burst);
+                        entries.accept(Types.GRASS_TYPE.bottles.regular);
+                        entries.accept(Types.GRASS_TYPE.bottles.extended);
+                        entries.accept(Types.GRASS_TYPE.bottles.burst);
+                        entries.accept(Types.GHOST_TYPE.bottles.regular);
+                        entries.accept(Types.GHOST_TYPE.bottles.extended);
+                        entries.accept(Types.GHOST_TYPE.bottles.burst);
+                        entries.accept(Types.PSYCHIC_TYPE.bottles.regular);
+                        entries.accept(Types.PSYCHIC_TYPE.bottles.extended);
+                        entries.accept(Types.PSYCHIC_TYPE.bottles.burst);
                         entries.accept(ModItems.FIRE_ENERGY);
                         entries.accept(ModItems.GRASS_ENERGY);
                         entries.accept(ModItems.GHOST_ENERGY);

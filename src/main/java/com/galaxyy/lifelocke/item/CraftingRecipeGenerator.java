@@ -24,28 +24,28 @@ public class CraftingRecipeGenerator extends FabricRecipeProvider {
         return new RecipeProvider(provider, recipeOutput) {
             @Override
             public void buildRecipes() {
-                assert Types.FIRE_TYPE.bottles.isPresent();
-                assert Types.GRASS_TYPE.bottles.isPresent();
-                assert Types.GHOST_TYPE.bottles.isPresent();
-                assert Types.PSYCHIC_TYPE.bottles.isPresent();
+                assert Types.FIRE_TYPE.bottles != null;
+                assert Types.GRASS_TYPE.bottles != null;
+                assert Types.GHOST_TYPE.bottles != null;
+                assert Types.PSYCHIC_TYPE.bottles != null;
 
                 HolderLookup.RegistryLookup<Item> itemLookup = registries.lookupOrThrow(Registries.ITEM);
-                shapeless(RecipeCategory.BREWING, Types.FIRE_TYPE.bottles.get().burst)
+                shapeless(RecipeCategory.BREWING, Types.FIRE_TYPE.bottles.burst)
                         .requires(ModItems.FIRE_ENERGY)
                         .requires(Items.GLASS_BOTTLE)
                         .unlockedBy(getHasName(ModItems.FIRE_ENERGY), has(ModItems.FIRE_ENERGY))
                         .save(output);
-                shapeless(RecipeCategory.BREWING, Types.GRASS_TYPE.bottles.get().burst)
+                shapeless(RecipeCategory.BREWING, Types.GRASS_TYPE.bottles.burst)
                         .requires(ModItems.GRASS_ENERGY)
                         .requires(Items.GLASS_BOTTLE)
                         .unlockedBy(getHasName(ModItems.GRASS_ENERGY), has(ModItems.GRASS_ENERGY))
                         .save(output);
-                shapeless(RecipeCategory.BREWING, Types.GHOST_TYPE.bottles.get().burst)
+                shapeless(RecipeCategory.BREWING, Types.GHOST_TYPE.bottles.burst)
                         .requires(ModItems.GHOST_ENERGY)
                         .requires(Items.GLASS_BOTTLE)
                         .unlockedBy(getHasName(ModItems.GHOST_ENERGY), has(ModItems.GHOST_ENERGY))
                         .save(output);
-                shapeless(RecipeCategory.BREWING, Types.PSYCHIC_TYPE.bottles.get().burst)
+                shapeless(RecipeCategory.BREWING, Types.PSYCHIC_TYPE.bottles.burst)
                         .requires(ModItems.PSYCHIC_ENERGY)
                         .requires(Items.GLASS_BOTTLE)
                         .unlockedBy(getHasName(ModItems.PSYCHIC_ENERGY), has(ModItems.PSYCHIC_ENERGY))

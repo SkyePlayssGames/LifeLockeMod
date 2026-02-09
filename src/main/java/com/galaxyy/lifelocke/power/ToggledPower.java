@@ -10,18 +10,15 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
-public abstract class ToggledPower implements AttackEntityCallback {
-    protected Types.TypeContainer type;
+public abstract class ToggledPower {
 
-    public void setType(Types.TypeContainer type) {
-        this.type = type;
-    }
+    protected abstract Types.TypeContainer getType();
 
     protected boolean canAffect(Player playerEntity, Level level, Entity entity) {
-        return (playerEntity.hasEffect(Types.DARK_TYPE.type) && !level.isClientSide() &&
+        return (playerEntity.hasEffect(getType().type) && !level.isClientSide() &&
                 (HungerCost.checkHunger(playerEntity, 4) || playerEntity.isCreative()) &&
                 ((iEntityDataSaver) playerEntity).lifelocke$getPersistentData().getStringOr("toggled_power", "lifelocke:null")
-                        .equals(Types.DARK_TYPE.id.toString()) &&
+                        .equals(getType().id.toString()) &&
                 entity instanceof LivingEntity);
     }
 }

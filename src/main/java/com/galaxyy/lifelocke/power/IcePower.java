@@ -16,7 +16,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import org.jetbrains.annotations.Nullable;
 
-public class IcePower extends ToggledPower {
+public class IcePower extends ToggledPower implements AttackEntityCallback {
+    @Override
+    protected Types.TypeContainer getType() {
+        return Types.ICE_TYPE;
+    }
+
     @Override
     public InteractionResult interact(Player playerEntity, Level world, InteractionHand hand, Entity entity, @Nullable EntityHitResult entityHitResult) {
         if (canAffect(playerEntity, world, entity)) {

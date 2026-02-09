@@ -33,7 +33,7 @@ public class Types {
 
     public static TypeContainer ELECTRIC_TYPE = registerToggledType(
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "electric"),
-            ModEffects.ELECTRIC, false, false, new ElectricPower()
+            ModEffects.ELECTRIC, false, false
     );
 
     public static TypeContainer WATER_TYPE = registerActivatedType(
@@ -58,12 +58,12 @@ public class Types {
 
     public static TypeContainer ICE_TYPE = registerToggledType(
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "ice"),
-            ModEffects.ICE, false, false, new IcePower()
+            ModEffects.ICE, false, false
     );
 
     public static TypeContainer POISON_TYPE = registerToggledType(
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "poison"),
-            ModEffects.POISON, false, false, new PoisonPower()
+            ModEffects.POISON, false, false
     );
 
     public static TypeContainer GROUND_TYPE = registerActivatedType(
@@ -88,7 +88,7 @@ public class Types {
 
     public static TypeContainer GHOST_TYPE = registerToggledType(
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "ghost"),
-            ModEffects.GHOST, true, false, null
+            ModEffects.GHOST, true, false
     );
 
     public static TypeContainer DRAGON_TYPE = registerActivatedType(
@@ -108,12 +108,12 @@ public class Types {
 
     public static TypeContainer PSYCHIC_TYPE = registerToggledType(
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "psychic"),
-            ModEffects.PSYCHIC, true, false, new PsychicPower()
+            ModEffects.PSYCHIC, true, false
     );
 
     public static TypeContainer DARK_TYPE = registerToggledType(
             Identifier.fromNamespaceAndPath(LifeLocke.MOD_ID, "dark"),
-            ModEffects.DARK, false, false, new DarkPower()
+            ModEffects.DARK, false, false
     );
 
     public static TypeContainer CURSE_TYPE = registerActivatedType(
@@ -133,13 +133,10 @@ public class Types {
         return typeContainer;
     }
 
-    public static TypeContainer registerToggledType(Identifier identifier, ToggledMobEffect type, boolean energyBottles, boolean special, @Nullable ToggledPower power) {
+    public static TypeContainer registerToggledType(Identifier identifier, ToggledMobEffect type, boolean energyBottles, boolean special) {
         TypeContainer typeContainer = new TypeContainer(identifier, type, null, energyBottles);
 
         type.setId(identifier);
-        if (power != null) {
-            power.setType(typeContainer);
-        }
 
         TYPE_EFFECTS.add(typeContainer.type);
         if (!special) ROLLABLE_TYPES.add(typeContainer.type);
