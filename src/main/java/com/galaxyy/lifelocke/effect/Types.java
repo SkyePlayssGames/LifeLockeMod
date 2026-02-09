@@ -174,7 +174,6 @@ public class Types {
 
     public static TypeContainer getType(Identifier id) {
         for (TypeContainer type : TYPES) {
-            System.out.println("Comparing " + id + " to " + type.id);
             if (type.id.toString().equals(id.toString())) {
                 return type;
             }
@@ -189,21 +188,21 @@ public class Types {
     public static class TypeContainer {
         public final Holder<MobEffect> type;
         public final Identifier id;
-        public final Optional<ActivatedAbility> activated;
-        public final Optional<EnergyBottleItem.EnergyBottleGroup> bottles;
+        public final @Nullable ActivatedAbility activated;
+        public final EnergyBottleItem.@Nullable EnergyBottleGroup bottles;
         public final @NotNull RKey rKey;
 
         public TypeContainer(Identifier id, MobEffect type, @Nullable ActivatedAbility activated, boolean energyBottles) {
             this.id = id;
             this.type = Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, id, type);
-            this.activated = Optional.ofNullable(activated);
+            this.activated = activated;
 
             if (activated != null) rKey = RKey.ACTIVE;
             else rKey = RKey.NOTHING;
 
-            if (energyBottles) bottles = Optional.of(new EnergyBottleItem.EnergyBottleGroup(
-                    new Item.Properties(), this.type, id));
-            else bottles = Optional.empty();
+            if (energyBottles) bottles = new EnergyBottleItem.EnergyBottleGroup(
+                    new Item.Properties(), this.type, id);
+            else bottles = null;
         }
 
         public enum RKey {
