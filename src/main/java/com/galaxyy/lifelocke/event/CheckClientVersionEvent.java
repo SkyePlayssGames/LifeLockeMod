@@ -5,7 +5,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 
 public class CheckClientVersionEvent implements ModdedPlayerJoinClientCallback {
-    private static final int MAXIMUM_SERVER_VERSION = 16;
+    private static final int MAXIMUM_SERVER_VERSION = 17;
 
     @Override
     public InteractionResult check(Player player, int version) {
