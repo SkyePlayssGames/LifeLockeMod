@@ -9,6 +9,21 @@
           "name": "lifelocke:grass_energy"
         }
       ]
+    },
+    {
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.01
+        }
+      ],
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "lifelocke:dummy_item"
+        }
+      ]
     }
   ]
 }
